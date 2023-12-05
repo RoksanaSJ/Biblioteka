@@ -32,12 +32,7 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("4.Wypisz wszystkie książki");
                 Console.WriteLine("5.Wróć");
                 Console.WriteLine("Wpisz opcje: ");
-                bool isItTrue = true;
-                do
-                {
-                    try
-                    {
-                        int option = int.Parse(Console.ReadLine());
+                int option = readOption();
                         if (option == 1)
                         {
                             addBookMenu.addBookMenu();
@@ -51,12 +46,7 @@ namespace Biblioteka.Menu.Books
                             Console.WriteLine("1.Wyszukaj po autorze");
                             Console.WriteLine("2.Wyszukacj po tytule");
                             Console.WriteLine("Podaj opcję: ");
-                            bool isItReallyTrue = true;
-                            do
-                            {
-                                try
-                                {
-                                    int choose = int.Parse(Console.ReadLine());
+                            int choose = readOption();
                                     switch (choose)
                                     {
                                         case 1:
@@ -69,13 +59,6 @@ namespace Biblioteka.Menu.Books
                                             Console.WriteLine("Podaj poprawną opcję!");
                                             break;
                                     }
-                                }
-                                catch (Exception e)
-                                {
-                                    Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową 1 lub 2!");
-                                    isItReallyTrue = false;
-                                }
-                            } while (isItReallyTrue == false);
                         }
                         else if (option == 4)
                         {
@@ -84,19 +67,25 @@ namespace Biblioteka.Menu.Books
                         }
                         else if (option == 5)
                         {
-                            break;                        }
+                            break;                        
+                        }
                         else
                         {
                             Console.WriteLine("Niepoprawna wartość");
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową od 1 - 5!");
-                        isItTrue = false;
-                    }
-                    
-                } while (isItTrue == false);
+            }
+        }
+        private int readOption()
+        {
+            try
+            {
+                int option = int.Parse(Console.ReadLine());
+                return option;
+            }
+            catch(Exception e)
+            {
+                int overflow = 9999;
+                return overflow;
             }
         }
     }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Model
 {
-    internal class Employee : Person
+    internal class Librarian : Person
     {
         int ID { get; set; }
         int Age { get; set; }
-        public Employee(string name, string surname, int age, int iD) : base(name, surname)
+        public Librarian(string name, string surname, int age, int iD) : base(name, surname)
         {
             ID = iD;
             Age = age;

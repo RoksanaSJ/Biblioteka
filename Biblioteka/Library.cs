@@ -11,7 +11,7 @@ namespace Biblioteka
     {
         List<Book> books;
         List<Reader> readers;
-        List<Employee> employees;
+        List<Librarian> employees;
         List<Borrowing> borrowing;
         List<Returning> returning;
 
@@ -19,7 +19,7 @@ namespace Biblioteka
         {
             books = new List<Book> ();
             readers = new List<Reader> ();
-            employees = new List<Employee> ();
+            employees = new List<Librarian> ();
             borrowing = new List<Borrowing> ();
             returning = new List<Returning> ();
         }
@@ -55,7 +55,7 @@ namespace Biblioteka
             readers.Add(c);
         }
 
-        public void addEmployee(Employee p)
+        public void addEmployee(Librarian p)
         {
             employees.Add(p);
         }
