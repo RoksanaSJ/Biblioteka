@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka.Menu.Book
+namespace Biblioteka.Menu.Books
 {
     internal class BooksMenu
     {

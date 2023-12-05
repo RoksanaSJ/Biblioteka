@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    internal class Author: Person
+    public class Author: Person
     {
         public Author (string name, string surname) : base(name, surname)
         {

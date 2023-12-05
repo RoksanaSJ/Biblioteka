@@ -44,7 +44,6 @@ namespace Biblioteka
                 Console.WriteLine(item);
             }
         }
-
         public void addBook(Book k)
         {
             books.Add(k);
@@ -80,12 +79,11 @@ namespace Biblioteka
                 }
             }
 
-            if(readerBooks.Count == 6)
+            if (readerBooks.Count == 6)
             {
                 Console.WriteLine("Nie możesz wypożyczyć więcej niż 5 ksiażek");
             }
         }
-
         public void listTheBorrowings()
         {
             foreach (var item in borrowing)

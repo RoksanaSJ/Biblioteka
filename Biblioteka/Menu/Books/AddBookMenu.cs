@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka.Menu.Book
+namespace Biblioteka.Menu.Books
 {
     internal class AddBookMenu
     {
@@ -22,7 +22,7 @@ namespace Biblioteka.Menu.Book
             Console.WriteLine("Podaj nazwisko autora");
             string surname = Console.ReadLine();
 
-            Book book = new Book(name, surname, title);
+            Biblioteka.Book book = new Biblioteka.Book(name, surname, title);
             library.addBook(book);
         }
     }

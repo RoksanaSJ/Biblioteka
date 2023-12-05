@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//using static Biblioteka.Book;
 
-namespace Biblioteka.Menu.Book
+namespace Biblioteka.Menu.Books
 {
     internal class RemoveBookMenu
     {
@@ -18,8 +19,8 @@ namespace Biblioteka.Menu.Book
         {
             Console.WriteLine("Podaj tytuł książki, którą chcesz usunąć");
             string title = Console.ReadLine();
-            List<Book> toRemove = new List<Book>();
-            List<Book> allBooks = library.getAllBooks();
+            List<Biblioteka.Book> toRemove = new List<Biblioteka.Book>();
+            List<Biblioteka.Book> allBooks = library.getAllBooks();
             foreach (var book in allBooks)
             {
                 if (book.getTitle().Contains(title))

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    internal class Person
+    public class Person
     {
         public string Name { get; set; }
         public string Surname { get; set; }

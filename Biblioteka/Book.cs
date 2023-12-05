@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    internal class Book : Author
+    public class Book : Author
     {
         static int nextID = 1;
-        int ID {  get; set; }
-        string Title {  get; set; }
+        int ID { get; set; }
+        string Title { get; set; }
 
-       BookState state { get; set; }
-        public Book(string name, string surname, string title) : base(name, surname) 
+        BookState state { get; set; }
+        public Book(string name, string surname, string title) : base(name, surname)
         {
-        this.ID = nextID;
-         nextID++;
-        this.Title = title;
-        this.state = BookState.Available;
+            ID = nextID;
+            nextID++;
+            Title = title;
+            state = BookState.Available;
         }
         public override string ToString()
         {
-            return "Książka: ID:"+ ID  + ", tytuł: " + Title + ", autor: " + Name +" "+ Surname;
+            return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + Name + " " + Surname;
         }
         public string getTitle()
         {
@@ -32,11 +32,10 @@ namespace Biblioteka
         {
             return ID;
         }
-       public enum BookState
+        public enum BookState
         {
-           Available, Booked
+            Available, Booked
         }
-
         public void booked()
         {
             state = BookState.Booked;

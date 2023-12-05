@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Biblioteka.Reader;
 
-namespace Biblioteka.Menu.Reader
+namespace Biblioteka.Menu.Readers
 {
     internal class AddReaderMenu
     {
@@ -23,7 +24,7 @@ namespace Biblioteka.Menu.Reader
             Console.WriteLine("Podaj wiek: ");
             int age = int.Parse(Console.ReadLine());
 
-            Reader reader = new Reader(name, surname, age);
+            Biblioteka.Reader reader = new Biblioteka.Reader(name, surname, age);
             library.addReader(reader);
         }
     }

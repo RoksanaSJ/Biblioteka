@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka.Menu.Book
+namespace Biblioteka.Menu.Books
 {
     internal class SearchByAuthorMenu
     {
@@ -21,7 +21,7 @@ namespace Biblioteka.Menu.Book
             Console.WriteLine("Podaje nazwisko autora: ");
             string surname = Console.ReadLine();
             string authorData = name + " " + surname;
-            List<Book> allBooks = library.getAllBooks();
+            List<Biblioteka.Book> allBooks = library.getAllBooks();
             bool isAvailable = false;
             foreach (var book in allBooks)
             {

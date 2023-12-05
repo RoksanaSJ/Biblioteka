@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    internal class Reader : Person
+    public class Reader : Person
     {
         static int readerID = 1;
-        int ID {  get; set; }
+        int ID { get; set; }
         public int Age { get; set; }
-        public Reader (string name, string surname, int age) : base(name, surname)
+        public Reader(string name, string surname, int age) : base(name, surname)
         {
-            this.ID = readerID;
+            ID = readerID;
             readerID++;
-            this.Age = age;
+            Age = age;
         }
         public override string ToString()
         {

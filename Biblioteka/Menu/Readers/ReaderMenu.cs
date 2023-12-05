@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka.Menu.Reader
+namespace Biblioteka.Menu.Readers
 {
     internal class ReaderMenu
     {

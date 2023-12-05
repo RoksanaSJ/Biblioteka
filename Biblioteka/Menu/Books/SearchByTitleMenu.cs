@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka.Menu.Book
+namespace Biblioteka.Menu.Books
 {
     internal class SearchByTitleMenu
     {
@@ -18,7 +18,7 @@ namespace Biblioteka.Menu.Book
         {
             Console.WriteLine("Podaj tytuł:");
             string searchingTitle = Console.ReadLine();
-            List<Book> allBooks = library.getAllBooks();
+            List<Biblioteka.Book> allBooks = library.getAllBooks();
             bool isAvailable = false;
 
             foreach (var book in allBooks)
