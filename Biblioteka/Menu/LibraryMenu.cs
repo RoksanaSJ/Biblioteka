@@ -63,7 +63,6 @@ namespace Biblioteka.Menu.Books
                     {
                         Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową od 1 - 4!");
                         isItTrue = false;
-
                     }
                 } while (isItTrue == false);
                 }

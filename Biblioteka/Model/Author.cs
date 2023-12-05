@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka
+namespace Biblioteka.Model
 {
-    public class Author: Person
+    public class Author : Person
     {
-        public Author (string name, string surname) : base(name, surname)
+        public Author(string name, string surname) : base(name, surname)
         {
 
         }
@@ -18,7 +18,7 @@ namespace Biblioteka
         }
         public string getAuthor()
         {
-            return Name+" "+Surname;
+            return Name + " " + Surname;
         }
     }
 }

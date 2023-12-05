@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka
+namespace Biblioteka.Model
 {
     public class Person
     {
@@ -12,8 +12,8 @@ namespace Biblioteka
         public string Surname { get; set; }
         public Person(string name, string surname)
         {
-            this.Name = name;
-            this.Surname = surname;
+            Name = name;
+            Surname = surname;
         }
     }
 }

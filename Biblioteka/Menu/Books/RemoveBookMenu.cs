@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Biblioteka.Model;
 //using static Biblioteka.Book;
 
 namespace Biblioteka.Menu.Books
@@ -35,6 +36,10 @@ namespace Biblioteka.Menu.Books
                     else if (option.Equals("n"))
                     {
                         continue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Podaj właściwą opcję!");
                     }
                 }
             }

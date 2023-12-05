@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka
+namespace Biblioteka.Model
 {
     internal class Returning
     {
-        DateOnly returningDate {  get; set; }
+        DateOnly returningDate { get; set; }
         Book book { get; set; }
         Reader reader { get; set; }
 
-        public Returning (DateOnly returningDate, Book book, Reader reader)
+        public Returning(DateOnly returningDate, Book book, Reader reader)
         {
             this.returningDate = returningDate;
             this.book = book;

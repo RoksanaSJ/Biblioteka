@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka
+namespace Biblioteka.Model
 {
     internal class Employee : Person
     {
-        int ID {  get; set; }
+        int ID { get; set; }
         int Age { get; set; }
         public Employee(string name, string surname, int age, int iD) : base(name, surname)
         {
-            this.ID = iD;
-            this.Age = age;
+            ID = iD;
+            Age = age;
         }
         public string toString()
         {
-            return "Pracownik: ID:" +ID + ", dane:" + Name + Surname;
+            return "Pracownik: ID:" + ID + ", dane:" + Name + Surname;
         }
     }
 }

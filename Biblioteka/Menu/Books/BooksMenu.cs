@@ -84,8 +84,7 @@ namespace Biblioteka.Menu.Books
                         }
                         else if (option == 5)
                         {
-                            break;
-                        }
+                            break;                        }
                         else
                         {
                             Console.WriteLine("Niepoprawna wartość");
@@ -96,6 +95,7 @@ namespace Biblioteka.Menu.Books
                         Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową od 1 - 5!");
                         isItTrue = false;
                     }
+                    
                 } while (isItTrue == false);
             }
         }

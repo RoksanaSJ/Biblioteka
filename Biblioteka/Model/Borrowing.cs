@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka
+namespace Biblioteka.Model
 {
-    internal class Borrowing 
+    internal class Borrowing
     {
-        DateOnly borrowingDate {  get; set; }
+        DateOnly borrowingDate { get; set; }
         Book book { get; set; }
         Reader reader { get; set; }
         public Borrowing(DateOnly date, Book book, Reader reader)
         {
-            this.borrowingDate = date;
+            borrowingDate = date;
             this.reader = reader;
             this.book = book;
         }

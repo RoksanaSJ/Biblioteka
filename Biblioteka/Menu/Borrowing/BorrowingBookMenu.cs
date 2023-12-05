@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Biblioteka.Book;
+using static Biblioteka.Model.Book;
 
 
 namespace Biblioteka.Menu.Borrowing
