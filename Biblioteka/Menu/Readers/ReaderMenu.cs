@@ -25,21 +25,34 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("2.Wypisz wszystkich czytelników");
                 Console.WriteLine("3.Wróć");
                 Console.WriteLine("Podaj opcję: ");
-                int option = int.Parse(Console.ReadLine());
-                switch (option)
+                bool isItTrue = true;
+                do
                 {
-                    case 1:
-                        addReaderInit.addReaderMenu();
-                        break;
-                    case 2:
-                        library.listTheReaders();
-                        break;
-                    case 3:
-                        break;
-                    default:
-                        Console.WriteLine("Podaj prawidłową opcję!");
-                        break;
-                }
+                    try
+                    {
+                        int option = int.Parse(Console.ReadLine());
+                        switch (option)
+                        {
+                            case 1:
+                                addReaderInit.addReaderMenu();
+                                break;
+                            case 2:
+                                library.listTheReaders();
+                                break;
+                            case 3:
+                                break;
+                            default:
+                                Console.WriteLine("Podaj prawidłową opcję!");
+                                break;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową od 1 - 3!");
+                        isItTrue = false;
+
+                    }
+                } while (isItTrue == false);
             }
         }
     }

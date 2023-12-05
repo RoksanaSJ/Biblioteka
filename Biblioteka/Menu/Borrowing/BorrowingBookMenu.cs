@@ -26,19 +26,32 @@ namespace Biblioteka.Menu.Borrowing
             Console.WriteLine("2.Oddaj książkę");
             Console.WriteLine("3.Wypisz wszystkie wypożyczenia");
             Console.WriteLine("Podaj opcję: ");
-            int option = int.Parse(Console.ReadLine());
-            switch (option)
+            bool isItTrue = true;
+            do
             {
-                case 1:
-                    borrowABookMenu.borrowBookMenu();
-                    break;
-                case 2:
-                    returnABookMenu.returnABookMenu();
-                    break;
-                default:
-                    Console.WriteLine("Podaj właściwą opcję!");
-                    break;
-            }
+                try
+                {
+                    int option = int.Parse(Console.ReadLine());
+                    switch (option)
+                    {
+                    case 1:
+                         borrowABookMenu.borrowBookMenu();
+                         break;
+                    case 2:
+                        returnABookMenu.returnABookMenu();
+                        break;
+                    default:
+                        Console.WriteLine("Podaj właściwą opcję!");
+                        break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową 1 lub 2!");
+                    isItTrue = false;
+
+                }
+            } while (isItTrue == false);
         }
     }
 }
