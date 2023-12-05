@@ -22,7 +22,7 @@ namespace Biblioteka.Menu.Books
             Console.WriteLine("Podaj nazwisko autora");
             string surname = Console.ReadLine();
 
-            Biblioteka.Book book = new Biblioteka.Book(name, surname, title);
+            Book book = new Book(name, surname, title);
             library.addBook(book);
         }
     }

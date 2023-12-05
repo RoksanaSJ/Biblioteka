@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.Menu.Books;
 using Biblioteka.Menu.Borrowing;
-using Biblioteka.Menu.Reader;
+using Biblioteka.Menu.Readers;
 
 namespace Biblioteka.Menu.Books
 {
@@ -31,30 +31,43 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("3.Menu wypożyczenia");
                 Console.WriteLine("4.Zakończ");
                 Console.WriteLine("Wpisz opcje: ");
+                bool isItTrue = true;
+                do
+                {
+                    try
+                    {
+                        int option = int.Parse(Console.ReadLine());
 
-                int option = int.Parse(Console.ReadLine());
-                if (option == 1)
-                {
-                    BooksMenu.printBooksMenu();
-                }
-                else if (option == 2)
-                {
-                    readerMenu.printReaderMenu();
-                }
-                else if (option == 3)
-                {
-                    borrowingBookMenu.printBorrowingBookMenu();
-                }
-                else if (option == 4)
-                {
-                    Environment.Exit(1);
-                }
-                else
-                {
-                    Console.WriteLine("Niepoprawna wartość");
+                        if (option == 1)
+                        {
+                            BooksMenu.printBooksMenu();
+                        }
+                        else if (option == 2)
+                        {
+                            readerMenu.printReaderMenu();
+                        }
+                        else if (option == 3)
+                        {
+                            borrowingBookMenu.printBorrowingBookMenu();
+                        }
+                        else if (option == 4)
+                        {
+                            Environment.Exit(1);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Niepoprawna wartość");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową od 1 - 4!");
+                        isItTrue = false;
 
+                    }
+                } while (isItTrue == false);
                 }
             }
         }
     }
-}
+

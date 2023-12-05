@@ -24,7 +24,7 @@ namespace Biblioteka.Menu.Readers
             Console.WriteLine("Podaj wiek: ");
             int age = int.Parse(Console.ReadLine());
 
-            Biblioteka.Reader reader = new Biblioteka.Reader(name, surname, age);
+            Reader reader = new Reader(name, surname, age);
             library.addReader(reader);
         }
     }

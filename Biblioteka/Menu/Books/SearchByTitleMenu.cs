@@ -18,7 +18,7 @@ namespace Biblioteka.Menu.Books
         {
             Console.WriteLine("Podaj tytuł:");
             string searchingTitle = Console.ReadLine();
-            List<Biblioteka.Book> allBooks = library.getAllBooks();
+            List<Book> allBooks = library.getAllBooks();
             bool isAvailable = false;
 
             foreach (var book in allBooks)

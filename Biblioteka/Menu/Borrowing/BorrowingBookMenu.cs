@@ -12,10 +12,12 @@ namespace Biblioteka.Menu.Borrowing
     {
         Library library;
         BorrowABookMenu borrowABookMenu;
+        ReturnABookMenu returnABookMenu;
         public BorrowingBookMenu(Library library)
         {
             this.library = library;
             borrowABookMenu = new BorrowABookMenu(library);
+            returnABookMenu = new ReturnABookMenu(library);
         }
 
         public void printBorrowingBookMenu()
@@ -31,17 +33,10 @@ namespace Biblioteka.Menu.Borrowing
                     borrowABookMenu.borrowBookMenu();
                     break;
                 case 2:
-                    Console.WriteLine("Podaj tytuł książki");
-                    string returningTitle = Console.ReadLine();
-                    List<Book> books = library.getAllBooks();
-                    foreach (var book in books)
-                        if (book.getTitle().Contains(returningTitle))
-                        {
-                            //  library.
-                        }
+                    returnABookMenu.returnABookMenu();
                     break;
                 default:
-                    Console.WriteLine("Podaj właściwą opcję1");
+                    Console.WriteLine("Podaj właściwą opcję!");
                     break;
             }
         }

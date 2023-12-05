@@ -13,5 +13,32 @@ namespace Biblioteka.Menu.Borrowing
         {
             this.library = library;
         }
+
+        public void returnABookMenu() 
+        {
+
+            Console.WriteLine("Podaj swój identyfikator:");
+            int userID = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj ID książki");
+            int ID = int.Parse(Console.ReadLine());
+            List<Book> allBooks = library.getAllBooks();
+            List<Reader> readers = library.getReaders();
+
+            foreach (var book in allBooks)
+            {
+                if (book.getID() == ID)
+                {
+                    Console.WriteLine("Książka znaleziona");
+                    foreach (var reader in readers)
+                    {
+                        if (reader.getID() == userID)
+                        {
+                            library.returnBook(book, reader);
+                            Console.WriteLine($"Gratulację {reader}, właśnie oddałeś książkę {book}");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

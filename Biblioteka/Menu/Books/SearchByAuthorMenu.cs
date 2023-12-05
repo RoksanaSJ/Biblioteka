@@ -21,7 +21,7 @@ namespace Biblioteka.Menu.Books
             Console.WriteLine("Podaje nazwisko autora: ");
             string surname = Console.ReadLine();
             string authorData = name + " " + surname;
-            List<Biblioteka.Book> allBooks = library.getAllBooks();
+            List<Book> allBooks = library.getAllBooks();
             bool isAvailable = false;
             foreach (var book in allBooks)
             {

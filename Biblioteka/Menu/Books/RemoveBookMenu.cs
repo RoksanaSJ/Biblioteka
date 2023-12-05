@@ -19,8 +19,8 @@ namespace Biblioteka.Menu.Books
         {
             Console.WriteLine("Podaj tytuł książki, którą chcesz usunąć");
             string title = Console.ReadLine();
-            List<Biblioteka.Book> toRemove = new List<Biblioteka.Book>();
-            List<Biblioteka.Book> allBooks = library.getAllBooks();
+            List<Book> toRemove = new List<Book>();
+            List<Book> allBooks = library.getAllBooks();
             foreach (var book in allBooks)
             {
                 if (book.getTitle().Contains(title))
