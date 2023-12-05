@@ -13,6 +13,7 @@ namespace Biblioteka.Menu.Books
         SearchByTitleMenu searchByTitleMenu;
         SearchByAuthorMenu searchByAuthorMenu;
         RemoveBookMenu removeBookMenu;
+        SearchBookMenu searchBookMenu;
         public BooksMenu(Library library)
         {
             this.library = library;
@@ -20,6 +21,7 @@ namespace Biblioteka.Menu.Books
             searchByTitleMenu = new SearchByTitleMenu(library);
             searchByAuthorMenu = new SearchByAuthorMenu(library);
             removeBookMenu = new RemoveBookMenu(library);
+            searchBookMenu = new SearchBookMenu(library);
         }
 
         public void printBooksMenu()
@@ -43,22 +45,7 @@ namespace Biblioteka.Menu.Books
                         }
                         else if (option == 3)
                         {
-                            Console.WriteLine("1.Wyszukaj po autorze");
-                            Console.WriteLine("2.Wyszukacj po tytule");
-                            Console.WriteLine("Podaj opcję: ");
-                            int choose = readOption();
-                                    switch (choose)
-                                    {
-                                        case 1:
-                                            searchByAuthorMenu.searchByAuthorMenu();
-                                            break;
-                                        case 2:
-                                            searchByTitleMenu.searchByTitleMenu();
-                                            break;
-                                        default:
-                                            Console.WriteLine("Podaj poprawną opcję!");
-                                            break;
-                                    }
+                            searchBookMenu.searchingBookMenu();
                         }
                         else if (option == 4)
                         {
@@ -75,7 +62,7 @@ namespace Biblioteka.Menu.Books
                         }
             }
         }
-        private int readOption()
+        public int readOption()
         {
             try
             {
