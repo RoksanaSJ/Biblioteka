@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Menu.Readers
 {
-    internal class ReaderMenu
+    internal class ReaderMenu : Menu
     {
-        Library library;
         AddReaderMenu addReaderInit;
-        public ReaderMenu(Library library)
+        public ReaderMenu(Library library) : base(library)
         {
-            this.library = library;
             addReaderInit = new AddReaderMenu(library);
         }
 
@@ -25,34 +23,34 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("2.Wypisz wszystkich czytelników");
                 Console.WriteLine("3.Wróć");
                 Console.WriteLine("Podaj opcję: ");
-                bool isItTrue = true;
-                do
+                int option = readOption();
+                switch (option)
                 {
-                    try
-                    {
-                        int option = int.Parse(Console.ReadLine());
-                        switch (option)
-                        {
-                            case 1:
-                                addReaderInit.addReaderMenu();
-                                break;
-                            case 2:
-                                library.listTheReaders();
-                                break;
-                            case 3:
-                                break;
-                            default:
-                                Console.WriteLine("Podaj prawidłową opcję!");
-                                break;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową od 1 - 3!");
-                        isItTrue = false;
-
-                    }
-                } while (isItTrue == false);
+                    case 1:
+                        addReaderInit.addReaderMenu();
+                        break;
+                    case 2:
+                        library.listTheReaders();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        Console.WriteLine("Podaj prawidłową opcję!");
+                        break;
+                }
+            }
+        }
+        public int readOption()
+        {
+            try
+            {
+                int option = int.Parse(Console.ReadLine());
+                return option;
+            }
+            catch (Exception e)
+            {
+                int overflow = 9999;
+                return overflow;
             }
         }
     }

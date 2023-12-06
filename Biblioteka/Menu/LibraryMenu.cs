@@ -9,18 +9,16 @@ using Biblioteka.Menu.Readers;
 
 namespace Biblioteka.Menu.Books
 {
-    internal class LibraryMenu
+    internal class LibraryMenu : Menu
     {
         BooksMenu BooksMenu;
-        Library library;
         ReaderMenu readerMenu;
         BorrowingBookMenu borrowingBookMenu;
-        public LibraryMenu(Library library)
+        public LibraryMenu(Library library) : base(library)
         {
             BooksMenu = new BooksMenu(library);
             readerMenu = new ReaderMenu(library);
             borrowingBookMenu = new BorrowingBookMenu(library);
-            this.library = library;
         }
         public void printLibraryMenu()
         {
@@ -31,42 +29,43 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("3.Menu wypożyczenia");
                 Console.WriteLine("4.Zakończ");
                 Console.WriteLine("Wpisz opcje: ");
-                bool isItTrue = true;
-                do
-                {
-                    try
-                    {
-                        int option = int.Parse(Console.ReadLine());
+                int option = readOption();
 
-                        if (option == 1)
-                        {
-                            BooksMenu.printBooksMenu();
-                        }
-                        else if (option == 2)
-                        {
-                            readerMenu.printReaderMenu();
-                        }
-                        else if (option == 3)
-                        {
-                            borrowingBookMenu.printBorrowingBookMenu();
-                        }
-                        else if (option == 4)
-                        {
-                            Environment.Exit(1);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Niepoprawna wartość");
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową od 1 - 4!");
-                        isItTrue = false;
-                    }
-                } while (isItTrue == false);
+                if (option == 1)
+                {
+                    BooksMenu.printBooksMenu();
+                }
+                else if (option == 2)
+                {
+                    readerMenu.printReaderMenu();
+                }
+                else if (option == 3)
+                {
+                    borrowingBookMenu.printBorrowingBookMenu();
+                }
+                else if (option == 4)
+                {
+                    Environment.Exit(1);
+                }
+                else
+                {
+                    Console.WriteLine("Podaj poprawną opcję!");
                 }
             }
         }
+        public int readOption()
+        {
+            try
+            {
+                int option = int.Parse(Console.ReadLine());
+                return option;
+            }
+            catch (Exception e)
+            {
+                int overflow = 9999;
+                return overflow;
+            }
+        }
     }
+}
 

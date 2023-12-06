@@ -8,14 +8,12 @@ using static Biblioteka.Model.Reader;
 
 namespace Biblioteka.Menu.Readers
 {
-    internal class AddReaderMenu
+    internal class AddReaderMenu : Menu
     {
-        Library library;
-        public AddReaderMenu(Library library)
+        public AddReaderMenu(Library library) : base(library)
         {
-            this.library = library;
-        }
 
+        }
         public void addReaderMenu()
         {
             Console.WriteLine("Podaj imię: ");

@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Menu.Books
 {
-    internal class BooksMenu
+    internal class BooksMenu :Menu
     {
-        Library library;
         AddBookMenu addBookMenu;
         SearchByTitleMenu searchByTitleMenu;
         SearchByAuthorMenu searchByAuthorMenu;
         RemoveBookMenu removeBookMenu;
         SearchBookMenu searchBookMenu;
-        public BooksMenu(Library library)
+        public BooksMenu(Library library) : base(library)
         {
-            this.library = library;
             addBookMenu = new AddBookMenu(library);
             searchByTitleMenu = new SearchByTitleMenu(library);
             searchByAuthorMenu = new SearchByAuthorMenu(library);

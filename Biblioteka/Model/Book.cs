@@ -10,7 +10,7 @@ namespace Biblioteka.Model
     {
         static int nextID = 1;
         int ID { get; set; }
-        string Title { get; set; }
+       public string Title { get; set; }
 
         BookState state { get; set; }
         public Book(string name, string surname, string title) : base(name, surname)

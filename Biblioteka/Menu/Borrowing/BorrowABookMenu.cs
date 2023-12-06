@@ -7,12 +7,11 @@ using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Borrowing
 {
-    internal class BorrowABookMenu
+    internal class BorrowABookMenu : Menu
     {
-        Library library;
-        public BorrowABookMenu(Library library)
+        public BorrowABookMenu(Library library) : base(library)
         {
-            this.library = library;
+
         }
 
         public void borrowBookMenu()

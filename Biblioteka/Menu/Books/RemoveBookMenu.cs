@@ -8,12 +8,11 @@ using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Books
 {
-    internal class RemoveBookMenu
+    internal class RemoveBookMenu : Menu
     {
-        Library library;
-        public RemoveBookMenu(Library library)
+        public RemoveBookMenu(Library library) : base(library)
         {
-            this.library = library;
+
         }
 
         public void removeBookMenu()

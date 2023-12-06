@@ -8,14 +8,12 @@ using static Biblioteka.Model.Book;
 
 namespace Biblioteka.Menu.Borrowing
 {
-    internal class BorrowingBookMenu
+    internal class BorrowingBookMenu :Menu
     {
-        Library library;
         BorrowABookMenu borrowABookMenu;
         ReturnABookMenu returnABookMenu;
-        public BorrowingBookMenu(Library library)
+        public BorrowingBookMenu(Library library) : base(library)
         {
-            this.library = library;
             borrowABookMenu = new BorrowABookMenu(library);
             returnABookMenu = new ReturnABookMenu(library);
         }
@@ -26,32 +24,32 @@ namespace Biblioteka.Menu.Borrowing
             Console.WriteLine("2.Oddaj książkę");
             Console.WriteLine("3.Wypisz wszystkie wypożyczenia");
             Console.WriteLine("Podaj opcję: ");
-            bool isItTrue = true;
-            do
-            {
-                try
-                {
-                    int option = int.Parse(Console.ReadLine());
+            int option = readOption();
                     switch (option)
                     {
-                    case 1:
-                         borrowABookMenu.borrowBookMenu();
-                         break;
-                    case 2:
-                        returnABookMenu.returnABookMenu();
-                        break;
-                    default:
-                        Console.WriteLine("Podaj właściwą opcję!");
-                        break;
+                        case 1:
+                            borrowABookMenu.borrowBookMenu();
+                            break;
+                        case 2:
+                            returnABookMenu.returnABookMenu();
+                            break;
+                        default:
+                            Console.WriteLine("Podaj właściwą opcję!");
+                            break;
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Aby wybrać opcję musisz podać wartość liczbową 1 lub 2!");
-                    isItTrue = false;
-
-                }
-            } while (isItTrue == false);
+        }
+        public int readOption()
+        {
+            try
+            {
+                int option = int.Parse(Console.ReadLine());
+                return option;
+            }
+            catch (Exception e)
+            {
+                int overflow = 9999;
+                return overflow;
+            }
         }
     }
 }

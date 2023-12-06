@@ -7,12 +7,11 @@ using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Books
 {
-    internal class SearchByTitleMenu
+    internal class SearchByTitleMenu : Menu
     {
-        Library library;
-        public SearchByTitleMenu(Library library)
+        public SearchByTitleMenu(Library library) : base(library)
         {
-            this.library = library;
+
         }
 
         public void searchByTitleMenu()

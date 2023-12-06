@@ -7,12 +7,11 @@ using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Books
 {
-    internal class SearchByAuthorMenu
+    internal class SearchByAuthorMenu : Menu
     {
-        Library library;
-        public SearchByAuthorMenu(Library library)
+        public SearchByAuthorMenu(Library library) : base(library)
         {
-            this.library = library;
+
         }
 
         public void searchByAuthorMenu()
@@ -37,6 +36,7 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("Niestety nie ma książki napisanej przez takiego autora.");
             }
         }
+
 
     }
 }

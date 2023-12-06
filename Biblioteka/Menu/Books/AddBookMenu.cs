@@ -7,12 +7,12 @@ using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Books
 {
-    internal class AddBookMenu
+    internal class AddBookMenu : Menu
     {
-        Library library;
-        public AddBookMenu(Library library)
+       
+        public AddBookMenu(Library library) : base(library)
         {
-            this.library = library;
+           
         }
         public void addBookMenu()
         {
@@ -26,5 +26,18 @@ namespace Biblioteka.Menu.Books
             Book book = new Book(name, surname, title);
             library.addBook(book);
         }
+      //  public string readOption()
+      //  {
+      //      try
+      //      {
+      //          string option = Console.ReadLine();
+      //          return option;
+      //      }
+      //      catch (Exception e)
+      //      {
+      //          string overflow = " ";
+      //          return overflow;
+      //      }
+      //  }
     }
 }

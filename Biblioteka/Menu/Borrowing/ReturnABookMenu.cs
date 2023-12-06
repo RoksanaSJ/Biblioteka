@@ -7,17 +7,14 @@ using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Borrowing
 {
-    internal class ReturnABookMenu
+    internal class ReturnABookMenu : Menu
     {
-        Library library;
-        public ReturnABookMenu(Library library)
+        public ReturnABookMenu(Library library) : base(library)
         {
-            this.library = library;
-        }
 
+        }
         public void returnABookMenu() 
         {
-
             Console.WriteLine("Podaj swój identyfikator:");
             int userID = int.Parse(Console.ReadLine());
             Console.WriteLine("Podaj ID książki");
