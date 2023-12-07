@@ -14,7 +14,6 @@ namespace Biblioteka.Menu.Books
         {
 
         }
-
         public void removeBookMenu()
         {
             Console.WriteLine("Podaj tytuł książki, którą chcesz usunąć");
@@ -26,7 +25,7 @@ namespace Biblioteka.Menu.Books
                 if (book.getTitle().Contains(title))
                 {
                     Console.WriteLine($"Czy to jest ta ksiażka, którą chcesz usunąć? {book}");
-                    Console.WriteLine("Wpisz y jeśli tak lub n jeśli nie");
+                    Console.WriteLine("Wpisz 't' jeśli tak, 'n' jeśli nie 'b' jeśli chcesz wrócić");
                     string option = Console.ReadLine();
                     if (option.Equals("y"))
                     {
@@ -35,6 +34,10 @@ namespace Biblioteka.Menu.Books
                     else if (option.Equals("n"))
                     {
                         continue;
+                    }
+                    else if (option.Equals("b"))
+                    {
+                        break;
                     }
                     else
                     {
@@ -46,6 +49,7 @@ namespace Biblioteka.Menu.Books
             {
                 allBooks.Remove(book);
             }
+            Console.WriteLine(" ");
         }
     }
 }

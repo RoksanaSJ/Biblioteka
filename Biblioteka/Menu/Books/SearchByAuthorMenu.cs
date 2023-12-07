@@ -13,30 +13,52 @@ namespace Biblioteka.Menu.Books
         {
 
         }
-
         public void searchByAuthorMenu()
         {
-            Console.WriteLine("Podaj imię autora: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Podaje nazwisko autora: ");
-            string surname = Console.ReadLine();
-            string authorData = name + " " + surname;
-            List<Book> allBooks = library.getAllBooks();
-            bool isAvailable = false;
-            foreach (var book in allBooks)
+            while (true)
             {
-                if (book.getAuthor().Contains(authorData))
+                Console.WriteLine("Podaj imię autora: ");
+                string name = Console.ReadLine();
+                Console.WriteLine("Podaje nazwisko autora: ");
+                string surname = Console.ReadLine();
+                string authorData = name + " " + surname;
+                Console.WriteLine($"Czy autor, po którym chcesz wyszukać książkę ma następujące dane: {authorData}");
+                Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
+                char userOption = char.Parse(Console.ReadLine());
+                if (userOption == 'y')
                 {
-                    Console.WriteLine(book);
-                    isAvailable = true;
+                    Console.WriteLine($"Gratulację! Udało ci się wyszukać dzieło/dzieła autora {authorData}");
+                    List<Book> allBooks = library.getAllBooks();
+                    bool isAvailable = false;
+
+                    foreach (var book in allBooks)
+                    {
+                        if (book.getAuthor().Contains(authorData))
+                        {
+                            Console.WriteLine(book);
+                            isAvailable = true;
+                        }
+                    }
+                    if (isAvailable == false)
+                    {
+                        Console.WriteLine("Niestety nie ma książki napisanej przez takiego autora.");
+                    }
+                    break;
+                }
+                else if (userOption == 'n')
+                {
+                    searchByAuthorMenu();
+                }
+                else if (userOption == 'b')
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Podaj poprawną opcję!");
                 }
             }
-            if (isAvailable == false)
-            {
-                Console.WriteLine("Niestety nie ma książki napisanej przez takiego autora.");
-            }
+            Console.WriteLine(" ");
         }
-
-
     }
 }

@@ -11,16 +11,16 @@ namespace Biblioteka.Menu.Books
 {
     internal class LibraryMenu : Menu
     {
-        BooksMenu BooksMenu;
-        ReaderMenu readerMenu;
-        BorrowingBookMenu borrowingBookMenu;
+        private BooksMenu BooksMenu;
+        private ReaderMenu readerMenu;
+        private BorrowingBookMenu borrowingBookMenu;
         public LibraryMenu(Library library) : base(library)
         {
             BooksMenu = new BooksMenu(library);
             readerMenu = new ReaderMenu(library);
             borrowingBookMenu = new BorrowingBookMenu(library);
         }
-        public void printLibraryMenu()
+        public void printMenu()
         {
             while (true)
             {
@@ -33,15 +33,15 @@ namespace Biblioteka.Menu.Books
 
                 if (option == 1)
                 {
-                    BooksMenu.printBooksMenu();
+                    BooksMenu.printMenu();
                 }
                 else if (option == 2)
                 {
-                    readerMenu.printReaderMenu();
+                    readerMenu.printMenu();
                 }
                 else if (option == 3)
                 {
-                    borrowingBookMenu.printBorrowingBookMenu();
+                    borrowingBookMenu.printMenu();
                 }
                 else if (option == 4)
                 {
@@ -52,19 +52,7 @@ namespace Biblioteka.Menu.Books
                     Console.WriteLine("Podaj poprawną opcję!");
                 }
             }
-        }
-        public int readOption()
-        {
-            try
-            {
-                int option = int.Parse(Console.ReadLine());
-                return option;
-            }
-            catch (Exception e)
-            {
-                int overflow = 9999;
-                return overflow;
-            }
+            Console.WriteLine(" ");
         }
     }
 }

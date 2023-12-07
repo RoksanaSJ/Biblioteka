@@ -8,11 +8,11 @@ namespace Biblioteka.Menu.Books
 {
     internal class BooksMenu :Menu
     {
-        AddBookMenu addBookMenu;
-        SearchByTitleMenu searchByTitleMenu;
-        SearchByAuthorMenu searchByAuthorMenu;
-        RemoveBookMenu removeBookMenu;
-        SearchBookMenu searchBookMenu;
+        private AddBookMenu addBookMenu;
+        private SearchByTitleMenu searchByTitleMenu;
+        private SearchByAuthorMenu searchByAuthorMenu;
+        private RemoveBookMenu removeBookMenu;
+        private SearchBookMenu searchBookMenu;
         public BooksMenu(Library library) : base(library)
         {
             addBookMenu = new AddBookMenu(library);
@@ -22,7 +22,7 @@ namespace Biblioteka.Menu.Books
             searchBookMenu = new SearchBookMenu(library);
         }
 
-        public void printBooksMenu()
+        public void printMenu()
         {
             while (true)
             {
@@ -59,19 +59,7 @@ namespace Biblioteka.Menu.Books
                             Console.WriteLine("Niepoprawna wartość");
                         }
             }
-        }
-        public int readOption()
-        {
-            try
-            {
-                int option = int.Parse(Console.ReadLine());
-                return option;
-            }
-            catch(Exception e)
-            {
-                int overflow = 9999;
-                return overflow;
-            }
+            Console.WriteLine(" ");
         }
     }
 }

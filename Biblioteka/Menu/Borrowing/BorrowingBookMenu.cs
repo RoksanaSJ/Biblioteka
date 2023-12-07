@@ -17,8 +17,7 @@ namespace Biblioteka.Menu.Borrowing
             borrowABookMenu = new BorrowABookMenu(library);
             returnABookMenu = new ReturnABookMenu(library);
         }
-
-        public void printBorrowingBookMenu()
+        public void printMenu()
         {
             Console.WriteLine("1.Wypożycz książkę");
             Console.WriteLine("2.Oddaj książkę");
@@ -37,19 +36,7 @@ namespace Biblioteka.Menu.Borrowing
                             Console.WriteLine("Podaj właściwą opcję!");
                             break;
                     }
-        }
-        public int readOption()
-        {
-            try
-            {
-                int option = int.Parse(Console.ReadLine());
-                return option;
-            }
-            catch (Exception e)
-            {
-                int overflow = 9999;
-                return overflow;
-            }
+            Console.WriteLine(" ");
         }
     }
 }

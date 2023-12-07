@@ -15,28 +15,50 @@ namespace Biblioteka.Menu.Borrowing
         }
         public void returnABookMenu() 
         {
-            Console.WriteLine("Podaj swój identyfikator:");
-            int userID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Podaj ID książki");
-            int ID = int.Parse(Console.ReadLine());
-            List<Book> allBooks = library.getAllBooks();
-            List<Reader> readers = library.getReaders();
-
-            foreach (var book in allBooks)
+            while (true)
             {
-                if (book.getID() == ID)
+                Console.WriteLine("Podaj swój identyfikator:");
+                int userID = int.Parse(Console.ReadLine());
+                Console.WriteLine("Podaj ID książki");
+                int ID = int.Parse(Console.ReadLine());
+                Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
+                Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do główneg menu wpisz 'b':");
+                char userOption = char.Parse(Console.ReadLine());
+                if (userOption == 'y')
                 {
-                    Console.WriteLine("Książka znaleziona");
-                    foreach (var reader in readers)
+                    List<Book> allBooks = library.getAllBooks();
+                    List<Reader> readers = library.getReaders();
+
+                    foreach (var book in allBooks)
                     {
-                        if (reader.getID() == userID)
+                        if (book.getID() == ID)
                         {
-                            library.returnBook(book, reader);
-                            Console.WriteLine($"Gratulację {reader}, właśnie oddałeś książkę {book}");
+                            Console.WriteLine("Książka znaleziona");
+                            foreach (var reader in readers)
+                            {
+                                if (reader.getID() == userID)
+                                {
+                                    library.returnBook(book, reader);
+                                    Console.WriteLine($"Gratulację {reader}, właśnie oddałeś książkę {book}");
+                                }
+                            }
                         }
                     }
                 }
+                else if (userOption == 'n')
+                {
+                    returnABookMenu();
+                }
+                else if (userOption == 'b')
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Podaj poprawną opcję!");
+                }
             }
+            Console.WriteLine(" ");
         }
     }
 }

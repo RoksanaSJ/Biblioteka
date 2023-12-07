@@ -8,8 +8,8 @@ namespace Biblioteka.Menu.Books
 {
     internal class SearchBookMenu : Menu
     {
-        SearchByAuthorMenu searchByAuthorMenu;
-        SearchByTitleMenu searchByTitleMenu;
+        private SearchByAuthorMenu searchByAuthorMenu;
+        private SearchByTitleMenu searchByTitleMenu;
         public SearchBookMenu(Library library) : base(library)
         {
             searchByAuthorMenu = new SearchByAuthorMenu(library);
@@ -42,6 +42,7 @@ namespace Biblioteka.Menu.Books
                     Console.WriteLine("Podaj poprawną opcję!");
                 }
             }
+            Console.WriteLine("");
         }
         public int readOption()
         {

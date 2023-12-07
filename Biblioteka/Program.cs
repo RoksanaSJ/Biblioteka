@@ -73,7 +73,7 @@ namespace Biblioteka
             library.addReader(reader6);
 
             LibraryMenu libraryMenu = new LibraryMenu(library);
-            libraryMenu.printLibraryMenu();
+            libraryMenu.printMenu();
 
             //    initializeLibrary(library);
             //    Console.WriteLine("Lista książek przed pierwszym wypożyczeniem");

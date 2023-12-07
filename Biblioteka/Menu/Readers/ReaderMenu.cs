@@ -14,8 +14,7 @@ namespace Biblioteka.Menu.Readers
         {
             addReaderInit = new AddReaderMenu(library);
         }
-
-        public void printReaderMenu()
+        public void printMenu()
         {
             while (true)
             {
@@ -24,34 +23,24 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("3.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = readOption();
-                switch (option)
+                if (option == 1)
                 {
-                    case 1:
-                        addReaderInit.addReaderMenu();
-                        break;
-                    case 2:
-                        library.listTheReaders();
-                        break;
-                    case 3:
-                        break;
-                    default:
-                        Console.WriteLine("Podaj prawidłową opcję!");
-                        break;
+                    addReaderInit.addReaderMenu();
+                }
+                else if (option == 2)
+                {
+                    library.listTheReaders();
+                }
+                else if (option == 3)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Podaj prawidłową opcję!");
                 }
             }
-        }
-        public int readOption()
-        {
-            try
-            {
-                int option = int.Parse(Console.ReadLine());
-                return option;
-            }
-            catch (Exception e)
-            {
-                int overflow = 9999;
-                return overflow;
-            }
+            Console.WriteLine("");
         }
     }
 }
