@@ -22,7 +22,7 @@ namespace Biblioteka.Menu.Books
             searchBookMenu = new SearchBookMenu(library);
         }
 
-        public void printMenu()
+        public override void printMenu()
         {
             while (true)
             {
@@ -35,15 +35,15 @@ namespace Biblioteka.Menu.Books
                 int option = readOption();
                         if (option == 1)
                         {
-                            addBookMenu.addBookMenu();
+                            addBookMenu.printMenu();
                         }
                         else if (option == 2)
                         {
-                            removeBookMenu.removeBookMenu();
+                            removeBookMenu.printMenu();
                         }
                         else if (option == 3)
                         {
-                            searchBookMenu.searchingBookMenu();
+                            searchBookMenu.printMenu();
                         }
                         else if (option == 4)
                         {

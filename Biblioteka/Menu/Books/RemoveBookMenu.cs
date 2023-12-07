@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.Model;
-//using static Biblioteka.Book;
 
 namespace Biblioteka.Menu.Books
 {
@@ -14,7 +13,7 @@ namespace Biblioteka.Menu.Books
         {
 
         }
-        public void removeBookMenu()
+        public override void printMenu()
         {
             Console.WriteLine("Podaj tytuł książki, którą chcesz usunąć");
             string title = Console.ReadLine();

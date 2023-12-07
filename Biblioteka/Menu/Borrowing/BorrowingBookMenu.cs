@@ -17,7 +17,7 @@ namespace Biblioteka.Menu.Borrowing
             borrowABookMenu = new BorrowABookMenu(library);
             returnABookMenu = new ReturnABookMenu(library);
         }
-        public void printMenu()
+        public override void printMenu()
         {
             Console.WriteLine("1.Wypożycz książkę");
             Console.WriteLine("2.Oddaj książkę");
@@ -27,10 +27,10 @@ namespace Biblioteka.Menu.Borrowing
                     switch (option)
                     {
                         case 1:
-                            borrowABookMenu.borrowBookMenu();
+                            borrowABookMenu.printMenu();
                             break;
                         case 2:
-                            returnABookMenu.returnABookMenu();
+                            returnABookMenu.printMenu();
                             break;
                         default:
                             Console.WriteLine("Podaj właściwą opcję!");

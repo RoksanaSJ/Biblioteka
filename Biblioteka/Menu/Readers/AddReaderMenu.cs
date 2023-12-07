@@ -14,7 +14,7 @@ namespace Biblioteka.Menu.Readers
         {
 
         }
-        public void addReaderMenu()
+        public override void printMenu()
         {
             while (true)
             {
@@ -34,7 +34,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else if (userOption == 'n')
                 {
-                    addReaderMenu();
+                    printMenu();
                 }
                 else if (userOption == 'b')
                 {

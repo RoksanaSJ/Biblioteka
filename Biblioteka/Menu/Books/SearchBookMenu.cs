@@ -16,7 +16,7 @@ namespace Biblioteka.Menu.Books
             searchByTitleMenu = new SearchByTitleMenu(library);
         }
 
-        public void searchingBookMenu()
+        public override void printMenu()
         {
             while (true)
             {
@@ -27,11 +27,11 @@ namespace Biblioteka.Menu.Books
                 int choose = readOption();
                 if (choose == 1)
                 {
-                    searchByAuthorMenu.searchByAuthorMenu();
+                    searchByAuthorMenu.printMenu();
                 }
                 else if (choose == 2)
                 {
-                    searchByTitleMenu.searchByTitleMenu();
+                    searchByTitleMenu.printMenu();
                 }
                 else if (choose == 3)
                 {

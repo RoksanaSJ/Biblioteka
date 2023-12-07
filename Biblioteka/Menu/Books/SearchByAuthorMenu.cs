@@ -13,7 +13,7 @@ namespace Biblioteka.Menu.Books
         {
 
         }
-        public void searchByAuthorMenu()
+        public override void printMenu()
         {
             while (true)
             {
@@ -47,7 +47,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else if (userOption == 'n')
                 {
-                    searchByAuthorMenu();
+                    printMenu();
                 }
                 else if (userOption == 'b')
                 {

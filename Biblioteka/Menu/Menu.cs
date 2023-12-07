@@ -26,9 +26,8 @@ namespace Biblioteka.Menu
                 return overflow;
             }
         }
-        public void printMenu()
-        {
+        public abstract void printMenu();
 
-        }
+        public 
     }
 }

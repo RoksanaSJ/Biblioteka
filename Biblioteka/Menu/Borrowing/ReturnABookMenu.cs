@@ -13,7 +13,7 @@ namespace Biblioteka.Menu.Borrowing
         {
 
         }
-        public void returnABookMenu() 
+        public override void printMenu() 
         {
             while (true)
             {
@@ -47,7 +47,7 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else if (userOption == 'n')
                 {
-                    returnABookMenu();
+                    printMenu();
                 }
                 else if (userOption == 'b')
                 {

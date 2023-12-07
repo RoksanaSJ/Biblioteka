@@ -14,7 +14,7 @@ namespace Biblioteka.Menu.Books
         {
            
         }
-        public void addBookMenu()
+        public override void printMenu()
         {
             while (true)
             {
@@ -36,7 +36,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else if (userOption == 'n')
                 {
-                    addBookMenu();
+                    printMenu();
                 } else if(userOption == 'b')
                 {
                     break;

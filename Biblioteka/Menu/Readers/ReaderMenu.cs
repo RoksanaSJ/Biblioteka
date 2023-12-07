@@ -14,7 +14,7 @@ namespace Biblioteka.Menu.Readers
         {
             addReaderInit = new AddReaderMenu(library);
         }
-        public void printMenu()
+        public override void printMenu()
         {
             while (true)
             {
@@ -25,7 +25,7 @@ namespace Biblioteka.Menu.Readers
                 int option = readOption();
                 if (option == 1)
                 {
-                    addReaderInit.addReaderMenu();
+                    addReaderInit.printMenu();
                 }
                 else if (option == 2)
                 {
