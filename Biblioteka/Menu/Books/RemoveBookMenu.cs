@@ -15,40 +15,40 @@ namespace Biblioteka.Menu.Books
         }
         public override void printMenu()
         {
-            Console.WriteLine("Podaj tytuł książki, którą chcesz usunąć");
-            string title = Console.ReadLine();
-            List<Book> toRemove = new List<Book>();
-            List<Book> allBooks = library.getAllBooks();
-            foreach (var book in allBooks)
-            {
-                if (book.getTitle().Contains(title))
+                Console.WriteLine("Podaj tytuł książki, którą chcesz usunąć");
+                string title = Console.ReadLine();
+                List<Book> toRemove = new List<Book>();
+                List<Book> allBooks = library.getAllBooks();
+                foreach (var book in allBooks)
                 {
-                    Console.WriteLine($"Czy to jest ta ksiażka, którą chcesz usunąć? {book}");
-                    Console.WriteLine("Wpisz 't' jeśli tak, 'n' jeśli nie 'b' jeśli chcesz wrócić");
-                    string option = Console.ReadLine();
-                    if (option.Equals("y"))
+                    if (book.getTitle().Contains(title))
                     {
-                        toRemove.Add(book);
-                    }
-                    else if (option.Equals("n"))
-                    {
-                        continue;
-                    }
-                    else if (option.Equals("b"))
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Podaj właściwą opcję!");
+                        Console.WriteLine($"Czy to jest ta ksiażka, którą chcesz usunąć? {book}");
+                        Console.WriteLine("Wpisz 't' jeśli tak, 'n' jeśli nie 'b' jeśli chcesz wrócić");
+                        string option = Console.ReadLine();
+                        if (option.Equals("y"))
+                        {
+                            toRemove.Add(book);
+                        }
+                        else if (option.Equals("n"))
+                        {
+                            continue;
+                        }
+                        else if (option.Equals("b"))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Podaj właściwą opcję!");
+                        }
                     }
                 }
-            }
-            foreach (var book in toRemove)
-            {
-                allBooks.Remove(book);
-            }
-            Console.WriteLine(" ");
+                foreach (var book in toRemove)
+                {
+                    allBooks.Remove(book);
+                }
+                Console.WriteLine(" ");
         }
     }
 }
