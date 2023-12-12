@@ -89,6 +89,10 @@ namespace Biblioteka
         {
             employees.Add(p);
         }
+        public void removeReader(Reader c)
+        {
+            readers.Remove(c);
+        }
         public void borrowBook(Book k, Reader c)
         {
             //Czytelnik może wypożyczyć max 5 książek

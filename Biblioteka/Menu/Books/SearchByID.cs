@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Biblioteka.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Books
 {
-    internal class SearchByAuthorMenu : Menu
+    internal class SearchByID : Menu
     {
-        public SearchByAuthorMenu(Library library) : base(library)
+        public SearchByID(Library library) : base(library)
         {
 
         }
@@ -17,23 +17,20 @@ namespace Biblioteka.Menu.Books
         {
             while (true)
             {
-                Console.WriteLine("Podaj imię autora: ");
-                string name = Console.ReadLine();
-                Console.WriteLine("Podaje nazwisko autora: ");
-                string surname = Console.ReadLine();
-                string authorData = name + " " + surname;
-                Console.WriteLine($"Czy autor, po którym chcesz wyszukać książkę ma następujące dane: {authorData}");
+                Console.WriteLine("Podaj ID książki: ");
+                int booksID = int.Parse(Console.ReadLine());
+                Console.WriteLine($"Czy ID, po którym chcesz wyszukać książkę ma następujące dane: {booksID}");
                 Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
-                char userOption = char.Parse(Console.ReadLine());
-                if (userOption == 'y')
+                string userOption = Console.ReadLine();
+                if (userOption.Equals("y"))
                 {
                     List<Book> allBooks = library.getAllBooks();
                     bool isAvailable = false;
                     foreach (var book in allBooks)
                     {
-                        if (book.getAuthor().getNameAndSurname().Contains(authorData))
+                        if (book.getID() == booksID)
                         {
-                            Console.WriteLine($"Gratulację! Udało ci się wyszukać dzieło/dzieła autora {authorData}");
+                            Console.WriteLine($"Gratulację! Udało ci się wyszukać książkę o ID {booksID}");
                             Console.WriteLine(book);
                             isAvailable = true;
                         }
@@ -44,11 +41,11 @@ namespace Biblioteka.Menu.Books
                     }
                     break;
                 }
-                else if (userOption == 'n')
+                else if (userOption.Equals("n"))
                 {
                     printMenu();
                 }
-                else if (userOption == 'b')
+                else if (userOption.Equals("b"))
                 {
                     break;
                 }

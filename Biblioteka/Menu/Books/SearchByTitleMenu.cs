@@ -31,6 +31,7 @@ namespace Biblioteka.Menu.Books
                     {
                         if (book.getTitle().Contains(searchingTitle))
                         {
+                            Console.WriteLine($"Gratulację! Udało ci się wyszukać tytuł książki {searchingTitle}");
                             Console.WriteLine(book);
                             isAvailable = true;
                         }

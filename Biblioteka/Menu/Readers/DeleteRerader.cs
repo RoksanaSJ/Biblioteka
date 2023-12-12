@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Biblioteka.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Biblioteka.Model;
-using static Biblioteka.Model.Reader;
 
 namespace Biblioteka.Menu.Readers
 {
-    internal class AddReaderMenu : Menu
+    internal class DeleteRerader : Menu
     {
-        public AddReaderMenu(Library library) : base(library)
+        public DeleteRerader(Library library): base(library)
         {
 
         }
@@ -29,10 +28,16 @@ namespace Biblioteka.Menu.Readers
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    Reader reader = new Reader(name, surname, age);
-                    Console.WriteLine($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
-                    library.addReader(reader);
-                    break;
+                   Reader reader = new Reader(name, surname, age); //?
+                   if(library.getLiblarians().Equals(reader))
+                    {
+                        library.removeReader(reader);
+                        Console.WriteLine($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nie ma w bazie czytelnika z takimi parametrami");
+                    }
                 }
                 else if (userOption.Equals("n"))
                 {
