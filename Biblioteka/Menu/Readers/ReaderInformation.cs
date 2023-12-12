@@ -42,7 +42,7 @@ namespace Biblioteka.Menu.Readers
                         Console.WriteLine(borrowing);
                     }
                 }
-
+                break;
             }
         }
     }
