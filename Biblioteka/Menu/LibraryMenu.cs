@@ -30,7 +30,6 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("4.Zakończ");
                 Console.WriteLine("Wpisz opcje: ");
                 int option = readOption();
-
                 if (option == 1)
                 {
                     BooksMenu.printMenu();

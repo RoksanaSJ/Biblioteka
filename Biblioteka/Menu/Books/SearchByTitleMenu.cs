@@ -21,8 +21,8 @@ namespace Biblioteka.Menu.Books
                 string searchingTitle = Console.ReadLine();
                 Console.WriteLine($"Czy tytuł, po którym chcesz wyszukać książkę ma następująca nazwę: {searchingTitle}");
                 Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
-                char userOption = char.Parse(Console.ReadLine());
-                if (userOption == 'y')
+                string userOption = Console.ReadLine();
+                if (userOption.Equals("y"))
                 {
                     List<Book> allBooks = library.getAllBooks();
                     bool isAvailable = false;
@@ -41,11 +41,11 @@ namespace Biblioteka.Menu.Books
                         Console.WriteLine("Niestety nie ma książki o takim tytule na stanie");
                     }
                 }
-                else if (userOption == 'n')
+                else if (userOption.Equals("n"))
                 {
                     printMenu();
                 }
-                else if (userOption == 'b')
+                else if (userOption.Equals("b"))
                 {
                     break;
                 }

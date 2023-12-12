@@ -28,16 +28,28 @@ namespace Biblioteka.Menu.Readers
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                   Reader reader = new Reader(name, surname, age); //?
-                   if(library.getLiblarians().Equals(reader))
+                   List<Reader> list = new List<Reader>();
+                   list = library.getReaders();
+                   bool isItEquals = false;
+                   List<Reader> toRemove = new List<Reader>();
+                    foreach (var reader in list)
                     {
-                        library.removeReader(reader);
-                        Console.WriteLine($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
+                        if (reader.getName().Equals(name) && reader.getSurname().Equals(surname) && reader.getAge().Equals(age))
+                        {
+                            toRemove.Add(reader);
+                            isItEquals = true;
+                        }
                     }
-                    else
+                    if (isItEquals == false)
                     {
                         Console.WriteLine("Nie ma w bazie czytelnika z takimi parametrami");
                     }
+                    foreach(var reader in toRemove)
+                    {
+                        list.Remove(reader);
+                        Console.WriteLine($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
+                    }
+                    break;
                 }
                 else if (userOption.Equals("n"))
                 {

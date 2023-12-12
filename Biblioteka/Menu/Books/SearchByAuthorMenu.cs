@@ -24,8 +24,8 @@ namespace Biblioteka.Menu.Books
                 string authorData = name + " " + surname;
                 Console.WriteLine($"Czy autor, po którym chcesz wyszukać książkę ma następujące dane: {authorData}");
                 Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
-                char userOption = char.Parse(Console.ReadLine());
-                if (userOption == 'y')
+                string userOption = Console.ReadLine();
+                if (userOption.Equals("y"))
                 {
                     List<Book> allBooks = library.getAllBooks();
                     bool isAvailable = false;
@@ -44,11 +44,11 @@ namespace Biblioteka.Menu.Books
                     }
                     break;
                 }
-                else if (userOption == 'n')
+                else if (userOption.Equals("n"))
                 {
                     printMenu();
                 }
-                else if (userOption == 'b')
+                else if (userOption.Equals("b"))
                 {
                     break;
                 }

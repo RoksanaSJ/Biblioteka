@@ -24,8 +24,8 @@ namespace Biblioteka.Menu.Borrowing
                 int ID = int.Parse(Console.ReadLine());
                 Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do główneg menu wpisz 'b':");
-                char userOption = char.Parse(Console.ReadLine());
-                if (userOption == 'y')
+                string userOption = Console.ReadLine();
+                if (userOption.Equals("y"))
                 {
                     List<Book> allBooks = library.getAllBooks();
                     List<Reader> readers = library.getReaders();
@@ -47,11 +47,11 @@ namespace Biblioteka.Menu.Borrowing
                     }
                     break;
                 }
-                else if (userOption == 'n')
+                else if (userOption.Equals("n"))
                 {
                     continue;
                 }
-                else if (userOption == 'b')
+                else if (userOption.Equals("b"))
                 {
                     break;
                 }

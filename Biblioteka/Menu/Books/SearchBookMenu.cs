@@ -17,7 +17,6 @@ namespace Biblioteka.Menu.Books
             searchByTitleMenu = new SearchByTitleMenu(library);
             searchByID = new SearchByID(library);
         }
-
         public override void printMenu()
         {
             while (true)

@@ -21,7 +21,6 @@ namespace Biblioteka.Menu.Books
             removeBookMenu = new RemoveBookMenu(library);
             searchBookMenu = new SearchBookMenu(library);
         }
-
         public override void printMenu()
         {
             while (true)

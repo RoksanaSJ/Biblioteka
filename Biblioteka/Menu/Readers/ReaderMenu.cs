@@ -25,6 +25,7 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("3.Wypisz wszystkich czytelników");
                 Console.WriteLine("4.Wróć");
                 Console.WriteLine("Podaj opcję: ");
+                Console.WriteLine(" ");
                 int option = readOption();
                 if (option == 1)
                 {
@@ -47,7 +48,7 @@ namespace Biblioteka.Menu.Readers
                     Console.WriteLine("Podaj prawidłową opcję!");
                 }
             }
-            Console.WriteLine("");
+            Console.WriteLine(" ");
         }
     }
 }

@@ -35,10 +35,8 @@ namespace Biblioteka.Menu.Borrowing
                         returnABookMenu.printMenu();
                         break;
                     case 3:
-                        //ZROBIĆ - klasa, na obiekcie library wyciągnąć wszystkie książki - lista, 
-                        // porównuje stany, jeśli jest borrowed, to wypisuje
-                        //lub lista borrowingów!
-                        //
+                        Console.WriteLine("Lista wypożyczeń: ");
+                        library.listTheBorrowings();
                         break;
                     default:
                         Console.WriteLine("Podaj właściwą opcję!");

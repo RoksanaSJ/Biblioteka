@@ -43,7 +43,7 @@ namespace Biblioteka.Model
         }
         public override string ToString()
         {
-            return "Wypożyczenie: data wypożyczenia: " + borrowingDate + ", czytelnik: " + reader + ",książka: " + book;
+            return "Wypożyczenie: data wypożyczenia: " + borrowingDate + $", \n" + reader + ", \n" + book +"\n";
         }
     }
 }
