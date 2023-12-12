@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteka.Model.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,20 @@ namespace Biblioteka.Model
 {
     internal class Librarian : Person
     {
-        int ID { get; set; }
-        int Age { get; set; }
+        protected int ID { get; }
+        protected int Age { get; }
         public Librarian(string name, string surname, int age, int iD) : base(name, surname)
         {
-            ID = iD;
+            ID = IDGenerator.generateID();
             Age = age;
+        }
+        public int getID()
+        {
+            return ID;
+        }
+        public int getAge()
+        {
+            return Age;
         }
         public string toString()
         {

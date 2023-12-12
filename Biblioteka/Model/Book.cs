@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteka.Model.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,35 +7,34 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Model
 {
-    public class Book : Author
+    public class Book
     {
-        static int nextID = 1;
-        int ID { get; set; }
-       public string Title { get; set; }
-
-        BookState state { get; set; }
-        public Book(string name, string surname, string title) : base(name, surname)
+        protected Author author { get; }
+        protected int ID { get; }
+        protected string Title { get; }
+        protected BookState state { get; set; }
+        public Book(string name, string surname, string title)
         {
-            ID = nextID;
-            nextID++;
+            ID = IDGenerator.generateID();
             Title = title;
             state = BookState.Available;
+            author = new Author(name,surname);
         }
-        public override string ToString()
+        public Author getAuthor()
         {
-            return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + Name + " " + Surname;
-        }
-        public string getTitle()
-        {
-            return Title;
+            return author;
         }
         public int getID()
         {
             return ID;
         }
-        public enum BookState
+        public string getTitle()
         {
-            Available, Booked
+            return Title;
+        }
+        public BookState getState()
+        {
+            return state;
         }
         public void booked()
         {
@@ -44,10 +44,17 @@ namespace Biblioteka.Model
         {
             state = BookState.Available;
         }
-
-        public BookState getState()
+        public void setBookState(BookState bookState)
         {
-            return state;
+            state = bookState;
+        }
+        public override string ToString()
+        {
+            return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + author.getName() + " " + author.getSurname();
+        }
+        public enum BookState
+        {
+            Available, Booked
         }
     }
 }

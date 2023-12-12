@@ -45,10 +45,11 @@ namespace Biblioteka.Menu.Borrowing
                             }
                         }
                     }
+                    break;
                 }
                 else if (userOption == 'n')
                 {
-                    printMenu();
+                    continue;
                 }
                 else if (userOption == 'b')
                 {

@@ -12,13 +12,13 @@ namespace Biblioteka.Model
         {
 
         }
+        public string getNameAndSurname()
+        {
+            return Name + " " + Surname;
+        }
         public override string ToString()
         {
             return "Autor: " + Name + Surname;
-        }
-        public string getAuthor()
-        {
-            return Name + " " + Surname;
         }
     }
 }

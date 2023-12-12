@@ -33,7 +33,7 @@ namespace Biblioteka.Menu.Books
 
                     foreach (var book in allBooks)
                     {
-                        if (book.getAuthor().Contains(authorData))
+                        if (book.getAuthor().getNameAndSurname().Contains(authorData))
                         {
                             Console.WriteLine(book);
                             isAvailable = true;

@@ -18,26 +18,26 @@ namespace Biblioteka.Menu.Books
         {
             while (true)
             {
-                Console.WriteLine("Podaj tytuł");
+                Console.WriteLine("Podaj tytuł: ");
                 string title = Console.ReadLine();
-                Console.WriteLine("Podaj imię autora");
+                Console.WriteLine("Podaj imię autora: ");
                 string name = Console.ReadLine();
-                Console.WriteLine("Podaj nazwisko autora");
+                Console.WriteLine("Podaj nazwisko autora: ");
                 string surname = Console.ReadLine();
                 Console.WriteLine($"Czy książka, którą chcesz dodać ma następujące parametry: Tytuł {title}, Autor {name} {surname}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do menu książki wpisz 'b':");
-                char userOption = char.Parse(Console.ReadLine());
-                if (userOption == 'y')
+                string userOption = Console.ReadLine();
+                if (userOption.Equals("y"))
                 {
                     Book book = new Book(name, surname, title);
                     library.addBook(book);
                     Console.WriteLine($"Gratulację! Udało ci się dodać książkę: Tytuł {title}, Autor {name} {surname}");
                     break;
                 }
-                else if (userOption == 'n')
+                else if (userOption.Equals("n"))
                 {
                     printMenu();
-                } else if(userOption == 'b')
+                } else if (userOption.Equals("b"))
                 {
                     break;
                 }

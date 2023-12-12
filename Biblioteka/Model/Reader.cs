@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteka.Model.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,24 @@ namespace Biblioteka.Model
 {
     public class Reader : Person
     {
-        static int readerID = 1;
-        int ID { get; set; }
-        public int Age { get; set; }
+        protected int ID { get; }
+        protected int Age { get; set; }
         public Reader(string name, string surname, int age) : base(name, surname)
         {
-            ID = readerID;
-            readerID++;
+            ID = IDGenerator.generateID();
             Age = age;
         }
-        public override string ToString()
+        public int getID()
         {
-            return "Czytelnik: ID: " + ID + ", imię i nazwisko: " + Name + " " + Surname + ", wiek: " + Age;
+            return ID;
+        }
+        public int getAge()
+        {
+            return Age;
+        }
+        public void setAge(int readersAge)
+        {
+            Age = readersAge;
         }
         public bool isOfAge(int age)
         {
@@ -35,9 +42,9 @@ namespace Biblioteka.Model
                 return false;
             }
         }
-        public int getID()
+        public override string ToString()
         {
-            return ID;
+            return "Czytelnik: ID: " + ID + ", imię i nazwisko: " + Name + " " + Surname + ", wiek: " + Age;
         }
     }
 }

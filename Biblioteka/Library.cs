@@ -9,13 +9,12 @@ namespace Biblioteka
 {
     internal class Library
     {
-        List<Book> books;
-        List<Reader> readers;
-        List<Librarian> employees;
-        List<Borrowing> borrowing;
-        List<Returning> returning;
-
-       public Library ()
+        protected List<Book> books {  get; }
+        protected List<Reader> readers { get; }
+        protected List<Librarian> employees { get; }
+        protected List<Borrowing> borrowing { get; }
+        protected List<Returning> returning { get; }
+        public Library ()
         {
             books = new List<Book> ();
             readers = new List<Reader> ();
@@ -23,13 +22,32 @@ namespace Biblioteka
             borrowing = new List<Borrowing> ();
             returning = new List<Returning> ();
         }
+        public List<Book> getAllBooks()
+        {
+            return books;
+        }
         public List<Reader> getReaders()
         {
             return readers;
         }
-        public List<Book> getAllBooks()
+        public List<Librarian> getLiblarians()
         {
-            return books;
+            return employees;
+        }
+        public List<Borrowing> getBorrowings()
+        {
+            return borrowing;
+        }
+        public List<Returning> getReturnings()
+        {
+            return returning;
+        }
+        public void listTheBooks()
+        {
+            foreach (var item in books)
+            {
+                Console.WriteLine(item);
+            }
         }
         public void listTheReaders()
         {
@@ -38,9 +56,23 @@ namespace Biblioteka
                 Console.WriteLine(item);
             }
         }
-        public void listTheBooks()
+        public void listTheLibrarians()
         {
-            foreach(var item in books)
+            foreach (var item in employees)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        public void listTheBorrowings()
+        {
+            foreach (var item in borrowing)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        public void listTheReturnings()
+        {
+            foreach (var item in returning)
             {
                 Console.WriteLine(item);
             }
@@ -49,17 +81,14 @@ namespace Biblioteka
         {
             books.Add(k);
         }
-
         public void addReader(Reader c)
         {
             readers.Add(c);
         }
-
         public void addEmployee(Librarian p)
         {
             employees.Add(p);
         }
-
         public void borrowBook(Book k, Reader c)
         {
             //Czytelnik może wypożyczyć max 5 książek
@@ -79,17 +108,9 @@ namespace Biblioteka
                     readerBooks.Add(k);
                 }
             }
-
             if (readerBooks.Count == 6)
             {
                 Console.WriteLine("Nie możesz wypożyczyć więcej niż 5 ksiażek");
-            }
-        }
-        public void listTheBorrowings()
-        {
-            foreach (var item in borrowing)
-            {
-                Console.WriteLine(item);
             }
         }
         public void returnBook(Book b, Reader r)
@@ -101,37 +122,5 @@ namespace Biblioteka
             //Książka dostępna
             b.available();
         }
-        public void listTheReturnings()
-        {
-            foreach (var item in returning)
-            {
-                Console.WriteLine(item);
-            }
-        }
-
-        //public void overkeepingTheBook(Borrowing b,Reader reader, Book bookID)
-        //{
-        //    //chcę oddać książkę -> jeżeli ID oddawanej ksiażki == ID książki, która została wypożyczona, to
-        //    //-> sprawdź kiedy została wypożyczona -> porównaj czy data oddania - data wypożyczenia nie jest większa niż miesiąc
-        //    //-> jeśli tak, wyświetl komunikat o naliczeniu opłaty za każdy przekroczony dzień (0,2zł)
-        //    foreach(var x in borrowing)
-        //    {
-               
-        //    }
-        //    DateTime returningDate = new DateTime();
-        //    returningDate = DateTime.Now;
-            
-
-        //    foreach (var item in readers)
-        //    {
-        //        foreach(var i in books)
-        //        {
-        //           // if()
-        //            {
-
-        //            }
-        //        }
-        //    }
-        //}
     }
 }
