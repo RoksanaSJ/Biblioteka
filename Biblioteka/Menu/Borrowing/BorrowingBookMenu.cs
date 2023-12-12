@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,23 +25,26 @@ namespace Biblioteka.Menu.Borrowing
                 Console.WriteLine("1.Wypożycz książkę");
                 Console.WriteLine("2.Oddaj książkę");
                 Console.WriteLine("3.Wypisz wszystkie wypożyczenia");
+                Console.WriteLine("4.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = readOption();
-                switch (option)
+                if (option == 1)
                 {
-                    case 1:
-                        borrowABookMenu.printMenu();
-                        break;
-                    case 2:
-                        returnABookMenu.printMenu();
-                        break;
-                    case 3:
-                        Console.WriteLine("Lista wypożyczeń: ");
-                        library.listTheBorrowings();
-                        break;
-                    default:
-                        Console.WriteLine("Podaj właściwą opcję!");
-                        break;
+                    borrowABookMenu.printMenu();
+                } else if (option == 2)
+                {
+                    returnABookMenu.printMenu();
+                } else if (option == 3)
+                {
+                    Console.WriteLine("Lista wypożyczeń: ");
+                    library.listTheBorrowings();
+                } else if (option == 4)
+                {
+                    break;
+                }
+                else 
+                { 
+                    Console.WriteLine("Podaj właściwą opcję!");
                 }
                 Console.WriteLine(" ");
             }
