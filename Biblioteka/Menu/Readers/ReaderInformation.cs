@@ -24,6 +24,8 @@ namespace Biblioteka.Menu.Readers
                 readerInfo = library.getReaders();
                 List<Biblioteka.Model.Borrowing> borrowings = new List<Biblioteka.Model.Borrowing>();
                 borrowings = library.getBorrowings();
+                List<Returning> readerReturnings = new List<Returning>();
+                readerReturnings = library.getReturnings();
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Dane użytkownika: ");
                 Console.ResetColor();
@@ -48,6 +50,17 @@ namespace Biblioteka.Menu.Readers
                     }
                 }
                 Console.WriteLine("");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Historia wypożyczeń użytkowanika: ");
+                Console.ResetColor();
+                Console.WriteLine(" ");
+                foreach (var returning in readerReturnings)
+                {
+                    if (returning.getReader().getID() == readID)
+                    {
+                        Console.WriteLine(returning);
+                    }
+                }
                 break;
             }
         }
