@@ -9,7 +9,7 @@ namespace Biblioteka
 {
     internal class Library
     {
-        protected List<Book> books {  get; }
+        protected List<Book> books { get; }
         protected List<Reader> readers { get; }
         protected List<Librarian> employees { get; }
         protected List<Borrowing> borrowing { get; }

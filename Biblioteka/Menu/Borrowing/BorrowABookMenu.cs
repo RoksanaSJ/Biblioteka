@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -21,7 +22,7 @@ namespace Biblioteka.Menu.Borrowing
                 Console.WriteLine("Podaj swój identyfikator:");
                 int userID = readOption();
                 Console.WriteLine("Podaj ID książki");
-                int ID = int.Parse(Console.ReadLine());
+                int ID = readOption();
                 Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
                 string userOption = Console.ReadLine();
@@ -30,7 +31,7 @@ namespace Biblioteka.Menu.Borrowing
                 {
                     List<Book> allBooks = library.getAllBooks();
                     List<Reader> readers = library.getReaders();
-
+                    List<int> notFound = new List<int>();
                     foreach (var book in allBooks)
                     {
                         if (book.getID() == ID)
@@ -44,19 +45,21 @@ namespace Biblioteka.Menu.Borrowing
                                     Console.WriteLine($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
                                     Console.ResetColor();
                                     Console.WriteLine("");
-                                }
+                                } 
                             }
                         }
                         else
+                        {
+                            notFound.Add(ID);
+                        }
+                    }
+                        if (notFound.Count == allBooks.Count)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Niestety książka o takim ID nie istnieje");
                             Console.WriteLine("");
                             Console.ResetColor();
-                            printMenu();
                         }
-                    }
-                    break;
                 }
                 else if (userOption.Equals("n"))
                 {
