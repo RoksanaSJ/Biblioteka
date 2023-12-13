@@ -19,9 +19,11 @@ namespace Biblioteka.Menu.Books
             {
                 Console.WriteLine("Podaj ID książki: ");
                 int booksID = int.Parse(Console.ReadLine());
-                Console.WriteLine($"Czy ID, po którym chcesz wyszukać książkę ma następujące dane: {booksID}");
+                Console.WriteLine("");
+                Console.WriteLine($"Czy ID, po którym chcesz wyszukać książkę ma następujące ID: {booksID}?");
                 Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
                 string userOption = Console.ReadLine();
+                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                     List<Book> allBooks = library.getAllBooks();
@@ -30,20 +32,27 @@ namespace Biblioteka.Menu.Books
                     {
                         if (book.getID() == booksID)
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"Gratulację! Udało ci się wyszukać książkę o ID {booksID}");
+                            Console.ResetColor();
                             Console.WriteLine(book);
+                            Console.WriteLine("");
                             isAvailable = true;
                         }
                     }
                     if (isAvailable == false)
                     {
-                        Console.WriteLine("Niestety nie ma książki napisanej przez takiego autora.");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Niestety nie ma książki o takim ID.");
+                        Console.ResetColor();
+                        Console.WriteLine("");
                     }
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
                     printMenu();
+                    Console.WriteLine("");
                 }
                 else if (userOption.Equals("b"))
                 {
@@ -51,10 +60,12 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj poprawną opcję!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
             }
-            Console.WriteLine(" ");
         }
     }
 }

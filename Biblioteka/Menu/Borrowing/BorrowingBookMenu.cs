@@ -36,17 +36,22 @@ namespace Biblioteka.Menu.Borrowing
                     returnABookMenu.printMenu();
                 } else if (option == 3)
                 {
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("Lista wypożyczeń: ");
+                    Console.ResetColor();
                     library.listTheBorrowings();
+                    Console.WriteLine("");
                 } else if (option == 4)
                 {
                     break;
                 }
                 else 
-                { 
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj właściwą opcję!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
-                Console.WriteLine(" ");
             }
         }
     }

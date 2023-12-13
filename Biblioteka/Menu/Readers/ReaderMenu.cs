@@ -28,23 +28,33 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("4.Wypisz wszystkie powiązane rekordy z wyszukanym czytelnikiem");
                 Console.WriteLine("5.Wróć");
                 Console.WriteLine("Podaj opcję: ");
-                Console.WriteLine(" ");
                 int option = readOption();
+                Console.WriteLine(" ");
                 if (option == 1)
                 {
                     addReaderInit.printMenu();
+                    Console.WriteLine("");
                 }
                 else if (option == 2)
                 {
                     removeReaderInit.printMenu();
+                    Console.WriteLine("");
                 }
                 else if (option == 3)
                 {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("Lista czytelników:");
                     library.listTheReaders();
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
                 else if (option == 4)
                 {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("Wszytskie rekordy powiązane z cztelnikiem:");
                     readerInformationInit.printMenu();
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
                 else if (option == 5)
                 {
@@ -52,10 +62,12 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj prawidłową opcję!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
             }
-            Console.WriteLine(" ");
         }
     }
 }

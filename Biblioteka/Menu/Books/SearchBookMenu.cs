@@ -24,9 +24,10 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("1.Wyszukaj po autorze");
                 Console.WriteLine("2.Wyszukacj po tytule");
                 Console.WriteLine("3.Wyszukaj po ID");
-                Console.WriteLine("4. Wróć");
+                Console.WriteLine("4.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int choose = readOption();
+                Console.WriteLine("");
                 if (choose == 1)
                 {
                     searchByAuthorMenu.printMenu();
@@ -45,22 +46,11 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj poprawną opcję!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
-            }
-            Console.WriteLine("");
-        }
-        public int readOption()
-        {
-            try
-            {
-                int option = int.Parse(Console.ReadLine());
-                return option;
-            }
-            catch (Exception e)
-            {
-                int overflow = 9999;
-                return overflow;
             }
         }
     }

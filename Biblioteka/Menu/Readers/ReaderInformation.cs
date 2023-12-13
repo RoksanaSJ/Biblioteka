@@ -24,7 +24,9 @@ namespace Biblioteka.Menu.Readers
                 readerInfo = library.getReaders();
                 List<Biblioteka.Model.Borrowing> borrowings = new List<Biblioteka.Model.Borrowing>();
                 borrowings = library.getBorrowings();
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Dane użytkownika: ");
+                Console.ResetColor();
                 Console.WriteLine(" ");
                 foreach (var reader in readerInfo)
                 {
@@ -33,7 +35,10 @@ namespace Biblioteka.Menu.Readers
                         Console.WriteLine(reader);
                     }
                 }
+                Console.WriteLine("");
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Wypożyczenia użytkowanika: ");
+                Console.ResetColor();
                 Console.WriteLine(" ");
                 foreach (var borrowing in borrowings)
                 {
@@ -42,6 +47,7 @@ namespace Biblioteka.Menu.Readers
                         Console.WriteLine(borrowing);
                     }
                 }
+                Console.WriteLine("");
                 break;
             }
         }

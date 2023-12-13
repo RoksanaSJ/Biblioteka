@@ -26,6 +26,7 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine($"Czy twoje dane są następujące: imię: {name}, nazwisko: {surname}, wiek: {age}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić 'b':");
                 string userOption = Console.ReadLine();
+                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                    List<Reader> list = new List<Reader>();
@@ -42,18 +43,24 @@ namespace Biblioteka.Menu.Readers
                     }
                     if (isItEquals == false)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Nie ma w bazie czytelnika z takimi parametrami");
+                        Console.ResetColor();
+                        Console.WriteLine("");
                     }
                     foreach(var reader in toRemove)
                     {
                         list.Remove(reader);
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
+                        Console.ResetColor();
                     }
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
                     printMenu();
+                    Console.WriteLine("");
                 }
                 else if (userOption.Equals("b"))
                 {
@@ -61,10 +68,12 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj poprawną opcję!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
             }
-            Console.WriteLine(" ");
         }
     }
 }

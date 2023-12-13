@@ -27,16 +27,20 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine($"Czy twoje dane są następujące: imię: {name}, nazwisko: {surname}, wiek: {age}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić 'b':");
                 string userOption = Console.ReadLine();
+                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                     Reader reader = new Reader(name, surname, age);
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
+                    Console.ResetColor();
                     library.addReader(reader);
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
                     printMenu();
+                    Console.WriteLine("");
                 }
                 else if (userOption.Equals("b"))
                 {
@@ -44,10 +48,12 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj poprawną opcję!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
             }
-            Console.WriteLine(" ");
         }
     }
 }

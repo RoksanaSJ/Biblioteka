@@ -24,6 +24,7 @@ namespace Biblioteka.Menu.Borrowing
                 int ID = int.Parse(Console.ReadLine());
                 Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do główneg menu wpisz 'b':");
+                Console.WriteLine("");
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
@@ -34,15 +35,24 @@ namespace Biblioteka.Menu.Borrowing
                     {
                         if (book.getID() == ID)
                         {
-                            Console.WriteLine("Książka znaleziona");
                             foreach (var reader in readers)
                             {
                                 if (reader.getID() == userID)
                                 {
                                     library.borrowBook(book, reader);
+                                    Console.ForegroundColor = ConsoleColor.Green;
                                     Console.WriteLine($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
+                                    Console.ResetColor();
+                                    Console.WriteLine("");
                                 }
                             }
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Niestety książka o takim ID nie istnieje");
+                            Console.ResetColor();
+                            printMenu();
                         }
                     }
                     break;
@@ -57,10 +67,12 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj poprawną opcję!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
             }
-            Console.WriteLine(" ");
         }
     }
 }

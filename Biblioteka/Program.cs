@@ -22,13 +22,13 @@ namespace Biblioteka
         //static Reader reader9 = new Reader("Angelina", "Jolie", 48);
         //static Reader reader10 = new Reader("Robert", "De Niro", 80);
 
-        static Book book = new Book("J.K", "Rowling", "Harry Potter i Kamień Filozoficzny");
-        static Book book2 = new Book("J.K", "Rowling", "Harry Potter i Komnata Tajemnic");
-        static Book book3 = new Book("J.K", "Rowling", "Harry Potter i Więzień Azkabanu");
-        static Book book4 = new Book("J.K", "Rowling", "Harry Potter i Czara Ognia");
-        static Book book5 = new Book("J.K", "Rowling", "Harry Potter i Zakon Feniksa");
-        static Book book6 = new Book("J.K", "Rowling", "Harry Potter i Książe Półkrwi");
-        static Book book7 = new Book("J.K", "Rowling", "Harry Potter i Insygnia Śmierci");
+        static Book book = new Book("J.K.", "Rowling", "Harry Potter i Kamień Filozoficzny");
+        static Book book2 = new Book("J.K.", "Rowling", "Harry Potter i Komnata Tajemnic");
+        static Book book3 = new Book("J.K.", "Rowling", "Harry Potter i Więzień Azkabanu");
+        static Book book4 = new Book("J.K.", "Rowling", "Harry Potter i Czara Ognia");
+        static Book book5 = new Book("J.K.", "Rowling", "Harry Potter i Zakon Feniksa");
+        static Book book6 = new Book("J.K.", "Rowling", "Harry Potter i Książe Półkrwi");
+        static Book book7 = new Book("J.K.", "Rowling", "Harry Potter i Insygnia Śmierci");
         static Book book8 = new Book("William", "Shakespeare", "Romeo i Julia");
         //static Book book9 = new Book("Beata", "Pawlikowska", "Kody Podświadomości");
         //static Book book10 = new Book("Dan", "Brown","Anioły i demony");

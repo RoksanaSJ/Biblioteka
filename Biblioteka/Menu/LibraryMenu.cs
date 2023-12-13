@@ -30,6 +30,7 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("4.Zakończ");
                 Console.WriteLine("Wpisz opcje: ");
                 int option = readOption();
+                Console.WriteLine("");
                 if (option == 1)
                 {
                     BooksMenu.printMenu();
@@ -41,6 +42,7 @@ namespace Biblioteka.Menu.Books
                 else if (option == 3)
                 {
                     borrowingBookMenu.printMenu();
+                    Console.WriteLine("");
                 }
                 else if (option == 4)
                 {
@@ -48,10 +50,12 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj poprawną opcję!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
             }
-            Console.WriteLine(" ");
         }
     }
 }

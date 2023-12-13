@@ -33,13 +33,15 @@ namespace Biblioteka.Menu.Borrowing
                     {
                         if (book.getID() == ID)
                         {
-                            Console.WriteLine("Książka znaleziona");
                             foreach (var reader in readers)
                             {
                                 if (reader.getID() == userID)
                                 {
                                     library.returnBook(book, reader);
+                                    Console.ForegroundColor = ConsoleColor.Green;
                                     Console.WriteLine($"Gratulację {reader}, właśnie oddałeś książkę {book}");
+                                    Console.ResetColor();
+                                    Console.WriteLine("");
                                 }
                             }
                         }
@@ -48,6 +50,7 @@ namespace Biblioteka.Menu.Borrowing
                 else if (userOption.Equals("n"))
                 {
                     printMenu();
+                    Console.WriteLine("");
                 }
                 else if (userOption.Equals("b"))
                 {
@@ -55,10 +58,12 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj poprawną opcję!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
                 }
             }
-            Console.WriteLine(" ");
         }
     }
 }
