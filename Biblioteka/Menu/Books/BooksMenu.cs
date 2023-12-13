@@ -60,7 +60,7 @@ namespace Biblioteka.Menu.Books
                         else
                         {
                          Console.ForegroundColor = ConsoleColor.Red;
-                         Console.WriteLine("Niepoprawna wartość");
+                         Console.WriteLine("Podaj poprawną wartość!");
                          Console.ResetColor();
                          Console.WriteLine("");
                         }

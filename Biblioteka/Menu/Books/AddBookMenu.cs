@@ -29,6 +29,7 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine($"Czy książka, którą chcesz dodać ma następujące parametry: Tytuł: {title}, Autor: {name} {surname}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do menu książki wpisz 'b':");
                 string userOption = Console.ReadLine();
+                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                     Book book = new Book(name, surname, title);

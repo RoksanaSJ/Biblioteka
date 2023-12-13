@@ -19,13 +19,13 @@ namespace Biblioteka.Menu.Borrowing
             while (true)
             {
                 Console.WriteLine("Podaj swój identyfikator:");
-                int userID = int.Parse(Console.ReadLine());
+                int userID = readOption();
                 Console.WriteLine("Podaj ID książki");
                 int ID = int.Parse(Console.ReadLine());
                 Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
-                Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do główneg menu wpisz 'b':");
-                Console.WriteLine("");
+                Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
                 string userOption = Console.ReadLine();
+                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                     List<Book> allBooks = library.getAllBooks();
@@ -51,6 +51,7 @@ namespace Biblioteka.Menu.Borrowing
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Niestety książka o takim ID nie istnieje");
+                            Console.WriteLine("");
                             Console.ResetColor();
                             printMenu();
                         }

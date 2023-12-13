@@ -28,6 +28,7 @@ namespace Biblioteka.Menu.Borrowing
                 Console.WriteLine("4.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = readOption();
+                Console.WriteLine("");
                 if (option == 1)
                 {
                     borrowABookMenu.printMenu();
