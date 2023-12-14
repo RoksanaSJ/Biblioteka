@@ -72,6 +72,8 @@ namespace Biblioteka
             library.addReader(reader5);
             library.addReader(reader6);
 
+            library.borrowBook(book8, reader4);
+
             LibraryMenu libraryMenu = new LibraryMenu(library);
             libraryMenu.printMenu();
         }

@@ -17,6 +17,12 @@ namespace Biblioteka.Menu.Books
         {
             while (true)
             {
+                DateTime borrowingDate = new DateTime(2023,12,10);
+                DateTime returningDate = new DateTime(2023,12,13);
+                returningDate = DateTime.Now;
+                TimeSpan timeSpan = new TimeSpan();
+                Console.WriteLine(timeSpan = returningDate - borrowingDate);
+                Console.WriteLine("");
                 Console.WriteLine("Podaj tytuł książki: ");
                 string title = Console.ReadLine();
                 Console.WriteLine("");

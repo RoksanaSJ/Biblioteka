@@ -8,16 +8,16 @@ namespace Biblioteka.Model
 {
     internal class Borrowing
     {
-        protected DateOnly borrowingDate { get; set; }
+        protected DateTime borrowingDate { get; set; }
         protected Book book { get; set; }
         protected Reader reader { get; set; }
-        public Borrowing(DateOnly date, Book book, Reader reader)
+        public Borrowing(DateTime date, Book book, Reader reader)
         {
             borrowingDate = date;
             this.reader = reader;
             this.book = book;
         }
-        public DateOnly getDate()
+        public DateTime getDate()
         {
             return borrowingDate;
         }
@@ -31,7 +31,7 @@ namespace Biblioteka.Model
         }
         public void setBorrowingDateToCurrentDate()
         {
-            borrowingDate = DateOnly.FromDateTime(DateTime.Now);
+            borrowingDate = DateTime.Now;
         }
         public void setBorrowedBook(Book borrowedBook)
         {

@@ -102,8 +102,8 @@ namespace Biblioteka
             {
                 if (readerBooks.Count < 6)
                 {
-                    DateOnly date = new DateOnly();
-                    date = DateOnly.FromDateTime(DateTime.Now);
+                    DateTime date = new DateTime(2023,10,14);
+                   // date = DateTime.Now;
                     Borrowing borrow = new Borrowing(date, k, c);
                     borrowing.Add(borrow);
                     // książka zarezerwowana
