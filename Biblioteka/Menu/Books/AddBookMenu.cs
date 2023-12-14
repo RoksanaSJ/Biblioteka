@@ -17,8 +17,8 @@ namespace Biblioteka.Menu.Books
         {
             while (true)
             {
-                DateTime borrowingDate = new DateTime(2023,12,10);
-                DateTime returningDate = new DateTime(2023,12,13);
+                DateTime borrowingDate = new DateTime();
+                DateTime returningDate = new DateTime();
                 returningDate = DateTime.Now;
                 TimeSpan timeSpan = new TimeSpan();
                 Console.WriteLine(timeSpan = returningDate - borrowingDate);

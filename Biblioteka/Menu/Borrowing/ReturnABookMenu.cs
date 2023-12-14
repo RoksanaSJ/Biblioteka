@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.Model;
@@ -43,37 +44,12 @@ namespace Biblioteka.Menu.Borrowing
                                     {
                                         if (borrowing.getReader().getID() == userID && borrowing.getBook().getID() == ID)
                                         {
-                                            DateTime borrowingDate = new DateTime();
-                                            borrowingDate = (DateTime)borrowing.getDate();
-                                            DateTime returningDate = new DateTime();
-                                            returningDate = DateTime.Now;
-                                            TimeSpan timeSpan = new TimeSpan();
-                                            var span = returningDate.Subtract(borrowingDate);
-                                            int days = span.Days;
-                                            if (days > 31) 
-                                            {
-                                                decimal overkeepingDays;
-                                                overkeepingDays = ((decimal)days - 31m);
-                                                decimal charge = overkeepingDays * 0.1m;
-                                                Console.ForegroundColor = ConsoleColor.Red;
-                                                Console.WriteLine($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr.");
-                                                Console.WriteLine($"Musisz zapłacić {charge} zł");
-                                                Console.ResetColor();
-                                                Console.WriteLine("");
+                                                decimal charge = countCharge(borrowing); 
                                                 library.returnBook(book, reader);
                                                 Console.ForegroundColor = ConsoleColor.Green;
                                                 Console.WriteLine($"Gratulację {reader}, właśnie oddałeś książkę {book}");
                                                 Console.ResetColor();
                                                 Console.WriteLine("");
-                                            }
-                                            else
-                                            {
-                                                library.returnBook(book, reader);
-                                                Console.ForegroundColor = ConsoleColor.Green;
-                                                Console.WriteLine($"Gratulację {reader}, właśnie oddałeś książkę {book}");
-                                                Console.ResetColor();
-                                                Console.WriteLine("");
-                                            }
                                         }
                                     }
                                 }
@@ -98,6 +74,31 @@ namespace Biblioteka.Menu.Borrowing
                     Console.WriteLine("");
                 }
             }
+        }
+        private decimal countCharge(Biblioteka.Model.Borrowing borrowing)
+        {
+            DateTime borrowingDate = new DateTime();
+            borrowingDate = (DateTime)borrowing.getDate();
+            DateTime returningDate = new DateTime();
+            returningDate = DateTime.Now;
+            TimeSpan timeSpan = new TimeSpan();
+            var span = returningDate.Subtract(borrowingDate);
+            int days = span.Days;
+            decimal charge = 0;
+            if (days > 31)
+            {
+                decimal overkeepingDays;
+                overkeepingDays = ((decimal)days - 31m);
+                charge = overkeepingDays * 0.1m;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr.");
+                Console.WriteLine($"Musisz zapłacić {charge} zł");
+            }
+            else
+            {
+                charge = 0;
+            }
+            return charge;
         }
     }
 }
