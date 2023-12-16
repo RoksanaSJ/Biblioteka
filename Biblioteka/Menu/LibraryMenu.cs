@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.Menu.Books;
 using Biblioteka.Menu.Borrowing;
+using Biblioteka.Menu.ImportOrExportData;
 using Biblioteka.Menu.Readers;
 
 namespace Biblioteka.Menu.Books
@@ -14,11 +15,13 @@ namespace Biblioteka.Menu.Books
         private BooksMenu BooksMenu;
         private ReaderMenu readerMenu;
         private BorrowingBookMenu borrowingBookMenu;
+        ImportExportMenu importExportMenu;
         public LibraryMenu(Library library) : base(library)
         {
             BooksMenu = new BooksMenu(library);
             readerMenu = new ReaderMenu(library);
             borrowingBookMenu = new BorrowingBookMenu(library);
+            importExportMenu = new ImportExportMenu(library);
         }
         public override void printMenu()
         {
@@ -27,7 +30,8 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("1.Menu książek");
                 Console.WriteLine("2.Menu czytelników");
                 Console.WriteLine("3.Menu wypożyczenia");
-                Console.WriteLine("4.Zakończ");
+                Console.WriteLine("4.Import/Eksport danych");
+                Console.WriteLine("5.Zakończ");
                 Console.WriteLine("Wpisz opcje: ");
                 int option = readOption();
                 Console.WriteLine("");
@@ -45,6 +49,10 @@ namespace Biblioteka.Menu.Books
                     Console.WriteLine("");
                 }
                 else if (option == 4)
+                {
+                    importExportMenu.printMenu();
+                }
+                else if (option == 5)
                 {
                     Environment.Exit(1);
                 }
