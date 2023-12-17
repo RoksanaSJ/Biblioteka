@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Model
 {
-    internal class Returning
+    internal class Returning : Record
     {
         DateOnly returningDate { get; set; }
         Book book { get; set; }
         Reader reader { get; set; }
-        public Returning(DateOnly returningDate, Book book, Reader reader)
+        public Returning(DateOnly returningDate, Book book, Reader reader) : base()
         {
             this.returningDate = returningDate;
             this.book = book;
@@ -44,6 +44,10 @@ namespace Biblioteka.Model
         public override string ToString()
         {
             return "Oddanie: data oddania: " + returningDate + ", dane czytelnika: " + reader + ", książka: " + book;
+        }
+        public override string toCSV()
+        {
+            return returningDate + "," + reader + "," + book;
         }
     }
 }

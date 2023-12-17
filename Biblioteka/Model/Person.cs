@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Model
 {
-    public class Person
+    public abstract class Person : Record
     {
         protected string Name { get; set; }
         protected string Surname { get; set; }
-        public Person(string name, string surname)
+        public Person(string name, string surname) : base()
         {
             Name = name;
             Surname = surname;

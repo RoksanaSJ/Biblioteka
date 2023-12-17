@@ -14,6 +14,7 @@ namespace Biblioteka
         protected List<Librarian> employees { get; }
         protected List<Borrowing> borrowing { get; }
         protected List<Returning> returning { get; }
+        const int MAXBOOKS = 6;
         public Library ()
         {
             books = new List<Book> ();
@@ -100,7 +101,7 @@ namespace Biblioteka
 
             if (k.getState() == Book.BookState.Available)
             {
-                if (readerBooks.Count < 6)
+                if (readerBooks.Count < MAXBOOKS)
                 {
                     DateTime date = new DateTime();
                     date = DateTime.Now;
@@ -112,7 +113,7 @@ namespace Biblioteka
                     readerBooks.Add(k);
                 }
             }
-            if (readerBooks.Count == 6)
+            if (readerBooks.Count == MAXBOOKS)
             {
                 Console.WriteLine("Nie możesz wypożyczyć więcej niż 5 ksiażek");
             }

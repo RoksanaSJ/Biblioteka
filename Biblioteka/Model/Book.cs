@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Model
 {
-    public class Book
+    public class Book : Record
     {
         protected Author author { get; }
         protected int ID { get; }
         protected string Title { get; }
         protected BookState state { get; set; }
-        public Book(string name, string surname, string title)
+        public Book(string name, string surname, string title) : base()
         {
             ID = IDGenerator.generateID();
             Title = title;
@@ -51,6 +51,10 @@ namespace Biblioteka.Model
         public override string ToString()
         {
             return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + author.getName() + " " + author.getSurname();
+        }
+        public override string toCSV()
+        {
+            return ID + "," + Title + "," + author.getName() + "," + author.getSurname() + "," + state;
         }
         public enum BookState
         {

@@ -10,16 +10,17 @@ namespace Biblioteka.Menu.ImportOrExportData
     {
         ImportMenu importMenu;
         ExportMenu exportMenu;
-        public ImportExportMenu (Library library) : base (library)
+        public ImportExportMenu(Library library) : base(library)
         {
-            importMenu = new ImportMenu (library);
-            exportMenu = new ExportMenu (library);
+            importMenu = new ImportMenu(library);
+            exportMenu = new ExportMenu(library);
         }
 
         public override void printMenu()
         {
-            while(true)
+            while (true)
             {
+                Console.WriteLine("");
                 Console.WriteLine("1.Import danych");
                 Console.WriteLine("2.Export danych");
                 Console.WriteLine("Podaj opcję: ");
@@ -29,16 +30,17 @@ namespace Biblioteka.Menu.ImportOrExportData
                 {
                     importMenu.printMenu();
                 }
-                else if(option == 2)
+                else if (option == 2)
                 {
                     exportMenu.printMenu();
-                } 
+                }
                 else
-                { 
+                {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Podaj prawidłową opcję!");
                     Console.ResetColor();
                 }
             }
+        }
     }
 }

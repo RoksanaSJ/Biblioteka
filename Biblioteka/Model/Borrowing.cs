@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Model
 {
-    internal class Borrowing
+    internal class Borrowing : Record
     {
         protected DateTime borrowingDate { get; set; }
         protected Book book { get; set; }
         protected Reader reader { get; set; }
-        public Borrowing(DateTime date, Book book, Reader reader)
+        public Borrowing(DateTime date, Book book, Reader reader) : base()
         {
             borrowingDate = date;
             this.reader = reader;
@@ -44,6 +44,10 @@ namespace Biblioteka.Model
         public override string ToString()
         {
             return "Wypożyczenie: data wypożyczenia: " + borrowingDate + $", \n" + reader + ", \n" + book +"\n";
+        }
+        public override string toCSV()
+        {
+            return borrowingDate + "," + reader + "," + book;
         }
     }
 }

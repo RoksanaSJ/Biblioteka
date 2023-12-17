@@ -20,5 +20,9 @@ namespace Biblioteka.Model
         {
             return "Autor: " + Name + Surname;
         }
+        public override string toCSV()
+        {
+            return Name + "," + Surname;
+        }
     }
 }

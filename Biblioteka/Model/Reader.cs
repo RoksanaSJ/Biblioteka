@@ -46,5 +46,9 @@ namespace Biblioteka.Model
         {
             return "Czytelnik: ID: " + ID + ", imię i nazwisko: " + Name + " " + Surname + ", wiek: " + Age;
         }
+        public override string toCSV()
+        {
+            return  ID + "," + Name + "," + Surname + "," + Age;
+        }
     }
 }

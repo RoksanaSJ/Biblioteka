@@ -29,8 +29,7 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                   List<Reader> list = new List<Reader>();
-                   list = library.getReaders();
+                   List<Reader> list = library.getReaders();
                    bool isItEquals = false;
                    List<Reader> toRemove = new List<Reader>();
                     foreach (var reader in list)

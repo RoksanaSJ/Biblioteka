@@ -6,10 +6,10 @@ namespace Biblioteka
 {
     internal class Program
     {
-        //static Librarian employee = new Librarian("Dropsik", "B", 10, 1);
-        //static Librarian employee2 = new Librarian("Leonardo", "DiCaprio", 49, 3);
-        //static Librarian employee3 = new Librarian("Johny", "Deep", 60, 4);
-        //static Librarian employee4 = new Librarian("Tomasz", "Karolak", 52, 5);
+        static Librarian employee = new Librarian("Dropsik", "B", 10);
+        static Librarian employee2 = new Librarian("Leonardo", "DiCaprio", 49);
+        static Librarian employee3 = new Librarian("Johny", "Deep", 60);
+        static Librarian employee4 = new Librarian("Tomasz", "Karolak", 52);
 
         static Reader reader = new Reader("Roksana", "SJ", 23);
         static Reader reader2 = new Reader("Puchacz", "S", 2);
@@ -73,6 +73,11 @@ namespace Biblioteka
             library.addReader(reader6);
 
             library.borrowBook(book8, reader4);
+
+            library.addEmployee(employee);
+            library.addEmployee(employee2);
+            library.addEmployee(employee3);
+            library.addEmployee(employee4);
 
             LibraryMenu libraryMenu = new LibraryMenu(library);
             libraryMenu.printMenu();
