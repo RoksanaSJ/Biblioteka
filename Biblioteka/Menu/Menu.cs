@@ -50,5 +50,10 @@ namespace Biblioteka.Menu
             Console.ResetColor();
             Console.WriteLine("");
         }
+        //public void ConfirmOption(string message)
+        //{
+        //    Console.WriteLine(message);
+        //    Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do menu książki wpisz 'b':");
+        //}
     }
 }

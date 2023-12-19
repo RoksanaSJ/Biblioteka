@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.Model;
 
-namespace Biblioteka.Menu.Borrowing
+namespace Biblioteka.Menu.Borrowings
 {
     internal class ReturnABookMenu : Menu
     {
@@ -30,7 +30,7 @@ namespace Biblioteka.Menu.Borrowing
                 {
                     List<Book> allBooks = Library.GetAllBooks();
                     List<Reader> readers = Library.GetReaders();
-                    List<Biblioteka.Model.Borrowing> borrowings = Library.GetBorrowings();
+                    List<Borrowing> borrowings = Library.GetBorrowings();
 
                     foreach (var book in allBooks)
                     {
@@ -69,7 +69,7 @@ namespace Biblioteka.Menu.Borrowing
                 }
             }
         }
-        private decimal countCharge(Biblioteka.Model.Borrowing borrowing)
+        private decimal countCharge(Borrowing borrowing)
         {
             DateTime borrowingDate = new DateTime();
             borrowingDate = (DateTime)borrowing.GetDate();

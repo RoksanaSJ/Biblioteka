@@ -9,98 +9,98 @@ namespace Biblioteka
 {
     internal class Library
     {
-        protected List<Book> Books { get; }
-        protected List<Reader> Readers { get; }
-        protected List<Librarian> Employees { get; }
-        protected List<Borrowing> Borrowing { get; }
-        protected List<Returning> Returning { get; }
+        protected List<Book> BooksList { get; }
+        protected List<Reader> ReadersList { get; }
+        protected List<Librarian> EmployeesList { get; }
+        protected List<Borrowing> BorrowingList { get; }
+        protected List<Returning> ReturningList { get; }
         const int MAXBOOKS = 5;
         public Library ()
         {
-            Books = new List<Book> ();
-            Readers = new List<Reader> ();
-            Employees = new List<Librarian> ();
-            Borrowing = new List<Borrowing> ();
-            Returning = new List<Returning> ();
+            BooksList = new List<Book> ();
+            ReadersList = new List<Reader> ();
+            EmployeesList = new List<Librarian> ();
+            BorrowingList = new List<Borrowing> ();
+            ReturningList = new List<Returning> ();
         }
         public void ClearAllData()
         {
-            Books.Clear();
-            Readers.Clear();
-            Employees.Clear();
-            Borrowing.Clear();
-            Returning.Clear();
+            BooksList.Clear();
+            ReadersList.Clear();
+            EmployeesList.Clear();
+            BorrowingList.Clear();
+            ReturningList.Clear();
         }
         public List<Book> GetAllBooks()
         {
-            return Books;
+            return BooksList;
         }
         public List<Reader> GetReaders()
         {
-            return Readers;
+            return ReadersList;
         }
         public List<Librarian> GetLiblarians()
         {
-            return Employees;
+            return EmployeesList;
         }
         public List<Borrowing> GetBorrowings()
         {
-            return Borrowing;
+            return BorrowingList;
         }
         public List<Returning> GetReturnings()
         {
-            return Returning;
+            return ReturningList;
         }
         public void ListTheBooks()
         {
-            foreach (var item in Books)
+            foreach (var item in BooksList)
             {
                 Console.WriteLine(item);
             }
         }
         public void ListTheReaders()
         {
-            foreach (var item in Readers)
+            foreach (var item in ReadersList)
             {
                 Console.WriteLine(item);
             }
         }
         public void ListTheLibrarians()
         {
-            foreach (var item in Employees)
+            foreach (var item in EmployeesList)
             {
                 Console.WriteLine(item);
             }
         }
         public void ListTheBorrowings()
         {
-            foreach (var item in Borrowing)
+            foreach (var item in BorrowingList)
             {
                 Console.WriteLine(item);
             }
         }
         public void ListTheReturnings()
         {
-            foreach (var item in Returning)
+            foreach (var item in ReturningList)
             {
                 Console.WriteLine(item);
             }
         }
         public void AddBook(Book k)
         {
-            Books.Add(k);
+            BooksList.Add(k);
         }
         public void AddReader(Reader c)
         {
-            Readers.Add(c);
+            ReadersList.Add(c);
         }
         public void AddEmployee(Librarian p)
         {
-            Employees.Add(p);
+            EmployeesList.Add(p);
         }
         public void RemoveReader(Reader c)
         {
-            Readers.Remove(c);
+            ReadersList.Remove(c);
         }
         public void BorrowBook(Book k, Reader c)
         {
@@ -114,7 +114,7 @@ namespace Biblioteka
                     DateTime date = new DateTime();
                     date = DateTime.Now;
                     Borrowing borrow = new Borrowing(date, k, c);
-                    Borrowing.Add(borrow);
+                    BorrowingList.Add(borrow);
                     // książka zarezerwowana
                     k.Booked();
                     //Czytelnik może wypożyczyć max 5 książek
@@ -131,14 +131,14 @@ namespace Biblioteka
             DateTime date = new DateTime();
             date = DateTime.Now;
             Returning ret = new Returning(date, b, r);
-            Returning.Add(ret);
+            ReturningList.Add(ret);
             //Książka dostępna
             b.Available();
         }
 
         public Book FindBookByID(int ID)
         {
-            foreach(Book book in Books)
+            foreach(Book book in BooksList)
             {
                 if(book.GetID() == ID)
                 {
@@ -149,7 +149,7 @@ namespace Biblioteka
         }
         public Reader FindReaderByID(int ID)
         {
-            foreach (Reader reader in Readers)
+            foreach (Reader reader in ReadersList)
             {
                 if (reader.GetID() == ID)
                 {
@@ -158,9 +158,31 @@ namespace Biblioteka
             }
             return null;
         }
+        public Borrowing SubmitBorrowing(int bookID, int readerID)
+        {
+            foreach(Borrowing borrowing in BorrowingList)
+            {
+                if(borrowing.GetReader().GetID() == readerID && borrowing.GetBook().GetID() == bookID)
+                {
+                    borrowing.SetBorrowingDateToCurrentDate();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Gratulację, właśnie przedłużyłeś wypożyczenie książki o kolejny miesiąc!");
+                    Console.ResetColor();
+                    Console.WriteLine("");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Dane, które podałeś są niepoprawne");
+                    Console.ResetColor();
+                    Console.WriteLine("");
+                }
+            }
+            return null;
+        }
         public void AddBorrowing(Borrowing borrowing)
         {
-            this.Borrowing.Add(borrowing);
+            BorrowingList.Add(borrowing);
         }
     }
 }

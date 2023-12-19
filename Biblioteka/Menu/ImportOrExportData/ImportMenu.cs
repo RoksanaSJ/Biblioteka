@@ -204,7 +204,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                     Reader readerFound = Library.FindReaderByID(readerID);
                     DateTime dateTimeFound = DateTime.ParseExact(splitedBookBorrowing[0], "dd.MM.yyyy HH:mm:ss",
                                        System.Globalization.CultureInfo.InvariantCulture);
-                    Biblioteka.Model.Borrowing borrowingFound = new Biblioteka.Model.Borrowing(dateTimeFound, bookFound, readerFound);
+                    Borrowing borrowingFound = new Borrowing(dateTimeFound, bookFound, readerFound);
                     Library.AddBorrowing(borrowingFound);
                     //Read the next line
                     line = sr.ReadLine();

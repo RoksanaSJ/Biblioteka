@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
@@ -7,16 +8,18 @@ using System.Threading.Tasks;
 using static Biblioteka.Model.Book;
 
 
-namespace Biblioteka.Menu.Borrowing
+namespace Biblioteka.Menu.Borrowings
 {
     internal class BorrowingBookMenu :Menu
     {
         private BorrowABookMenu _borrowABookMenu;
         private ReturnABookMenu _returnABookMenu;
+        private SubmitBookLoan _submitBookLoan;
         public BorrowingBookMenu(Library library) : base(library)
         {
             _borrowABookMenu = new BorrowABookMenu(library);
             _returnABookMenu = new ReturnABookMenu(library);
+            _submitBookLoan = new SubmitBookLoan(library);
         }
         public override void PrintMenu()
         {
@@ -24,8 +27,9 @@ namespace Biblioteka.Menu.Borrowing
             {
                 Console.WriteLine("1.Wypożycz książkę");
                 Console.WriteLine("2.Oddaj książkę");
-                Console.WriteLine("3.Wypisz wszystkie wypożyczenia");
-                Console.WriteLine("4.Wróć");
+                Console.WriteLine("3.Przedłóż swoje wypożyczenie");
+                Console.WriteLine("4.Wypisz wszystkie wypożyczenia");
+                Console.WriteLine("5.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = ReadOption();
                 Console.WriteLine("");
@@ -35,12 +39,16 @@ namespace Biblioteka.Menu.Borrowing
                 } else if (option == 2)
                 {
                     _returnABookMenu.PrintMenu();
-                } else if (option == 3)
+                }
+                else if (option == 3)
                 {
-                    PrintInformationMessage("Lista wypożyczeń");
+                    _submitBookLoan.PrintMenu();
+                } else if (option == 4)
+                {
+                    PrintInformationMessage("Lista wypożyczeń: ");
                     Library.ListTheBorrowings();
                     Console.WriteLine("");
-                } else if (option == 4)
+                } else if (option == 5)
                 {
                     break;
                 }

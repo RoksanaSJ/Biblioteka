@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Biblioteka.Model;
 
-namespace Biblioteka.Menu.Borrowing
+namespace Biblioteka.Menu.Borrowings
 {
     internal class BorrowABookMenu : Menu
     {

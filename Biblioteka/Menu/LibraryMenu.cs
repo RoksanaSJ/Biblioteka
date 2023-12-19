@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.Menu.Books;
-using Biblioteka.Menu.Borrowing;
+using Biblioteka.Menu.Borrowings;
 using Biblioteka.Menu.ImportOrExportData;
 using Biblioteka.Menu.Librarians;
 using Biblioteka.Menu.Readers;

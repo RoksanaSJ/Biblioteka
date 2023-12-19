@@ -22,7 +22,7 @@ namespace Biblioteka.Menu.Readers
                 int readID = int.Parse(Console.ReadLine());
                 List<Reader> readerInfo = new List<Reader>();
                 readerInfo = Library.GetReaders();
-                List<Biblioteka.Model.Borrowing> borrowings = new List<Biblioteka.Model.Borrowing>();
+                List<Borrowing> borrowings = new List<Borrowing>();
                 borrowings = Library.GetBorrowings();
                 List<Returning> readerReturnings = new List<Returning>();
                 readerReturnings = Library.GetReturnings();
