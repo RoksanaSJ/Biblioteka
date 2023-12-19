@@ -21,19 +21,19 @@ namespace Biblioteka.Menu.ImportOrExportData
             while (true)
             {
                 Console.WriteLine("");
-                Console.WriteLine("1.Import danych");
-                Console.WriteLine("2.Export danych");
+                Console.WriteLine("1.Export danych");
+                Console.WriteLine("2.Import danych");
                 Console.WriteLine("3.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = ReadOption();
                 Console.WriteLine("");
                 if (option == 1)
                 {
-                    _importMenu.PrintMenu();
+                    _exportMenu.PrintMenu();
                 }
                 else if (option == 2)
                 {
-                    _exportMenu.PrintMenu();
+                    _importMenu.PrintMenu();
                 }
                 else if (option == 3)
                 {

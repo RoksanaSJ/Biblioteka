@@ -44,8 +44,9 @@ namespace Biblioteka.Menu.Librarians
                 }
                 else if (option == 4)
                 {
-                    PrintInformationMessage($"Lista pracowników ");
+                    PrintInformationMessage($"Lista pracowników: ");
                     Library.ListTheLibrarians();
+                    Console.WriteLine("");
                 }
                 else if (option == 5)
                 {
