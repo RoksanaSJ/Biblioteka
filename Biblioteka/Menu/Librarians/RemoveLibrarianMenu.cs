@@ -12,12 +12,12 @@ namespace Biblioteka.Menu.Librarians
         public RemoveLibrarianMenu(Library library) : base(library)
         {
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
                 Console.WriteLine("Podaj ID:");
-                int ID = readOption();
+                int ID = ReadOption();
 
                 Console.WriteLine($"Czy pracownik, którego chcesz usunąć ma następujące ID: {ID}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do menu książki wpisz 'b':");
@@ -25,12 +25,12 @@ namespace Biblioteka.Menu.Librarians
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    List<Librarian> librarians = library.getLiblarians();
+                    List<Librarian> librarians = Library.GetLiblarians();
                     List<Librarian> toRemove = new List<Librarian> ();
                     bool isItEqual = false;
                     foreach (Librarian librarian in librarians)
                     {
-                        if (librarian.getID() == ID)
+                        if (librarian.GetID() == ID)
                         {
                             toRemove.Add(librarian);
                             isItEqual = true;
@@ -38,18 +38,18 @@ namespace Biblioteka.Menu.Librarians
                     }
                         if (isItEqual == false)
                         {
-                            printErrorMessage("Nie ma w bazie pracownika o takim ID");
+                            PrintErrorMessage("Nie ma w bazie pracownika o takim ID");
                         }
                         foreach (var employee in toRemove)
                         {
                             librarians.Remove(employee);
-                        printSuccessMessage($"Gratulacje, właśnie usunąłeś pracownika {employee.ToString()}");                     
+                        PrintSuccessMessage($"Gratulacje, właśnie usunąłeś pracownika {employee.ToString()}");                     
                     }
                         break;
                     }
                 else if (userOption.Equals("n"))
                 {
-                    printMenu();
+                    PrintMenu();
                     Console.WriteLine(" ");
                 }
                 else if (userOption.Equals("b"))

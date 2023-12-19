@@ -8,16 +8,16 @@ namespace Biblioteka.Menu.Books
 {
     internal class SearchBookMenu : Menu
     {
-        private SearchByAuthorMenu searchByAuthorMenu;
-        private SearchByTitleMenu searchByTitleMenu;
-        private SearchByID searchByID;
+        private SearchByAuthorMenu _searchByAuthorMenu;
+        private SearchByTitleMenu _searchByTitleMenu;
+        private SearchByID _searchByID;
         public SearchBookMenu(Library library) : base(library)
         {
-            searchByAuthorMenu = new SearchByAuthorMenu(library);
-            searchByTitleMenu = new SearchByTitleMenu(library);
-            searchByID = new SearchByID(library);
+            _searchByAuthorMenu = new SearchByAuthorMenu(library);
+            _searchByTitleMenu = new SearchByTitleMenu(library);
+            _searchByID = new SearchByID(library);
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -26,19 +26,19 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("3.Wyszukaj po ID");
                 Console.WriteLine("4.Wróć");
                 Console.WriteLine("Podaj opcję: ");
-                int choose = readOption();
+                int choose = ReadOption();
                 Console.WriteLine("");
                 if (choose == 1)
                 {
-                    searchByAuthorMenu.printMenu();
+                    _searchByAuthorMenu.PrintMenu();
                 }
                 else if (choose == 2)
                 {
-                    searchByTitleMenu.printMenu();
+                    _searchByTitleMenu.PrintMenu();
                 }
                 else if (choose == 3)
                 {
-                    searchByID.printMenu();
+                    _searchByID.PrintMenu();
                 }
                 else if (choose == 4)
                 {
@@ -46,7 +46,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    printErrorMessage("Podaj poprawną opcję!");
+                    PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

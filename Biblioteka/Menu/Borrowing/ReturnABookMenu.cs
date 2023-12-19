@@ -14,7 +14,7 @@ namespace Biblioteka.Menu.Borrowing
         {
 
         }
-        public override void printMenu() 
+        public override void PrintMenu() 
         {
             while (true)
             {
@@ -28,25 +28,25 @@ namespace Biblioteka.Menu.Borrowing
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    List<Book> allBooks = library.getAllBooks();
-                    List<Reader> readers = library.getReaders();
-                    List<Biblioteka.Model.Borrowing> borrowings = library.getBorrowings();
+                    List<Book> allBooks = Library.GetAllBooks();
+                    List<Reader> readers = Library.GetReaders();
+                    List<Biblioteka.Model.Borrowing> borrowings = Library.GetBorrowings();
 
                     foreach (var book in allBooks)
                     {
-                        if (book.getID() == ID)
+                        if (book.GetID() == ID)
                         {
                             foreach (var reader in readers)
                             {
-                                if (reader.getID() == userID)
+                                if (reader.GetID() == userID)
                                 {
                                     foreach (var borrowing in borrowings)
                                     {
-                                        if (borrowing.getReader().getID() == userID && borrowing.getBook().getID() == ID)
+                                        if (borrowing.GetReader().GetID() == userID && borrowing.GetBook().GetID() == ID)
                                         {
                                                 decimal charge = countCharge(borrowing); 
-                                                library.returnBook(book, reader);
-                                            printSuccessMessage($"Gratulację {reader}, właśnie oddałeś książkę {book}");
+                                                Library.ReturnBook(book, reader);
+                                            PrintSuccessMessage($"Gratulację {reader}, właśnie oddałeś książkę {book}");
                                         }
                                     }
                                 }
@@ -56,7 +56,7 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else if (userOption.Equals("n"))
                 {
-                    printMenu();
+                    PrintMenu();
                     Console.WriteLine("");
                 }
                 else if (userOption.Equals("b"))
@@ -65,14 +65,14 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else
                 {
-                    printErrorMessage("Podaj poprawną opcję!");
+                    PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }
         private decimal countCharge(Biblioteka.Model.Borrowing borrowing)
         {
             DateTime borrowingDate = new DateTime();
-            borrowingDate = (DateTime)borrowing.getDate();
+            borrowingDate = (DateTime)borrowing.GetDate();
             DateTime returningDate = new DateTime();
             returningDate = DateTime.Now;
             TimeSpan timeSpan = new TimeSpan();
@@ -84,7 +84,7 @@ namespace Biblioteka.Menu.Borrowing
                 decimal overkeepingDays;
                 overkeepingDays = ((decimal)days - 31m);
                 charge = overkeepingDays * 0.1m;
-                printErrorMessage($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr. \n Musisz zapłacić {charge} zł");)
+                PrintErrorMessage($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr. \n Musisz zapłacić {charge} zł");
             }
             else
             {

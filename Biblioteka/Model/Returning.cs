@@ -8,46 +8,46 @@ namespace Biblioteka.Model
 {
     internal class Returning : Record
     {
-        DateTime returningDate { get; set; }
-        Book book { get; set; }
-        Reader reader { get; set; }
+        DateTime ReturningDate { get; set; }
+        Book Book { get; set; }
+        Reader Reader { get; set; }
         public Returning(DateTime returningDate, Book book, Reader reader) : base()
         {
-            this.returningDate = returningDate;
-            this.book = book;
-            this.reader = reader;
+            this.ReturningDate = returningDate;
+            this.Book = book;
+            this.Reader = reader;
         }
-        public DateTime getReturningDate()
+        public DateTime GetReturningDate()
         {
-            return returningDate;
+            return ReturningDate;
         }
-        public Book getBook()
+        public Book GetBook()
         {
-            return book;
+            return Book;
         }
-        public Reader getReader()
+        public Reader GetReader()
         {
-            return reader;
+            return Reader;
         }
-        public void setReturningDateToCurrentDate()
+        public void SetReturningDateToCurrentDate()
         {
-            returningDate = DateTime.Now;
+            ReturningDate = DateTime.Now;
         }
-        public void setReturnedBook(Book returnedBook)
+        public void SetReturnedBook(Book returnedBook)
         {
-            book = returnedBook;
+            Book = returnedBook;
         }
-        public void setReader(Reader borrower)
+        public void SetReader(Reader borrower)
         {
-            reader = borrower;
+            Reader = borrower;
         }
         public override string ToString()
         {
-            return "Oddanie: data oddania: " + returningDate + ", dane czytelnika: " + reader + ", książka: " + book;
+            return "Oddanie: data oddania: " + ReturningDate + ", dane czytelnika: " + Reader + ", książka: " + Book;
         }
-        public override string toCSV()
+        public override string ToCSV()
         {
-            return returningDate + "," + reader.getID() + "," + book.getID();
+            return ReturningDate + "," + Reader.GetID() + "," + Book.GetID();
         }
     }
 }

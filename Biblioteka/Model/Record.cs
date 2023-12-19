@@ -13,6 +13,6 @@ namespace Biblioteka.Model
         
         }
 
-        public abstract string toCSV();
+        public abstract string ToCSV();
     }
 }

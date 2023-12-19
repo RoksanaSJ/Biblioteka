@@ -11,14 +11,14 @@ namespace Biblioteka.Menu.Borrowing
 {
     internal class BorrowingBookMenu :Menu
     {
-        BorrowABookMenu borrowABookMenu;
-        ReturnABookMenu returnABookMenu;
+        private BorrowABookMenu _borrowABookMenu;
+        private ReturnABookMenu _returnABookMenu;
         public BorrowingBookMenu(Library library) : base(library)
         {
-            borrowABookMenu = new BorrowABookMenu(library);
-            returnABookMenu = new ReturnABookMenu(library);
+            _borrowABookMenu = new BorrowABookMenu(library);
+            _returnABookMenu = new ReturnABookMenu(library);
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -27,18 +27,18 @@ namespace Biblioteka.Menu.Borrowing
                 Console.WriteLine("3.Wypisz wszystkie wypożyczenia");
                 Console.WriteLine("4.Wróć");
                 Console.WriteLine("Podaj opcję: ");
-                int option = readOption();
+                int option = ReadOption();
                 Console.WriteLine("");
                 if (option == 1)
                 {
-                    borrowABookMenu.printMenu();
+                    _borrowABookMenu.PrintMenu();
                 } else if (option == 2)
                 {
-                    returnABookMenu.printMenu();
+                    _returnABookMenu.PrintMenu();
                 } else if (option == 3)
                 {
-                    printInformationMessage("Lista wypożyczeń");
-                    library.listTheBorrowings();
+                    PrintInformationMessage("Lista wypożyczeń");
+                    Library.ListTheBorrowings();
                     Console.WriteLine("");
                 } else if (option == 4)
                 {
@@ -46,7 +46,7 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else 
                 {
-                    printErrorMessage("Podaj właściwą opcję!");
+                    PrintErrorMessage("Podaj właściwą opcję!");
                 }
             }
         }

@@ -14,40 +14,40 @@ namespace Biblioteka.Menu.Readers
         { 
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
                 Console.WriteLine("Podaj ID wyszukiwanego czytelnika: ");
                 int readID = int.Parse(Console.ReadLine());
                 List<Reader> readerInfo = new List<Reader>();
-                readerInfo = library.getReaders();
+                readerInfo = Library.GetReaders();
                 List<Biblioteka.Model.Borrowing> borrowings = new List<Biblioteka.Model.Borrowing>();
-                borrowings = library.getBorrowings();
+                borrowings = Library.GetBorrowings();
                 List<Returning> readerReturnings = new List<Returning>();
-                readerReturnings = library.getReturnings();
-                printInformationMessage("Dane użytkownika: ");
+                readerReturnings = Library.GetReturnings();
+                PrintInformationMessage("Dane użytkownika: ");
                 foreach (var reader in readerInfo)
                 {
-                    if(reader.getID() == readID)
+                    if(reader.GetID() == readID)
                     {
                         Console.WriteLine(reader);
                     }
                 }
                 Console.WriteLine("");
-                printInformationMessage("Wypożyczenia użytkowanika: ");
+                PrintInformationMessage("Wypożyczenia użytkowanika: ");
                 foreach (var borrowing in borrowings)
                 {
-                    if(borrowing.getReader().getID() == readID)
+                    if(borrowing.GetReader().GetID() == readID)
                     {
                         Console.WriteLine(borrowing);
                     }
                 }
                 Console.WriteLine("");
-                printInformationMessage("Historia wypożyczeń użytkowanika: ");
+                PrintInformationMessage("Historia wypożyczeń użytkowanika: ");
                 foreach (var returning in readerReturnings)
                 {
-                    if (returning.getReader().getID() == readID)
+                    if (returning.GetReader().GetID() == readID)
                     {
                         Console.WriteLine(returning);
                     }

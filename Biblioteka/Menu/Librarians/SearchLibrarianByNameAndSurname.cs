@@ -13,7 +13,7 @@ namespace Biblioteka.Menu.Librarians
         {
         
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             Console.WriteLine("Podaj dane, po których chcesz szukać pracownika");
             Console.WriteLine("Podaj imię:");
@@ -23,20 +23,20 @@ namespace Biblioteka.Menu.Librarians
             string surname = Console.ReadLine();
             Console.WriteLine("");
 
-            List<Librarian> librarians = library.getLiblarians();
+            List<Librarian> librarians = Library.GetLiblarians();
             bool isItEqual = false;
             foreach(Librarian librarian in librarians)
             {
-                if(librarian.getName().Equals(name) && librarian.getSurname().Equals(surname))
+                if(librarian.GetName().Equals(name) && librarian.GetSurname().Equals(surname))
                 {
-                    printInformationMessage($"{librarian}");
+                    PrintInformationMessage($"{librarian}");
                     Console.WriteLine("");
                     isItEqual = true;
                 }
             }
             if(isItEqual == false) 
             {
-                printErrorMessage("Nie ma pracownika o takim imieniu i nazwisku");
+                PrintErrorMessage("Nie ma pracownika o takim imieniu i nazwisku");
             }
         }
     }

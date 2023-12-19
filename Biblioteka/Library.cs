@@ -9,114 +9,114 @@ namespace Biblioteka
 {
     internal class Library
     {
-        protected List<Book> books { get; }
-        protected List<Reader> readers { get; }
-        protected List<Librarian> employees { get; }
-        protected List<Borrowing> borrowing { get; }
-        protected List<Returning> returning { get; }
+        protected List<Book> Books { get; }
+        protected List<Reader> Readers { get; }
+        protected List<Librarian> Employees { get; }
+        protected List<Borrowing> Borrowing { get; }
+        protected List<Returning> Returning { get; }
         const int MAXBOOKS = 5;
         public Library ()
         {
-            books = new List<Book> ();
-            readers = new List<Reader> ();
-            employees = new List<Librarian> ();
-            borrowing = new List<Borrowing> ();
-            returning = new List<Returning> ();
+            Books = new List<Book> ();
+            Readers = new List<Reader> ();
+            Employees = new List<Librarian> ();
+            Borrowing = new List<Borrowing> ();
+            Returning = new List<Returning> ();
         }
-        public void clearAllData()
+        public void ClearAllData()
         {
-            books.Clear();
-            readers.Clear();
-            employees.Clear();
-            borrowing.Clear();
-            returning.Clear();
+            Books.Clear();
+            Readers.Clear();
+            Employees.Clear();
+            Borrowing.Clear();
+            Returning.Clear();
         }
-        public List<Book> getAllBooks()
+        public List<Book> GetAllBooks()
         {
-            return books;
+            return Books;
         }
-        public List<Reader> getReaders()
+        public List<Reader> GetReaders()
         {
-            return readers;
+            return Readers;
         }
-        public List<Librarian> getLiblarians()
+        public List<Librarian> GetLiblarians()
         {
-            return employees;
+            return Employees;
         }
-        public List<Borrowing> getBorrowings()
+        public List<Borrowing> GetBorrowings()
         {
-            return borrowing;
+            return Borrowing;
         }
-        public List<Returning> getReturnings()
+        public List<Returning> GetReturnings()
         {
-            return returning;
+            return Returning;
         }
-        public void listTheBooks()
+        public void ListTheBooks()
         {
-            foreach (var item in books)
+            foreach (var item in Books)
             {
                 Console.WriteLine(item);
             }
         }
-        public void listTheReaders()
+        public void ListTheReaders()
         {
-            foreach (var item in readers)
+            foreach (var item in Readers)
             {
                 Console.WriteLine(item);
             }
         }
-        public void listTheLibrarians()
+        public void ListTheLibrarians()
         {
-            foreach (var item in employees)
+            foreach (var item in Employees)
             {
                 Console.WriteLine(item);
             }
         }
-        public void listTheBorrowings()
+        public void ListTheBorrowings()
         {
-            foreach (var item in borrowing)
+            foreach (var item in Borrowing)
             {
                 Console.WriteLine(item);
             }
         }
-        public void listTheReturnings()
+        public void ListTheReturnings()
         {
-            foreach (var item in returning)
+            foreach (var item in Returning)
             {
                 Console.WriteLine(item);
             }
         }
-        public void addBook(Book k)
+        public void AddBook(Book k)
         {
-            books.Add(k);
+            Books.Add(k);
         }
-        public void addReader(Reader c)
+        public void AddReader(Reader c)
         {
-            readers.Add(c);
+            Readers.Add(c);
         }
-        public void addEmployee(Librarian p)
+        public void AddEmployee(Librarian p)
         {
-            employees.Add(p);
+            Employees.Add(p);
         }
-        public void removeReader(Reader c)
+        public void RemoveReader(Reader c)
         {
-            readers.Remove(c);
+            Readers.Remove(c);
         }
-        public void borrowBook(Book k, Reader c)
+        public void BorrowBook(Book k, Reader c)
         {
             //Czytelnik może wypożyczyć max 5 książek
             List<Book> readerBooks = new List<Book>();
 
-            if (k.getState() == Book.BookState.Available)
+            if (k.GetState() == Book.BookState.Available)
             {
                 if (readerBooks.Count <= MAXBOOKS)
                 {
                     DateTime date = new DateTime();
                     date = DateTime.Now;
                     Borrowing borrow = new Borrowing(date, k, c);
-                    borrowing.Add(borrow);
+                    Borrowing.Add(borrow);
                     // książka zarezerwowana
-                    k.booked();
+                    k.Booked();
                     //Czytelnik może wypożyczyć max 5 książek
                     readerBooks.Add(k);
                 }
@@ -126,41 +126,41 @@ namespace Biblioteka
                 Console.WriteLine($"Nie możesz wypożyczyć więcej niż {MAXBOOKS}");
             }
         }
-        public void returnBook(Book b, Reader r)
+        public void ReturnBook(Book b, Reader r)
         {
             DateTime date = new DateTime();
             date = DateTime.Now;
             Returning ret = new Returning(date, b, r);
-            returning.Add(ret);
+            Returning.Add(ret);
             //Książka dostępna
-            b.available();
+            b.Available();
         }
 
-        public Book findBookByID(int ID)
+        public Book FindBookByID(int ID)
         {
-            foreach(Book book in books)
+            foreach(Book book in Books)
             {
-                if(book.getID() == ID)
+                if(book.GetID() == ID)
                 {
                     return book;
                 }
             }
             return null;
         }
-        public Reader findReaderByID(int ID)
+        public Reader FindReaderByID(int ID)
         {
-            foreach (Reader reader in readers)
+            foreach (Reader reader in Readers)
             {
-                if (reader.getID() == ID)
+                if (reader.GetID() == ID)
                 {
                     return reader;
                 }
             }
             return null;
         }
-        public void addBorrowing(Borrowing borrowing)
+        public void AddBorrowing(Borrowing borrowing)
         {
-            this.borrowing.Add(borrowing);
+            this.Borrowing.Add(borrowing);
         }
     }
 }

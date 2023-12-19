@@ -8,32 +8,32 @@ namespace Biblioteka.Menu.Librarians
 {
     internal class SearchLibrarianMenu : Menu
     {
-        SearchLibrarianByID searchLibrarianByID;
-        SearchLibrarianByNameAndSurname searchLibrarianByNameAndSurname;
+        private SearchLibrarianByID _searchLibrarianByID;
+        private SearchLibrarianByNameAndSurname _searchLibrarianByNameAndSurname;
         public SearchLibrarianMenu(Library library) : base(library)
         {
-            searchLibrarianByID = new SearchLibrarianByID(library);
-            searchLibrarianByNameAndSurname = new SearchLibrarianByNameAndSurname(library);
+            _searchLibrarianByID = new SearchLibrarianByID(library);
+            _searchLibrarianByNameAndSurname = new SearchLibrarianByNameAndSurname(library);
         }
 
-        public override void printMenu()
+        public override void PrintMenu()
         {
             Console.WriteLine("1.Wyszukaj po imieniu i nazwisku");
             Console.WriteLine("2.Wyszukaj po ID");
             Console.WriteLine("Podaj opcję:");
-            int userOption = readOption();
+            int userOption = ReadOption();
             Console.WriteLine(" ");
             if(userOption == 1)
             {
-                searchLibrarianByNameAndSurname.printMenu();
+                _searchLibrarianByNameAndSurname.PrintMenu();
             }
             else if(userOption == 2)
             {
-                searchLibrarianByID.printMenu();
+                _searchLibrarianByID.PrintMenu();
             }
             else
             {
-                printErrorMessage("Podaj poprawną opcję!");
+                PrintErrorMessage("Podaj poprawną opcję!");
             }
         }
     }

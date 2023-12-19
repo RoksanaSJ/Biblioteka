@@ -18,14 +18,14 @@ namespace Biblioteka.Model
         }
         public Librarian(string name, string surname, int age) : base(name, surname)
         {
-            ID = IDGenerator.generateID();
+            ID = IDGenerator.GenerateID();
             Age = age;
         }
-        public int getID()
+        public int GetID()
         {
             return ID;
         }
-        public int getAge()
+        public int GetAge()
         {
             return Age;
         }
@@ -33,7 +33,7 @@ namespace Biblioteka.Model
         {
             return "Pracownik: ID: " + ID + ", dane: " + Name + " "+ Surname + ", wiek: " + Age;
         }
-        public override string toCSV()
+        public override string ToCSV()
         {
             return ID + "," + Name +","+ Surname + "," + Age;
         }

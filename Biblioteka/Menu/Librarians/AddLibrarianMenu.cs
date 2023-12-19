@@ -14,7 +14,7 @@ namespace Biblioteka.Menu.Librarians
         {
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -25,7 +25,7 @@ namespace Biblioteka.Menu.Librarians
                 string surname = Console.ReadLine();
                 Console.WriteLine("");
                 Console.WriteLine("Podaj wiek:");
-                int age = readOption();
+                int age = ReadOption();
                 Console.WriteLine("");
 
                 Console.WriteLine($"Czy pracownik, którego chcesz dodać ma następujące dane: {name} {surname}, wiek: {age}?");
@@ -35,13 +35,13 @@ namespace Biblioteka.Menu.Librarians
                 if (userOption.Equals("y"))
                 {
                    Librarian librarian = new Librarian(name, surname, age);
-                    library.addEmployee(librarian);
-                    printSuccessMessage($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
+                    Library.AddEmployee(librarian);
+                    PrintSuccessMessage($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
-                    printMenu();
+                    PrintMenu();
                     Console.WriteLine(" ");
                 }
                 else if (userOption.Equals("b"))
@@ -50,7 +50,7 @@ namespace Biblioteka.Menu.Librarians
                 }
                 else
                 {
-                    printErrorMessage("Podaj poprawną opcję!");
+                    PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

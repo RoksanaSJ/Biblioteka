@@ -8,20 +8,20 @@ namespace Biblioteka.Menu.Books
 {
     internal class BooksMenu :Menu
     {
-        private AddBookMenu addBookMenu;
-        private SearchByTitleMenu searchByTitleMenu;
-        private SearchByAuthorMenu searchByAuthorMenu;
-        private RemoveBookMenu removeBookMenu;
-        private SearchBookMenu searchBookMenu;
+        private AddBookMenu _addBookMenu;
+        private SearchByTitleMenu _searchByTitleMenu;
+        private SearchByAuthorMenu _searchByAuthorMenu;
+        private RemoveBookMenu _removeBookMenu;
+        private SearchBookMenu _searchBookMenu;
         public BooksMenu(Library library) : base(library)
         {
-            addBookMenu = new AddBookMenu(library);
-            searchByTitleMenu = new SearchByTitleMenu(library);
-            searchByAuthorMenu = new SearchByAuthorMenu(library);
-            removeBookMenu = new RemoveBookMenu(library);
-            searchBookMenu = new SearchBookMenu(library);
+            _addBookMenu = new AddBookMenu(library);
+            _searchByTitleMenu = new SearchByTitleMenu(library);
+            _searchByAuthorMenu = new SearchByAuthorMenu(library);
+            _removeBookMenu = new RemoveBookMenu(library);
+            _searchBookMenu = new SearchBookMenu(library);
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -31,25 +31,26 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("4.Wypisz wszystkie książki");
                 Console.WriteLine("5.Wróć");
                 Console.WriteLine("Wpisz opcje: ");
-                int option = readOption();
+                int option = ReadOption();
                 Console.WriteLine("");
                         if (option == 1)
                         {
-                            addBookMenu.printMenu();
+                            _addBookMenu.PrintMenu();
                         }
                         else if (option == 2)
                         {
-                            removeBookMenu.printMenu();
+                            _removeBookMenu.PrintMenu();
                         }
                         else if (option == 3)
                         {
-                            searchBookMenu.printMenu();
+                            _searchBookMenu.PrintMenu();
                         }
                         else if (option == 4)
                         {
                             Console.ForegroundColor = ConsoleColor.Blue;
-                            printInformationMessage("Lista książek:");
-                            library.listTheBooks();
+                            PrintInformationMessage("Lista książek:");
+                            Library.ListTheBooks();
+                            Console.WriteLine("");
                         }
                         else if (option == 5)
                         {
@@ -57,7 +58,7 @@ namespace Biblioteka.Menu.Books
                         }
                         else
                         {
-                        printErrorMessage("Podaj poprawną wartość!");
+                        PrintErrorMessage("Podaj poprawną wartość!");
                         }
             }
         }

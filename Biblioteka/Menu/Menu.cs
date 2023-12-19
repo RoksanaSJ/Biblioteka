@@ -9,12 +9,13 @@ namespace Biblioteka.Menu
 {
     abstract class Menu
     {
-       protected Library library;
+        const int OVERFLOW_VALUE = 9999;
+        protected Library Library;
         public Menu(Library library)
         {
-            this.library = library;
+            this.Library = library;
         }
-        public int readOption()
+        public int ReadOption()
         {
             try
             {
@@ -23,26 +24,26 @@ namespace Biblioteka.Menu
             }
             catch (Exception e)
             {
-                int overflow = 9999;
+                int overflow = OVERFLOW_VALUE;
                 return overflow;
             }
         }
-        public abstract void printMenu(); 
-        public void printErrorMessage(string message)
+        public abstract void PrintMenu(); 
+        public void PrintErrorMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();
             Console.WriteLine("");
         }
-        public void printSuccessMessage(string message)
+        public void PrintSuccessMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(message);
             Console.ResetColor();
             Console.WriteLine("");
         }
-        public void printInformationMessage(string message)
+        public void PrintInformationMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(message);

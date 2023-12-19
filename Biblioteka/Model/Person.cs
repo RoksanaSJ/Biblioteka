@@ -15,19 +15,19 @@ namespace Biblioteka.Model
             Name = name;
             Surname = surname;
         }
-        public string getName()
+        public string GetName()
         {
             return Name;
         }
-        public string getSurname()
+        public string GetSurname()
         {
             return Surname;
         }
-        public void setName(string personsName)
+        public void SetName(string personsName)
         {
             Name = personsName;
         }
-        public void setSurname(string personsSurname)
+        public void SetSurname(string personsSurname)
         {
             Surname = personsSurname;
         }

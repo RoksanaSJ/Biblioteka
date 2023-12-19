@@ -14,15 +14,15 @@ namespace Biblioteka.Menu.Books
         {
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
                 Console.WriteLine("Podaj tytuł książki, którą chcesz usunąć");
                 string title = Console.ReadLine();
                 List<Book> toRemove = new List<Book>();
-                List<Book> allBooks = library.getAllBooks();
+                List<Book> allBooks = Library.GetAllBooks();
                 foreach (var book in allBooks)
                 {
-                    if (book.getTitle().Contains(title))
+                    if (book.GetTitle().Contains(title))
                     {
                         Console.WriteLine($"Czy to jest ta ksiażka, którą chcesz usunąć? {book}?");
                         Console.WriteLine("Wpisz 'y' jeśli tak, 'n' jeśli nie 'b' jeśli chcesz wrócić");
@@ -31,7 +31,7 @@ namespace Biblioteka.Menu.Books
                         if (option.Equals("y"))
                         {
                             toRemove.Add(book);
-                            printSuccessMessage($"Gratulację, właśnie usunąleś książkę {book}");
+                            PrintSuccessMessage($"Gratulację, właśnie usunąleś książkę {book}");
                         }
                         else if (option.Equals("n"))
                         {
@@ -43,7 +43,7 @@ namespace Biblioteka.Menu.Books
                         }
                         else
                         {
-                        printErrorMessage("Podaj właściwą opcję!");
+                        PrintErrorMessage("Podaj właściwą opcję!");
                         }
                     }
                 }

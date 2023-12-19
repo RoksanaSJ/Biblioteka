@@ -56,31 +56,31 @@ namespace Biblioteka
         {
             Library library = new Library();
 
-            library.addBook(book);
-            library.addBook(book2);
-            library.addBook(book3);
-            library.addBook(book4);
-            library.addBook(book5);
-            library.addBook(book6);
-            library.addBook(book7);
-            library.addBook(book8);
+            library.AddBook(book);
+            library.AddBook(book2);
+            library.AddBook(book3);
+            library.AddBook(book4);
+            library.AddBook(book5);
+            library.AddBook(book6);
+            library.AddBook(book7);
+            library.AddBook(book8);
 
-            library.addReader(reader);
-            library.addReader(reader2);
-            library.addReader(reader3);
-            library.addReader(reader4);
-            library.addReader(reader5);
-            library.addReader(reader6);
+            library.AddReader(reader);
+            library.AddReader(reader2);
+            library.AddReader(reader3);
+            library.AddReader(reader4);
+            library.AddReader(reader5);
+            library.AddReader(reader6);
 
-            library.borrowBook(book8, reader4);
+            library.BorrowBook(book8, reader4);
 
-            library.addEmployee(employee);
-            library.addEmployee(employee2);
-            library.addEmployee(employee3);
-            library.addEmployee(employee4);
+            library.AddEmployee(employee);
+            library.AddEmployee(employee2);
+            library.AddEmployee(employee3);
+            library.AddEmployee(employee4);
 
             LibraryMenu libraryMenu = new LibraryMenu(library);
-            libraryMenu.printMenu();
+            libraryMenu.PrintMenu();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Biblioteka.Menu.Readers
         {
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -31,13 +31,13 @@ namespace Biblioteka.Menu.Readers
                 if (userOption.Equals("y"))
                 {
                     Reader reader = new Reader(name, surname, age);
-                    printSuccessMessage($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
-                    library.addReader(reader);
+                    PrintSuccessMessage($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
+                    Library.AddReader(reader);
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
-                    printMenu();
+                    PrintMenu();
                     Console.WriteLine("");
                 }
                 else if (userOption.Equals("b"))
@@ -46,7 +46,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
-                    printErrorMessage("Podaj poprawną opcję!");
+                    PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

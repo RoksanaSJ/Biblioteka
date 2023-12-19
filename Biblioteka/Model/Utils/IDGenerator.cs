@@ -9,15 +9,15 @@ namespace Biblioteka.Model.Utils
 
     internal class IDGenerator
     {
-        protected static int nextID = 0;
+        protected static int NextID = 0;
         public IDGenerator() 
         {
 
         }
-        public static int generateID()
+        public static int GenerateID()
         {
-            nextID++;
-            return nextID;
+            NextID++;
+            return NextID;
         }
     }
 }

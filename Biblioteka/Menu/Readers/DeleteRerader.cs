@@ -13,7 +13,7 @@ namespace Biblioteka.Menu.Readers
         {
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -29,12 +29,12 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                   List<Reader> list = library.getReaders();
+                   List<Reader> list = Library.GetReaders();
                    bool isItEquals = false;
                    List<Reader> toRemove = new List<Reader>();
                     foreach (var reader in list)
                     {
-                        if (reader.getName().Equals(name) && reader.getSurname().Equals(surname) && reader.getAge().Equals(age))
+                        if (reader.GetName().Equals(name) && reader.GetSurname().Equals(surname) && reader.GetAge().Equals(age))
                         {
                             toRemove.Add(reader);
                             isItEquals = true;
@@ -42,18 +42,18 @@ namespace Biblioteka.Menu.Readers
                     }
                     if (isItEquals == false)
                     {
-                        printErrorMessage("Nie ma w bazie czytelnika z takimi parametrami");
+                        PrintErrorMessage("Nie ma w bazie czytelnika z takimi parametrami");
                     }
                     foreach(var reader in toRemove)
                     {
                         list.Remove(reader);
-                        printSuccessMessage($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
+                        PrintSuccessMessage($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
                     }
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
-                    printMenu();
+                    PrintMenu();
                     Console.WriteLine("");
                 }
                 else if (userOption.Equals("b"))
@@ -62,7 +62,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
-                    printErrorMessage("Podaj poprawną opcję!");
+                    PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

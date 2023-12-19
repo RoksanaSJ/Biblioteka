@@ -8,15 +8,15 @@ namespace Biblioteka.Menu.ImportOrExportData
 {
     internal class ImportExportMenu : Menu
     {
-        ImportMenu importMenu;
-        ExportMenu exportMenu;
+        private ImportMenu _importMenu;
+        private ExportMenu _exportMenu;
         public ImportExportMenu(Library library) : base(library)
         {
-            importMenu = new ImportMenu(library);
-            exportMenu = new ExportMenu(library);
+            _importMenu = new ImportMenu(library);
+            _exportMenu = new ExportMenu(library);
         }
 
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -25,15 +25,15 @@ namespace Biblioteka.Menu.ImportOrExportData
                 Console.WriteLine("2.Export danych");
                 Console.WriteLine("3.Wróć");
                 Console.WriteLine("Podaj opcję: ");
-                int option = readOption();
+                int option = ReadOption();
                 Console.WriteLine("");
                 if (option == 1)
                 {
-                    importMenu.printMenu();
+                    _importMenu.PrintMenu();
                 }
                 else if (option == 2)
                 {
-                    exportMenu.printMenu();
+                    _exportMenu.PrintMenu();
                 }
                 else if (option == 3)
                 {
@@ -41,7 +41,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 }
                 else
                 {
-                    printErrorMessage("Podaj prawidłową opcję!");
+                    PrintErrorMessage("Podaj prawidłową opcję!");
                 }
             }
         }

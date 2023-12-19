@@ -27,7 +27,7 @@ namespace Biblioteka.Menu.ImportOrExportData
         {
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             Console.WriteLine("Importowane dane");
 
@@ -39,27 +39,27 @@ namespace Biblioteka.Menu.ImportOrExportData
                 }
             }
             Console.WriteLine("Wypakowano paczkę zip");
-            library.clearAllData();
+            Library.ClearAllData();
             Console.WriteLine("Rozpoczęcie importowania danych");
-            importBooks();
+            ImportBooks();
             Console.WriteLine("Zaimportowano książki");
-            importReaders();
+            ImportReaders();
             Console.WriteLine("Zaimportowano czytelników");
-            importLibrarians();
+            ImportLibrarians();
             Console.WriteLine("Zaimportowano pracowników");
-            importBorrowing();
+            ImportBorrowing();
             Console.WriteLine("Zaimportowano wypożyczenia");
-            importReturnings();
+            ImportReturnings();
             Console.WriteLine("Zaimportowano zwroty książek");
 
             string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV };
 
             foreach (string file in files)
             {
-                removeFile(file);
+                RemoveFile(file);
             }
         }
-        public void removeFile(string pathFile)
+        public void RemoveFile(string pathFile)
         {
             bool isExist = File.Exists(pathFile);
             if (isExist == true)
@@ -67,7 +67,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 File.Delete(pathFile);
             }
         }
-        public Book.BookState convert (string state)
+        public Book.BookState Convert (string state)
         {
             if (state.Equals("Available"))
             {
@@ -77,7 +77,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 return Book.BookState.Booked;
             }
         }
-        public void importBooks()
+        public void ImportBooks()
         {
             String line;
             try
@@ -95,9 +95,9 @@ namespace Biblioteka.Menu.ImportOrExportData
                     string surname = splitedBook[3];
                     string title = splitedBook[1];
                     int ID = int.Parse(splitedBook[0]);
-                    Book.BookState bookState = convert(splitedBook[4]);
+                    Book.BookState bookState = Convert(splitedBook[4]);
                     Book book = new Book(name, surname, title, ID, bookState);
-                    library.addBook(book);
+                    Library.AddBook(book);
                     //Read the next line
                     line = sr.ReadLine();
                 }
@@ -113,7 +113,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 Console.WriteLine("Executing finally block.");
             }
         }
-        public void importLibrarians()
+        public void ImportLibrarians()
         {
             String line;
             try
@@ -132,7 +132,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                     int age = int.Parse(splitedLibrarian[3]);
                     int ID = int.Parse(splitedLibrarian[0]);
                     Librarian librarian = new Librarian(name, surname, age, ID);
-                    library.addEmployee(librarian);
+                    Library.AddEmployee(librarian);
                     //Read the next line
                     line = sr.ReadLine();
                 }
@@ -148,7 +148,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 Console.WriteLine("Executing finally block.");
             }
         }
-        public void importReaders()
+        public void ImportReaders()
         {
             String line;
             try
@@ -167,7 +167,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                     int age = int.Parse(splitedReader[3]);
                     int ID = int.Parse(splitedReader[0]);
                     Reader reader = new Reader(ID, name, surname, age);
-                    library.addReader(reader);
+                    Library.AddReader(reader);
                     //Read the next line
                     line = sr.ReadLine();
                 }
@@ -183,7 +183,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 Console.WriteLine("Executing finally block.");
             }
         }
-        public void importBorrowing()
+        public void ImportBorrowing()
         {
             String line;
             try
@@ -200,12 +200,12 @@ namespace Biblioteka.Menu.ImportOrExportData
                     int readerID = int.Parse(splitedBookBorrowing[1]);
                     int bookID = int.Parse(splitedBookBorrowing[2]);
 
-                    Book bookFound = library.findBookByID(bookID);
-                    Reader readerFound = library.findReaderByID(readerID);
+                    Book bookFound = Library.FindBookByID(bookID);
+                    Reader readerFound = Library.FindReaderByID(readerID);
                     DateTime dateTimeFound = DateTime.ParseExact(splitedBookBorrowing[0], "dd.MM.yyyy HH:mm:ss",
                                        System.Globalization.CultureInfo.InvariantCulture);
                     Biblioteka.Model.Borrowing borrowingFound = new Biblioteka.Model.Borrowing(dateTimeFound, bookFound, readerFound);
-                    library.addBorrowing(borrowingFound);
+                    Library.AddBorrowing(borrowingFound);
                     //Read the next line
                     line = sr.ReadLine();
                 }
@@ -221,7 +221,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 Console.WriteLine("Executing finally block.");
             }
         }
-        public void importReturnings()
+        public void ImportReturnings()
         {
             String line;
             try
@@ -237,12 +237,12 @@ namespace Biblioteka.Menu.ImportOrExportData
                     int readerID = int.Parse(splitedBookReturning[1]);
                     int bookID = int.Parse(splitedBookReturning[2]);
 
-                    Book bookFound = library.findBookByID(bookID);
-                    Reader readerFound = library.findReaderByID(readerID);
+                    Book bookFound = Library.FindBookByID(bookID);
+                    Reader readerFound = Library.FindReaderByID(readerID);
                     DateTime dateTimeFound = DateTime.ParseExact(splitedBookReturning[0], "dd.MM.yyyy HH:mm:ss",
                                        System.Globalization.CultureInfo.InvariantCulture);
                     Returning returningFound = new Returning(dateTimeFound, bookFound, readerFound);
-                    library.returnBook(bookFound, readerFound);
+                    Library.ReturnBook(bookFound, readerFound);
                     //Read the next line
                     line = sr.ReadLine();
                 }

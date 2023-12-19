@@ -13,20 +13,20 @@ namespace Biblioteka.Menu.Books
 {
     internal class LibraryMenu : Menu
     {
-        private BooksMenu BooksMenu;
-        private ReaderMenu readerMenu;
-        private BorrowingBookMenu borrowingBookMenu;
-        private ImportExportMenu importExportMenu;
-        private LibrarianMenu librarianMenu;
+        private BooksMenu _booksMenu;
+        private ReaderMenu _readerMenu;
+        private BorrowingBookMenu _borrowingBookMenu;
+        private ImportExportMenu _importExportMenu;
+        private LibrarianMenu _librarianMenu;
         public LibraryMenu(Library library) : base(library)
         {
-            BooksMenu = new BooksMenu(library);
-            readerMenu = new ReaderMenu(library);
-            borrowingBookMenu = new BorrowingBookMenu(library);
-            importExportMenu = new ImportExportMenu(library);
-            librarianMenu = new LibrarianMenu(library);
+            _booksMenu = new BooksMenu(library);
+            _readerMenu = new ReaderMenu(library);
+            _borrowingBookMenu = new BorrowingBookMenu(library);
+            _importExportMenu = new ImportExportMenu(library);
+            _librarianMenu = new LibrarianMenu(library);
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -37,28 +37,28 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("5.Import/Eksport danych");
                 Console.WriteLine("6.Zakończ");
                 Console.WriteLine("Wpisz opcje: ");
-                int option = readOption();
+                int option = ReadOption();
                 Console.WriteLine("");
                 if (option == 1)
                 {
-                    BooksMenu.printMenu();
+                    _booksMenu.PrintMenu();
                 }
                 else if (option == 2)
                 {
-                    readerMenu.printMenu();
+                    _readerMenu.PrintMenu();
                 }
                 else if (option == 3)
                 {
-                    borrowingBookMenu.printMenu();
+                    _borrowingBookMenu.PrintMenu();
                     Console.WriteLine("");
                 }
                 else if (option == 4)
                 {
-                    librarianMenu.printMenu();
+                    _librarianMenu.PrintMenu();
                 }
                 else if (option == 5)
                 {
-                    importExportMenu.printMenu();
+                    _importExportMenu.PrintMenu();
                 }
                 else if (option == 6)
                 {
@@ -66,7 +66,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    printErrorMessage("Podaj poprawną opcję!");
+                    PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

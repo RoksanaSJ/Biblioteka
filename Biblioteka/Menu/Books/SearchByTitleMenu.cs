@@ -13,7 +13,7 @@ namespace Biblioteka.Menu.Books
         {
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -27,13 +27,13 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    List<Book> allBooks = library.getAllBooks();
+                    List<Book> allBooks = Library.GetAllBooks();
                     bool isAvailable = false;
-                    printInformationMessage($"Książki o tytule {searchingTitle}:");
+                    PrintInformationMessage($"Książki o tytule {searchingTitle}:");
                     Console.WriteLine("");
                     foreach (var book in allBooks)
                     {
-                        if (book.getTitle().Contains(searchingTitle))
+                        if (book.GetTitle().Contains(searchingTitle))
                         {
                             Console.WriteLine(book);
                             isAvailable = true;
@@ -43,13 +43,13 @@ namespace Biblioteka.Menu.Books
                     Console.WriteLine("");
                     if (isAvailable == false)
                     {
-                        printErrorMessage("Niestety nie ma książki o takim tytule na stanie");
+                        PrintErrorMessage("Niestety nie ma książki o takim tytule na stanie");
                     }
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
-                    printMenu();
+                    PrintMenu();
                 }
                 else if (userOption.Equals("b"))
                 {
@@ -57,7 +57,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    printErrorMessage("Podaj poprawną opcję!");
+                    PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

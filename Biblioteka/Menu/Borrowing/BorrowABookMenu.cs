@@ -15,33 +15,33 @@ namespace Biblioteka.Menu.Borrowing
         {
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
                 Console.WriteLine("Podaj swój identyfikator:");
-                int userID = readOption();
+                int userID = ReadOption();
                 Console.WriteLine("Podaj ID książki");
-                int ID = readOption();
+                int ID = ReadOption();
                 Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
                 string userOption = Console.ReadLine();
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    List<Book> allBooks = library.getAllBooks();
-                    List<Reader> readers = library.getReaders();
+                    List<Book> allBooks = Library.GetAllBooks();
+                    List<Reader> readers = Library.GetReaders();
                     List<int> notFound = new List<int>();
                     foreach (var book in allBooks)
                     {
-                        if (book.getID() == ID)
+                        if (book.GetID() == ID)
                         {
                             foreach (var reader in readers)
                             {
-                                if (reader.getID() == userID)
+                                if (reader.GetID() == userID)
                                 {
-                                    library.borrowBook(book, reader);
-                                    printSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
+                                    Library.BorrowBook(book, reader);
+                                    PrintSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
                                 } 
                             }
                         }
@@ -52,7 +52,7 @@ namespace Biblioteka.Menu.Borrowing
                     }
                         if (notFound.Count == allBooks.Count)
                         {
-                        printErrorMessage("Niestety książka o takim ID nie istnieje");
+                        PrintErrorMessage("Niestety książka o takim ID nie istnieje");
                         }
                 }
                 else if (userOption.Equals("n"))
@@ -65,7 +65,7 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else
                 {
-                    printErrorMessage("Podaj poprawną opcję!");
+                    PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

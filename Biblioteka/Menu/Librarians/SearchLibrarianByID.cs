@@ -13,25 +13,24 @@ namespace Biblioteka.Menu.Librarians
         { 
         
         }
-
-        public override void printMenu()
+        public override void PrintMenu()
         {
             Console.WriteLine("Podaj ID, po którym chcesz wyszukać pracownika:");
-            int ID = readOption();
+            int ID = ReadOption();
             Console.WriteLine("");
-            List<Librarian> librarians = library.getLiblarians();
+            List<Librarian> librarians = Library.GetLiblarians();
             bool isItEqual = false;
             foreach(Librarian librarian in librarians)
             {
-                if ((librarian.getID() == ID))
+                if ((librarian.GetID() == ID))
                 {
-                    printInformationMessage($"{librarian}");
+                    PrintInformationMessage($"{librarian}");
                     isItEqual = true;
                 }
             }
             if(isItEqual == false)
             {
-                printErrorMessage("Nie ma pracownika o takim ID");
+                PrintErrorMessage("Nie ma pracownika o takim ID");
             }
         }
     }

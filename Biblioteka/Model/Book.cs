@@ -9,59 +9,59 @@ namespace Biblioteka.Model
 {
     public class Book : Record
     {
-        protected Author author { get; }
+        protected Author Author { get; }
         protected int ID { get; }
         protected string Title { get; }
-        protected BookState state { get; set; }
+        protected BookState State { get; set; }
         public Book(string name, string surname, string title, int ID, BookState state) : base()
         {
             this.ID = ID;
             Title = title;
-            this.state = state;
-            author = new Author(name, surname);
+            this.State = state;
+            Author = new Author(name, surname);
         }
         public Book(string name, string surname, string title) : base()
         {
-            ID = IDGenerator.generateID();
+            ID = IDGenerator.GenerateID();
             Title = title;
-            state = BookState.Available;
-            author = new Author(name,surname);
+            State = BookState.Available;
+            Author = new Author(name,surname);
         }
-        public Author getAuthor()
+        public Author GetAuthor()
         {
-            return author;
+            return Author;
         }
-        public int getID()
+        public int GetID()
         {
             return ID;
         }
-        public string getTitle()
+        public string GetTitle()
         {
             return Title;
         }
-        public BookState getState()
+        public BookState GetState()
         {
-            return state;
+            return State;
         }
-        public void booked()
+        public void Booked()
         {
-            state = BookState.Booked;
+            State = BookState.Booked;
         }
-        public void available()
+        public void Available()
         {
-            state = BookState.Available;
+            State = BookState.Available;
         }
-        public void setBookState(BookState bookState)
+        public void SetBookState(BookState bookState)
         {
-            state = bookState;
+            State = bookState;
         }
         public override string ToString()
         {
-            return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + author.getName() + " " + author.getSurname();
+            return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + Author.GetName() + " " + Author.GetSurname();
         }
-        public override string toCSV()
+        public override string ToCSV()
         {
-            return ID + "," + Title + "," + author.getName() + "," + author.getSurname() + "," + state;
+            return ID + "," + Title + "," + Author.GetName() + "," + Author.GetSurname() + "," + State;
         }
         public enum BookState
         {

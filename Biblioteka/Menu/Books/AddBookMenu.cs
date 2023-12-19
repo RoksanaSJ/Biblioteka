@@ -13,7 +13,7 @@ namespace Biblioteka.Menu.Books
         {
            
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -39,13 +39,13 @@ namespace Biblioteka.Menu.Books
                 if (userOption.Equals("y"))
                 {
                     Book book = new Book(name, surname, title);
-                    library.addBook(book);
-                    printSuccessMessage(($"Gratulację! Udało ci się dodać książkę: Tytuł: {title}, Autor: {name} {surname}");
+                    Library.AddBook(book);
+                    PrintSuccessMessage(($"Gratulację! Udało ci się dodać książkę: Tytuł: {title}, Autor: {name} {surname}"));
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
-                    printMenu();
+                    PrintMenu();
                     Console.WriteLine(" ");
                 } else if (userOption.Equals("b"))
                 {
@@ -53,7 +53,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else 
                 {
-                    printErrorMessage("Podaj poprawną opcję");
+                    PrintErrorMessage("Podaj poprawną opcję");
                 }
             }  
         }

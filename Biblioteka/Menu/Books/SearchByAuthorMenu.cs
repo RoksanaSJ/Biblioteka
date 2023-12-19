@@ -13,7 +13,7 @@ namespace Biblioteka.Menu.Books
         {
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -31,11 +31,11 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    List<Book> allBooks = library.getAllBooks();
+                    List<Book> allBooks = Library.GetAllBooks();
                     bool isAvailable = false;
                     foreach (var book in allBooks)
                     {
-                        if (book.getAuthor().getNameAndSurname().Contains(authorData))
+                        if (book.GetAuthor().GetNameAndSurname().Contains(authorData))
                         {
                             Console.WriteLine(book);
                             isAvailable = true;
@@ -43,13 +43,13 @@ namespace Biblioteka.Menu.Books
                     }
                     if (isAvailable == false)
                     {
-                        printErrorMessage("Niestety nie ma książki napisanej przez takiego autora.");
+                        PrintErrorMessage("Niestety nie ma książki napisanej przez takiego autora.");
                     }
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
-                    printMenu();
+                    PrintMenu();
                     Console.WriteLine("");
                 }
                 else if (userOption.Equals("b"))
@@ -58,7 +58,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    printErrorMessage("Podaj poprawną opcję!");
+                    PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

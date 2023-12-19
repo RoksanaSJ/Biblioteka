@@ -9,16 +9,16 @@ namespace Biblioteka.Menu.Readers
 {
     internal class ReaderMenu : Menu
     {
-        AddReaderMenu addReaderInit;
-        DeleteRerader removeReaderInit;
-        ReaderInformation readerInformationInit;
+        private AddReaderMenu _addReaderInit;
+        private DeleteRerader _removeReaderInit;
+        private ReaderInformation _readerInformationInit;
         public ReaderMenu(Library library) : base(library)
         {
-            addReaderInit = new AddReaderMenu(library);
-            removeReaderInit = new DeleteRerader(library);
-            readerInformationInit = new ReaderInformation(library);
+            _addReaderInit = new AddReaderMenu(library);
+            _removeReaderInit = new DeleteRerader(library);
+            _readerInformationInit = new ReaderInformation(library);
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -28,28 +28,28 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("4.Wypisz wszystkie powiązane rekordy z wyszukanym czytelnikiem");
                 Console.WriteLine("5.Wróć");
                 Console.WriteLine("Podaj opcję: ");
-                int option = readOption();
+                int option = ReadOption();
                 Console.WriteLine(" ");
                 if (option == 1)
                 {
-                    addReaderInit.printMenu();
+                    _addReaderInit.PrintMenu();
                     Console.WriteLine("");
                 }
                 else if (option == 2)
                 {
-                    removeReaderInit.printMenu();
+                    _removeReaderInit.PrintMenu();
                     Console.WriteLine("");
                 }
                 else if (option == 3)
                 {
-                    printInformationMessage("Lista czytelników:");
-                    library.listTheReaders();
+                    PrintInformationMessage("Lista czytelników:");
+                    Library.ListTheReaders();
                     Console.WriteLine("");
                 }
                 else if (option == 4)
                 {
-                    printInformationMessage("Wszytskie rekordy powiązane z cztelnikiem:");
-                    readerInformationInit.printMenu();
+                    PrintInformationMessage("Wszytskie rekordy powiązane z cztelnikiem:");
+                    _readerInformationInit.PrintMenu();
                     Console.WriteLine("");
                 }
                 else if (option == 5)
@@ -58,7 +58,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
-                    printErrorMessage("Podaj prawidłową opcję!");
+                    PrintErrorMessage("Podaj prawidłową opcję!");
                 }
             }
         }

@@ -8,17 +8,17 @@ namespace Biblioteka.Menu.Librarians
 {
     internal class LibrarianMenu : Menu
     {
-        AddLibrarianMenu addLibrarianMenu;
-        RemoveLibrarianMenu removeLibrarianMenu;
-        SearchLibrarianMenu searchLibrarianMenu;
+        private AddLibrarianMenu _addLibrarianMenu;
+        private RemoveLibrarianMenu _removeLibrarianMenu;
+        private SearchLibrarianMenu _searchLibrarianMenu;
         public LibrarianMenu(Library library) : base(library) 
         { 
-        addLibrarianMenu = new AddLibrarianMenu(library);
-        removeLibrarianMenu = new RemoveLibrarianMenu(library);
-        searchLibrarianMenu = new SearchLibrarianMenu(library);
+        _addLibrarianMenu = new AddLibrarianMenu(library);
+        _removeLibrarianMenu = new RemoveLibrarianMenu(library);
+        _searchLibrarianMenu = new SearchLibrarianMenu(library);
         }
 
-        public override void printMenu()
+        public override void PrintMenu()
         {
             while (true)
             {
@@ -28,24 +28,24 @@ namespace Biblioteka.Menu.Librarians
                 Console.WriteLine("4.Wypisz wszystkich pracowników");
                 Console.WriteLine("5.Wróć");
                 Console.WriteLine("Podaj opcję:");
-                int option = readOption();
+                int option = ReadOption();
                 Console.WriteLine("");
                 if (option == 1)
                 {
-                    addLibrarianMenu.printMenu();
+                    _addLibrarianMenu.PrintMenu();
                 }
                 else if (option == 2)
                 {
-                    removeLibrarianMenu.printMenu();
+                    _removeLibrarianMenu.PrintMenu();
                 }
                 else if (option == 3)
                 {
-                    searchLibrarianMenu.printMenu();
+                    _searchLibrarianMenu.PrintMenu();
                 }
                 else if (option == 4)
                 {
-                    printInformationMessage($"Lista pracowników ");
-                    library.listTheLibrarians();
+                    PrintInformationMessage($"Lista pracowników ");
+                    Library.ListTheLibrarians();
                 }
                 else if (option == 5)
                 {
@@ -53,7 +53,7 @@ namespace Biblioteka.Menu.Librarians
                 }
                 else
                 {
-                    printErrorMessage("Podaj prawidłową opcję!");
+                    PrintErrorMessage("Podaj prawidłową opcję!");
                 }
             }
 

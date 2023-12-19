@@ -22,7 +22,7 @@ namespace Biblioteka.Menu.ImportOrExportData
         {
 
         }
-        public override void printMenu()
+        public override void PrintMenu()
         {
             Console.WriteLine("Eksportowane dane");
 
@@ -31,11 +31,11 @@ namespace Biblioteka.Menu.ImportOrExportData
                 string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV}; 
                 Console.WriteLine("Podaj nazwę pliku zip:");
                 string zipFile = Console.ReadLine();
-                saveToFile(READERCSV,library.getReaders());
-                saveToFile(BOOKCSV, library.getAllBooks());
-                saveToFile(BORROWINGCSV, library.getBorrowings());
-                saveToFile(RETURNINGCSV, library.getReturnings());
-                saveToFile(LIBRARIANCSV, library.getLiblarians());
+                SaveToFile(READERCSV,Library.GetReaders());
+                SaveToFile(BOOKCSV, Library.GetAllBooks());
+                SaveToFile(BORROWINGCSV, Library.GetBorrowings());
+                SaveToFile(RETURNINGCSV, Library.GetReturnings());
+                SaveToFile(LIBRARIANCSV, Library.GetLiblarians());
 
                 using (ZipArchive zip = ZipFile.Open(FILEPATH + zipFile, ZipArchiveMode.Update))
                 {
@@ -47,7 +47,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 }
                 foreach(string file in files)
                 {
-                    removeFile(file);
+                    RemoveFile(file);
                 }
             }
             catch (Exception e)
@@ -60,14 +60,14 @@ namespace Biblioteka.Menu.ImportOrExportData
             }
             
         }
-        public void saveToFile<T>(string fileName, List<T> records) where T : Record
+        public void SaveToFile<T>(string fileName, List<T> records) where T : Record
         {
             //Pass the filepath and filename to the StreamWriter Constructor
             StreamWriter sw = new StreamWriter(FILEPATH + fileName);
             //Write a line of text
             foreach (Record record in records)
             {
-                sw.WriteLine(record.toCSV());
+                sw.WriteLine(record.ToCSV());
             }
             //Close the file
             sw.Close();
@@ -75,7 +75,7 @@ namespace Biblioteka.Menu.ImportOrExportData
             Console.WriteLine("Pełna ścieżka pliku:");
             Console.WriteLine(FILEPATH + fileName);
         }
-        public void removeFile(string pathFile)
+        public void RemoveFile(string pathFile)
         {
            bool isExist = File.Exists(pathFile);
             if(isExist == true)

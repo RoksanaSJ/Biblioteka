@@ -8,46 +8,46 @@ namespace Biblioteka.Model
 {
     internal class Borrowing : Record
     {
-        protected DateTime borrowingDate { get; set; }
-        protected Book book { get; set; }
-        protected Reader reader { get; set; }
+        protected DateTime BorrowingDate { get; set; }
+        protected Book Book { get; set; }
+        protected Reader Reader { get; set; }
         public Borrowing(DateTime date, Book book, Reader reader) : base()
         {
-            borrowingDate = date;
-            this.reader = reader;
-            this.book = book;
+            BorrowingDate = date;
+            this.Reader = reader;
+            this.Book = book;
         }
-        public DateTime getDate()
+        public DateTime GetDate()
         {
-            return borrowingDate;
+            return BorrowingDate;
         }
-        public Book getBook()
+        public Book GetBook()
         {
-            return book;
+            return Book;
         }
-        public Reader getReader()
+        public Reader GetReader()
         {
-            return reader;
+            return Reader;
         }
-        public void setBorrowingDateToCurrentDate()
+        public void SetBorrowingDateToCurrentDate()
         {
-            borrowingDate = DateTime.Now;
+            BorrowingDate = DateTime.Now;
         }
-        public void setBorrowedBook(Book borrowedBook)
+        public void SetBorrowedBook(Book borrowedBook)
         {
-            book = borrowedBook;
+            Book = borrowedBook;
         }
-        public void setReader(Reader borrower)
+        public void SetReader(Reader borrower)
         {
-            reader = borrower;
+            Reader = borrower;
         }
         public override string ToString()
         {
-            return "Wypożyczenie: data wypożyczenia: " + borrowingDate + $" \n" + reader + ", \n" + book +"\n";
+            return "Wypożyczenie: data wypożyczenia: " + BorrowingDate + $" \n" + Reader + ", \n" + Book +"\n";
         }
-        public override string toCSV()
+        public override string ToCSV()
         {
-            return borrowingDate + "," + reader.getID()+ "," + book.getID();
+            return BorrowingDate + "," + Reader.GetID()+ "," + Book.GetID();
         }
     }
 }

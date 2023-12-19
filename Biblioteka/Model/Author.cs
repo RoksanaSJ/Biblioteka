@@ -12,7 +12,7 @@ namespace Biblioteka.Model
         {
 
         }
-        public string getNameAndSurname()
+        public string GetNameAndSurname()
         {
             return Name + " " + Surname;
         }
@@ -20,7 +20,7 @@ namespace Biblioteka.Model
         {
             return "Autor: " + Name + Surname;
         }
-        public override string toCSV()
+        public override string ToCSV()
         {
             return Name + "," + Surname;
         }

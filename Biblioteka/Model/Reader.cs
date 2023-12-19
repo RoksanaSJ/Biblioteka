@@ -14,7 +14,7 @@ namespace Biblioteka.Model
         protected int Age { get; set; }
         public Reader(string name, string surname, int age) : base(name, surname)
         {
-            ID = IDGenerator.generateID();
+            ID = IDGenerator.GenerateID();
             Age = age;
         }
         public Reader(int ID, string name, string surname, int age) : base(name, surname)
@@ -22,19 +22,19 @@ namespace Biblioteka.Model
             this.ID = ID;
             Age = age;
         }
-        public int getID()
+        public int GetID()
         {
             return ID;
         }
-        public int getAge()
+        public int GetAge()
         {
             return Age;
         }
-        public void setAge(int readersAge)
+        public void SetAge(int readersAge)
         {
             Age = readersAge;
         }
-        public bool isOfAge(int age)
+        public static bool IsOfAge(int age)
         {
             if (age > 18)
             {
@@ -51,7 +51,7 @@ namespace Biblioteka.Model
         {
             return "Czytelnik: ID: " + ID + ", imię i nazwisko: " + Name + " " + Surname + ", wiek: " + Age;
         }
-        public override string toCSV()
+        public override string ToCSV()
         {
             return  ID + "," + Name + "," + Surname + "," + Age;
         }
