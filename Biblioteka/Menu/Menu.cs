@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Biblioteka.Menu
 {
@@ -27,5 +28,26 @@ namespace Biblioteka.Menu
             }
         }
         public abstract void printMenu(); 
+        public void printErrorMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            Console.WriteLine("");
+        }
+        public void printSuccessMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            Console.WriteLine("");
+        }
+        public void printInformationMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            Console.WriteLine("");
+        }
     }
 }

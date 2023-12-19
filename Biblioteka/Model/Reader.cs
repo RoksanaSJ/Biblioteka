@@ -17,6 +17,11 @@ namespace Biblioteka.Model
             ID = IDGenerator.generateID();
             Age = age;
         }
+        public Reader(int ID, string name, string surname, int age) : base(name, surname)
+        {
+            this.ID = ID;
+            Age = age;
+        }
         public int getID()
         {
             return ID;

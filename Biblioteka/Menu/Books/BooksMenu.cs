@@ -48,10 +48,8 @@ namespace Biblioteka.Menu.Books
                         else if (option == 4)
                         {
                             Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine("Lista książek:");
+                            printInformationMessage("Lista książek:");
                             library.listTheBooks();
-                            Console.ResetColor();
-                            Console.WriteLine("");
                         }
                         else if (option == 5)
                         {
@@ -59,10 +57,7 @@ namespace Biblioteka.Menu.Books
                         }
                         else
                         {
-                         Console.ForegroundColor = ConsoleColor.Red;
-                         Console.WriteLine("Podaj poprawną wartość!");
-                         Console.ResetColor();
-                         Console.WriteLine("");
+                        printErrorMessage("Podaj poprawną wartość!");
                         }
             }
         }

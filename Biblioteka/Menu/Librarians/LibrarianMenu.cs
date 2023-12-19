@@ -26,6 +26,7 @@ namespace Biblioteka.Menu.Librarians
                 Console.WriteLine("2.Usuń pracownika");
                 Console.WriteLine("3.Wyszukaj pracownika");
                 Console.WriteLine("4.Wypisz wszystkich pracowników");
+                Console.WriteLine("5.Wróć");
                 Console.WriteLine("Podaj opcję:");
                 int option = readOption();
                 Console.WriteLine("");
@@ -43,17 +44,16 @@ namespace Biblioteka.Menu.Librarians
                 }
                 else if (option == 4)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("Lista pracowników");
+                    printInformationMessage($"Lista pracowników ");
                     library.listTheLibrarians();
-                    Console.WriteLine("");
-                    Console.ResetColor();
+                }
+                else if (option == 5)
+                {
+                    break;
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj prawidłową opcję!");
-                    Console.ResetColor();
+                    printErrorMessage("Podaj prawidłową opcję!");
                 }
             }
 

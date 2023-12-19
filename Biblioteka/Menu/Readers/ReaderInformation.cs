@@ -26,10 +26,7 @@ namespace Biblioteka.Menu.Readers
                 borrowings = library.getBorrowings();
                 List<Returning> readerReturnings = new List<Returning>();
                 readerReturnings = library.getReturnings();
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Dane użytkownika: ");
-                Console.ResetColor();
-                Console.WriteLine(" ");
+                printInformationMessage("Dane użytkownika: ");
                 foreach (var reader in readerInfo)
                 {
                     if(reader.getID() == readID)
@@ -38,10 +35,7 @@ namespace Biblioteka.Menu.Readers
                     }
                 }
                 Console.WriteLine("");
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Wypożyczenia użytkowanika: ");
-                Console.ResetColor();
-                Console.WriteLine(" ");
+                printInformationMessage("Wypożyczenia użytkowanika: ");
                 foreach (var borrowing in borrowings)
                 {
                     if(borrowing.getReader().getID() == readID)
@@ -50,10 +44,7 @@ namespace Biblioteka.Menu.Readers
                     }
                 }
                 Console.WriteLine("");
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Historia wypożyczeń użytkowanika: ");
-                Console.ResetColor();
-                Console.WriteLine(" ");
+                printInformationMessage("Historia wypożyczeń użytkowanika: ");
                 foreach (var returning in readerReturnings)
                 {
                     if (returning.getReader().getID() == readID)

@@ -23,6 +23,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 Console.WriteLine("");
                 Console.WriteLine("1.Import danych");
                 Console.WriteLine("2.Export danych");
+                Console.WriteLine("3.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = readOption();
                 Console.WriteLine("");
@@ -34,11 +35,13 @@ namespace Biblioteka.Menu.ImportOrExportData
                 {
                     exportMenu.printMenu();
                 }
+                else if (option == 3)
+                {
+                    break;
+                }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj prawidłową opcję!");
-                    Console.ResetColor();
+                    printErrorMessage("Podaj prawidłową opcję!");
                 }
             }
         }

@@ -17,6 +17,7 @@ namespace Biblioteka.Menu.ImportOrExportData
         const string BORROWINGCSV = "borrowing.csv";
         const string RETURNINGCSV = "returning.csv";
         const string LIBRARIANCSV = "librarian.csv";
+
         public ExportMenu(Library library) : base(library)
         {
 
@@ -27,6 +28,7 @@ namespace Biblioteka.Menu.ImportOrExportData
 
             try
             {
+                string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV}; 
                 Console.WriteLine("Podaj nazwę pliku zip:");
                 string zipFile = Console.ReadLine();
                 saveToFile(READERCSV,library.getReaders());
@@ -43,6 +45,10 @@ namespace Biblioteka.Menu.ImportOrExportData
                     zip.CreateEntryFromFile(FILEPATH + RETURNINGCSV, RETURNINGCSV);
                     zip.CreateEntryFromFile(FILEPATH + LIBRARIANCSV, LIBRARIANCSV);
                 }
+                foreach(string file in files)
+                {
+                    removeFile(file);
+                }
             }
             catch (Exception e)
             {
@@ -52,6 +58,7 @@ namespace Biblioteka.Menu.ImportOrExportData
             {
                 Console.WriteLine("Executing finally block.");
             }
+            
         }
         public void saveToFile<T>(string fileName, List<T> records) where T : Record
         {
@@ -67,6 +74,14 @@ namespace Biblioteka.Menu.ImportOrExportData
 
             Console.WriteLine("Pełna ścieżka pliku:");
             Console.WriteLine(FILEPATH + fileName);
+        }
+        public void removeFile(string pathFile)
+        {
+           bool isExist = File.Exists(pathFile);
+            if(isExist == true)
+            {
+                File.Delete(pathFile);
+            }
         }
     }
 }

@@ -29,9 +29,7 @@ namespace Biblioteka.Menu.Books
                 {
                     List<Book> allBooks = library.getAllBooks();
                     bool isAvailable = false;
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"Książki o tytule {searchingTitle}:");
-                    Console.ResetColor();
+                    printInformationMessage($"Książki o tytule {searchingTitle}:");
                     Console.WriteLine("");
                     foreach (var book in allBooks)
                     {
@@ -45,10 +43,7 @@ namespace Biblioteka.Menu.Books
                     Console.WriteLine("");
                     if (isAvailable == false)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Niestety nie ma książki o takim tytule na stanie");
-                        Console.ResetColor();
-                        Console.WriteLine("");
+                        printErrorMessage("Niestety nie ma książki o takim tytule na stanie");
                     }
                     break;
                 }
@@ -62,10 +57,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

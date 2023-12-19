@@ -14,7 +14,7 @@ namespace Biblioteka
         protected List<Librarian> employees { get; }
         protected List<Borrowing> borrowing { get; }
         protected List<Returning> returning { get; }
-        const int MAXBOOKS = 6;
+        const int MAXBOOKS = 5;
         public Library ()
         {
             books = new List<Book> ();
@@ -22,6 +22,14 @@ namespace Biblioteka
             employees = new List<Librarian> ();
             borrowing = new List<Borrowing> ();
             returning = new List<Returning> ();
+        }
+        public void clearAllData()
+        {
+            books.Clear();
+            readers.Clear();
+            employees.Clear();
+            borrowing.Clear();
+            returning.Clear();
         }
         public List<Book> getAllBooks()
         {
@@ -101,7 +109,7 @@ namespace Biblioteka
 
             if (k.getState() == Book.BookState.Available)
             {
-                if (readerBooks.Count < MAXBOOKS)
+                if (readerBooks.Count <= MAXBOOKS)
                 {
                     DateTime date = new DateTime();
                     date = DateTime.Now;
@@ -113,19 +121,46 @@ namespace Biblioteka
                     readerBooks.Add(k);
                 }
             }
-            if (readerBooks.Count == MAXBOOKS)
+            if (readerBooks.Count > MAXBOOKS)
             {
-                Console.WriteLine("Nie możesz wypożyczyć więcej niż 5 ksiażek");
+                Console.WriteLine($"Nie możesz wypożyczyć więcej niż {MAXBOOKS}");
             }
         }
         public void returnBook(Book b, Reader r)
         {
-            DateOnly date = new DateOnly();
-            date = DateOnly.FromDateTime(DateTime.Now);
+            DateTime date = new DateTime();
+            date = DateTime.Now;
             Returning ret = new Returning(date, b, r);
             returning.Add(ret);
             //Książka dostępna
             b.available();
+        }
+
+        public Book findBookByID(int ID)
+        {
+            foreach(Book book in books)
+            {
+                if(book.getID() == ID)
+                {
+                    return book;
+                }
+            }
+            return null;
+        }
+        public Reader findReaderByID(int ID)
+        {
+            foreach (Reader reader in readers)
+            {
+                if (reader.getID() == ID)
+                {
+                    return reader;
+                }
+            }
+            return null;
+        }
+        public void addBorrowing(Borrowing borrowing)
+        {
+            this.borrowing.Add(borrowing);
         }
     }
 }

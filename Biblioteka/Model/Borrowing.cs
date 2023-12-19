@@ -43,11 +43,11 @@ namespace Biblioteka.Model
         }
         public override string ToString()
         {
-            return "Wypożyczenie: data wypożyczenia: " + borrowingDate + $", \n" + reader + ", \n" + book +"\n";
+            return "Wypożyczenie: data wypożyczenia: " + borrowingDate + $" \n" + reader + ", \n" + book +"\n";
         }
         public override string toCSV()
         {
-            return borrowingDate + "," + reader + "," + book;
+            return borrowingDate + "," + reader.getID()+ "," + book.getID();
         }
     }
 }

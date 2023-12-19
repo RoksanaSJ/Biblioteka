@@ -31,10 +31,7 @@ namespace Biblioteka.Menu.Books
                         if (option.Equals("y"))
                         {
                             toRemove.Add(book);
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Gratulację, właśnie usunąleś książkę {book}");
-                            Console.ResetColor();
-                            Console.WriteLine("");
+                            printSuccessMessage($"Gratulację, właśnie usunąleś książkę {book}");
                         }
                         else if (option.Equals("n"))
                         {
@@ -46,10 +43,7 @@ namespace Biblioteka.Menu.Books
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Podaj właściwą opcję!");
-                            Console.ResetColor();
-                            Console.WriteLine("");
+                        printErrorMessage("Podaj właściwą opcję!");
                         }
                     }
                 }

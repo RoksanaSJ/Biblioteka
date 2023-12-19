@@ -66,10 +66,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

@@ -33,9 +33,7 @@ namespace Biblioteka.Menu.Librarians
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Podaj poprawną opcję!");
-                Console.ResetColor();
+                printErrorMessage("Podaj poprawną opcję!");
             }
         }
     }

@@ -32,9 +32,7 @@ namespace Biblioteka.Menu.Books
                     {
                         if (book.getID() == booksID)
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Gratulację! Udało ci się wyszukać książkę o ID {booksID}");
-                            Console.ResetColor();
+                            printSuccessMessage($"Gratulację! Udało ci się wyszukać książkę o ID {booksID}");
                             Console.WriteLine(book);
                             Console.WriteLine("");
                             isAvailable = true;
@@ -42,10 +40,7 @@ namespace Biblioteka.Menu.Books
                     }
                     if (isAvailable == false)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Niestety nie ma książki o takim ID.");
-                        Console.ResetColor();
-                        Console.WriteLine("");
+                        printErrorMessage("Niestety nie ma książki o takim ID.");
                     }
                     break;
                 }
@@ -60,10 +55,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

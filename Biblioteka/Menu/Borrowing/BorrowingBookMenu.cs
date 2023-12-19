@@ -37,9 +37,7 @@ namespace Biblioteka.Menu.Borrowing
                     returnABookMenu.printMenu();
                 } else if (option == 3)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("Lista wypożyczeń: ");
-                    Console.ResetColor();
+                    printInformationMessage("Lista wypożyczeń");
                     library.listTheBorrowings();
                     Console.WriteLine("");
                 } else if (option == 4)
@@ -48,10 +46,7 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else 
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj właściwą opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printErrorMessage("Podaj właściwą opcję!");
                 }
             }
         }

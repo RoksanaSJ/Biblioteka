@@ -41,10 +41,7 @@ namespace Biblioteka.Menu.Borrowing
                                 if (reader.getID() == userID)
                                 {
                                     library.borrowBook(book, reader);
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
-                                    Console.ResetColor();
-                                    Console.WriteLine("");
+                                    printSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
                                 } 
                             }
                         }
@@ -55,10 +52,7 @@ namespace Biblioteka.Menu.Borrowing
                     }
                         if (notFound.Count == allBooks.Count)
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Niestety książka o takim ID nie istnieje");
-                            Console.WriteLine("");
-                            Console.ResetColor();
+                        printErrorMessage("Niestety książka o takim ID nie istnieje");
                         }
                 }
                 else if (userOption.Equals("n"))
@@ -71,10 +65,7 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

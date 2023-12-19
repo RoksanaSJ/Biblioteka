@@ -13,6 +13,13 @@ namespace Biblioteka.Model
         protected int ID { get; }
         protected string Title { get; }
         protected BookState state { get; set; }
+        public Book(string name, string surname, string title, int ID, BookState state) : base()
+        {
+            this.ID = ID;
+            Title = title;
+            this.state = state;
+            author = new Author(name, surname);
+        }
         public Book(string name, string surname, string title) : base()
         {
             ID = IDGenerator.generateID();

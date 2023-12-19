@@ -40,10 +40,7 @@ namespace Biblioteka.Menu.Books
                 {
                     Book book = new Book(name, surname, title);
                     library.addBook(book);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Gratulację! Udało ci się dodać książkę: Tytuł: {title}, Autor: {name} {surname}");
-                    Console.ResetColor();
-                    Console.WriteLine(" ");
+                    printSuccessMessage(($"Gratulację! Udało ci się dodać książkę: Tytuł: {title}, Autor: {name} {surname}");
                     break;
                 }
                 else if (userOption.Equals("n"))
@@ -55,11 +52,8 @@ namespace Biblioteka.Menu.Books
                     break;
                 }
                 else 
-                { 
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine(" ");
+                {
+                    printErrorMessage("Podaj poprawną opcję");
                 }
             }  
         }

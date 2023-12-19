@@ -31,9 +31,7 @@ namespace Biblioteka.Menu.Readers
                 if (userOption.Equals("y"))
                 {
                     Reader reader = new Reader(name, surname, age);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
-                    Console.ResetColor();
+                    printSuccessMessage($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
                     library.addReader(reader);
                     break;
                 }
@@ -48,10 +46,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

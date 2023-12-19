@@ -8,16 +8,16 @@ namespace Biblioteka.Model
 {
     internal class Returning : Record
     {
-        DateOnly returningDate { get; set; }
+        DateTime returningDate { get; set; }
         Book book { get; set; }
         Reader reader { get; set; }
-        public Returning(DateOnly returningDate, Book book, Reader reader) : base()
+        public Returning(DateTime returningDate, Book book, Reader reader) : base()
         {
             this.returningDate = returningDate;
             this.book = book;
             this.reader = reader;
         }
-        public DateOnly getReturningDate()
+        public DateTime getReturningDate()
         {
             return returningDate;
         }
@@ -31,7 +31,7 @@ namespace Biblioteka.Model
         }
         public void setReturningDateToCurrentDate()
         {
-            returningDate = DateOnly.FromDateTime(DateTime.Now);
+            returningDate = DateTime.Now;
         }
         public void setReturnedBook(Book returnedBook)
         {
@@ -47,7 +47,7 @@ namespace Biblioteka.Model
         }
         public override string toCSV()
         {
-            return returningDate + "," + reader + "," + book;
+            return returningDate + "," + reader.getID() + "," + book.getID();
         }
     }
 }

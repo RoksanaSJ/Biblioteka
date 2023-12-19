@@ -29,18 +29,14 @@ namespace Biblioteka.Menu.Librarians
             {
                 if(librarian.getName().Equals(name) && librarian.getSurname().Equals(surname))
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine(librarian);
-                    Console.ResetColor();
+                    printInformationMessage($"{librarian}");
                     Console.WriteLine("");
                     isItEqual = true;
                 }
             }
             if(isItEqual == false) 
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Nie ma pracownika o takim imieniu i nazwisku");
-                Console.ResetColor();
+                printErrorMessage("Nie ma pracownika o takim imieniu i nazwisku");
             }
         }
     }

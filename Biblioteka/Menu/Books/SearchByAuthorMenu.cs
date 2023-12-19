@@ -43,10 +43,7 @@ namespace Biblioteka.Menu.Books
                     }
                     if (isAvailable == false)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Niestety nie ma książki napisanej przez takiego autora.");
-                        Console.ResetColor();
-                        Console.WriteLine("");
+                        printErrorMessage("Niestety nie ma książki napisanej przez takiego autora.");
                     }
                     break;
                 }
@@ -61,10 +58,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

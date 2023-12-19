@@ -42,17 +42,12 @@ namespace Biblioteka.Menu.Readers
                     }
                     if (isItEquals == false)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Nie ma w bazie czytelnika z takimi parametrami");
-                        Console.ResetColor();
-                        Console.WriteLine("");
+                        printErrorMessage("Nie ma w bazie czytelnika z takimi parametrami");
                     }
                     foreach(var reader in toRemove)
                     {
                         list.Remove(reader);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
-                        Console.ResetColor();
+                        printSuccessMessage($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
                     }
                     break;
                 }
@@ -67,10 +62,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

@@ -25,18 +25,13 @@ namespace Biblioteka.Menu.Librarians
             {
                 if ((librarian.getID() == ID))
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine(librarian);
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printInformationMessage($"{librarian}");
                     isItEqual = true;
                 }
             }
             if(isItEqual == false)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Nie ma pracownika o takim ID");
-                Console.ResetColor();
+                printErrorMessage("Nie ma pracownika o takim ID");
             }
         }
     }

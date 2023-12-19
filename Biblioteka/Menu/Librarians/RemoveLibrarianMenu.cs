@@ -38,18 +38,12 @@ namespace Biblioteka.Menu.Librarians
                     }
                         if (isItEqual == false)
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Nie ma w bazie pracownika o takim ID");
-                            Console.ResetColor();
-                            Console.WriteLine("");
+                            printErrorMessage("Nie ma w bazie pracownika o takim ID");
                         }
                         foreach (var employee in toRemove)
                         {
                             librarians.Remove(employee);
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Gratulacje, właśnie usunąłeś pracownika {employee.ToString()}");
-                            Console.ResetColor();
-                            Console.WriteLine(" ");                        
+                        printSuccessMessage($"Gratulacje, właśnie usunąłeś pracownika {employee.ToString()}");                     
                     }
                         break;
                     }

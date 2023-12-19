@@ -36,10 +36,7 @@ namespace Biblioteka.Menu.Librarians
                 {
                    Librarian librarian = new Librarian(name, surname, age);
                     library.addEmployee(librarian);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
-                    Console.ResetColor();
-                    Console.WriteLine(" ");
+                    printSuccessMessage($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
                     break;
                 }
                 else if (userOption.Equals("n"))
@@ -53,10 +50,7 @@ namespace Biblioteka.Menu.Librarians
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine(" ");
+                    printErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

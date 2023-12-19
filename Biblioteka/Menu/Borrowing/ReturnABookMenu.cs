@@ -46,10 +46,7 @@ namespace Biblioteka.Menu.Borrowing
                                         {
                                                 decimal charge = countCharge(borrowing); 
                                                 library.returnBook(book, reader);
-                                                Console.ForegroundColor = ConsoleColor.Green;
-                                                Console.WriteLine($"Gratulację {reader}, właśnie oddałeś książkę {book}");
-                                                Console.ResetColor();
-                                                Console.WriteLine("");
+                                            printSuccessMessage($"Gratulację {reader}, właśnie oddałeś książkę {book}");
                                         }
                                     }
                                 }
@@ -68,10 +65,7 @@ namespace Biblioteka.Menu.Borrowing
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Podaj poprawną opcję!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    printErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }
@@ -90,9 +84,7 @@ namespace Biblioteka.Menu.Borrowing
                 decimal overkeepingDays;
                 overkeepingDays = ((decimal)days - 31m);
                 charge = overkeepingDays * 0.1m;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr.");
-                Console.WriteLine($"Musisz zapłacić {charge} zł");
+                printErrorMessage($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr. \n Musisz zapłacić {charge} zł");)
             }
             else
             {

@@ -11,6 +11,11 @@ namespace Biblioteka.Model
     {
         protected int ID { get; }
         protected int Age { get; }
+        public Librarian(string name, string surname, int age, int ID) : base(name, surname)
+        {
+            this.ID = ID;
+            Age = age;
+        }
         public Librarian(string name, string surname, int age) : base(name, surname)
         {
             ID = IDGenerator.generateID();
