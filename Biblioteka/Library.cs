@@ -121,10 +121,10 @@ namespace Biblioteka
                     readerBooks.Add(k);
                 }
             }
-            if (readerBooks.Count > MAXBOOKS)
-            {
-                Console.WriteLine($"Nie możesz wypożyczyć więcej niż {MAXBOOKS}");
-            }
+            //if (readerBooks.Count > MAXBOOKS)
+            //{
+            //    Console.WriteLine($"Nie możesz wypożyczyć więcej niż {MAXBOOKS}");
+            //}
         }
         public void ReturnBook(Book b, Reader r)
         {
