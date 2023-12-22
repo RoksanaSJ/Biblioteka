@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.Model;
@@ -109,7 +110,7 @@ namespace Biblioteka
 
             if (k.GetState() == Book.BookState.Available)
             {
-                if (readerBooks.Count <= MAXBOOKS)
+                if (countingReaderBorrowings(c.GetID()) < MAXBOOKS)
                 {
                     DateTime date = new DateTime();
                     date = DateTime.Now;
@@ -117,9 +118,20 @@ namespace Biblioteka
                     BorrowingList.Add(borrow);
                     // książka zarezerwowana
                     k.Booked();
-                    //Czytelnik może wypożyczyć max 5 książek
+                    Console.WriteLine("Zmieniono status książki na BOOKED");
                     readerBooks.Add(k);
+                    Console.WriteLine("Gratulację, właśnie wypożyczyłeś książkę!");
+                    Console.WriteLine("");
                 }
+                else
+                {
+                    Console.WriteLine($"Nie możesz wypożyczyć więcej niż {MAXBOOKS} książek");
+                    Console.WriteLine("");
+                }
+            } else if(k.GetState() == Book.BookState.Booked)
+            {
+                Console.WriteLine("Niestety ta książka jest niedostępna do wypożyczenia");
+                Console.WriteLine("");
             }
             //if (readerBooks.Count > MAXBOOKS)
             //{
@@ -183,6 +195,18 @@ namespace Biblioteka
         public void AddBorrowing(Borrowing borrowing)
         {
             BorrowingList.Add(borrowing);
+        }
+        public int countingReaderBorrowings(int readerID)
+        {
+            int counter = 0;
+           foreach(Borrowing borrowing in BorrowingList)
+            {
+                if(borrowing.GetReader().GetID() == readerID)
+                {
+                    counter++;
+                }
+            }
+            return counter;
         }
     }
 }

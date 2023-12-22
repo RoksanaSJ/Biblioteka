@@ -41,7 +41,7 @@ namespace Biblioteka.Menu.Borrowings
                                 if (reader.GetID() == userID)
                                 {
                                     Library.BorrowBook(book, reader);
-                                    PrintSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
+                                    //PrintSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
                                 } 
                             }
                         }
