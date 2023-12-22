@@ -48,7 +48,7 @@ namespace Biblioteka.Menu.Books
                         else if (option == 4)
                         {
                             Console.ForegroundColor = ConsoleColor.Blue;
-                            PrintInformationMessage("Lista książek:");
+                            Log.PrintInformationMessage("Lista książek:");
                             Library.ListTheBooks();
                             Console.WriteLine("");
                         }
@@ -58,7 +58,7 @@ namespace Biblioteka.Menu.Books
                         }
                         else
                         {
-                        PrintErrorMessage("Podaj poprawną wartość!");
+                        Log.PrintErrorMessage("Podaj poprawną wartość!");
                         }
             }
         }

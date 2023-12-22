@@ -38,12 +38,12 @@ namespace Biblioteka.Menu.Librarians
                     }
                         if (isItEqual == false)
                         {
-                            PrintErrorMessage("Nie ma w bazie pracownika o takim ID");
+                            Log.PrintErrorMessage("Nie ma w bazie pracownika o takim ID");
                         }
                         foreach (var employee in toRemove)
                         {
                             librarians.Remove(employee);
-                        PrintSuccessMessage($"Gratulacje, właśnie usunąłeś pracownika {employee.ToString()}");                     
+                            Log.PrintSuccessMessage($"Gratulacje, właśnie usunąłeś pracownika {employee.ToString()}");                     
                     }
                         break;
                     }

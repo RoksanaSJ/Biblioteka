@@ -42,13 +42,13 @@ namespace Biblioteka.Menu.Readers
                 }
                 else if (option == 3)
                 {
-                    PrintInformationMessage("Lista czytelników:");
+                    Log.PrintInformationMessage("Lista czytelników:");
                     Library.ListTheReaders();
                     Console.WriteLine("");
                 }
                 else if (option == 4)
                 {
-                    PrintInformationMessage("Wszytskie rekordy powiązane z cztelnikiem:");
+                    Log.PrintInformationMessage("Wszytskie rekordy powiązane z cztelnikiem:");
                     _readerInformationInit.PrintMenu();
                     Console.WriteLine("");
                 }
@@ -58,7 +58,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj prawidłową opcję!");
+                    Log.PrintErrorMessage("Podaj prawidłową opcję!");
                 }
             }
         }

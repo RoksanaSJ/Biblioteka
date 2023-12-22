@@ -32,7 +32,7 @@ namespace Biblioteka.Menu.Books
                     {
                         if (book.GetID() == booksID)
                         {
-                            PrintSuccessMessage($"Gratulację! Udało ci się wyszukać książkę o ID {booksID}");
+                            Log.PrintSuccessMessage($"Gratulację! Udało ci się wyszukać książkę o ID {booksID}");
                             Console.WriteLine(book);
                             Console.WriteLine("");
                             isAvailable = true;
@@ -40,7 +40,7 @@ namespace Biblioteka.Menu.Books
                     }
                     if (isAvailable == false)
                     {
-                        PrintErrorMessage("Niestety nie ma książki o takim ID.");
+                        Log.PrintErrorMessage("Niestety nie ma książki o takim ID.");
                     }
                     break;
                 }
@@ -55,7 +55,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj poprawną opcję!");
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

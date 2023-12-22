@@ -13,7 +13,6 @@ namespace Biblioteka.Menu.Borrowings
         {
 
         }
-            
         public override void PrintMenu()
         {
             while(true)
@@ -40,7 +39,7 @@ namespace Biblioteka.Menu.Borrowings
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj poprawną opcję!");
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

@@ -36,7 +36,7 @@ namespace Biblioteka.Menu.Librarians
                 {
                    Librarian librarian = new Librarian(name, surname, age);
                     Library.AddEmployee(librarian);
-                    PrintSuccessMessage($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
+                    Log.PrintSuccessMessage($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
                     break;
                 }
                 else if (userOption.Equals("n"))
@@ -50,7 +50,7 @@ namespace Biblioteka.Menu.Librarians
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj poprawną opcję!");
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

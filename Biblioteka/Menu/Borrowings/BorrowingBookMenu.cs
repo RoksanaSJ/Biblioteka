@@ -45,7 +45,7 @@ namespace Biblioteka.Menu.Borrowings
                     _submitBookLoan.PrintMenu();
                 } else if (option == 4)
                 {
-                    PrintInformationMessage("Lista wypożyczeń: ");
+                    Log.PrintInformationMessage("Lista wypożyczeń: ");
                     Library.ListTheBorrowings();
                     Console.WriteLine("");
                 } else if (option == 5)
@@ -54,7 +54,7 @@ namespace Biblioteka.Menu.Borrowings
                 }
                 else 
                 {
-                    PrintErrorMessage("Podaj właściwą opcję!");
+                    Log.PrintErrorMessage("Podaj właściwą opcję!");
                 }
             }
         }

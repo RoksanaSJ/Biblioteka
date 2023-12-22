@@ -44,9 +44,9 @@ namespace Biblioteka.Menu.Borrowings
                                     {
                                         if (borrowing.GetReader().GetID() == userID && borrowing.GetBook().GetID() == ID)
                                         {
-                                                decimal charge = countCharge(borrowing); 
-                                                Library.ReturnBook(book, reader);
-                                            PrintSuccessMessage($"Gratulację {reader}, właśnie oddałeś książkę {book}");
+                                           decimal charge = countCharge(borrowing); 
+                                           Library.ReturnBook(book, reader);
+                                           Log.PrintSuccessMessage($"Gratulację {reader}, właśnie oddałeś książkę {book}");
                                         }
                                     }
                                 }
@@ -65,7 +65,7 @@ namespace Biblioteka.Menu.Borrowings
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj poprawną opcję!");
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace Biblioteka.Menu.Borrowings
                 decimal overkeepingDays;
                 overkeepingDays = ((decimal)days - 31m);
                 charge = overkeepingDays * 0.1m;
-                PrintErrorMessage($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr. \n Musisz zapłacić {charge} zł");
+                Log.PrintErrorMessage($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr. \n Musisz zapłacić {charge} zł");
             }
             else
             {

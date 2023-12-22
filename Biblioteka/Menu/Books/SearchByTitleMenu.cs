@@ -29,7 +29,7 @@ namespace Biblioteka.Menu.Books
                 {
                     List<Book> allBooks = Library.GetAllBooks();
                     bool isAvailable = false;
-                    PrintInformationMessage($"Książki o tytule {searchingTitle}:");
+                    Log.PrintInformationMessage($"Książki o tytule {searchingTitle}:");
                     Console.WriteLine("");
                     foreach (var book in allBooks)
                     {
@@ -43,7 +43,7 @@ namespace Biblioteka.Menu.Books
                     Console.WriteLine("");
                     if (isAvailable == false)
                     {
-                        PrintErrorMessage("Niestety nie ma książki o takim tytule na stanie");
+                        Log.PrintErrorMessage("Niestety nie ma książki o takim tytule na stanie");
                     }
                     break;
                 }
@@ -57,7 +57,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj poprawną opcję!");
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

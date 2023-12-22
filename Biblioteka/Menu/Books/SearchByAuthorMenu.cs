@@ -43,7 +43,7 @@ namespace Biblioteka.Menu.Books
                     }
                     if (isAvailable == false)
                     {
-                        PrintErrorMessage("Niestety nie ma książki napisanej przez takiego autora.");
+                        Log.PrintErrorMessage("Niestety nie ma książki napisanej przez takiego autora.");
                     }
                     break;
                 }
@@ -58,7 +58,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj poprawną opcję!");
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

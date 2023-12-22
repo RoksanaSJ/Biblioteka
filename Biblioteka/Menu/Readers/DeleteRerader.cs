@@ -42,12 +42,12 @@ namespace Biblioteka.Menu.Readers
                     }
                     if (isItEquals == false)
                     {
-                        PrintErrorMessage("Nie ma w bazie czytelnika z takimi parametrami");
+                        Log.PrintErrorMessage("Nie ma w bazie czytelnika z takimi parametrami");
                     }
                     foreach(var reader in toRemove)
                     {
                         list.Remove(reader);
-                        PrintSuccessMessage($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
+                        Log.PrintSuccessMessage($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
                     }
                     break;
                 }
@@ -62,7 +62,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj poprawną opcję!");
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

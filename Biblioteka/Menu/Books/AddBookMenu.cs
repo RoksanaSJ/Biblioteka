@@ -40,7 +40,7 @@ namespace Biblioteka.Menu.Books
                 {
                     Book book = new Book(name, surname, title);
                     Library.AddBook(book);
-                    PrintSuccessMessage(($"Gratulację! Udało ci się dodać książkę: Tytuł: {title}, Autor: {name} {surname}"));
+                    Log.PrintSuccessMessage(($"Gratulację! Udało ci się dodać książkę: Tytuł: {title}, Autor: {name} {surname}"));
                     break;
                 }
                 else if (userOption.Equals("n"))
@@ -53,7 +53,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else 
                 {
-                    PrintErrorMessage("Podaj poprawną opcję");
+                    Log.PrintErrorMessage("Podaj poprawną opcję");
                 }
             }  
         }

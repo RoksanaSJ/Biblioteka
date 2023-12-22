@@ -31,7 +31,7 @@ namespace Biblioteka.Menu.Books
                         if (option.Equals("y"))
                         {
                             toRemove.Add(book);
-                            PrintSuccessMessage($"Gratulację, właśnie usunąleś książkę {book}");
+                            Log.PrintSuccessMessage($"Gratulację, właśnie usunąleś książkę {book}");
                         }
                         else if (option.Equals("n"))
                         {
@@ -43,7 +43,7 @@ namespace Biblioteka.Menu.Books
                         }
                         else
                         {
-                        PrintErrorMessage("Podaj właściwą opcję!");
+                        Log.PrintErrorMessage("Podaj właściwą opcję!");
                         }
                     }
                 }

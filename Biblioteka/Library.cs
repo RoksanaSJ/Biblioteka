@@ -4,18 +4,20 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using Biblioteka.ConsoleMessage;
 using Biblioteka.Model;
 
 namespace Biblioteka
 {
     internal class Library
     {
+        const int MAXBOOKS = 5;
         protected List<Book> BooksList { get; }
         protected List<Reader> ReadersList { get; }
         protected List<Librarian> EmployeesList { get; }
         protected List<Borrowing> BorrowingList { get; }
         protected List<Returning> ReturningList { get; }
-        const int MAXBOOKS = 5;
+        protected ConsoleLog Log;
         public Library ()
         {
             BooksList = new List<Book> ();
@@ -23,6 +25,7 @@ namespace Biblioteka
             EmployeesList = new List<Librarian> ();
             BorrowingList = new List<Borrowing> ();
             ReturningList = new List<Returning> ();
+            this.Log = new ConsoleLog();
         }
         public void ClearAllData()
         {
@@ -118,25 +121,18 @@ namespace Biblioteka
                     BorrowingList.Add(borrow);
                     // książka zarezerwowana
                     k.Booked();
-                    Console.WriteLine("Zmieniono status książki na BOOKED");
+                    Log.PrintInformationMessage("Zmieniono status książki na BOOKED");
                     readerBooks.Add(k);
-                    Console.WriteLine("Gratulację, właśnie wypożyczyłeś książkę!");
-                    Console.WriteLine("");
+                   // Log.PrintSuccessMessage("Gratulację, właśnie wypożyczyłeś książkę!");
                 }
                 else
                 {
-                    Console.WriteLine($"Nie możesz wypożyczyć więcej niż {MAXBOOKS} książek");
-                    Console.WriteLine("");
+                    Log.PrintErrorMessage($"Nie możesz wypożyczyć więcej niż {MAXBOOKS} książek");
                 }
             } else if(k.GetState() == Book.BookState.Booked)
             {
-                Console.WriteLine("Niestety ta książka jest niedostępna do wypożyczenia");
-                Console.WriteLine("");
+                Log.PrintErrorMessage("Niestety ta książka jest niedostępna do wypożyczenia");
             }
-            //if (readerBooks.Count > MAXBOOKS)
-            //{
-            //    Console.WriteLine($"Nie możesz wypożyczyć więcej niż {MAXBOOKS}");
-            //}
         }
         public void ReturnBook(Book b, Reader r)
         {
@@ -177,17 +173,11 @@ namespace Biblioteka
                 if(borrowing.GetReader().GetID() == readerID && borrowing.GetBook().GetID() == bookID)
                 {
                     borrowing.SetBorrowingDateToCurrentDate();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Gratulację, właśnie przedłużyłeś wypożyczenie książki o kolejny miesiąc!");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    Log.PrintSuccessMessage("Gratulację, właśnie przedłużyłeś wypożyczenie książki o kolejny miesiąc!");
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Dane, które podałeś są niepoprawne");
-                    Console.ResetColor();
-                    Console.WriteLine("");
+                    Log.PrintErrorMessage("Dane, które podałeś są niepoprawne");
                 }
             }
             return null;

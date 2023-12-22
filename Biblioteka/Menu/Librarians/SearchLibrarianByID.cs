@@ -24,13 +24,13 @@ namespace Biblioteka.Menu.Librarians
             {
                 if ((librarian.GetID() == ID))
                 {
-                    PrintInformationMessage($"{librarian}");
+                    Log.PrintInformationMessage($"{librarian}");
                     isItEqual = true;
                 }
             }
             if(isItEqual == false)
             {
-                PrintErrorMessage("Nie ma pracownika o takim ID");
+                Log.PrintErrorMessage("Nie ma pracownika o takim ID");
             }
         }
     }

@@ -33,7 +33,7 @@ namespace Biblioteka.Menu.Librarians
             }
             else
             {
-                PrintErrorMessage("Podaj poprawną opcję!");
+                Log.PrintErrorMessage("Podaj poprawną opcję!");
             }
         }
     }

@@ -31,7 +31,7 @@ namespace Biblioteka.Menu.Readers
                 if (userOption.Equals("y"))
                 {
                     Reader reader = new Reader(name, surname, age);
-                    PrintSuccessMessage($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
+                    Log.PrintSuccessMessage($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
                     Library.AddReader(reader);
                     break;
                 }
@@ -46,7 +46,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj poprawną opcję!");
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

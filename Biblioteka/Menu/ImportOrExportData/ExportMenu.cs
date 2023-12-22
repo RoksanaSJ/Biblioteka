@@ -72,8 +72,8 @@ namespace Biblioteka.Menu.ImportOrExportData
             //Close the file
             sw.Close();
 
-            Console.WriteLine("Pełna ścieżka pliku:");
-            Console.WriteLine(FILEPATH + fileName);
+            Log.PrintInformationMessage("Pełna ścieżka pliku:");
+            Log.PrintInformationMessage(FILEPATH + fileName);
         }
         public void RemoveFile(string pathFile)
         {

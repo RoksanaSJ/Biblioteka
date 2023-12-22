@@ -26,7 +26,7 @@ namespace Biblioteka.Menu.Readers
                 borrowings = Library.GetBorrowings();
                 List<Returning> readerReturnings = new List<Returning>();
                 readerReturnings = Library.GetReturnings();
-                PrintInformationMessage("Dane użytkownika: ");
+                Log.PrintInformationMessage("Dane użytkownika: ");
                 foreach (var reader in readerInfo)
                 {
                     if(reader.GetID() == readID)
@@ -35,7 +35,7 @@ namespace Biblioteka.Menu.Readers
                     }
                 }
                 Console.WriteLine("");
-                PrintInformationMessage("Wypożyczenia użytkowanika: ");
+                Log.PrintInformationMessage("Wypożyczenia użytkowanika: ");
                 foreach (var borrowing in borrowings)
                 {
                     if(borrowing.GetReader().GetID() == readID)
@@ -44,7 +44,7 @@ namespace Biblioteka.Menu.Readers
                     }
                 }
                 Console.WriteLine("");
-                PrintInformationMessage("Historia wypożyczeń użytkowanika: ");
+                Log.PrintInformationMessage("Historia wypożyczeń użytkowanika: ");
                 foreach (var returning in readerReturnings)
                 {
                     if (returning.GetReader().GetID() == readID)

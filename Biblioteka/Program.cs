@@ -72,8 +72,6 @@ namespace Biblioteka
             library.AddReader(reader5);
             library.AddReader(reader6);
 
-            library.BorrowBook(book8, reader4);
-
             library.AddEmployee(employee);
             library.AddEmployee(employee2);
             library.AddEmployee(employee3);

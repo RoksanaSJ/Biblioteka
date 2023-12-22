@@ -41,7 +41,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj prawidłową opcję!");
+                    Log.PrintErrorMessage("Podaj prawidłową opcję!");
                 }
             }
         }

@@ -44,7 +44,7 @@ namespace Biblioteka.Menu.Librarians
                 }
                 else if (option == 4)
                 {
-                    PrintInformationMessage($"Lista pracowników: ");
+                    Log.PrintInformationMessage($"Lista pracowników: ");
                     Library.ListTheLibrarians();
                     Console.WriteLine("");
                 }
@@ -54,7 +54,7 @@ namespace Biblioteka.Menu.Librarians
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj prawidłową opcję!");
+                    Log.PrintErrorMessage("Podaj prawidłową opcję!");
                 }
             }
 

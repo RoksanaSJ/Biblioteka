@@ -41,7 +41,7 @@ namespace Biblioteka.Menu.Borrowings
                                 if (reader.GetID() == userID)
                                 {
                                     Library.BorrowBook(book, reader);
-                                    //PrintSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
+                                    Log.PrintSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
                                 } 
                             }
                         }
@@ -52,7 +52,7 @@ namespace Biblioteka.Menu.Borrowings
                     }
                         if (notFound.Count == allBooks.Count)
                         {
-                        PrintErrorMessage("Niestety książka o takim ID nie istnieje");
+                        Log.PrintErrorMessage("Niestety książka o takim ID nie istnieje");
                         }
                 }
                 else if (userOption.Equals("n"))
@@ -65,7 +65,7 @@ namespace Biblioteka.Menu.Borrowings
                 }
                 else
                 {
-                    PrintErrorMessage("Podaj poprawną opcję!");
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
                 }
             }
         }

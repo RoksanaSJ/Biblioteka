@@ -29,14 +29,14 @@ namespace Biblioteka.Menu.Librarians
             {
                 if(librarian.GetName().Equals(name) && librarian.GetSurname().Equals(surname))
                 {
-                    PrintInformationMessage($"{librarian}");
+                    Log.PrintInformationMessage($"{librarian}");
                     Console.WriteLine("");
                     isItEqual = true;
                 }
             }
             if(isItEqual == false) 
             {
-                PrintErrorMessage("Nie ma pracownika o takim imieniu i nazwisku");
+                Log.PrintErrorMessage("Nie ma pracownika o takim imieniu i nazwisku");
             }
         }
     }
