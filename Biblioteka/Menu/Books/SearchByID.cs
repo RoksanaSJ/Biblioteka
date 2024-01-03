@@ -46,8 +46,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else if (userOption.Equals("n"))
                 {
-                    PrintMenu();
-                    Console.WriteLine("");
+                    continue;
                 }
                 else if (userOption.Equals("b"))
                 {

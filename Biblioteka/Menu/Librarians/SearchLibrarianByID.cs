@@ -15,22 +15,44 @@ namespace Biblioteka.Menu.Librarians
         }
         public override void PrintMenu()
         {
-            Console.WriteLine("Podaj ID, po którym chcesz wyszukać pracownika:");
-            int ID = ReadOption();
-            Console.WriteLine("");
-            List<Librarian> librarians = Library.GetLiblarians();
-            bool isItEqual = false;
-            foreach(Librarian librarian in librarians)
+            while (true)
             {
-                if ((librarian.GetID() == ID))
+                Console.WriteLine("Podaj ID, po którym chcesz wyszukać pracownika:");
+                int ID = ReadOption();
+                Console.WriteLine("");
+                Console.WriteLine($"Czy ID, po którym chcesz wyszukać pracownika ma następujące ID: {ID}?");
+                Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
+                string userOption = Console.ReadLine();
+                Console.WriteLine("");
+                if (userOption.Equals("y"))
                 {
-                    Log.PrintInformationMessage($"{librarian}");
-                    isItEqual = true;
+                    List<Librarian> librarians = Library.GetLiblarians();
+                    bool isItEqual = false;
+                    foreach (Librarian librarian in librarians)
+                    {
+                        if ((librarian.GetID() == ID))
+                        {
+                            Log.PrintInformationMessage($"{librarian}");
+                            isItEqual = true;
+                        }
+                    }
+                    if (isItEqual == false)
+                    {
+                        Log.PrintErrorMessage("Nie ma pracownika o takim ID");
+                    }
                 }
-            }
-            if(isItEqual == false)
-            {
-                Log.PrintErrorMessage("Nie ma pracownika o takim ID");
+                else if (userOption.Equals("n"))
+                {
+                    continue;
+                }
+                else if (userOption.Equals("b"))
+                {
+                    break;
+                }
+                else
+                {
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
+                }
             }
         }
     }

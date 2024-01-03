@@ -13,6 +13,7 @@ namespace Biblioteka.Model
         protected int ID { get; }
         protected string Title { get; }
         protected BookState State { get; set; }
+        protected HashSet<String> Categories { get; set; }
         public Book(string name, string surname, string title, int ID, BookState state) : base()
         {
             this.ID = ID;
@@ -27,6 +28,14 @@ namespace Biblioteka.Model
             State = BookState.Available;
             Author = new Author(name,surname);
         }
+        public Book(string name, string surname, string title, HashSet<String> categories) : base()
+        {
+            ID = IDGenerator.GenerateID();
+            Title = title;
+            State = BookState.Available;
+            Author = new Author(name, surname);
+            Categories = categories;
+        }
         public Author GetAuthor()
         {
             return Author;
@@ -38,6 +47,10 @@ namespace Biblioteka.Model
         public string GetTitle()
         {
             return Title;
+        }
+        public HashSet<string> getCategory()
+        {
+            return Categories;
         }
         public BookState GetState()
         {
@@ -57,12 +70,14 @@ namespace Biblioteka.Model
         }
         public override string ToString()
         {
-            return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + Author.GetName() + " " + Author.GetSurname();
+            return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + Author.GetName() + " " + Author.GetSurname() + " " + ", kategoria: " + string.Join(", ", Categories);
         }
         public override string ToCSV()
         {
-            return ID + "," + Title + "," + Author.GetName() + "," + Author.GetSurname() + "," + State;
+            return ID + "," + Title + "," + Author.GetName() + "," + Author.GetSurname() + "," + State + "," + string.Join(";", Categories);
         }
+        //csv - problem
+        //string join - inny separator - bo potem przy rozdzieleniu problem - dać ; np.
         public enum BookState
         {
             Available, Booked

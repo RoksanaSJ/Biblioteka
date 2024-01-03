@@ -15,7 +15,6 @@ namespace Biblioteka.Menu.ImportOrExportData
             _importMenu = new ImportMenu(library);
             _exportMenu = new ExportMenu(library);
         }
-
         public override void PrintMenu()
         {
             while (true)

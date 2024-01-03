@@ -17,7 +17,6 @@ namespace Biblioteka.Menu.Librarians
         _removeLibrarianMenu = new RemoveLibrarianMenu(library);
         _searchLibrarianMenu = new SearchLibrarianMenu(library);
         }
-
         public override void PrintMenu()
         {
             while (true)

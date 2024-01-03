@@ -43,7 +43,7 @@ namespace Biblioteka.Menu.Books
                         }
                         else
                         {
-                        Log.PrintErrorMessage("Podaj właściwą opcję!");
+                            Log.PrintErrorMessage("Podaj właściwą opcję!");
                         }
                     }
                 }

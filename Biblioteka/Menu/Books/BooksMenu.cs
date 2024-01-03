@@ -33,33 +33,33 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("Wpisz opcje: ");
                 int option = ReadOption();
                 Console.WriteLine("");
-                        if (option == 1)
-                        {
-                            _addBookMenu.PrintMenu();
-                        }
-                        else if (option == 2)
-                        {
-                            _removeBookMenu.PrintMenu();
-                        }
-                        else if (option == 3)
-                        {
-                            _searchBookMenu.PrintMenu();
-                        }
-                        else if (option == 4)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Log.PrintInformationMessage("Lista książek:");
-                            Library.ListTheBooks();
-                            Console.WriteLine("");
-                        }
-                        else if (option == 5)
-                        {
-                            break;                        
-                        }
-                        else
-                        {
-                        Log.PrintErrorMessage("Podaj poprawną wartość!");
-                        }
+                if (option == 1)
+                {
+                    _addBookMenu.PrintMenu();
+                }
+                else if (option == 2)
+                {
+                    _removeBookMenu.PrintMenu();
+                }
+                else if (option == 3)
+                {
+                    _searchBookMenu.PrintMenu();
+                }
+                else if (option == 4)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Log.PrintInformationMessage("Lista książek:");
+                    Library.ListTheBooks();
+                    Console.WriteLine("");
+                }
+                else if (option == 5)
+                {
+                    break;
+                }
+                else
+                {
+                    Log.PrintErrorMessage("Podaj poprawną wartość!");
+                }
             }
         }
     }

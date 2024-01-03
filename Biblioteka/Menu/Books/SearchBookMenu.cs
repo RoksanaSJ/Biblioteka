@@ -11,11 +11,13 @@ namespace Biblioteka.Menu.Books
         private SearchByAuthorMenu _searchByAuthorMenu;
         private SearchByTitleMenu _searchByTitleMenu;
         private SearchByID _searchByID;
+        private SearchByCategory _searchByCategory;
         public SearchBookMenu(Library library) : base(library)
         {
             _searchByAuthorMenu = new SearchByAuthorMenu(library);
             _searchByTitleMenu = new SearchByTitleMenu(library);
             _searchByID = new SearchByID(library);
+            _searchByCategory = new SearchByCategory(library);
         }
         public override void PrintMenu()
         {
@@ -24,7 +26,8 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("1.Wyszukaj po autorze");
                 Console.WriteLine("2.Wyszukacj po tytule");
                 Console.WriteLine("3.Wyszukaj po ID");
-                Console.WriteLine("4.Wróć");
+                Console.WriteLine("4.Wyszukaj po kategorii");
+                Console.WriteLine("5.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int choose = ReadOption();
                 Console.WriteLine("");
@@ -41,6 +44,10 @@ namespace Biblioteka.Menu.Books
                     _searchByID.PrintMenu();
                 }
                 else if (choose == 4)
+                {
+                    _searchByCategory.PrintMenu();
+                }
+                else if (choose == 5)
                 {
                     break;
                 }

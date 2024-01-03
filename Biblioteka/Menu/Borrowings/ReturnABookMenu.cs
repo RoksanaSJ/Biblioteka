@@ -19,10 +19,10 @@ namespace Biblioteka.Menu.Borrowings
             while (true)
             {
                 Console.WriteLine("Podaj swój identyfikator:");
-                int userID = int.Parse(Console.ReadLine());
+                int userID = ReadOption();
                 Console.WriteLine("Podaj ID książki");
-                int ID = int.Parse(Console.ReadLine());
-                Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
+                int bookID = ReadOption();
+                Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {bookID}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
                 string userOption = Console.ReadLine();
                 Console.WriteLine("");
@@ -31,33 +31,21 @@ namespace Biblioteka.Menu.Borrowings
                     List<Book> allBooks = Library.GetAllBooks();
                     List<Reader> readers = Library.GetReaders();
                     List<Borrowing> borrowings = Library.GetBorrowings();
-
-                    foreach (var book in allBooks)
+                    Book bookFound = Library.FindBookByID(bookID);
+                    Reader readerFound = Library.FindReaderByID(userID);
+                    if (bookFound != null && readerFound != null)
                     {
-                        if (book.GetID() == ID)
-                        {
-                            foreach (var reader in readers)
-                            {
-                                if (reader.GetID() == userID)
-                                {
-                                    foreach (var borrowing in borrowings)
-                                    {
-                                        if (borrowing.GetReader().GetID() == userID && borrowing.GetBook().GetID() == ID)
-                                        {
-                                           decimal charge = countCharge(borrowing); 
-                                           Library.ReturnBook(book, reader);
-                                           Log.PrintSuccessMessage($"Gratulację {reader}, właśnie oddałeś książkę {book}");
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        Library.ReturnBook(bookFound, readerFound);
+                        Log.PrintSuccessMessage($"Gratulację, właśnie oddałeś książkę");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Dane niepoprawne");
                     }
                 }
                 else if (userOption.Equals("n"))
                 {
-                    PrintMenu();
-                    Console.WriteLine("");
+                    continue;
                 }
                 else if (userOption.Equals("b"))
                 {

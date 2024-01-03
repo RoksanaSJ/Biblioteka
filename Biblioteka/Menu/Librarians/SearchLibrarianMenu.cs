@@ -15,7 +15,6 @@ namespace Biblioteka.Menu.Librarians
             _searchLibrarianByID = new SearchLibrarianByID(library);
             _searchLibrarianByNameAndSurname = new SearchLibrarianByNameAndSurname(library);
         }
-
         public override void PrintMenu()
         {
             Console.WriteLine("1.Wyszukaj po imieniu i nazwisku");

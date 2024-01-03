@@ -49,7 +49,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else if (userOption.Equals("n"))
                 {
-                    PrintMenu();
+                    continue;
                 }
                 else if (userOption.Equals("b"))
                 {

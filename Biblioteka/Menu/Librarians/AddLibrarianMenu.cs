@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Librarians
 {
@@ -34,15 +33,14 @@ namespace Biblioteka.Menu.Librarians
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                   Librarian librarian = new Librarian(name, surname, age);
+                    Librarian librarian = new Librarian(name, surname, age);
                     Library.AddEmployee(librarian);
                     Log.PrintSuccessMessage($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
                     break;
                 }
                 else if (userOption.Equals("n"))
                 {
-                    PrintMenu();
-                    Console.WriteLine(" ");
+                    continue;
                 }
                 else if (userOption.Equals("b"))
                 {

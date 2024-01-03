@@ -50,10 +50,10 @@ namespace Biblioteka.Menu.Borrowings
                             notFound.Add(ID);
                         }
                     }
-                        if (notFound.Count == allBooks.Count)
-                        {
+                    if (notFound.Count == allBooks.Count)
+                    {
                         Log.PrintErrorMessage("Niestety książka o takim ID nie istnieje");
-                        }
+                    }
                 }
                 else if (userOption.Equals("n"))
                 {

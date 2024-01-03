@@ -56,26 +56,26 @@ namespace Biblioteka
         {
             Library library = new Library();
 
-            library.AddBook(book);
-            library.AddBook(book2);
-            library.AddBook(book3);
-            library.AddBook(book4);
-            library.AddBook(book5);
-            library.AddBook(book6);
-            library.AddBook(book7);
-            library.AddBook(book8);
+            //library.AddBook(book);
+            //library.AddBook(book2);
+            //library.AddBook(book3);
+            //library.AddBook(book4);
+            //library.AddBook(book5);
+            //library.AddBook(book6);
+            //library.AddBook(book7);
+            //library.AddBook(book8);
 
-            library.AddReader(reader);
-            library.AddReader(reader2);
-            library.AddReader(reader3);
-            library.AddReader(reader4);
-            library.AddReader(reader5);
-            library.AddReader(reader6);
+            //library.AddReader(reader);
+            //library.AddReader(reader2);
+            //library.AddReader(reader3);
+            //library.AddReader(reader4);
+            //library.AddReader(reader5);
+            //library.AddReader(reader6);
 
-            library.AddEmployee(employee);
-            library.AddEmployee(employee2);
-            library.AddEmployee(employee3);
-            library.AddEmployee(employee4);
+            //library.AddEmployee(employee);
+            //library.AddEmployee(employee2);
+            //library.AddEmployee(employee3);
+            //library.AddEmployee(employee4);
 
             LibraryMenu libraryMenu = new LibraryMenu(library);
             libraryMenu.PrintMenu();

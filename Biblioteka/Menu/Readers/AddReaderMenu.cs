@@ -37,8 +37,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 else if (userOption.Equals("n"))
                 {
-                    PrintMenu();
-                    Console.WriteLine("");
+                    continue;
                 }
                 else if (userOption.Equals("b"))
                 {

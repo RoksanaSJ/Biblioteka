@@ -15,28 +15,49 @@ namespace Biblioteka.Menu.Librarians
         }
         public override void PrintMenu()
         {
-            Console.WriteLine("Podaj dane, po których chcesz szukać pracownika");
-            Console.WriteLine("Podaj imię:");
-            string name = Console.ReadLine();
-            Console.WriteLine("");
-            Console.WriteLine("Podaj nazwisko");
-            string surname = Console.ReadLine();
-            Console.WriteLine("");
-
-            List<Librarian> librarians = Library.GetLiblarians();
-            bool isItEqual = false;
-            foreach(Librarian librarian in librarians)
+            while (true)
             {
-                if(librarian.GetName().Equals(name) && librarian.GetSurname().Equals(surname))
+                Console.WriteLine("Podaj dane, po których chcesz szukać pracownika");
+                Console.WriteLine("Podaj imię:");
+                string name = Console.ReadLine();
+                Console.WriteLine("");
+                Console.WriteLine("Podaj nazwisko");
+                string surname = Console.ReadLine();
+                Console.WriteLine("");
+                Console.WriteLine($"Czy to są dane, po których chcesz wyszukać pracownika: {name}, {surname}?");
+                Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
+                string userOption = Console.ReadLine();
+                Console.WriteLine("");
+                if (userOption.Equals("y"))
                 {
-                    Log.PrintInformationMessage($"{librarian}");
-                    Console.WriteLine("");
-                    isItEqual = true;
+                    List<Librarian> librarians = Library.GetLiblarians();
+                    bool isItEqual = false;
+                    foreach (Librarian librarian in librarians)
+                    {
+                        if (librarian.GetName().Equals(name) && librarian.GetSurname().Equals(surname))
+                        {
+                            Log.PrintInformationMessage($"{librarian}");
+                            Console.WriteLine("");
+                            isItEqual = true;
+                        }
+                    }
+                    if (isItEqual == false)
+                    {
+                        Log.PrintErrorMessage("Nie ma pracownika o takim imieniu i nazwisku");
+                    }
                 }
-            }
-            if(isItEqual == false) 
-            {
-                Log.PrintErrorMessage("Nie ma pracownika o takim imieniu i nazwisku");
+                else if (userOption.Equals("n"))
+                {
+                    continue;
+                }
+                else if (userOption.Equals("b"))
+                {
+                    break;
+                }
+                else
+                {
+                    Log.PrintErrorMessage("Podaj poprawną opcję!");
+                }
             }
         }
     }

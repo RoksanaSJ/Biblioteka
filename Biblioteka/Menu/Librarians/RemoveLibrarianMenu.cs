@@ -11,6 +11,7 @@ namespace Biblioteka.Menu.Librarians
     {
         public RemoveLibrarianMenu(Library library) : base(library)
         {
+
         }
         public override void PrintMenu()
         {
@@ -36,21 +37,20 @@ namespace Biblioteka.Menu.Librarians
                             isItEqual = true;
                         }
                     }
-                        if (isItEqual == false)
-                        {
-                            Log.PrintErrorMessage("Nie ma w bazie pracownika o takim ID");
-                        }
-                        foreach (var employee in toRemove)
-                        {
+                    if (isItEqual == false)
+                    {
+                        Log.PrintErrorMessage("Nie ma w bazie pracownika o takim ID");
+                    }
+                    foreach (Librarian employee in toRemove)
+                    {
                             librarians.Remove(employee);
                             Log.PrintSuccessMessage($"Gratulacje, właśnie usunąłeś pracownika {employee.ToString()}");                     
                     }
-                        break;
-                    }
+                    break;
+                }
                 else if (userOption.Equals("n"))
                 {
-                    PrintMenu();
-                    Console.WriteLine(" ");
+                    continue;
                 }
                 else if (userOption.Equals("b"))
                 {

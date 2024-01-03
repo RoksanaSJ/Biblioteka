@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Readers
 {
@@ -19,7 +18,7 @@ namespace Biblioteka.Menu.Readers
             while (true)
             {
                 Console.WriteLine("Podaj ID wyszukiwanego czytelnika: ");
-                int readID = int.Parse(Console.ReadLine());
+                int readID = ReadOption();
                 List<Reader> readerInfo = new List<Reader>();
                 readerInfo = Library.GetReaders();
                 List<Borrowing> borrowings = new List<Borrowing>();
@@ -27,7 +26,7 @@ namespace Biblioteka.Menu.Readers
                 List<Returning> readerReturnings = new List<Returning>();
                 readerReturnings = Library.GetReturnings();
                 Log.PrintInformationMessage("Dane użytkownika: ");
-                foreach (var reader in readerInfo)
+                foreach (Reader reader in readerInfo)
                 {
                     if(reader.GetID() == readID)
                     {
@@ -36,7 +35,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 Console.WriteLine("");
                 Log.PrintInformationMessage("Wypożyczenia użytkowanika: ");
-                foreach (var borrowing in borrowings)
+                foreach (Borrowing borrowing in borrowings)
                 {
                     if(borrowing.GetReader().GetID() == readID)
                     {
@@ -45,7 +44,7 @@ namespace Biblioteka.Menu.Readers
                 }
                 Console.WriteLine("");
                 Log.PrintInformationMessage("Historia wypożyczeń użytkowanika: ");
-                foreach (var returning in readerReturnings)
+                foreach (Returning returning in readerReturnings)
                 {
                     if (returning.GetReader().GetID() == readID)
                     {

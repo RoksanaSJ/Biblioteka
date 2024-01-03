@@ -112,13 +112,13 @@ namespace Biblioteka.Menu.ImportOrExportData
             List<String> csvContentList = readCsv("reader.csv");
             foreach (String line in csvContentList)
             {
-                    string[] splitedReader = line.Split(',');
-                    string name = splitedReader[1];
-                    string surname = splitedReader[2];
-                    int age = int.Parse(splitedReader[3]);
-                    int ID = int.Parse(splitedReader[0]);
-                    Reader reader = new Reader(ID, name, surname, age);
-                    Library.AddReader(reader);
+                string[] splitedReader = line.Split(',');
+                string name = splitedReader[1];
+                string surname = splitedReader[2];
+                int age = int.Parse(splitedReader[3]);
+                int ID = int.Parse(splitedReader[0]);
+                Reader reader = new Reader(ID, name, surname, age);
+                Library.AddReader(reader);
             }
         }
         public void ImportBorrowing()
@@ -129,11 +129,10 @@ namespace Biblioteka.Menu.ImportOrExportData
                 string[] splitedBookBorrowing = line.Split(',');
                 int readerID = int.Parse(splitedBookBorrowing[1]);
                 int bookID = int.Parse(splitedBookBorrowing[2]);
-
                 Book bookFound = Library.FindBookByID(bookID);
                 Reader readerFound = Library.FindReaderByID(readerID);
-                DateTime dateTimeFound = DateTime.ParseExact(splitedBookBorrowing[0], "dd.MM.yyyy HH:mm:ss",
-                                   System.Globalization.CultureInfo.InvariantCulture);
+                //TODO
+                DateTime dateTimeFound = DateTime.ParseExact(splitedBookBorrowing[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 Borrowing borrowingFound = new Borrowing(dateTimeFound, bookFound, readerFound);
                 Library.AddBorrowing(borrowingFound);
             }
@@ -146,11 +145,9 @@ namespace Biblioteka.Menu.ImportOrExportData
                 string[] splitedBookReturning = line.Split(',');
                 int readerID = int.Parse(splitedBookReturning[1]);
                 int bookID = int.Parse(splitedBookReturning[2]);
-
                 Book bookFound = Library.FindBookByID(bookID);
                 Reader readerFound = Library.FindReaderByID(readerID);
-                DateTime dateTimeFound = DateTime.ParseExact(splitedBookReturning[0], "dd.MM.yyyy HH:mm:ss",
-                                   System.Globalization.CultureInfo.InvariantCulture);
+                DateTime dateTimeFound = DateTime.ParseExact(splitedBookReturning[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 Returning returningFound = new Returning(dateTimeFound, bookFound, readerFound);
                 Library.ReturnBook(bookFound, readerFound);
             }
