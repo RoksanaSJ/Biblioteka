@@ -72,7 +72,7 @@ namespace Biblioteka.Model
         }
         public override string ToString()
         {
-            return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + Author.GetName() + " " + Author.GetSurname() + " " + ", kategoria: " + string.Join(", ", Categories);
+            return "Książka: ID:" + ID + ", tytuł: " + Title + ", autor: " + Author.GetName() + " " + Author.GetSurname() + ", status: " + GetState() +", kategoria: " + string.Join(", ", Categories);
         }
         public override string ToCSV()
         {

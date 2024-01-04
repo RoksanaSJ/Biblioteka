@@ -16,13 +16,13 @@ namespace Biblioteka.Menu.Books
         }
         public override void PrintMenu()
         {
-                Console.WriteLine("Podaj tytuł książki, którą chcesz usunąć");
-                string title = Console.ReadLine();
+                Console.WriteLine("Podaj ID książki, którą chcesz usunąć");
+                int ID = ReadOption();
                 List<Book> toRemove = new List<Book>();
                 List<Book> allBooks = Library.GetAllBooks();
                 foreach (var book in allBooks)
                 {
-                    if (book.GetTitle().Contains(title))
+                    if (book.GetID() == ID)
                     {
                         Console.WriteLine($"Czy to jest ta ksiażka, którą chcesz usunąć? {book}?");
                         Console.WriteLine("Wpisz 'y' jeśli tak, 'n' jeśli nie 'b' jeśli chcesz wrócić");

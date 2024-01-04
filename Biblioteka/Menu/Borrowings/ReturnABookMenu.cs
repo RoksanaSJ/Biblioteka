@@ -57,7 +57,7 @@ namespace Biblioteka.Menu.Borrowings
                 }
             }
         }
-        private decimal countCharge(Borrowing borrowing)
+        private decimal CountCharge(Borrowing borrowing)
         {
             DateTime borrowingDate = new DateTime();
             borrowingDate = (DateTime)borrowing.GetDate();

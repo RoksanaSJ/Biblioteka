@@ -24,7 +24,7 @@ namespace Biblioteka.Menu.Books
             while (true)
             {
                 Console.WriteLine("1.Wyszukaj po autorze");
-                Console.WriteLine("2.Wyszukacj po tytule");
+                Console.WriteLine("2.Wyszukaj po tytule");
                 Console.WriteLine("3.Wyszukaj po ID");
                 Console.WriteLine("4.Wyszukaj po kategorii");
                 Console.WriteLine("5.Wróć");

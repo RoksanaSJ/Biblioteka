@@ -31,8 +31,13 @@ namespace Biblioteka.Menu.ImportOrExportData
         public override void PrintMenu()
         {
             Console.WriteLine("Importowane dane");
-
-            using (ZipArchive archive = ZipFile.OpenRead(FILEPATH + "test.zip"))
+            Console.WriteLine("Podaj nazwę pliku zip do importu:");
+            string zipFile = Console.ReadLine();
+            if (!zipFile.EndsWith(".zip"))
+            {
+                zipFile = zipFile + ".zip";
+            }
+            using (ZipArchive archive = ZipFile.OpenRead(FILEPATH + zipFile))
             {
                 foreach (ZipArchiveEntry entry in archive.Entries)
                 {
