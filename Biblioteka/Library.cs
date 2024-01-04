@@ -44,7 +44,7 @@ namespace Biblioteka
         {
             return ReadersList;
         }
-        public List<Librarian> GetLiblarians()
+        public List<Librarian> GetLibrarians()
         {
             return EmployeesList;
         }
@@ -235,9 +235,38 @@ namespace Biblioteka
                 Console.WriteLine(book);
             }
         }
-        public void sortBooksByCategories()
+        public void countAvailableBooks(string title)
         {
-
+            Log.PrintInformationMessage("Dostępne książki do wypożyczenia:");
+            int available = 0;
+            bool isAvailable = false;
+            foreach (Book book in BooksList)
+            {
+                if (book.GetTitle().Contains(title) && book.GetState() == Book.BookState.Available)
+                {
+                    Console.WriteLine(book);
+                    available++;
+                    isAvailable = true;
+                }
+            }
+            if(isAvailable == false)
+            {
+                Log.PrintErrorMessage("Niestety nie ma książek o takim tytule na stanie");
+            }
+            Console.WriteLine($"Dostępnych książek o tym tytule jest: {available}");
+            Console.WriteLine(" ");
+        }
+        public void countBookedBooks(string title)
+        {
+            int booked = 0;
+            foreach (Book book in BooksList)
+            {
+                if (book.GetTitle().Contains(title) && book.GetState() == Book.BookState.Booked)
+                {
+                    booked++;
+                }
+            }
+            Log.PrintInformationMessage($"Wypożyczonych ksiażek o tym tytule jest: {booked}");
         }
     }
 }

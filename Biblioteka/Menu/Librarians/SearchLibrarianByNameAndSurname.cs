@@ -30,7 +30,7 @@ namespace Biblioteka.Menu.Librarians
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    List<Librarian> librarians = Library.GetLiblarians();
+                    List<Librarian> librarians = Library.GetLibrarians();
                     bool isItEqual = false;
                     foreach (Librarian librarian in librarians)
                     {

@@ -17,7 +17,7 @@ namespace Biblioteka.Menu.Books
         {
             while (true)
             {
-                Console.WriteLine("Podaj kategorię: ");
+                Console.WriteLine("Podaj kategorie: ");
                 string category = Console.ReadLine();
                 Console.WriteLine("");
                 Console.WriteLine($"Czy kategoria, po którym chcesz wyszukać książkę ma następujące dane: {category}?");
@@ -29,6 +29,7 @@ namespace Biblioteka.Menu.Books
                 if (userOption.Equals("y"))
                 {
                     Library.findBookByCategory(category);
+                    break;
                 }
                 else if (userOption.Equals("n"))
                 {

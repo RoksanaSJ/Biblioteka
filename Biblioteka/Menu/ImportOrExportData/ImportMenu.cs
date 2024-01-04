@@ -1,4 +1,5 @@
 ﻿using Biblioteka.Model;
+using Biblioteka.Model.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,6 +53,8 @@ namespace Biblioteka.Menu.ImportOrExportData
             ImportReturnings();
             Console.WriteLine("Zaimportowano zwroty książek");
 
+            ImportID();
+
             string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV };
 
             foreach (string file in files)
@@ -80,22 +83,28 @@ namespace Biblioteka.Menu.ImportOrExportData
         }
         public void ImportBooks()
         {
-          List<String> csvContentList = readCsv("book.csv");
+          List<String> csvContentList = ReadCsv("book.csv");
           foreach (String line in csvContentList)
           {
             string[] splitedBook = line.Split(',');
             string name = splitedBook[2];
             string surname = splitedBook[3];
             string title = splitedBook[1];
+            HashSet<string> categories = new HashSet<string>();
+            string[] bookCategories = splitedBook[5].Split(";");
+            foreach(string category in bookCategories)
+                {
+                    categories.Add(category);
+                }
             int ID = int.Parse(splitedBook[0]);
             Book.BookState bookState = Convert(splitedBook[4]);
-            Book book = new Book(name, surname, title, ID, bookState);
+            Book book = new Book(name, surname, title, ID, bookState, categories);
             Library.AddBook(book);
           }
         }
         public void ImportLibrarians()
         {
-            List<String> csvContentList = readCsv("librarian.csv");
+            List<String> csvContentList = ReadCsv("librarian.csv");
             foreach (String line in csvContentList)
             {
                 string[] splitedLibrarian = line.Split(',');
@@ -109,7 +118,7 @@ namespace Biblioteka.Menu.ImportOrExportData
         }
         public void ImportReaders()
         {
-            List<String> csvContentList = readCsv("reader.csv");
+            List<String> csvContentList = ReadCsv("reader.csv");
             foreach (String line in csvContentList)
             {
                 string[] splitedReader = line.Split(',');
@@ -123,7 +132,7 @@ namespace Biblioteka.Menu.ImportOrExportData
         }
         public void ImportBorrowing()
         {
-            List<String> csvContentList = readCsv("borrowing.csv");
+            List<String> csvContentList = ReadCsv("borrowing.csv");
             foreach (String line in csvContentList)
             {
                 string[] splitedBookBorrowing = line.Split(',');
@@ -139,7 +148,7 @@ namespace Biblioteka.Menu.ImportOrExportData
         }
         public void ImportReturnings()
         {
-            List<String> csvContentList = readCsv("returning.csv");
+            List<String> csvContentList = ReadCsv("returning.csv");
             foreach (String line in csvContentList)
             {
                 string[] splitedBookReturning = line.Split(',');
@@ -152,7 +161,36 @@ namespace Biblioteka.Menu.ImportOrExportData
                 Library.ReturnBook(bookFound, readerFound);
             }
         }
-        private List<string> readCsv(String csvFilePath)
+        public void ImportID()
+        {
+            List<Book> bookList = Library.GetAllBooks();
+            List<Reader> readerList = Library.GetReaders();
+            List<Librarian> librarianList = Library.GetLibrarians();
+            int maxID = 0;
+            foreach(Book book in  bookList)
+            {
+                if(book.GetID() > maxID)
+                {
+                    maxID = book.GetID();
+                }
+            }
+            foreach (Reader reader in readerList)
+            {
+                if (reader.GetID() > maxID)
+                {
+                    maxID = reader.GetID();
+                }
+            }
+            foreach (Librarian librarian in librarianList)
+            {
+                if (librarian.GetID() > maxID)
+                {
+                    maxID = librarian.GetID();
+                }
+            }
+            IDGenerator.setNextID(maxID);
+        }
+        private List<string> ReadCsv(String csvFilePath)
         {
             string readCSV = (FILEPATH+ csvFilePath);
             List<string> readCSVList = new List<string>();

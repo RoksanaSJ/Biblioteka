@@ -31,11 +31,15 @@ namespace Biblioteka.Menu.ImportOrExportData
                 string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV}; 
                 Console.WriteLine("Podaj nazwę pliku zip:");
                 string zipFile = Console.ReadLine();
+                if (!zipFile.EndsWith(".zip"))
+                {
+                    zipFile = zipFile + ".zip";
+                }
                 SaveToFile(READERCSV,Library.GetReaders());
                 SaveToFile(BOOKCSV, Library.GetAllBooks());
                 SaveToFile(BORROWINGCSV, Library.GetBorrowings());
                 SaveToFile(RETURNINGCSV, Library.GetReturnings());
-                SaveToFile(LIBRARIANCSV, Library.GetLiblarians());
+                SaveToFile(LIBRARIANCSV, Library.GetLibrarians());
 
                 using (ZipArchive zip = ZipFile.Open(FILEPATH + zipFile, ZipArchiveMode.Update))
                 {
@@ -45,7 +49,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                     zip.CreateEntryFromFile(FILEPATH + RETURNINGCSV, RETURNINGCSV);
                     zip.CreateEntryFromFile(FILEPATH + LIBRARIANCSV, LIBRARIANCSV);
                 }
-                foreach(string file in files)
+                foreach (string file in files)
                 {
                     RemoveFile(file);
                 }

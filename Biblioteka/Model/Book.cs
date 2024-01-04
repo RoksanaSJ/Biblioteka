@@ -14,12 +14,13 @@ namespace Biblioteka.Model
         protected string Title { get; }
         protected BookState State { get; set; }
         protected HashSet<String> Categories { get; set; }
-        public Book(string name, string surname, string title, int ID, BookState state) : base()
+        public Book(string name, string surname, string title, int ID, BookState state, HashSet<String> categories) : base()
         {
             this.ID = ID;
             Title = title;
             this.State = state;
             Author = new Author(name, surname);
+            Categories = categories;
         }
         public Book(string name, string surname, string title) : base()
         {
@@ -27,6 +28,7 @@ namespace Biblioteka.Model
             Title = title;
             State = BookState.Available;
             Author = new Author(name,surname);
+            Categories = new HashSet<string>();
         }
         public Book(string name, string surname, string title, HashSet<String> categories) : base()
         {

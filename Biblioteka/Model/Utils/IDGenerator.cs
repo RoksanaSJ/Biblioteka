@@ -19,5 +19,9 @@ namespace Biblioteka.Model.Utils
             NextID++;
             return NextID;
         }
+        public static void setNextID(int x)
+        {
+            NextID = x;
+        }
     }
 }
