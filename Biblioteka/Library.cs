@@ -18,6 +18,7 @@ namespace Biblioteka
         protected List<Librarian> EmployeesList { get; }
         protected List<Borrowing> BorrowingList { get; }
         protected List<Returning> ReturningList { get; }
+        protected List<ChargeInformation> ChargeInformationList { get; }
         protected ConsoleLog Log;
         public Library ()
         {
@@ -26,6 +27,7 @@ namespace Biblioteka
             EmployeesList = new List<Librarian> ();
             BorrowingList = new List<Borrowing> ();
             ReturningList = new List<Returning> ();
+            ChargeInformationList = new List<ChargeInformation>();
             this.Log = new ConsoleLog();
         }
         public void ClearAllData()
@@ -35,6 +37,7 @@ namespace Biblioteka
             EmployeesList.Clear();
             BorrowingList.Clear();
             ReturningList.Clear();
+            ChargeInformationList.Clear();
         }
         public List<Book> GetAllBooks()
         {
@@ -55,6 +58,10 @@ namespace Biblioteka
         public List<Returning> GetReturnings()
         {
             return ReturningList;
+        }
+        public List<ChargeInformation> GetChargeInformation()
+        {
+            return ChargeInformationList;
         }
         public void ListTheBooks()
         {
@@ -91,6 +98,34 @@ namespace Biblioteka
                 Console.WriteLine(item);
             }
         }
+        public void ListChargeIformation()
+        {
+            foreach (ChargeInformation chargeInformation in ChargeInformationList)
+            {
+                Console.WriteLine(chargeInformation);
+            }
+        }
+        public void ChargeInformationForSpecificReader(int readerID)
+        {
+            bool found = false;
+            foreach(ChargeInformation chargeInformation in ChargeInformationList)
+            {
+                if(chargeInformation.GetReader().GetID() == readerID)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(chargeInformation);
+                    Console.ResetColor();
+                    Console.WriteLine("");
+                    found = true;
+                }
+                else
+                {
+                    found = false;
+                    Log.PrintErrorMessage("Dany czytelnik nie został obciążony żadną opłatą");
+                }
+            }
+
+        }
         public void AddBook(Book k)
         {
             BooksList.Add(k);
@@ -102,6 +137,10 @@ namespace Biblioteka
         public void AddEmployee(Librarian p)
         {
             EmployeesList.Add(p);
+        }
+        public void AddChargeInformation(ChargeInformation chargeInformation)
+        {
+            ChargeInformationList.Add(chargeInformation);
         }
         public void RemoveReader(Reader c)
         {
@@ -167,6 +206,32 @@ namespace Biblioteka
             }
             return null;
         }
+        public void findBookByCategory(string category)
+        {
+            List<Book> oneCategoryBooksList = new List<Book>();
+            foreach (Book book in BooksList)
+            {
+                if (book.getCategory().Contains(category))
+                {
+                    oneCategoryBooksList.Add(book);
+                }
+            }
+            foreach (Book book in oneCategoryBooksList)
+            {
+                Console.WriteLine(book);
+            }
+        }
+        public Borrowing FindBorrowingByReaderAndBook(Book book, Reader reader) 
+        { 
+            foreach(Borrowing borrowing in BorrowingList)
+            {
+                if(borrowing.GetReader().Equals(reader) && borrowing.GetBook().Equals(book))
+                {
+                    return borrowing;
+                }
+            }
+            return null;
+        }
         public void SubmitBorrowing(int bookID, int readerID)
         {
             foreach(Borrowing borrowing in BorrowingList)
@@ -219,21 +284,6 @@ namespace Biblioteka
                 BorrowingList.Remove(tempBorrowing);
             }
             return BorrowingList;
-        }
-        public void findBookByCategory(string category)
-        {
-            List<Book> oneCategoryBooksList = new List<Book>();
-           foreach(Book book in BooksList)
-            {
-                if (book.getCategory().Contains(category))
-                {
-                    oneCategoryBooksList.Add(book);
-                }
-            }
-           foreach(Book book in oneCategoryBooksList)
-            {
-                Console.WriteLine(book);
-            }
         }
         public void countAvailableBooks(string title)
         {

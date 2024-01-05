@@ -78,8 +78,6 @@ namespace Biblioteka.Model
         {
             return ID + "," + Title + "," + Author.GetName() + "," + Author.GetSurname() + "," + State + "," + string.Join(";", Categories);
         }
-        //csv - problem
-        //string join - inny separator - bo potem przy rozdzieleniu problem - dać ; np.
         public enum BookState
         {
             Available, Booked

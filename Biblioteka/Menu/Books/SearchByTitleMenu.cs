@@ -27,25 +27,6 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    //List<Book> allBooks = Library.GetAllBooks();
-                    //bool isAvailable = false;
-                    //Log.PrintInformationMessage($"Książki o tytule {searchingTitle}:");
-                    //Console.WriteLine("");
-                    //foreach (var book in allBooks)
-                    //{
-                    //    if (book.GetTitle().Contains(searchingTitle))
-                    //    {
-                    //        Console.WriteLine(book);
-                    //        isAvailable = true;
-                    //        break;
-                    //    }
-                    //}
-                    //Console.WriteLine("");
-                    //if (isAvailable == false)
-                    //{
-                    //    Log.PrintErrorMessage("Niestety nie ma książki o takim tytule na stanie");
-                    //}
-                    //break;
                     Library.countAvailableBooks(searchingTitle);
                     Library.countBookedBooks(searchingTitle);
                     break;

@@ -23,6 +23,10 @@ namespace Biblioteka.Model
         {
             return Surname;
         }
+        public string GetFullname()
+        {
+            return Name + " " + Surname;
+        }
         public void SetName(string personsName)
         {
             Name = personsName;

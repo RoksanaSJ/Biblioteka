@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.Menu.Books;
 using Biblioteka.Menu.Borrowings;
+using Biblioteka.Menu.Charge;
 using Biblioteka.Menu.ImportOrExportData;
 using Biblioteka.Menu.Librarians;
 using Biblioteka.Menu.Readers;
@@ -18,6 +19,7 @@ namespace Biblioteka.Menu.Books
         private BorrowingBookMenu _borrowingBookMenu;
         private ImportExportMenu _importExportMenu;
         private LibrarianMenu _librarianMenu;
+        private ChargeMenu _chargeMenu;
         public LibraryMenu(Library library) : base(library)
         {
             _booksMenu = new BooksMenu(library);
@@ -25,6 +27,7 @@ namespace Biblioteka.Menu.Books
             _borrowingBookMenu = new BorrowingBookMenu(library);
             _importExportMenu = new ImportExportMenu(library);
             _librarianMenu = new LibrarianMenu(library);
+            _chargeMenu = new ChargeMenu(library);
         }
         public override void PrintMenu()
         {
@@ -59,7 +62,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else if (option == 5)
                 {
-                    
+                    _chargeMenu.PrintMenu();
                 }
                 else if (option == 6)
                 {

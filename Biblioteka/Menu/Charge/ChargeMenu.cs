@@ -26,19 +26,22 @@ namespace Biblioteka.Menu.Charge
                 Console.WriteLine("");
                 if (option == 1)
                 {
-                    
+                    Console.WriteLine("Podaj ID czytelnika:");
+                    int ID = ReadOption();
+                    Console.WriteLine("");
+                    Library.ChargeInformationForSpecificReader(ID);
                 }
                 else if (option == 2)
                 {
-                    
+                    //TODO
                 }
                 else if (option == 3)
                 {
-                    
+                    //TODO
                 }
                 else if (option == 4)
                 {
-                    
+                    //TODO
                 }
                 else if (option == 5)
                 {

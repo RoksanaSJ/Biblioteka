@@ -24,6 +24,7 @@ namespace Biblioteka.Menu.ImportOrExportData
         const string BORROWINGCSV = "borrowing.csv";
         const string RETURNINGCSV = "returning.csv";
         const string LIBRARIANCSV = "librarian.csv";
+        const string CHARGEINFORMATIONCSV = "chargeinformation.csv";
         public ImportMenu(Library library) : base(library)
         {
 
@@ -57,10 +58,12 @@ namespace Biblioteka.Menu.ImportOrExportData
             Console.WriteLine("Zaimportowano wypożyczenia");
             ImportReturnings();
             Console.WriteLine("Zaimportowano zwroty książek");
+            ImportChargeInformation();
+            Console.WriteLine("Zaimportowano informację o opłatach");
 
             ImportID();
 
-            string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV };
+            string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV, FILEPATH + CHARGEINFORMATIONCSV };
 
             foreach (string file in files)
             {
@@ -164,6 +167,25 @@ namespace Biblioteka.Menu.ImportOrExportData
                 DateTime dateTimeFound = DateTime.ParseExact(splitedBookReturning[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 Returning returningFound = new Returning(dateTimeFound, bookFound, readerFound);
                 Library.ReturnBook(bookFound, readerFound);
+            }
+        }
+        public void ImportChargeInformation()
+        {
+            List<String> csvContentList = ReadCsv("chargeinformation.csv");
+            List<Reader> readersTemp = Library.GetReaders();
+            foreach (String line in csvContentList)
+            {
+                string[] splitedChargeInformation = line.Split(',');
+                decimal charge = decimal.Parse(splitedChargeInformation[0]);
+                int readerID = int.Parse(splitedChargeInformation[1]);
+                foreach (Reader reader in readersTemp)
+                {
+                    if (reader.GetID().Equals(readerID))
+                    {
+                     ChargeInformation chargeInformation = new ChargeInformation(charge, reader);
+                     Library.AddChargeInformation(chargeInformation);
+                    }
+                }
             }
         }
         public void ImportID()

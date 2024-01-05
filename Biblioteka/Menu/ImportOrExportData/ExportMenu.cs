@@ -17,7 +17,7 @@ namespace Biblioteka.Menu.ImportOrExportData
         const string BORROWINGCSV = "borrowing.csv";
         const string RETURNINGCSV = "returning.csv";
         const string LIBRARIANCSV = "librarian.csv";
-
+        const string CHARGEINFORMATIONCSV = "chargeinformation.csv";
         public ExportMenu(Library library) : base(library)
         {
 
@@ -28,7 +28,7 @@ namespace Biblioteka.Menu.ImportOrExportData
 
             try
             {
-                string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV}; 
+                string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV, FILEPATH + CHARGEINFORMATIONCSV}; 
                 Console.WriteLine("Podaj nazwę pliku zip:");
                 string zipFile = Console.ReadLine();
                 if (!zipFile.EndsWith(".zip"))
@@ -40,6 +40,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 SaveToFile(BORROWINGCSV, Library.GetBorrowings());
                 SaveToFile(RETURNINGCSV, Library.GetReturnings());
                 SaveToFile(LIBRARIANCSV, Library.GetLibrarians());
+                SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformation());
 
                 using (ZipArchive zip = ZipFile.Open(FILEPATH + zipFile, ZipArchiveMode.Update))
                 {
@@ -48,6 +49,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                     zip.CreateEntryFromFile(FILEPATH + BORROWINGCSV, BORROWINGCSV);
                     zip.CreateEntryFromFile(FILEPATH + RETURNINGCSV, RETURNINGCSV);
                     zip.CreateEntryFromFile(FILEPATH + LIBRARIANCSV, LIBRARIANCSV);
+                    zip.CreateEntryFromFile(FILEPATH + CHARGEINFORMATIONCSV, CHARGEINFORMATIONCSV);
                 }
                 foreach (string file in files)
                 {
