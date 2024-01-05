@@ -141,6 +141,12 @@ namespace Biblioteka
         public void AddChargeInformation(ChargeInformation chargeInformation)
         {
             ChargeInformationList.Add(chargeInformation);
+            //--
+            Console.WriteLine("AddCHargeInfo in Library");
+        }
+        public void AddReturning(Returning returning)
+        {
+            ReturningList.Add(returning);
         }
         public void RemoveReader(Reader c)
         {
@@ -153,7 +159,7 @@ namespace Biblioteka
 
             if (k.GetState() == Book.BookState.Available)
             {
-                if (countingReaderBorrowings(c.GetID()) < MAXBOOKS)
+                if (CountingReaderBorrowings(c.GetID()) < MAXBOOKS)
                 {
                     DateTime date = new DateTime();
                     date = DateTime.Now;
@@ -179,10 +185,12 @@ namespace Biblioteka
             date = DateTime.Now;
             Returning ret = new Returning(date, b, r);
             ReturningList.Add(ret);
-            removeBorrowingFromBorrowingList(b, r);
+            RemoveBorrowingFromBorrowingList(b, r);
             //Książka dostępna
             b.Available();
             Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
+            //--
+            Console.WriteLine("ReturnBook in Library");
         }
         public Book FindBookByID(int ID)
         {
@@ -251,7 +259,7 @@ namespace Biblioteka
         {
             BorrowingList.Add(borrowing);
         }
-        public int countingReaderBorrowings(int readerID)
+        public int CountingReaderBorrowings(int readerID)
         {
            int counter = 0;
            foreach(Borrowing borrowing in BorrowingList)
@@ -263,7 +271,7 @@ namespace Biblioteka
             }
             return counter;
         }
-        public List<Borrowing> removeBorrowingFromBorrowingList(Book b, Reader r)
+        public List<Borrowing> RemoveBorrowingFromBorrowingList(Book b, Reader r)
         {
             List<Borrowing> temporaryList = new List<Borrowing>();
             bool isItEqual = false;
@@ -278,6 +286,8 @@ namespace Biblioteka
             if(isItEqual == false)
             {
                 Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
+                //---
+                Console.WriteLine("RemoveBorrowingFromBorrowingList");
             }
             foreach(Borrowing tempBorrowing in temporaryList)
             {
@@ -285,7 +295,7 @@ namespace Biblioteka
             }
             return BorrowingList;
         }
-        public void countAvailableBooks(string title)
+        public void CountAvailableBooks(string title)
         {
             Log.PrintInformationMessage("Dostępne książki do wypożyczenia:");
             int available = 0;
@@ -306,7 +316,7 @@ namespace Biblioteka
             Console.WriteLine($"Dostępnych książek o tym tytule jest: {available}");
             Console.WriteLine(" ");
         }
-        public void countBookedBooks(string title)
+        public void CountBookedBooks(string title)
         {
             int booked = 0;
             foreach (Book book in BooksList)
@@ -317,6 +327,24 @@ namespace Biblioteka
                 }
             }
             Log.PrintInformationMessage($"Wypożyczonych ksiażek o tym tytule jest: {booked}");
+        }
+        public void PrintHistoryFromPeriod(DateTime startDate, DateTime finishDate)
+        {
+            if (finishDate >= startDate)
+            {
+                foreach (ChargeInformation chargeInformation in ChargeInformationList)
+                {
+                    if (chargeInformation.GetDateOfCharge() >= startDate && chargeInformation.GetDateOfCharge() <= finishDate)
+                    {
+                        Log.PrintSuccessMessage(chargeInformation.ToString());
+                        Console.WriteLine("");
+                    }
+                }
+            } 
+            else
+            {
+                Log.PrintErrorMessage("Data końcowa powinna być późniejsza niż początkowa");
+            }
         }
     }
 }

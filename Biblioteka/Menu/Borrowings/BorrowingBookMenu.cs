@@ -29,7 +29,8 @@ namespace Biblioteka.Menu.Borrowings
                 Console.WriteLine("2.Oddaj książkę");
                 Console.WriteLine("3.Przedłóż swoje wypożyczenie");
                 Console.WriteLine("4.Wypisz wszystkie wypożyczenia");
-                Console.WriteLine("5.Wróć");
+                Console.WriteLine("5.Wypisz wszystkie zwroty");
+                Console.WriteLine("6.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = ReadOption();
                 Console.WriteLine("");
@@ -48,7 +49,14 @@ namespace Biblioteka.Menu.Borrowings
                     Log.PrintInformationMessage("Lista wypożyczeń: ");
                     Library.ListTheBorrowings();
                     Console.WriteLine("");
-                } else if (option == 5)
+                }
+                else if (option == 5)
+                {
+                    Log.PrintInformationMessage("Lista zwrotów: ");
+                    Library.ListTheReturnings();
+                    Console.WriteLine("");
+                }
+                else if (option == 6)
                 {
                     break;
                 }

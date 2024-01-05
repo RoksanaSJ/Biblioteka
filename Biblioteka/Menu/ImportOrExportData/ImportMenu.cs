@@ -166,7 +166,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 Reader readerFound = Library.FindReaderByID(readerID);
                 DateTime dateTimeFound = DateTime.ParseExact(splitedBookReturning[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 Returning returningFound = new Returning(dateTimeFound, bookFound, readerFound);
-                Library.ReturnBook(bookFound, readerFound);
+                Library.AddReturning(returningFound);
             }
         }
         public void ImportChargeInformation()
@@ -176,13 +176,15 @@ namespace Biblioteka.Menu.ImportOrExportData
             foreach (String line in csvContentList)
             {
                 string[] splitedChargeInformation = line.Split(',');
-                decimal charge = decimal.Parse(splitedChargeInformation[0]);
+                string comaCharge = splitedChargeInformation[0].Replace(".", ",");
+                decimal charge = decimal.Parse(comaCharge);
                 int readerID = int.Parse(splitedChargeInformation[1]);
+                DateTime dateTimeFound = DateTime.ParseExact(splitedChargeInformation[2], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 foreach (Reader reader in readersTemp)
                 {
                     if (reader.GetID().Equals(readerID))
                     {
-                     ChargeInformation chargeInformation = new ChargeInformation(charge, reader);
+                     ChargeInformation chargeInformation = new ChargeInformation(charge, reader, dateTimeFound);
                      Library.AddChargeInformation(chargeInformation);
                     }
                 }
@@ -241,10 +243,6 @@ namespace Biblioteka.Menu.ImportOrExportData
             catch (Exception e)
             {
                 Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Executing finally block.");
             }
             return readCSVList;
         }

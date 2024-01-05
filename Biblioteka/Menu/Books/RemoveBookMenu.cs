@@ -32,6 +32,7 @@ namespace Biblioteka.Menu.Books
                         {
                             toRemove.Add(book);
                             Log.PrintSuccessMessage($"Gratulację, właśnie usunąleś książkę {book}");
+                            break;
                         }
                         else if (option.Equals("n"))
                         {

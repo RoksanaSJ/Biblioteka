@@ -27,8 +27,8 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    Library.countAvailableBooks(searchingTitle);
-                    Library.countBookedBooks(searchingTitle);
+                    Library.CountAvailableBooks(searchingTitle);
+                    Library.CountBookedBooks(searchingTitle);
                     break;
                 }
                 else if (userOption.Equals("n"))

@@ -33,14 +33,19 @@ namespace Biblioteka.Menu.Borrowings
                     Borrowing borrowingFound = Library.FindBorrowingByReaderAndBook(bookFound, readerFound);
                     if (bookFound != null && readerFound != null && borrowingFound != null)
                     {
+                        //-------- NIE WCHODZI TU
+                        Console.WriteLine("Czy tu wchodzi");
                         decimal charge = CountCharge(borrowingFound);
                         if(charge > 0)
                         {
                             ChargeInformation chargeInfo = new ChargeInformation(charge, readerFound);
                             Library.AddChargeInformation(chargeInfo);
+                            //---NIE WCHODZI TU
+                            Console.WriteLine("ReturnABookMenu");
                         }
                         Library.ReturnBook(bookFound, readerFound);
                         Log.PrintSuccessMessage($"Gratulację, właśnie oddałeś książkę");
+                        break;
                     }
                     else
                     {

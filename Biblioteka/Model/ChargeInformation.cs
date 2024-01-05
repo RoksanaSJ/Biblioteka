@@ -17,7 +17,13 @@ namespace Biblioteka.Model
             this.Reader = reader;
             DateOfCharge = DateTime.Now;
         }
-        public decimal GetCharge()
+        public ChargeInformation(decimal charge, Reader reader, DateTime dateTime)
+        {
+            this.Charge = charge;
+            this.Reader = reader;
+            DateOfCharge = dateTime;
+        }
+            public decimal GetCharge()
         {
             return Charge;
         }
@@ -35,7 +41,8 @@ namespace Biblioteka.Model
         }
         public override string ToCSV()
         {
-            return Charge + "," + Reader.GetID() + "," + DateOfCharge;
+            string newCharge = Charge.ToString().Replace(",", ".");
+            return newCharge + "," + Reader.GetID() + "," + DateOfCharge;
         }
     }
 }

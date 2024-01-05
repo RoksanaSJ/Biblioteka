@@ -17,9 +17,7 @@ namespace Biblioteka.Menu.Charge
             while (true)
             {
                 Console.WriteLine("1.Historia opłat danego czytelnika");
-                Console.WriteLine("2.Tygodniowa historia opłat");
-                Console.WriteLine("3.Miesięczna historia opłat");
-                Console.WriteLine("4.Roczna historia opłat");
+                Console.WriteLine("2.Historia opłat z danego okresu");
                 Console.WriteLine("5.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = ReadOption();
@@ -33,15 +31,11 @@ namespace Biblioteka.Menu.Charge
                 }
                 else if (option == 2)
                 {
-                    //TODO
-                }
-                else if (option == 3)
-                {
-                    //TODO
-                }
-                else if (option == 4)
-                {
-                    //TODO
+                    Console.WriteLine("Podaj datę początkową w formacie yyyy-MM-dd:");
+                    DateTime startDate = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj datę końcową w formacie yyyy-MM-dd:");
+                    DateTime finishDate = DateTime.Parse(Console.ReadLine() + " 23:59:59");
+                    Library.PrintHistoryFromPeriod(startDate,finishDate);
                 }
                 else if (option == 5)
                 {
