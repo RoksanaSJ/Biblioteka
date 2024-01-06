@@ -45,6 +45,7 @@ namespace Biblioteka.Menu.Librarians
                     {
                         Log.PrintErrorMessage("Nie ma pracownika o takim imieniu i nazwisku");
                     }
+                    break;
                 }
                 else if (userOption.Equals("n"))
                 {

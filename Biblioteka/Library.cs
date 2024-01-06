@@ -141,8 +141,6 @@ namespace Biblioteka
         public void AddChargeInformation(ChargeInformation chargeInformation)
         {
             ChargeInformationList.Add(chargeInformation);
-            //--
-            Console.WriteLine("AddCHargeInfo in Library");
         }
         public void AddReturning(Returning returning)
         {
@@ -189,8 +187,6 @@ namespace Biblioteka
             //Książka dostępna
             b.Available();
             Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
-            //--
-            Console.WriteLine("ReturnBook in Library");
         }
         public Book FindBookByID(int ID)
         {
@@ -286,8 +282,6 @@ namespace Biblioteka
             if(isItEqual == false)
             {
                 Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
-                //---
-                Console.WriteLine("RemoveBorrowingFromBorrowingList");
             }
             foreach(Borrowing tempBorrowing in temporaryList)
             {
@@ -336,7 +330,7 @@ namespace Biblioteka
                 {
                     if (chargeInformation.GetDateOfCharge() >= startDate && chargeInformation.GetDateOfCharge() <= finishDate)
                     {
-                        Log.PrintSuccessMessage(chargeInformation.ToString());
+                        Log.PrintInformationMessage(chargeInformation.ToString());
                         Console.WriteLine("");
                     }
                 }

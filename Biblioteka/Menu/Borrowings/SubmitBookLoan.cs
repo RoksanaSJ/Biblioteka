@@ -28,6 +28,7 @@ namespace Biblioteka.Menu.Borrowings
                 if (userOption.Equals("y"))
                 {
                     Library.SubmitBorrowing(bookID, readerID);
+                    break;
                 }
                 else if (userOption.Equals("n"))
                 {

@@ -40,6 +40,7 @@ namespace Biblioteka.Menu.Librarians
                     {
                         Log.PrintErrorMessage("Nie ma pracownika o takim ID");
                     }
+                    break;
                 }
                 else if (userOption.Equals("n"))
                 {

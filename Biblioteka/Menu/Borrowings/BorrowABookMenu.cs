@@ -54,6 +54,7 @@ namespace Biblioteka.Menu.Borrowings
                     {
                         Log.PrintErrorMessage("Niestety książka o takim ID nie istnieje");
                     }
+                    break;
                 }
                 else if (userOption.Equals("n"))
                 {
