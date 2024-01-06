@@ -28,7 +28,7 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    Library.findBookByCategory(category);
+                    Library.FindBookByCategory(category);
                     break;
                 }
                 else if (userOption.Equals("n"))

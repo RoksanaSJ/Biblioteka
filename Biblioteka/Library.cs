@@ -146,9 +146,35 @@ namespace Biblioteka
         {
             ReturningList.Add(returning);
         }
+        public void AddBorrowing(Borrowing borrowing)
+        {
+            BorrowingList.Add(borrowing);
+        }
         public void RemoveReader(Reader c)
         {
             ReadersList.Remove(c);
+        }
+        public List<Borrowing> RemoveBorrowingFromBorrowingList(Book b, Reader r)
+        {
+            List<Borrowing> temporaryList = new List<Borrowing>();
+            bool isItEqual = false;
+            foreach (Borrowing borrowing in BorrowingList)
+            {
+                if (borrowing.GetBook().Equals(b) && borrowing.GetReader().Equals(r))
+                {
+                    temporaryList.Add(borrowing);
+                    isItEqual = true;
+                }
+            }
+            if (isItEqual == false)
+            {
+                Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
+            }
+            foreach (Borrowing tempBorrowing in temporaryList)
+            {
+                BorrowingList.Remove(tempBorrowing);
+            }
+            return BorrowingList;
         }
         public void BorrowBook(Book k, Reader c)
         {
@@ -157,7 +183,7 @@ namespace Biblioteka
 
             if (k.GetState() == Book.BookState.Available)
             {
-                if (CountingReaderBorrowings(c.GetID()) < MAXBOOKS)
+                if (CountReaderBorrowings(c.GetID()) < MAXBOOKS)
                 {
                     DateTime date = new DateTime();
                     date = DateTime.Now;
@@ -210,7 +236,7 @@ namespace Biblioteka
             }
             return null;
         }
-        public void findBookByCategory(string category)
+        public void FindBookByCategory(string category)
         {
             List<Book> oneCategoryBooksList = new List<Book>();
             foreach (Book book in BooksList)
@@ -236,58 +262,23 @@ namespace Biblioteka
             }
             return null;
         }
-        public void SubmitBorrowing(int bookID, int readerID)
+        public int CountReaderBorrowings(int readerID)
         {
-            foreach(Borrowing borrowing in BorrowingList)
-            {
-                if(borrowing.GetReader().GetID() == readerID && borrowing.GetBook().GetID() == bookID)
-                {
-                    borrowing.SetBorrowingDateToCurrentDate();
-                    Log.PrintSuccessMessage("Gratulację, właśnie przedłużyłeś wypożyczenie książki o kolejny miesiąc!");
-                }
-                else
-                {
-                    Log.PrintErrorMessage("Dane, które podałeś są niepoprawne");
-                }
-            }
-        }
-        public void AddBorrowing(Borrowing borrowing)
-        {
-            BorrowingList.Add(borrowing);
-        }
-        public int CountingReaderBorrowings(int readerID)
-        {
-           int counter = 0;
-           foreach(Borrowing borrowing in BorrowingList)
+            int counter = 0;
+            bool isExist = false;
+            foreach (Borrowing borrowing in BorrowingList)
             {
                 if (borrowing.GetReader().GetID() == readerID)
                 {
                     counter++;
+                    isExist = true;
                 }
+            }
+            if (isExist == false)
+            {
+                Log.PrintErrorMessage("Niestety ten użytkownik, nie dokonał takiego wypożyczenia");
             }
             return counter;
-        }
-        public List<Borrowing> RemoveBorrowingFromBorrowingList(Book b, Reader r)
-        {
-            List<Borrowing> temporaryList = new List<Borrowing>();
-            bool isItEqual = false;
-            foreach (Borrowing borrowing in BorrowingList)
-            {
-                if (borrowing.GetBook().Equals(b) && borrowing.GetReader().Equals(r))
-                {
-                    temporaryList.Add(borrowing);
-                    isItEqual = true;
-                }
-            }
-            if(isItEqual == false)
-            {
-                Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
-            }
-            foreach(Borrowing tempBorrowing in temporaryList)
-            {
-                BorrowingList.Remove(tempBorrowing);
-            }
-            return BorrowingList;
         }
         public void CountAvailableBooks(string title)
         {
@@ -313,14 +304,35 @@ namespace Biblioteka
         public void CountBookedBooks(string title)
         {
             int booked = 0;
+            bool isBooked = false;
             foreach (Book book in BooksList)
             {
                 if (book.GetTitle().Contains(title) && book.GetState() == Book.BookState.Booked)
                 {
                     booked++;
+                    isBooked = true;
                 }
             }
+            if (isBooked == false)
+            {
+                Log.PrintErrorMessage("Nie ma wypożyczonych książek o takim tytule");
+            }
             Log.PrintInformationMessage($"Wypożyczonych ksiażek o tym tytule jest: {booked}");
+        }
+        public void SubmitBorrowing(int bookID, int readerID)
+        {
+            foreach (Borrowing borrowing in BorrowingList)
+            {
+                if (borrowing.GetReader().GetID() == readerID && borrowing.GetBook().GetID() == bookID)
+                {
+                    borrowing.SetBorrowingDateToCurrentDate();
+                    Log.PrintSuccessMessage("Gratulację, właśnie przedłużyłeś wypożyczenie książki o kolejny miesiąc!");
+                }
+                else
+                {
+                    Log.PrintErrorMessage("Dane, które podałeś są niepoprawne");
+                }
+            }
         }
         public void PrintHistoryFromPeriod(DateTime startDate, DateTime finishDate)
         {
