@@ -39,7 +39,8 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("4.Menu pracownika");
                 Console.WriteLine("5.Menu opłat");
                 Console.WriteLine("6.Import/Eksport danych");
-                Console.WriteLine("7.Zakończ");
+                Console.WriteLine("7.Wyloguj");
+                Console.WriteLine("8.Zakończ");
                 Console.WriteLine("Wpisz opcje: ");
                 int option = ReadOption();
                 Console.WriteLine("");
@@ -69,6 +70,10 @@ namespace Biblioteka.Menu.Books
                     _importExportMenu.PrintMenu();
                 }
                 else if (option == 7)
+                {
+                    break;
+                }
+                else if (option == 8)
                 {
                     Environment.Exit(1);
                 }

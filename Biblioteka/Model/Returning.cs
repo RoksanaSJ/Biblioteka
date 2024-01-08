@@ -8,9 +8,9 @@ namespace Biblioteka.Model
 {
     internal class Returning : Record
     {
-        DateTime ReturningDate { get; set; }
-        Book Book { get; set; }
-        Reader Reader { get; set; }
+        protected DateTime ReturningDate { get; set; }
+        protected Book Book { get; set; }
+        protected Reader Reader { get; set; }
         public Returning(DateTime returningDate, Book book, Reader reader) : base()
         {
             this.ReturningDate = returningDate;

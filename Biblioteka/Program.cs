@@ -1,4 +1,5 @@
 ﻿using Biblioteka.Menu.Books;
+using Biblioteka.Menu.Entry;
 using Biblioteka.Model;
 using System.Diagnostics.Metrics;
 
@@ -52,10 +53,11 @@ namespace Biblioteka
         //static Book book28 = new Book("Sara", "Shepard", "Bez Skazy");
         //static Book book29 = new Book("Sara", "Shepard", "Doskonałe");
         //static Book book30 = new Book("Sara", "Shepard", "Niewiarygodne");
+        static User user1 = new User("admin", "admin", "admin@gmail.com", "admin");
         static void Main(string[] args)
         {
             Library library = new Library();
-
+            EntryMenu entryMenu = new EntryMenu(library);
             //library.AddBook(book);
             //library.AddBook(book2);
             //library.AddBook(book3);
@@ -76,9 +78,11 @@ namespace Biblioteka
             //library.AddEmployee(employee2);
             //library.AddEmployee(employee3);
             //library.AddEmployee(employee4);
+            library.AddUser(user1);
 
-            LibraryMenu libraryMenu = new LibraryMenu(library);
-            libraryMenu.PrintMenu();
+            //LibraryMenu libraryMenu = new LibraryMenu(library);
+            //libraryMenu.PrintMenu();
+            entryMenu.PrintMenu();
         }
     }
 }

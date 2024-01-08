@@ -22,7 +22,7 @@ namespace Biblioteka.Menu.Readers
         {
             while (true)
             {
-                Console.WriteLine("1.Dodaj czytelnika");
+                //Console.WriteLine("1.Dodaj czytelnika");
                 Console.WriteLine("2.Usuń czytelnika");
                 Console.WriteLine("3.Wypisz wszystkich czytelników");
                 Console.WriteLine("4.Wypisz wszystkie powiązane rekordy z wyszukanym czytelnikiem");
@@ -30,12 +30,12 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("Podaj opcję: ");
                 int option = ReadOption();
                 Console.WriteLine(" ");
-                if (option == 1)
-                {
-                    _addReaderInit.PrintMenu();
-                    Console.WriteLine("");
-                }
-                else if (option == 2)
+                //if (option == 1)
+                //{
+                //    _addReaderInit.PrintMenu();
+                //    Console.WriteLine("");
+                //}
+                /*else*/ if (option == 2)
                 {
                     _removeReaderInit.PrintMenu();
                     Console.WriteLine("");

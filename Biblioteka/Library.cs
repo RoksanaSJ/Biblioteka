@@ -19,6 +19,7 @@ namespace Biblioteka
         protected List<Borrowing> BorrowingList { get; }
         protected List<Returning> ReturningList { get; }
         protected List<ChargeInformation> ChargeInformationList { get; }
+        protected List<User> UsersList { get; }
         protected ConsoleLog Log;
         public Library ()
         {
@@ -28,6 +29,7 @@ namespace Biblioteka
             BorrowingList = new List<Borrowing> ();
             ReturningList = new List<Returning> ();
             ChargeInformationList = new List<ChargeInformation>();
+            UsersList = new List<User> ();
             this.Log = new ConsoleLog();
         }
         public void ClearAllData()
@@ -38,6 +40,7 @@ namespace Biblioteka
             BorrowingList.Clear();
             ReturningList.Clear();
             ChargeInformationList.Clear();
+            UsersList.Clear();
         }
         public List<Book> GetAllBooks()
         {
@@ -62,6 +65,10 @@ namespace Biblioteka
         public List<ChargeInformation> GetChargeInformation()
         {
             return ChargeInformationList;
+        }
+        public List<User> GetUsers()
+        {
+            return UsersList;
         }
         public void ListTheBooks()
         {
@@ -105,26 +112,12 @@ namespace Biblioteka
                 Console.WriteLine(chargeInformation);
             }
         }
-        public void ChargeInformationForSpecificReader(int readerID)
+        public void ListUsers()
         {
-            bool found = false;
-            foreach(ChargeInformation chargeInformation in ChargeInformationList)
+            foreach (User users in UsersList)
             {
-                if(chargeInformation.GetReader().GetID() == readerID)
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine(chargeInformation);
-                    Console.ResetColor();
-                    Console.WriteLine("");
-                    found = true;
-                }
-                else
-                {
-                    found = false;
-                    Log.PrintErrorMessage("Dany czytelnik nie został obciążony żadną opłatą");
-                }
+                Console.WriteLine(users);
             }
-
         }
         public void AddBook(Book k)
         {
@@ -149,6 +142,10 @@ namespace Biblioteka
         public void AddBorrowing(Borrowing borrowing)
         {
             BorrowingList.Add(borrowing);
+        }
+        public void AddUser(User user)
+        {
+            UsersList.Add(user);
         }
         public void RemoveReader(Reader c)
         {
@@ -262,6 +259,17 @@ namespace Biblioteka
             }
             return null;
         }
+        public User FindUserByID(int ID)
+        {
+            foreach (User user in UsersList)
+            {
+                if(user.GetID() == ID)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
         public int CountReaderBorrowings(int readerID)
         {
             int counter = 0;
@@ -318,6 +326,26 @@ namespace Biblioteka
                 Log.PrintErrorMessage("Nie ma wypożyczonych książek o takim tytule");
             }
             Log.PrintInformationMessage($"Wypożyczonych ksiażek o tym tytule jest: {booked}");
+        }
+        public void ChargeInformationForSpecificReader(int readerID)
+        {
+            bool found = false;
+            foreach (ChargeInformation chargeInformation in ChargeInformationList)
+            {
+                if (chargeInformation.GetReader().GetID() == readerID)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(chargeInformation);
+                    Console.ResetColor();
+                    Console.WriteLine("");
+                    found = true;
+                }
+                else
+                {
+                    found = false;
+                    Log.PrintErrorMessage("Dany czytelnik nie został obciążony żadną opłatą");
+                }
+            }
         }
         public void SubmitBorrowing(int bookID, int readerID)
         {
