@@ -13,6 +13,7 @@ namespace Biblioteka
     internal class Library
     {
         const int MAXBOOKS = 5;
+        protected User currentUser { get; set; }
         protected List<Book> BooksList { get; }
         protected List<Reader> ReadersList { get; }
         protected List<Librarian> EmployeesList { get; }
@@ -69,6 +70,14 @@ namespace Biblioteka
         public List<User> GetUsers()
         {
             return UsersList;
+        }
+        public User GetCurrentUser()
+        {
+            return currentUser;
+        }
+        public void SetCurrentUser(User currentUser)
+        {
+            this.currentUser = currentUser;
         }
         public void ListTheBooks()
         {
@@ -255,17 +264,6 @@ namespace Biblioteka
                 if(borrowing.GetReader().Equals(reader) && borrowing.GetBook().Equals(book))
                 {
                     return borrowing;
-                }
-            }
-            return null;
-        }
-        public User FindUserByID(int ID)
-        {
-            foreach (User user in UsersList)
-            {
-                if(user.GetID() == ID)
-                {
-                    return user;
                 }
             }
             return null;

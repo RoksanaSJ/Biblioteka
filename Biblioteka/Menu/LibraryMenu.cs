@@ -9,6 +9,7 @@ using Biblioteka.Menu.Charge;
 using Biblioteka.Menu.ImportOrExportData;
 using Biblioteka.Menu.Librarians;
 using Biblioteka.Menu.Readers;
+using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Books
 {
@@ -33,11 +34,19 @@ namespace Biblioteka.Menu.Books
         {
             while (true)
             {
+                User currentUser = Library.GetCurrentUser();
+                //TODO dla admina to menu a dla czytelnika osobne i osobne dla pracownika
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Zalogowano jako: " + currentUser.GetEmail());
+                Console.ResetColor();
                 Console.WriteLine("1.Menu książek");
                 Console.WriteLine("2.Menu czytelników");
                 Console.WriteLine("3.Menu wypożyczenia");
                 Console.WriteLine("4.Menu pracownika");
-                Console.WriteLine("5.Menu opłat");
+                if (currentUser.GetUserRole() == UserRole.Administrator)
+                {
+                    Console.WriteLine("5.Menu opłat");
+                }
                 Console.WriteLine("6.Import/Eksport danych");
                 Console.WriteLine("7.Wyloguj");
                 Console.WriteLine("8.Zakończ");
@@ -61,7 +70,7 @@ namespace Biblioteka.Menu.Books
                 {
                     _librarianMenu.PrintMenu();
                 }
-                else if (option == 5)
+                else if (option == 5 && currentUser.GetUserRole() == UserRole.Administrator)
                 {
                     _chargeMenu.PrintMenu();
                 }

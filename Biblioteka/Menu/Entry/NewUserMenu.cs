@@ -33,10 +33,11 @@ namespace Biblioteka.Menu.Entry
                 if (password.Equals(repeatedPassword))
                 {
                     //metoda na sprawdzenie, czy hasło jest silne, min 8 znaków, 1 znak specjalny, liczba, mała i duża litera
+                    //czy adres email jest unikalny -osobna metoda
                     if(ValidateComplexityPassword(password) == true)
                     {
-                        User newUser = new User(name, surname, email, password);
-                        Reader reader = new Reader(name, surname, age);
+                        User newUser = new User(email, password,UserRole.Reader);
+                        Reader reader = new Reader(name, surname, age, newUser);
                         Library.AddUser(newUser);
                         Library.AddReader(reader);
                         Log.PrintSuccessMessage("Gratulację! utworzyłeś profil nowego użytkownika!");
@@ -55,6 +56,10 @@ namespace Biblioteka.Menu.Entry
         }
         //TODO
         public bool ValidateComplexityPassword(string password)
+        {
+            return true;
+        }
+        public bool ValidateUniqnessEmail(string email)
         {
             return true;
         }

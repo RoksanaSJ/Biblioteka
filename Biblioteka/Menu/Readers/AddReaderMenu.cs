@@ -30,9 +30,9 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    Reader reader = new Reader(name, surname, age);
-                    Log.PrintSuccessMessage($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
-                    Library.AddReader(reader);
+                    //Reader reader = new Reader(name, surname, age);
+                    //Log.PrintSuccessMessage($"Gratulacje właśnie dodałeś użytkowanika {reader.ToString()}");
+                    //Library.AddReader(reader);
                     break;
                 }
                 else if (userOption.Equals("n"))

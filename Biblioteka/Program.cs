@@ -12,12 +12,12 @@ namespace Biblioteka
         static Librarian employee3 = new Librarian("Johny", "Deep", 60);
         static Librarian employee4 = new Librarian("Tomasz", "Karolak", 52);
 
-        static Reader reader = new Reader("Roksana", "SJ", 23);
-        static Reader reader2 = new Reader("Puchacz", "S", 2);
-        static Reader reader3 = new Reader("Mariah", "Carey", 54);
-        static Reader reader4 = new Reader("John", "Travolta", 69);
-        static Reader reader5 = new Reader("Sylvester", "Stallone", 77);
-        static Reader reader6 = new Reader("Adam", "Sandler", 57);
+        //static Reader reader = new Reader("Roksana", "SJ", 23);
+        //static Reader reader2 = new Reader("Puchacz", "S", 2);
+        //static Reader reader3 = new Reader("Mariah", "Carey", 54);
+        //static Reader reader4 = new Reader("John", "Travolta", 69);
+        //static Reader reader5 = new Reader("Sylvester", "Stallone", 77);
+        //static Reader reader6 = new Reader("Adam", "Sandler", 57);
         //static Reader reader7 = new Reader("Jennifer", "Aniston", 54);
         //static Reader reader8 = new Reader("Brad", "Pitt", 59);
         //static Reader reader9 = new Reader("Angelina", "Jolie", 48);
@@ -53,7 +53,7 @@ namespace Biblioteka
         //static Book book28 = new Book("Sara", "Shepard", "Bez Skazy");
         //static Book book29 = new Book("Sara", "Shepard", "Doskonałe");
         //static Book book30 = new Book("Sara", "Shepard", "Niewiarygodne");
-        static User user1 = new User("admin", "admin", "admin@gmail.com", "admin");
+        static User user1 = new User("admin@gmail.com", "admin",UserRole.Administrator);
         static void Main(string[] args)
         {
             Library library = new Library();

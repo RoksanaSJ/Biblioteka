@@ -12,10 +12,12 @@ namespace Biblioteka.Model
     {
         protected int ID { get; }
         protected int Age { get; set; }
-        public Reader(string name, string surname, int age) : base(name, surname)
+        protected User LibraryUser { get; } 
+        public Reader(string name, string surname, int age, User libraryUser) : base(name, surname)
         {
             ID = IDGenerator.GenerateID();
             Age = age;
+            LibraryUser = libraryUser;
         }
         public Reader(int ID, string name, string surname, int age) : base(name, surname)
         {

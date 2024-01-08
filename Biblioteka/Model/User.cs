@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Model
 {
-    internal class User : Person
+    public class User : Record
     {
-        protected int ID { get; }
         protected string Email {  get; set; }
         protected string Password { get; set; }
-
-        public User(string name, string surname, string email, string password) : base(name, surname)
+        protected UserRole UserRole { get; }
+        public User(string email, string password, UserRole userRole)
         {
-            ID = IDGenerator.GenerateID();
             this.Email = email;
             this.Password = password;
+            UserRole = userRole;
         }
-        public int GetID()
-        {
-            return ID;
-        }       public string GetEmail()
+        public string GetEmail()
         {
             return Email;
         }
         public string GetPassword()
         {
             return Password;
+        }
+        public UserRole GetUserRole()
+        {
+            return UserRole;
         }
         public void SetEmail(string usersEmail)
         {
@@ -39,9 +39,10 @@ namespace Biblioteka.Model
         {
             Password = password;
         }
+        //TODO toString();
         public override string ToCSV()
         {
-            return Name + "," + Surname + "," + ID + "," + Email + "," + Password;
+            return Email + "," + Password + "," + UserRole;
         }
     }
 }
