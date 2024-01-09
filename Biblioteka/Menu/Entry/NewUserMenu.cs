@@ -22,9 +22,19 @@ namespace Biblioteka.Menu.Entry
                 string name = Console.ReadLine();
                 Console.WriteLine("Podaj nazwisko:");
                 string surname = Console.ReadLine();
-                //Kiedyś zmienić na datę urodzenia
-                Console.WriteLine("Podaj wiek:");
-                int age = ReadOption();
+                Console.WriteLine("Podaj datę urodzenia w formacie yyyy-MM-dd");
+                DateTime dateOfBirth = DateTime.Parse(Console.ReadLine());
+                DateTime today = DateTime.Today;
+                TimeSpan timeSpan = new TimeSpan();
+                timeSpan = today - dateOfBirth;
+                int age = today.Year - dateOfBirth.Year;
+                if (dateOfBirth.Date > today.AddYears(-age))
+                {
+                    age--;
+                } else
+                {
+                    age = today.Year - dateOfBirth.Year;
+                }
                 Console.WriteLine("Podaj adres email:");
                 string email = Console.ReadLine();
                 Console.WriteLine("Podaj hasło:");

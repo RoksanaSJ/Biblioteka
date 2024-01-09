@@ -17,7 +17,6 @@ namespace Biblioteka.Menu.Entry
             _loginMenu = new LoginMenu(library);
             _newUserMenu = new NewUserMenu(library);
         }
-
         public override void PrintMenu()
         {
             while (true)
