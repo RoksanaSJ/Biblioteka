@@ -12,12 +12,12 @@ namespace Biblioteka.Menu.Login
 {
     internal class LoginMenu : Menu
     {
-        private LibraryMenu _libraryMenu;
+        private LibraryMenuForAdmin _libraryMenu;
         private LibraryMenuForReader _libraryMenuForReader;
         private LibraryMenuForLibrarian _libraryMenuForLibrarian;
         public LoginMenu(Library library) : base(library)
         {
-            _libraryMenu = new LibraryMenu(library);
+            _libraryMenu = new LibraryMenuForAdmin(library);
             _libraryMenuForReader = new LibraryMenuForReader(library);
             _libraryMenuForLibrarian = new LibraryMenuForLibrarian(library);
         }
@@ -53,7 +53,7 @@ namespace Biblioteka.Menu.Login
             }
             if (isEqual == false)
             {
-                Console.WriteLine("Niestety twoje dane są niepoprawne");
+                Log.PrintErrorMessage("Niestety twoje dane są niepoprawne");
             }
         }
     }
