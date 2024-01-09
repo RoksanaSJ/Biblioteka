@@ -55,7 +55,7 @@ namespace Biblioteka.Menu.Entry
                         }
                         else
                         {
-                            Log.PrintErrorMessage("Hasło musi mieć: conajmniej 8 znaków, conajmniej 1 znak specjalny, mała i dużą literę oraz liczbę");
+                            Log.PrintErrorMessage("Hasło musi mieć: conajmniej 8 znaków, conajmniej 1 znak specjalny, małą i dużą literę oraz liczbę");
                         }
                     }
                     else
@@ -105,7 +105,7 @@ namespace Biblioteka.Menu.Entry
             }
             else
             {
-            Log.PrintErrorMessage("Ten adrea email jest już przypisany do konta");
+            Log.PrintErrorMessage("Ten adres email jest już przypisany do konta");
             return false;
             }
         }

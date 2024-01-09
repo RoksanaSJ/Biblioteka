@@ -75,8 +75,9 @@ namespace Biblioteka
         {
             return currentUser;
         }
-        public string GetUsersEmail()
+        public List<string> GetUsersEmail()
         {
+            List<string> usersEmails;
             foreach(User user in UsersList)
             {
                 return user.GetEmail();
