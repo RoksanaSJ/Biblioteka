@@ -75,14 +75,14 @@ namespace Biblioteka
         {
             return currentUser;
         }
-        public List<string> GetUsersEmail()
+        public List<string> GetUsersEmails()
         {
             List<string> usersEmails = new List<string>();
             foreach(User user in UsersList)
             {
-                return user.GetEmail();
+                usersEmails.Add(user.GetEmail());
             }
-            return null;
+            return usersEmails;
         }
         public void SetCurrentUser(User currentUser)
         {

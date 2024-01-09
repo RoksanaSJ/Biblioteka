@@ -99,7 +99,7 @@ namespace Biblioteka.Menu.Entry
         }
         public bool ValidateUniqnessEmail(string email)
         {
-            if (!Library.GetUsersEmail().Contains(email))
+            if (!Library.GetUsersEmails().Contains(email))
             {
                 return true;
             }
