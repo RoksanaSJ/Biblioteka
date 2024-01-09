@@ -42,7 +42,7 @@ namespace Biblioteka.Menu.Login
                     }
                     else if(user.GetUserRole()== UserRole.Librarian) 
                     {
-                        _libraryMenu.PrintMenu();
+                        _libraryMenuForLibrarian.PrintMenu();
                     }
                     else
                     {
