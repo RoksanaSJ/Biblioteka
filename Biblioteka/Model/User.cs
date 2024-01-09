@@ -40,6 +40,10 @@ namespace Biblioteka.Model
             Password = password;
         }
         //TODO toString();
+        public override string ToString()
+        {
+            return "Email: " + Email + " Rola: " + UserRole;
+        }
         public override string ToCSV()
         {
             return Email + "," + Password + "," + UserRole;

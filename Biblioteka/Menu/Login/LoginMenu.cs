@@ -13,9 +13,11 @@ namespace Biblioteka.Menu.Login
     internal class LoginMenu : Menu
     {
         private LibraryMenu _libraryMenu;
+        private LibraryMenuForReader _libraryMenuForReader;
         public LoginMenu(Library library) : base(library)
         {
             _libraryMenu = new LibraryMenu(library);
+            _libraryMenuForReader = new LibraryMenuForReader(library);
         }
 
         public override void PrintMenu()
@@ -31,7 +33,18 @@ namespace Biblioteka.Menu.Login
                 if (user.GetEmail().Equals(userEmail) && user.GetPassword().Equals(userPassword))
                 {
                     Library.SetCurrentUser(user);
-                    _libraryMenu.PrintMenu();
+                    if(user.GetUserRole() == UserRole.Administrator)
+                    {
+                        _libraryMenu.PrintMenu();
+                    }
+                    else if(user.GetUserRole()== UserRole.Librarian) 
+                    {
+                    
+                    }
+                    else
+                    {
+                        _libraryMenuForReader.PrintMenu();
+                    }
                     isEqual = true;
                 }
             }

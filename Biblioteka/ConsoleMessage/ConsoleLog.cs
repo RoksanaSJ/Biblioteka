@@ -30,5 +30,12 @@ namespace Biblioteka.ConsoleMessage
             Console.ResetColor();
             Console.WriteLine("");
         }
+        public void PrintCurrentUserMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            Console.WriteLine("");
+        }
     }
 }

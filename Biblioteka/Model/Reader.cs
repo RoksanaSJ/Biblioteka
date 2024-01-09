@@ -32,6 +32,10 @@ namespace Biblioteka.Model
         {
             return Age;
         }
+        public User GetUser()
+        {
+            return LibraryUser;
+        }
         public void SetAge(int readersAge)
         {
             Age = readersAge;

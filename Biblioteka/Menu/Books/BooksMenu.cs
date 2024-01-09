@@ -9,15 +9,11 @@ namespace Biblioteka.Menu.Books
     internal class BooksMenu :Menu
     {
         private AddBookMenu _addBookMenu;
-        private SearchByTitleMenu _searchByTitleMenu;
-        private SearchByAuthorMenu _searchByAuthorMenu;
         private RemoveBookMenu _removeBookMenu;
         private SearchBookMenu _searchBookMenu;
         public BooksMenu(Library library) : base(library)
         {
             _addBookMenu = new AddBookMenu(library);
-            _searchByTitleMenu = new SearchByTitleMenu(library);
-            _searchByAuthorMenu = new SearchByAuthorMenu(library);
             _removeBookMenu = new RemoveBookMenu(library);
             _searchBookMenu = new SearchBookMenu(library);
         }

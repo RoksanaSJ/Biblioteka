@@ -75,6 +75,14 @@ namespace Biblioteka
         {
             return currentUser;
         }
+        public string GetUsersEmail()
+        {
+            foreach(User user in UsersList)
+            {
+                return user.GetEmail();
+            }
+            return null;
+        }
         public void SetCurrentUser(User currentUser)
         {
             this.currentUser = currentUser;

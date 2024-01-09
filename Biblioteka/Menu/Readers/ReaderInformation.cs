@@ -74,5 +74,53 @@ namespace Biblioteka.Menu.Readers
                 }
             }
         }
+        public void PrintMenuForCurrentUser()
+        {
+            while (true)
+            {
+                List<Reader> readers = Library.GetReaders();
+                User currentUser = Library.GetCurrentUser();
+                List<User> userInfo = Library.GetUsers();
+                List<Borrowing> borrowings = new List<Borrowing>();
+                borrowings = Library.GetBorrowings();
+                List<Returning> readerReturnings = new List<Returning>();
+                readerReturnings = Library.GetReturnings();
+                Log.PrintInformationMessage("Dane użytkownika: ");
+                foreach(Reader reader in readers)
+                {
+                    if (reader.GetUser().Equals(currentUser))
+                    {
+                        Console.WriteLine(reader);
+                    }
+                }
+                Console.WriteLine("");
+                foreach (User user in userInfo)
+                {
+                    if (user.Equals(currentUser))
+                    {
+                        Console.WriteLine(user);
+                    }
+                }
+                Console.WriteLine("");
+                Log.PrintInformationMessage("Wypożyczenia użytkowanika: ");
+                foreach (Borrowing borrowing in borrowings)
+                {
+                    if (borrowing.GetReader().GetUser().Equals(currentUser))
+                    {
+                        Console.WriteLine(borrowing);
+                    }
+                }
+                Console.WriteLine("");
+                Log.PrintInformationMessage("Historia wypożyczeń użytkowanika: ");
+                foreach (Returning returning in readerReturnings)
+                {
+                    if (returning.GetReader().GetUser().Equals(currentUser))
+                    {
+                        Console.WriteLine(returning);
+                    }
+                }
+                break;
+            }
+        }
     }
 }
