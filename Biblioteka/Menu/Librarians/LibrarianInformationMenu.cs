@@ -15,33 +15,29 @@ namespace Biblioteka.Menu.Librarians
         }
         public override void PrintMenu()
         {
-            //while (true)
-            //{
-            //    List<Librarian> librarians = Library.GetLibrarians();
-            //    User currentUser = Library.GetCurrentUser();
-            //    List<User> userInfo = Library.GetUsers();
-            //    List<Borrowing> borrowings = new List<Borrowing>();
-            //    borrowings = Library.GetBorrowings();
-            //    List<Returning> readerReturnings = new List<Returning>();
-            //    readerReturnings = Library.GetReturnings();
-            //    Log.PrintInformationMessage("Dane użytkownika: ");
-            //    foreach (Librarian librarian in librarians)
-            //    {
-            //        if (librarian.GetUser().Equals(currentUser))
-            //        {
-            //            Console.WriteLine(librarian);
-            //        }
-            //    }
-            //    Console.WriteLine("");
-            //    foreach (User user in userInfo)
-            //    {
-            //        if (user.Equals(currentUser))
-            //        {
-            //            Console.WriteLine(user);
-            //        }
-            //    }
-            //    break;
-            //}
+            while (true)
+            {
+                List<Librarian> librarians = Library.GetLibrarians();
+                User currentUser = Library.GetCurrentUser();
+                List<User> userInfo = Library.GetUsers();
+                Log.PrintInformationMessage("Dane użytkownika: ");
+                foreach (Librarian librarian in librarians)
+                {
+                    if (librarian.GetUser().Equals(currentUser))
+                    {
+                        Console.WriteLine(librarian);
+                    }
+                }
+                Console.WriteLine("");
+                foreach (User user in userInfo)
+                {
+                    if (user.Equals(currentUser))
+                    {
+                        Console.WriteLine(user);
+                    }
+                }
+                break;
+            }
         }
     }
 }
