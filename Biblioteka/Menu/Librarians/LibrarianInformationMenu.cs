@@ -9,7 +9,7 @@ namespace Biblioteka.Menu.Librarians
 {
     internal class LibrarianInformationMenu : Menu
     {
-        LibrarianInformationMenu(Library library) : base(library)
+        public LibrarianInformationMenu(Library library) : base(library)
         {
 
         }

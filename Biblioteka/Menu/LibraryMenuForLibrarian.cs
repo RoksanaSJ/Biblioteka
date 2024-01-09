@@ -21,6 +21,7 @@ namespace Biblioteka.Menu
         private ImportExportMenu _importExportMenu;
         private LibrarianMenu _librarianMenu;
         private ChargeMenu _chargeMenu;
+        private LibrarianInformationMenu _librarianInformationMenu;
         public LibraryMenuForLibrarian(Library library) : base(library)
         {
             _booksMenu = new BooksMenu(library);
@@ -29,6 +30,7 @@ namespace Biblioteka.Menu
             _importExportMenu = new ImportExportMenu(library);
             _librarianMenu = new LibrarianMenu(library);
             _chargeMenu = new ChargeMenu(library);
+            _librarianInformationMenu = new LibrarianInformationMenu(library);
         }
         public override void PrintMenu()
         {
@@ -48,7 +50,7 @@ namespace Biblioteka.Menu
                 Console.WriteLine("");
                 if(option == 1)
                 {
-                    //TODO
+                    _librarianInformationMenu.PrintMenu();
                 }
                 else if (option == 2)
                 {
