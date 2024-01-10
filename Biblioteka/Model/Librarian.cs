@@ -11,6 +11,7 @@ namespace Biblioteka.Model
     {
         protected int ID { get; }
         protected int Age { get; }
+        protected User User { get; }
         public Librarian(string name, string surname, int age, int ID) : base(name, surname)
         {
             this.ID = ID;
@@ -21,6 +22,12 @@ namespace Biblioteka.Model
             ID = IDGenerator.GenerateID();
             Age = age;
         }
+        public Librarian(string name, string surname, int age, User user) : base(name, surname)
+        {
+            ID = IDGenerator.GenerateID();
+            Age = age;
+            User = user;
+        }
         public int GetID()
         {
             return ID;
@@ -28,6 +35,10 @@ namespace Biblioteka.Model
         public int GetAge()
         {
             return Age;
+        }
+        public User GetUser()
+        {
+            return User;
         }
         public override string ToString()
         {

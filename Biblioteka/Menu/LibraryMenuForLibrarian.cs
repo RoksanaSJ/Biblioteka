@@ -18,17 +18,15 @@ namespace Biblioteka.Menu
         private BooksMenu _booksMenu;
         private ReaderMenu _readerMenu;
         private BorrowingBookMenu _borrowingBookMenu;
-        private ImportExportMenu _importExportMenu;
-        private LibrarianMenu _librarianMenu;
         private ChargeMenu _chargeMenu;
+        private LibrarianInformationMenu _librarianInformationMenu;
         public LibraryMenuForLibrarian(Library library) : base(library)
         {
             _booksMenu = new BooksMenu(library);
             _readerMenu = new ReaderMenu(library);
             _borrowingBookMenu = new BorrowingBookMenu(library);
-            _importExportMenu = new ImportExportMenu(library);
-            _librarianMenu = new LibrarianMenu(library);
             _chargeMenu = new ChargeMenu(library);
+            _librarianInformationMenu = new LibrarianInformationMenu(library);
         }
         public override void PrintMenu()
         {
@@ -36,7 +34,7 @@ namespace Biblioteka.Menu
             {
                 User currentUser = Library.GetCurrentUser();
                 Log.PrintCurrentUserMessage("Zalogowano jako: " + currentUser.GetEmail());
-                Console.WriteLine("1.Konto pracowinia");
+                Console.WriteLine("1.Konto pracownika");
                 Console.WriteLine("2.Menu książek");
                 Console.WriteLine("3.Menu czytelników");
                 Console.WriteLine("4.Menu wypożyczenia");
@@ -48,7 +46,7 @@ namespace Biblioteka.Menu
                 Console.WriteLine("");
                 if(option == 1)
                 {
-                    //TODO
+                    _librarianInformationMenu.PrintMenu();
                 }
                 else if (option == 2)
                 {

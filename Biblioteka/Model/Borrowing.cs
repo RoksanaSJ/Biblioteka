@@ -9,17 +9,23 @@ namespace Biblioteka.Model
     internal class Borrowing : Record
     {
         protected DateTime BorrowingDate { get; set; }
+        protected DateTime PlannedReturningDate { get; set; }
         protected Book Book { get; set; }
         protected Reader Reader { get; set; }
-        public Borrowing(DateTime date, Book book, Reader reader) : base()
+        public Borrowing(DateTime date, DateTime plannedReturningDate, Book book, Reader reader) : base()
         {
             BorrowingDate = date;
+            PlannedReturningDate = plannedReturningDate;
             this.Reader = reader;
             this.Book = book;
         }
-        public DateTime GetDate()
+        public DateTime GetBorrowingDate()
         {
             return BorrowingDate;
+        }
+        public DateTime GetPlannedReturningDate()
+        {
+            return PlannedReturningDate;
         }
         public Book GetBook()
         {
@@ -33,6 +39,12 @@ namespace Biblioteka.Model
         {
             BorrowingDate = DateTime.Now;
         }
+        public void SetPlannedReturningDate()
+        {
+            DateTime borrowingDate = GetBorrowingDate();
+            DateTime returningDate = borrowingDate.AddDays(31);
+            PlannedReturningDate = returningDate;
+        }
         public void SetBorrowedBook(Book borrowedBook)
         {
             Book = borrowedBook;
@@ -43,11 +55,11 @@ namespace Biblioteka.Model
         }
         public override string ToString()
         {
-            return "Wypożyczenie: data wypożyczenia: " + BorrowingDate + $" \n" + Reader + ", \n" + Book +"\n";
+            return "Wypożyczenie: data wypożyczenia: " + BorrowingDate + " Planowana data oddania" + PlannedReturningDate +$" \n" + Reader + ", \n" + Book +"\n";
         }
         public override string ToCSV()
         {
-            return BorrowingDate + "," + Reader.GetID()+ "," + Book.GetID();
+            return BorrowingDate + "," + PlannedReturningDate + "," + Reader.GetID()+ "," + Book.GetID();
         }
     }
 }

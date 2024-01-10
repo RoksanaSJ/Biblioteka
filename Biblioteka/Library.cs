@@ -13,7 +13,7 @@ namespace Biblioteka
     internal class Library
     {
         const int MAXBOOKS = 5;
-        protected User currentUser { get; set; }
+        protected User CurrentUser { get; set; }
         protected List<Book> BooksList { get; }
         protected List<Reader> ReadersList { get; }
         protected List<Librarian> EmployeesList { get; }
@@ -73,20 +73,20 @@ namespace Biblioteka
         }
         public User GetCurrentUser()
         {
-            return currentUser;
+            return CurrentUser;
         }
-        public List<string> GetUsersEmail()
+        public List<string> GetUsersEmails()
         {
-            List<string> usersEmails;
+            List<string> usersEmails = new List<string>();
             foreach(User user in UsersList)
             {
-                return user.GetEmail();
+                usersEmails.Add(user.GetEmail());
             }
-            return null;
+            return usersEmails;
         }
         public void SetCurrentUser(User currentUser)
         {
-            this.currentUser = currentUser;
+            this.CurrentUser = currentUser;
         }
         public void ListTheBooks()
         {
@@ -200,9 +200,9 @@ namespace Biblioteka
             {
                 if (CountReaderBorrowings(c.GetID()) < MAXBOOKS)
                 {
-                    DateTime date = new DateTime();
-                    date = DateTime.Now;
-                    Borrowing borrow = new Borrowing(date, k, c);
+                    DateTime borrowingDate = DateTime.Now;
+                    DateTime plannedReturningDate = borrowingDate.AddDays(31); 
+                    Borrowing borrow = new Borrowing(borrowingDate, plannedReturningDate, k, c);
                     BorrowingList.Add(borrow);
                     // książka zarezerwowana
                     k.Booked();

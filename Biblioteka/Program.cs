@@ -7,10 +7,10 @@ namespace Biblioteka
 {
     internal class Program
     {
-        static Librarian employee = new Librarian("Dropsik", "B", 10);
-        static Librarian employee2 = new Librarian("Leonardo", "DiCaprio", 49);
-        static Librarian employee3 = new Librarian("Johny", "Deep", 60);
-        static Librarian employee4 = new Librarian("Tomasz", "Karolak", 52);
+        //static Librarian employee = new Librarian("Dropsik", "B", 10);
+        //static Librarian employee2 = new Librarian("Leonardo", "DiCaprio", 49);
+        //static Librarian employee3 = new Librarian("Johny", "Deep", 60);
+        //static Librarian employee4 = new Librarian("Tomasz", "Karolak", 52);
 
         //static Reader reader = new Reader("Roksana", "SJ", 23);
         //static Reader reader2 = new Reader("Puchacz", "S", 2);
@@ -53,7 +53,9 @@ namespace Biblioteka
         //static Book book28 = new Book("Sara", "Shepard", "Bez Skazy");
         //static Book book29 = new Book("Sara", "Shepard", "Doskonałe");
         //static Book book30 = new Book("Sara", "Shepard", "Niewiarygodne");
-        static User user1 = new User("admin@gmail.com", "admin",UserRole.Administrator);
+        static User user1 = new User("a@gmail.com", "admin",UserRole.Administrator);
+        static User user2 = new User("l@gmail.com", "librarian", UserRole.Librarian);
+        static User user3 = new User("r@gmail.com", "reader", UserRole.Reader);
         static void Main(string[] args)
         {
             Library library = new Library();
@@ -79,7 +81,8 @@ namespace Biblioteka
             //library.AddEmployee(employee3);
             //library.AddEmployee(employee4);
             library.AddUser(user1);
-
+            library.AddUser(user2);
+            library.AddUser(user3);
             //LibraryMenu libraryMenu = new LibraryMenu(library);
             //libraryMenu.PrintMenu();
             entryMenu.PrintMenu();

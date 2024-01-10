@@ -66,16 +66,16 @@ namespace Biblioteka.Menu.Borrowings
         private decimal CountCharge(Borrowing borrowing)
         {
             DateTime borrowingDate = new DateTime();
-            borrowingDate = (DateTime)borrowing.GetDate();
+            borrowingDate = (DateTime)borrowing.GetBorrowingDate();
             DateTime returningDate = new DateTime();
             returningDate = DateTime.Now;
             TimeSpan timeSpan = new TimeSpan();
             var span = returningDate.Subtract(borrowingDate);
             int days = span.Days;
             decimal charge = 0;
-            if (days > 2)
+            if (days > 31)
             {
-                decimal overkeepingDays = ((decimal)days - 2m);
+                decimal overkeepingDays = ((decimal)days - 31m);
                 charge = overkeepingDays * 0.1m;
                 Log.PrintErrorMessage($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr. \n Musisz zapłacić {charge} zł");
             }

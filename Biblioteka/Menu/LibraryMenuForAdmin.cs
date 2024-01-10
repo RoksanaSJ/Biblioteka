@@ -13,7 +13,7 @@ using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Books
 {
-    internal class LibraryMenu : Menu
+    internal class LibraryMenuForAdmin : Menu
     {
         private BooksMenu _booksMenu;
         private ReaderMenu _readerMenu;
@@ -21,7 +21,7 @@ namespace Biblioteka.Menu.Books
         private ImportExportMenu _importExportMenu;
         private LibrarianMenu _librarianMenu;
         private ChargeMenu _chargeMenu;
-        public LibraryMenu(Library library) : base(library)
+        public LibraryMenuForAdmin(Library library) : base(library)
         {
             _booksMenu = new BooksMenu(library);
             _readerMenu = new ReaderMenu(library);
@@ -35,7 +35,6 @@ namespace Biblioteka.Menu.Books
             while (true)
             {
                 User currentUser = Library.GetCurrentUser();
-                //TODO dla admina to menu a dla czytelnika osobne i osobne dla pracownika
                 Log.PrintCurrentUserMessage("Zalogowano jako: " + currentUser.GetEmail());
                 Console.WriteLine("1.Menu książek");
                 Console.WriteLine("2.Menu czytelników");

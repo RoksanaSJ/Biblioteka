@@ -51,7 +51,7 @@ namespace Biblioteka.Menu.Entry
                             Reader reader = new Reader(name, surname, age, newUser);
                             Library.AddUser(newUser);
                             Library.AddReader(reader);
-                            Log.PrintSuccessMessage("Gratulację! utworzyłeś profil nowego użytkownika!");
+                            Log.PrintSuccessMessage("\nGratulację! utworzyłeś profil nowego użytkownika!");
                         }
                         else
                         {
@@ -99,7 +99,7 @@ namespace Biblioteka.Menu.Entry
         }
         public bool ValidateUniqnessEmail(string email)
         {
-            if (!Library.GetUsersEmail().Contains(email))
+            if (!Library.GetUsersEmails().Contains(email))
             {
                 return true;
             }
