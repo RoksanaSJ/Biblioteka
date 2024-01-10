@@ -13,6 +13,7 @@ namespace Biblioteka.Model
         protected string Email {  get; set; }
         protected string Password { get; set; }
         protected UserRole UserRole { get; }
+        // TODO PASSWORD NEED TO BE CHANGED
         public User(string email, string password, UserRole userRole)
         {
             this.Email = email;
