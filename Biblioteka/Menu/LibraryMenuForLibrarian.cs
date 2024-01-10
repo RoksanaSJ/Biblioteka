@@ -34,7 +34,7 @@ namespace Biblioteka.Menu
             {
                 User currentUser = Library.GetCurrentUser();
                 Log.PrintCurrentUserMessage("Zalogowano jako: " + currentUser.GetEmail());
-                Console.WriteLine("1.Konto pracowinika");
+                Console.WriteLine("1.Konto pracownika");
                 Console.WriteLine("2.Menu książek");
                 Console.WriteLine("3.Menu czytelników");
                 Console.WriteLine("4.Menu wypożyczenia");

@@ -12,12 +12,12 @@ namespace Biblioteka.Menu.Login
 {
     internal class LoginMenu : Menu
     {
-        private LibraryMenuForAdmin _libraryMenu;
+        private LibraryMenuForAdmin _libraryMenuForAdmin;
         private LibraryMenuForReader _libraryMenuForReader;
         private LibraryMenuForLibrarian _libraryMenuForLibrarian;
         public LoginMenu(Library library) : base(library)
         {
-            _libraryMenu = new LibraryMenuForAdmin(library);
+            _libraryMenuForAdmin = new LibraryMenuForAdmin(library);
             _libraryMenuForReader = new LibraryMenuForReader(library);
             _libraryMenuForLibrarian = new LibraryMenuForLibrarian(library);
         }
@@ -37,7 +37,7 @@ namespace Biblioteka.Menu.Login
                     Library.SetCurrentUser(user);
                     if(user.GetUserRole() == UserRole.Administrator)
                     {
-                        _libraryMenu.PrintMenu();
+                        _libraryMenuForAdmin.PrintMenu();
 
                     }
                     else if(user.GetUserRole()== UserRole.Librarian) 
