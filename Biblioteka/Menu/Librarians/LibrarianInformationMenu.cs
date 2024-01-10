@@ -26,13 +26,8 @@ namespace Biblioteka.Menu.Librarians
                     Console.WriteLine(librarian);
                 }
             }
-            foreach (User user in userInfo)
-            {
-                if (user.Equals(currentUser))
-                {
-                    Console.WriteLine(user);
-                }
-            }
+            Console.WriteLine("");
+            Console.WriteLine(currentUser);
         }
     }
 }
