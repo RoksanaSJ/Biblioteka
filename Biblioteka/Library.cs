@@ -200,9 +200,9 @@ namespace Biblioteka
             {
                 if (CountReaderBorrowings(c.GetID()) < MAXBOOKS)
                 {
-                    DateTime date = new DateTime();
-                    date = DateTime.Now;
-                    Borrowing borrow = new Borrowing(date, k, c);
+                    DateTime borrowingDate = DateTime.Now;
+                    DateTime plannedReturningDate = borrowingDate.AddDays(31); 
+                    Borrowing borrow = new Borrowing(borrowingDate, plannedReturningDate, k, c);
                     BorrowingList.Add(borrow);
                     // książka zarezerwowana
                     k.Booked();

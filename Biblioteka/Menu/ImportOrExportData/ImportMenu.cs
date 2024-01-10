@@ -144,13 +144,14 @@ namespace Biblioteka.Menu.ImportOrExportData
             foreach (String line in csvContentList)
             {
                 string[] splitedBookBorrowing = line.Split(',');
-                int readerID = int.Parse(splitedBookBorrowing[1]);
-                int bookID = int.Parse(splitedBookBorrowing[2]);
+                int readerID = int.Parse(splitedBookBorrowing[2]);
+                int bookID = int.Parse(splitedBookBorrowing[3]);
                 Book bookFound = Library.FindBookByID(bookID);
                 Reader readerFound = Library.FindReaderByID(readerID);
                 //TODO
                 DateTime dateTimeFound = DateTime.ParseExact(splitedBookBorrowing[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                Borrowing borrowingFound = new Borrowing(dateTimeFound, bookFound, readerFound);
+                DateTime plannedReturningDateFound = DateTime.ParseExact(splitedBookBorrowing[1], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                Borrowing borrowingFound = new Borrowing(dateTimeFound, plannedReturningDateFound, bookFound, readerFound);
                 Library.AddBorrowing(borrowingFound);
             }
         }

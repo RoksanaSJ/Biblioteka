@@ -9,12 +9,10 @@ namespace Biblioteka.Menu.Readers
 {
     internal class ReaderMenu : Menu
     {
-        private AddReaderMenu _addReaderInit;
         private DeleteRerader _removeReaderInit;
         private ReaderInformation _readerInformationInit;
         public ReaderMenu(Library library) : base(library)
         {
-            _addReaderInit = new AddReaderMenu(library);
             _removeReaderInit = new DeleteRerader(library);
             _readerInformationInit = new ReaderInformation(library);
         }
@@ -22,7 +20,6 @@ namespace Biblioteka.Menu.Readers
         {
             while (true)
             {
-                //Console.WriteLine("1.Dodaj czytelnika");
                 Console.WriteLine("1.Usuń czytelnika");
                 Console.WriteLine("2.Wypisz wszystkich czytelników");
                 Console.WriteLine("3.Wypisz wszystkie powiązane rekordy z wyszukanym czytelnikiem");
@@ -30,12 +27,7 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("Podaj opcję: ");
                 int option = ReadOption();
                 Console.WriteLine(" ");
-                //if (option == 1)
-                //{
-                //    _addReaderInit.PrintMenu();
-                //    Console.WriteLine("");
-                //}
-                /*else*/ if (option == 1)
+                if (option == 1)
                 {
                     _removeReaderInit.PrintMenu();
                     Console.WriteLine("");

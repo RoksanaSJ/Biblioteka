@@ -15,27 +15,23 @@ namespace Biblioteka.Menu.Librarians
         }
         public override void PrintMenu()
         {
-            while (true)
+            List<Librarian> librarians = Library.GetLibrarians();
+            User currentUser = Library.GetCurrentUser();
+            List<User> userInfo = Library.GetUsers();
+            Log.PrintInformationMessage("Dane użytkownika: ");
+            foreach (Librarian librarian in librarians)
             {
-                List<Librarian> librarians = Library.GetLibrarians();
-                User currentUser = Library.GetCurrentUser();
-                List<User> userInfo = Library.GetUsers();
-                Log.PrintInformationMessage("Dane użytkownika: ");
-                foreach (Librarian librarian in librarians)
+                if (librarian.GetUser().Equals(currentUser))
                 {
-                    if (librarian.GetUser().Equals(currentUser))
-                    {
-                        Console.WriteLine(librarian);
-                    }
+                    Console.WriteLine(librarian);
                 }
-                foreach (User user in userInfo)
+            }
+            foreach (User user in userInfo)
+            {
+                if (user.Equals(currentUser))
                 {
-                    if (user.Equals(currentUser))
-                    {
-                        Console.WriteLine(user);
-                    }
+                    Console.WriteLine(user);
                 }
-                break;
             }
         }
     }
