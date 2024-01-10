@@ -13,7 +13,7 @@ namespace Biblioteka
     internal class Library
     {
         const int MAXBOOKS = 5;
-        protected User currentUser { get; set; }
+        protected User CurrentUser { get; set; }
         protected List<Book> BooksList { get; }
         protected List<Reader> ReadersList { get; }
         protected List<Librarian> EmployeesList { get; }
@@ -73,7 +73,7 @@ namespace Biblioteka
         }
         public User GetCurrentUser()
         {
-            return currentUser;
+            return CurrentUser;
         }
         public List<string> GetUsersEmails()
         {
@@ -86,7 +86,7 @@ namespace Biblioteka
         }
         public void SetCurrentUser(User currentUser)
         {
-            this.currentUser = currentUser;
+            this.CurrentUser = currentUser;
         }
         public void ListTheBooks()
         {

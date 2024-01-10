@@ -51,8 +51,7 @@ namespace Biblioteka.Menu.Entry
                             Reader reader = new Reader(name, surname, age, newUser);
                             Library.AddUser(newUser);
                             Library.AddReader(reader);
-                            Console.WriteLine("");
-                            Log.PrintSuccessMessage("Gratulację! utworzyłeś profil nowego użytkownika!");
+                            Log.PrintSuccessMessage("\nGratulację! utworzyłeś profil nowego użytkownika!");
                         }
                         else
                         {
