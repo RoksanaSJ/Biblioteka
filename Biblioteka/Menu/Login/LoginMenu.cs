@@ -45,6 +45,24 @@ namespace Biblioteka.Menu.Login
                     else if (user.GetUserRole() == UserRole.Librarian)
                     {
                         isLibrarian = true;
+                        if(user.GetInfoAboutPassword() == true)
+                        {
+                            Log.PrintInformationMessage("Musisz zmienic hasło");
+                            Console.WriteLine("Podaj nowe hasło:");
+                            string newPassword = Console.ReadLine();
+                            Console.WriteLine("Powtórz nowe hasło:");
+                            string repeatedNewPassword = Console.ReadLine();
+                            if(repeatedNewPassword == newPassword) 
+                            {
+                                user.SetPassword(repeatedNewPassword);
+                                user.SetIfPasswordIsNotNeededToBeChanged();
+                                Log.PrintSuccessMessage("Garatulację, właśnie zmieniłeś hasło!");
+                            }
+                            else
+                            {
+                                Log.PrintErrorMessage("Hasła muszą być takie same!");
+                            }
+                        }
                     }
                     else if (user.GetUserRole() == UserRole.Reader)
                     {
@@ -62,7 +80,7 @@ namespace Biblioteka.Menu.Login
                 _libraryMenuForAdmin.PrintMenu();
             }
             else if (isLibrarian == true)
-            {
+            { 
                 _libraryMenuForLibrarian.PrintMenu();
             }
             else if (isReader == true)

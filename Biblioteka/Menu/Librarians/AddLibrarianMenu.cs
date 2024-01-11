@@ -37,8 +37,6 @@ namespace Biblioteka.Menu.Librarians
                     User user = new User(email,temporaryPassword,UserRole.Librarian);
                     user.SetIfPasswordIsNeededToBeChanged();
                     Librarian librarian = new Librarian(name, surname, age,user);
-                    Library.AddEmployee(librarian);
-                    //przez dadanie usera wywala błąd
                     Library.AddUser(user);
                     Log.PrintSuccessMessage($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
                     Log.PrintInformationMessage("\nTymczasowe hasło dla użytkownika, to: " + temporaryPassword);

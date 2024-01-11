@@ -49,6 +49,10 @@ namespace Biblioteka.Model
         {
             PasswordNeedToBeChanged = true;
         }
+        public void SetIfPasswordIsNotNeededToBeChanged()
+        {
+            PasswordNeedToBeChanged = false;
+        }
         public override string ToString()
         {
             return "Email: " + Email + " Rola: " + UserRole;
