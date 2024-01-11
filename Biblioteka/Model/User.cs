@@ -13,12 +13,13 @@ namespace Biblioteka.Model
         protected string Email {  get; set; }
         protected string Password { get; set; }
         protected UserRole UserRole { get; }
-        // TODO PASSWORD NEED TO BE CHANGED
+        protected bool PasswordNeedToBeChanged { get; set; }
         public User(string email, string password, UserRole userRole)
         {
             this.Email = email;
             this.Password = password;
-            UserRole = userRole;
+            this.UserRole = userRole;
+            this.PasswordNeedToBeChanged = false;
         }
         public string GetEmail()
         {
@@ -32,6 +33,10 @@ namespace Biblioteka.Model
         {
             return UserRole;
         }
+        public bool GetInfoAboutPassword()
+        {
+            return PasswordNeedToBeChanged;
+        }
         public void SetEmail(string usersEmail)
         {
             Email = usersEmail;
@@ -40,7 +45,10 @@ namespace Biblioteka.Model
         {
             Password = password;
         }
-        //TODO toString();
+        public void SetIfPasswordIsNeededToBeChanged()
+        {
+            PasswordNeedToBeChanged = true;
+        }
         public override string ToString()
         {
             return "Email: " + Email + " Rola: " + UserRole;
