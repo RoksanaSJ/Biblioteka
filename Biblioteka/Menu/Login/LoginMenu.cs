@@ -30,23 +30,43 @@ namespace Biblioteka.Menu.Login
             Console.WriteLine("");
             List<User> tempUsersList = Library.GetUsers();
             bool isEqual = false;
+            bool isAdmin = false;
+            bool isLibrarian = false;
+            bool isReader = false;
             foreach (User user in tempUsersList)
             {
                 if (user.GetEmail().Equals(userEmail) && user.GetPassword().Equals(userPassword))
                 {
                     Library.SetCurrentUser(user);
-                    if(user.GetUserRole() == UserRole.Administrator)
+                    if (user.GetUserRole() == UserRole.Administrator)
                     {
-                        _libraryMenuForAdmin.PrintMenu();
-
+                        isAdmin = true;
                     }
-                    else if(user.GetUserRole()== UserRole.Librarian) 
+                    else if (user.GetUserRole() == UserRole.Librarian)
                     {
-                        _libraryMenuForLibrarian.PrintMenu();
+                        isLibrarian = true;
+                        if(user.GetInfoAboutPassword() == true)
+                        {
+                            Log.PrintInformationMessage("Musisz zmienic hasło");
+                            Console.WriteLine("Podaj nowe hasło:");
+                            string newPassword = Console.ReadLine();
+                            Console.WriteLine("Powtórz nowe hasło:");
+                            string repeatedNewPassword = Console.ReadLine();
+                            if(repeatedNewPassword == newPassword) 
+                            {
+                                user.SetPassword(repeatedNewPassword);
+                                user.SetIfPasswordIsNotNeededToBeChanged();
+                                Log.PrintSuccessMessage("Garatulację, właśnie zmieniłeś hasło!");
+                            }
+                            else
+                            {
+                                Log.PrintErrorMessage("Hasła muszą być takie same!");
+                            }
+                        }
                     }
-                    else
+                    else if (user.GetUserRole() == UserRole.Reader)
                     {
-                        _libraryMenuForReader.PrintMenu();
+                        isReader = true;
                     }
                     isEqual = true;
                 }
@@ -54,6 +74,18 @@ namespace Biblioteka.Menu.Login
             if (isEqual == false)
             {
                 Log.PrintErrorMessage("Niestety twoje dane są niepoprawne");
+            }
+            if (isAdmin == true)
+            {
+                _libraryMenuForAdmin.PrintMenu();
+            }
+            else if (isLibrarian == true)
+            { 
+                _libraryMenuForLibrarian.PrintMenu();
+            }
+            else if (isReader == true)
+            {
+                _libraryMenuForReader.PrintMenu();
             }
         }
     }
