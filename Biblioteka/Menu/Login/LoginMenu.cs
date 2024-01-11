@@ -30,23 +30,25 @@ namespace Biblioteka.Menu.Login
             Console.WriteLine("");
             List<User> tempUsersList = Library.GetUsers();
             bool isEqual = false;
+            bool isAdmin = false;
+            bool isLibrarian = false;
+            bool isReader = false;
             foreach (User user in tempUsersList)
             {
                 if (user.GetEmail().Equals(userEmail) && user.GetPassword().Equals(userPassword))
                 {
                     Library.SetCurrentUser(user);
-                    if(user.GetUserRole() == UserRole.Administrator)
+                    if (user.GetUserRole() == UserRole.Administrator)
                     {
-                        _libraryMenuForAdmin.PrintMenu();
-
+                        isAdmin = true;
                     }
-                    else if(user.GetUserRole()== UserRole.Librarian) 
+                    else if (user.GetUserRole() == UserRole.Librarian)
                     {
-                        _libraryMenuForLibrarian.PrintMenu();
+                        isLibrarian = true;
                     }
-                    else
+                    else if (user.GetUserRole() == UserRole.Reader)
                     {
-                        _libraryMenuForReader.PrintMenu();
+                        isReader = true;
                     }
                     isEqual = true;
                 }
@@ -54,6 +56,18 @@ namespace Biblioteka.Menu.Login
             if (isEqual == false)
             {
                 Log.PrintErrorMessage("Niestety twoje dane są niepoprawne");
+            }
+            if (isAdmin == true)
+            {
+                _libraryMenuForAdmin.PrintMenu();
+            }
+            else if (isLibrarian == true)
+            {
+                _libraryMenuForLibrarian.PrintMenu();
+            }
+            else if (isReader == true)
+            {
+                _libraryMenuForReader.PrintMenu();
             }
         }
     }
