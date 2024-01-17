@@ -19,10 +19,11 @@ namespace Biblioteka.Model
             Age = age;
             LibraryUser = libraryUser;
         }
-        public Reader(int ID, string name, string surname, int age) : base(name, surname)
+        public Reader(int ID, string name, string surname, int age, User libraryUser) : base(name, surname)
         {
             this.ID = ID;
             Age = age;
+            LibraryUser = libraryUser;
         }
         public int GetID()
         {
@@ -59,7 +60,7 @@ namespace Biblioteka.Model
         }
         public override string ToCSV()
         {
-            return  ID + "," + Name + "," + Surname + "," + Age;
+            return  ID + "," + Name + "," + Surname + "," + Age + "," + LibraryUser.GetEmail();
         }
     }
 }

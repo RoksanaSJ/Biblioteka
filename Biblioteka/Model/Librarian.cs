@@ -12,10 +12,11 @@ namespace Biblioteka.Model
         protected int ID { get; }
         protected int Age { get; }
         protected User User { get; }
-        public Librarian(string name, string surname, int age, int ID) : base(name, surname)
+        public Librarian(string name, string surname, int age, int ID, User user) : base(name, surname)
         {
             this.ID = ID;
             Age = age;
+            User = user;
         }
         public Librarian(string name, string surname, int age) : base(name, surname)
         {
@@ -46,7 +47,7 @@ namespace Biblioteka.Model
         }
         public override string ToCSV()
         {
-            return ID + "," + Name +","+ Surname + "," + Age;
+            return ID + "," + Name +","+ Surname + "," + Age + "," + User.GetEmail();
         }
     }
 }
