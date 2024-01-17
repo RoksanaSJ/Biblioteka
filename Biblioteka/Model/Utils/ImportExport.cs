@@ -18,6 +18,7 @@ namespace Biblioteka.Model.Utils
         const string RETURNINGCSV = "returning.csv";
         const string LIBRARIANCSV = "librarian.csv";
         const string CHARGEINFORMATIONCSV = "chargeinformation.csv";
+        const string USERCSV = "user.csv";
         private Library Library;
         private ConsoleLog Log;
         public ImportExport(Library library) 
@@ -37,6 +38,8 @@ namespace Biblioteka.Model.Utils
             Console.WriteLine("Wypakowano paczkę zip");
             Library.ClearAllData();
             Console.WriteLine("Rozpoczęcie importowania danych");
+            ImportUsers();
+            Console.WriteLine("Zaimportowano użytkowników");
             ImportBooks();
             Console.WriteLine("Zaimportowano książki");
             ImportReaders();
@@ -52,7 +55,8 @@ namespace Biblioteka.Model.Utils
 
             ImportID();
 
-            string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV, FILEPATH + CHARGEINFORMATIONCSV };
+            string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, 
+                FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV, FILEPATH + CHARGEINFORMATIONCSV, FILEPATH + USERCSV};
 
             foreach (string file in files)
             {
@@ -61,13 +65,15 @@ namespace Biblioteka.Model.Utils
         }
         public void Export(string zipFile)
         {
-            string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV, FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV, FILEPATH + CHARGEINFORMATIONCSV };
+            string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV,
+                FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV, FILEPATH + CHARGEINFORMATIONCSV, FILEPATH + USERCSV };
             SaveToFile(READERCSV, Library.GetReaders());
             SaveToFile(BOOKCSV, Library.GetAllBooks());
             SaveToFile(BORROWINGCSV, Library.GetBorrowings());
             SaveToFile(RETURNINGCSV, Library.GetReturnings());
             SaveToFile(LIBRARIANCSV, Library.GetLibrarians());
             SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformation());
+            SaveToFile(USERCSV, Library.GetUsers());
 
             using (ZipArchive zip = ZipFile.Open(FILEPATH + zipFile, ZipArchiveMode.Update))
             {
@@ -77,6 +83,7 @@ namespace Biblioteka.Model.Utils
                 zip.CreateEntryFromFile(FILEPATH + RETURNINGCSV, RETURNINGCSV);
                 zip.CreateEntryFromFile(FILEPATH + LIBRARIANCSV, LIBRARIANCSV);
                 zip.CreateEntryFromFile(FILEPATH + CHARGEINFORMATIONCSV, CHARGEINFORMATIONCSV);
+                zip.CreateEntryFromFile(FILEPATH + USERCSV, USERCSV);
             }
             foreach (string file in files)
             {
@@ -141,6 +148,7 @@ namespace Biblioteka.Model.Utils
         private void ImportLibrarians()
         {
             List<String> csvContentList = ReadCsv("librarian.csv");
+            List<User> users = Library.GetUsers();
             foreach (String line in csvContentList)
             {
                 string[] splitedLibrarian = line.Split(',');
@@ -148,13 +156,21 @@ namespace Biblioteka.Model.Utils
                 string surname = splitedLibrarian[2];
                 int age = int.Parse(splitedLibrarian[3]);
                 int ID = int.Parse(splitedLibrarian[0]);
-                Librarian librarian = new Librarian(name, surname, age, ID);
-                Library.AddEmployee(librarian);
+                string email = splitedLibrarian[4];
+                foreach (User user in users)
+                {
+                    if (user.GetEmail().Equals(email))
+                    {
+                        Librarian librarian = new Librarian(name, surname, age, ID, user);
+                        Library.AddEmployee(librarian);
+                    }
+                }
             }
         }
         private void ImportReaders()
         {
             List<String> csvContentList = ReadCsv("reader.csv");
+            List<User> users = Library.GetUsers();
             foreach (String line in csvContentList)
             {
                 string[] splitedReader = line.Split(',');
@@ -162,8 +178,15 @@ namespace Biblioteka.Model.Utils
                 string surname = splitedReader[2];
                 int age = int.Parse(splitedReader[3]);
                 int ID = int.Parse(splitedReader[0]);
-                Reader reader = new Reader(ID, name, surname, age);
-                Library.AddReader(reader);
+                string email = splitedReader[4];
+                foreach(User user in users)
+                {
+                    if(user.GetEmail().Equals(email))
+                    {
+                        Reader reader = new Reader(ID, name, surname, age,user);
+                        Library.AddReader(reader);
+                    }
+                }
             }
         }
         private void ImportBorrowing()
@@ -217,6 +240,36 @@ namespace Biblioteka.Model.Utils
                         Library.AddChargeInformation(chargeInformation);
                     }
                 }
+            }
+        }
+        public void ImportUsers()
+        {
+            List<String> csvContentList = ReadCsv("user.csv");
+            List<User> usersTemp = Library.GetUsers();
+            foreach (String line in csvContentList)
+            {
+                string[] splitedUsers = line.Split(',');
+                string email = splitedUsers[0];
+                string password = splitedUsers[1];
+                UserRole userRole = ConvertToRole(splitedUsers[2]);
+                bool requiredPasswordChange = bool.Parse(splitedUsers[3]);
+                User user = new User(email, password, userRole,requiredPasswordChange);
+                Library.AddUser(user);
+            }
+        }
+        private UserRole ConvertToRole(string role)
+        {
+            if (role.Equals("Administrator"))
+            {
+                return UserRole.Administrator;
+            }
+            else if (role.Equals("Reader"))
+            {
+                return UserRole.Reader;
+            }
+            else
+            {
+                return UserRole.Librarian;
             }
         }
         private void ImportID()

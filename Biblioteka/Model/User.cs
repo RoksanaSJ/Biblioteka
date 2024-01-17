@@ -21,6 +21,13 @@ namespace Biblioteka.Model
             this.UserRole = userRole;
             this.RequiredPasswordChange = false;
         }
+        public User(string email, string password, UserRole userRole, bool RequiredPasswordChange)
+        {
+            this.Email = email;
+            this.Password = password;
+            this.UserRole = userRole;
+            this.RequiredPasswordChange = true;
+        }
         public string GetEmail()
         {
             return Email;
@@ -57,9 +64,10 @@ namespace Biblioteka.Model
         {
             return "Email: " + Email + " Rola: " + UserRole;
         }
+
         public override string ToCSV()
         {
-            return Email + "," + Password + "," + UserRole;
+            return Email + "," + Password + "," + UserRole + "," + RequiredPasswordChange;
         }
     }
 }
