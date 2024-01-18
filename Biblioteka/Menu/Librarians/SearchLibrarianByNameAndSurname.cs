@@ -20,14 +20,11 @@ namespace Biblioteka.Menu.Librarians
                 Console.WriteLine("Podaj dane, po których chcesz szukać pracownika");
                 Console.WriteLine("Podaj imię:");
                 string name = Console.ReadLine();
-                Console.WriteLine("");
                 Console.WriteLine("Podaj nazwisko");
                 string surname = Console.ReadLine();
-                Console.WriteLine("");
                 Console.WriteLine($"Czy to są dane, po których chcesz wyszukać pracownika: {name}, {surname}?");
                 Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                     List<Librarian> librarians = Library.GetLibrarians();
@@ -37,7 +34,6 @@ namespace Biblioteka.Menu.Librarians
                         if (librarian.GetName().Equals(name) && librarian.GetSurname().Equals(surname))
                         {
                             Log.PrintInformationMessage($"{librarian}");
-                            Console.WriteLine("");
                             isItEqual = true;
                         }
                     }

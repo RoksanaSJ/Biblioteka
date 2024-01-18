@@ -44,7 +44,6 @@ namespace Biblioteka.Menu
                 Console.WriteLine("8.Zakończ");
                 Console.WriteLine("Wpisz opcje: ");
                 int option = ReadOption();
-                Console.WriteLine("");
                 if (option == 1)
                 {
                     _readerInformation.PrintMenuForCurrentUser();
@@ -55,10 +54,8 @@ namespace Biblioteka.Menu
                 }
                 else if (option == 3)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
                     Log.PrintInformationMessage("Lista książek:");
                     Library.ListTheBooks();
-                    Console.WriteLine("");
                 }
                 else if (option == 4)
                 {

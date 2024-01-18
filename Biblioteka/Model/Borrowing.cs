@@ -8,10 +8,10 @@ namespace Biblioteka.Model
 {
     internal class Borrowing : Record
     {
-        protected DateTime BorrowingDate { get; set; }
-        protected DateTime PlannedReturningDate { get; set; }
-        protected Book Book { get; set; }
-        protected Reader Reader { get; set; }
+        private DateTime BorrowingDate { get; set; }
+        private DateTime PlannedReturningDate { get; set; }
+        private Book Book { get; set; }
+        private Reader Reader { get; set; }
         public Borrowing(DateTime date, DateTime plannedReturningDate, Book book, Reader reader) : base()
         {
             BorrowingDate = date;

@@ -28,7 +28,6 @@ namespace Biblioteka.Menu.Librarians
                 Console.WriteLine("5.Wróć");
                 Console.WriteLine("Podaj opcję:");
                 int option = ReadOption();
-                Console.WriteLine("");
                 if (option == 1)
                 {
                     _addLibrarianMenu.PrintMenu();
@@ -45,7 +44,6 @@ namespace Biblioteka.Menu.Librarians
                 {
                     Log.PrintInformationMessage($"Lista pracowników: ");
                     Library.ListTheLibrarians();
-                    Console.WriteLine("");
                 }
                 else if (option == 5)
                 {

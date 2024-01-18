@@ -27,7 +27,7 @@ namespace Biblioteka.Menu.Login
             string userEmail = Console.ReadLine();
             Console.WriteLine("Podaj swoje hasło:");
             string userPassword = Console.ReadLine();
-            Console.WriteLine("");
+            //to co poniżej - osobna metoda w klasie library, lub więcej niż 1 metoda
             List<User> tempUsersList = Library.GetUsers();
             bool isEqual = false;
             bool isAdmin = false;

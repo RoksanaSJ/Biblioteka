@@ -9,9 +9,9 @@ namespace Biblioteka.Model
 {
     internal class Librarian : Person
     {
-        protected int ID { get; }
-        protected int Age { get; }
-        protected User User { get; }
+        private int ID { get; }
+        private int Age { get; }
+        private User User { get; }
         public Librarian(string name, string surname, int age, int ID, User user) : base(name, surname)
         {
             this.ID = ID;

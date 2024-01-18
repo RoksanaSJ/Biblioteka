@@ -19,12 +19,9 @@ namespace Biblioteka.Menu.Books
             {
                 Console.WriteLine("Podaj tytuł:");
                 string searchingTitle = Console.ReadLine();
-                Console.WriteLine("");
-                Console.WriteLine($"Czy tytuł, po którym chcesz wyszukać książkę ma następującą nazwę: {searchingTitle}?");
-                Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
-                Console.WriteLine("");
+                Console.WriteLine($"\nCzy tytuł, po którym chcesz wyszukać książkę ma następującą nazwę: {searchingTitle}?");
+                Console.WriteLine("\nJeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                     Library.CountAvailableBooks(searchingTitle);

@@ -10,9 +10,9 @@ namespace Biblioteka.Model
 {
     public class Reader : Person
     {
-        protected int ID { get; }
-        protected int Age { get; set; }
-        protected User LibraryUser { get; } 
+        private int ID { get; }
+        private int Age { get; set; }
+        private User LibraryUser { get; } 
         public Reader(string name, string surname, int age, User libraryUser) : base(name, surname)
         {
             ID = IDGenerator.GenerateID();

@@ -33,6 +33,7 @@ namespace Biblioteka.Menu.Librarians
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
+                    //z tego też osobna metoda w klasie library?
                     string temporaryPassword = PasswordGenerator.GenerateSimplePassword();
                     User user = new User(email,temporaryPassword,UserRole.Librarian);
                     user.SetIfPasswordIsNeededToBeChanged();

@@ -26,6 +26,7 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
+                    //osobna metoda w klasie library, a nawet więcej niż 1 metoda
                     List<Reader> readerInfo = new List<Reader>();
                     readerInfo = Library.GetReaders();
                     List<Borrowing> borrowings = new List<Borrowing>();

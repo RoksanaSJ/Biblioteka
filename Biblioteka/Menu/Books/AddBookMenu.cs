@@ -22,23 +22,17 @@ namespace Biblioteka.Menu.Books
                 returningDate = DateTime.Now;
                 TimeSpan timeSpan = new TimeSpan();
                 timeSpan = returningDate - borrowingDate;
-                Console.WriteLine("");
-                Console.WriteLine("Podaj tytuł książki: ");
+                Console.WriteLine("\nPodaj tytuł książki: ");
                 string title = Console.ReadLine();
-                Console.WriteLine("");
-                Console.WriteLine("Podaj imię autora: ");
+                Console.WriteLine("\nPodaj imię autora: ");
                 string name = Console.ReadLine();
-                Console.WriteLine("");
-                Console.WriteLine("Podaj nazwisko autora: ");
+                Console.WriteLine("\nPodaj nazwisko autora: ");
                 string surname = Console.ReadLine();
-                Console.WriteLine("");
-                Console.WriteLine("Podaj kategorie ksiażki (po przecinku)");
+                Console.WriteLine("\nPodaj kategorie ksiażki (po przecinku)");
                 string category = Console.ReadLine();
-                Console.WriteLine("");
-                Console.WriteLine($"Czy książka, którą chcesz dodać ma następujące parametry: Tytuł: {title}, Autor: {name} {surname}, Kategoria: {category}?");
-                Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do menu książki wpisz 'b':");
+                Console.WriteLine($"\nCzy książka, którą chcesz dodać ma następujące parametry: Tytuł: {title}, Autor: {name} {surname}, Kategoria: {category}?");
+                Console.WriteLine("\nJeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do menu książki wpisz 'b':");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                     HashSet<String> bookCategories = new HashSet<String>();

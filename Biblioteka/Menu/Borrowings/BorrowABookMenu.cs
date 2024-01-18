@@ -23,12 +23,12 @@ namespace Biblioteka.Menu.Borrowings
                 int userID = ReadOption();
                 Console.WriteLine("Podaj ID książki");
                 int ID = ReadOption();
-                Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
-                Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
+                Console.WriteLine($"\nCzy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
+                Console.WriteLine("\nJeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
+                    //tak samo, metoda w klasie library
                     List<Book> allBooks = Library.GetAllBooks();
                     List<Reader> readers = Library.GetReaders();
                     List<int> notFound = new List<int>();

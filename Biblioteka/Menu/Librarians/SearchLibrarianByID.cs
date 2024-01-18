@@ -19,13 +19,12 @@ namespace Biblioteka.Menu.Librarians
             {
                 Console.WriteLine("Podaj ID, po którym chcesz wyszukać pracownika:");
                 int ID = ReadOption();
-                Console.WriteLine("");
                 Console.WriteLine($"Czy ID, po którym chcesz wyszukać pracownika ma następujące ID: {ID}?");
                 Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
+                    //osobna metoda w klasie library
                     List<Librarian> librarians = Library.GetLibrarians();
                     bool isItEqual = false;
                     foreach (Librarian librarian in librarians)

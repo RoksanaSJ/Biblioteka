@@ -28,6 +28,7 @@ namespace Biblioteka.Menu.Borrowings
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
+                    //jako metoda w klasie library
                     Book bookFound = Library.FindBookByID(bookID);
                     Reader readerFound = Library.FindReaderByID(userID);
                     Borrowing borrowingFound = Library.FindBorrowingByReaderAndBook(bookFound, readerFound);
@@ -63,6 +64,7 @@ namespace Biblioteka.Menu.Borrowings
                 }
             }
         }
+        //oosbna klasa z tą metodą
         private decimal CountCharge(Borrowing borrowing)
         {
             DateTime borrowingDate = new DateTime();

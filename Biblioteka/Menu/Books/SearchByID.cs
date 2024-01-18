@@ -26,6 +26,7 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
+                    //Ten blok jako osobna metoda do klasy library
                     List<Book> allBooks = Library.GetAllBooks();
                     bool isAvailable = false;
                     foreach (var book in allBooks)

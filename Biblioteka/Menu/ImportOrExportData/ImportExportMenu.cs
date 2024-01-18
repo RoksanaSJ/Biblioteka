@@ -19,7 +19,6 @@ namespace Biblioteka.Menu.ImportOrExportData
         {
             while (true)
             {
-                Console.WriteLine("");
                 Console.WriteLine("1.Export danych");
                 Console.WriteLine("2.Import danych");
                 Console.WriteLine("3.Wróć");

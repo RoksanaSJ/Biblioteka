@@ -8,7 +8,11 @@ namespace Biblioteka.ConsoleMessage
 {
     internal class ConsoleLog
     {
-        public ConsoleLog() { }
+        public ConsoleLog() 
+        { 
+        
+        }
+
         public void PrintErrorMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -16,6 +20,7 @@ namespace Biblioteka.ConsoleMessage
             Console.ResetColor();
             Console.WriteLine("");
         }
+
         public void PrintSuccessMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -23,6 +28,7 @@ namespace Biblioteka.ConsoleMessage
             Console.ResetColor();
             Console.WriteLine("");
         }
+
         public void PrintInformationMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -30,6 +36,7 @@ namespace Biblioteka.ConsoleMessage
             Console.ResetColor();
             Console.WriteLine("");
         }
+
         public void PrintCurrentUserMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;

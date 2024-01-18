@@ -24,10 +24,9 @@ namespace Biblioteka.Menu.Books
                 {
                     if (book.GetID() == ID)
                     {
-                        Console.WriteLine($"Czy to jest ta ksiażka, którą chcesz usunąć? {book}?");
+                        Console.WriteLine($"\nCzy to jest ta ksiażka, którą chcesz usunąć? {book}?");
                         Console.WriteLine("Wpisz 'y' jeśli tak, 'n' jeśli nie 'b' jeśli chcesz wrócić");
                         string option = Console.ReadLine();
-                        Console.WriteLine("");
                         if (option.Equals("y"))
                         {
                             toRemove.Add(book);
@@ -48,6 +47,7 @@ namespace Biblioteka.Menu.Books
                         }
                     }
                 }
+                //Czy ten foreach powinniśmi przenieść do osobnej metody?
                 foreach (var book in toRemove)
                 {
                     allBooks.Remove(book);

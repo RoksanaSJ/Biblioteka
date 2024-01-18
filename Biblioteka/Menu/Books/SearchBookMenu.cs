@@ -28,9 +28,8 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("3.Wyszukaj po ID");
                 Console.WriteLine("4.Wyszukaj po kategorii");
                 Console.WriteLine("5.Wróć");
-                Console.WriteLine("Podaj opcję: ");
+                Console.WriteLine("\nPodaj opcję: ");
                 int choose = ReadOption();
-                Console.WriteLine("");
                 if (choose == 1)
                 {
                     _searchByAuthorMenu.PrintMenu();

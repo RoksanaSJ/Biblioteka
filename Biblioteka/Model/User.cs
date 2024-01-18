@@ -10,10 +10,10 @@ namespace Biblioteka.Model
 {
     public class User : Record
     {
-        protected string Email {  get; set; }
-        protected string Password { get; set; }
-        protected UserRole UserRole { get; }
-        protected bool RequiredPasswordChange { get; set; }
+        private string Email {  get; set; }
+        private string Password { get; set; }
+        private UserRole UserRole { get; }
+        private bool RequiredPasswordChange { get; set; }
         public User(string email, string password, UserRole userRole)
         {
             this.Email = email;

@@ -10,6 +10,7 @@ using Biblioteka.Model;
 
 namespace Biblioteka
 {
+    //klasę library dzielimy na mniejsze klasy?
     internal class Library
     {
         const int MAXBOOKS = 5;
@@ -193,7 +194,6 @@ namespace Biblioteka
         }
         public void BorrowBook(Book k, Reader c)
         {
-            //Czytelnik może wypożyczyć max 5 książek
             List<Book> readerBooks = new List<Book>();
 
             if (k.GetState() == Book.BookState.Available)
@@ -204,7 +204,6 @@ namespace Biblioteka
                     DateTime plannedReturningDate = borrowingDate.AddDays(31); 
                     Borrowing borrow = new Borrowing(borrowingDate, plannedReturningDate, k, c);
                     BorrowingList.Add(borrow);
-                    // książka zarezerwowana
                     k.Booked();
                     Log.PrintInformationMessage("Zmieniono status książki na BOOKED");
                     readerBooks.Add(k);
@@ -225,7 +224,6 @@ namespace Biblioteka
             Returning ret = new Returning(date, b, r);
             ReturningList.Add(ret);
             RemoveBorrowingFromBorrowingList(b, r);
-            //Książka dostępna
             b.Available();
             Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
         }

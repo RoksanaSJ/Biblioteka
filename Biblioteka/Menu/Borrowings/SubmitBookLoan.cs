@@ -21,10 +21,9 @@ namespace Biblioteka.Menu.Borrowings
                 int readerID = ReadOption();
                 Console.WriteLine("Podaj ID książki");
                 int bookID = ReadOption();
-                Console.WriteLine($"Czy dane, które podałeś się zgadzają: ID czytelnika {readerID}, ID książki {bookID}");
-                Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
+                Console.WriteLine($"\nCzy dane, które podałeś się zgadzają: ID czytelnika {readerID}, ID książki {bookID}");
+                Console.WriteLine("\nJeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                     Library.SubmitBorrowing(bookID, readerID);

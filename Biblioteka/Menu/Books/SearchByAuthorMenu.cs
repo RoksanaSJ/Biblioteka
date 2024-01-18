@@ -22,15 +22,12 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("Podaje nazwisko autora: ");
                 string surname = Console.ReadLine();
                 string authorData = name + " " + surname;
-                Console.WriteLine("");
-                Console.WriteLine($"Czy autor, po którym chcesz wyszukać książkę ma następujące dane: {authorData}?");
-                Console.WriteLine("");
-                Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
-                Console.WriteLine("");
+                Console.WriteLine($"\nCzy autor, po którym chcesz wyszukać książkę ma następujące dane: {authorData}?");
+                Console.WriteLine("\nJeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
+                    //Teb blok jako osobną metodę do klasy library?
                     List<Book> allBooks = Library.GetAllBooks();
                     bool isAvailable = false;
                     foreach (var book in allBooks)

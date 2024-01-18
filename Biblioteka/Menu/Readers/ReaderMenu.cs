@@ -26,23 +26,19 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("4.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = ReadOption();
-                Console.WriteLine(" ");
                 if (option == 1)
                 {
                     _removeReaderInit.PrintMenu();
-                    Console.WriteLine("");
                 }
                 else if (option == 2)
                 {
                     Log.PrintInformationMessage("Lista czytelników:");
                     Library.ListTheReaders();
-                    Console.WriteLine("");
                 }
                 else if (option == 3)
                 {
                     Log.PrintInformationMessage("Wszytskie rekordy powiązane z cztelnikiem:");
                     _readerInformationInit.PrintMenu();
-                    Console.WriteLine("");
                 }
                 else if (option == 4)
                 {

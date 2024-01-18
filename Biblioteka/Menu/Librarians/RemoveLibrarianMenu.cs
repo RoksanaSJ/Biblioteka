@@ -19,13 +19,12 @@ namespace Biblioteka.Menu.Librarians
             {
                 Console.WriteLine("Podaj ID:");
                 int ID = ReadOption();
-
                 Console.WriteLine($"Czy pracownik, którego chcesz usunąć ma następujące ID: {ID}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić do menu książki wpisz 'b':");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
+                    // to też do osobnejmetody w klasie library?
                     List<Librarian> librarians = Library.GetLibrarians();
                     List<Librarian> toRemove = new List<Librarian> ();
                     bool isItEqual = false;
