@@ -1,4 +1,5 @@
 ﻿using Biblioteka.Model;
+using Biblioteka.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,32 +19,24 @@ namespace Biblioteka.Menu.Books
             while (true)
             {
                 Console.WriteLine("Podaj ID książki: ");
-                int booksID = int.Parse(Console.ReadLine());
-                Console.WriteLine("");
-                Console.WriteLine($"Czy ID, po którym chcesz wyszukać książkę ma następujące ID: {booksID}?");
+                int bookID = int.Parse(Console.ReadLine());
+                Console.WriteLine($"\nCzy ID, po którym chcesz wyszukać książkę ma następujące ID: {bookID}?");
                 Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
                 string userOption = Console.ReadLine();
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    //Ten blok jako osobna metoda do klasy library
-                    List<Book> allBooks = Library.GetAllBooks();
-                    bool isAvailable = false;
-                    foreach (var book in allBooks)
-                    {
-                        if (book.GetID() == booksID)
-                        {
-                            Log.PrintSuccessMessage($"Gratulację! Udało ci się wyszukać książkę o ID {booksID}");
-                            Console.WriteLine(book);
-                            Console.WriteLine("");
-                            isAvailable = true;
-                        }
-                    }
-                    if (isAvailable == false)
+                    Book foundBook = Library.GetBookRepository().FindBookByID(bookID);
+                    if (foundBook == null)
                     {
                         Log.PrintErrorMessage("Niestety nie ma książki o takim ID.");
                     }
-                    break;
+                    else
+                    {
+                        Log.PrintSuccessMessage($"Gratulację! Udało ci się wyszukać książkę o ID {ID}");
+                        Console.WriteLine(foundBook);
+                        Console.WriteLine("");
+                    }
                 }
                 else if (userOption.Equals("n"))
                 {

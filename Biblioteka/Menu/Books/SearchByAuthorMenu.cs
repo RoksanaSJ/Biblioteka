@@ -21,28 +21,13 @@ namespace Biblioteka.Menu.Books
                 string name = Console.ReadLine();
                 Console.WriteLine("Podaje nazwisko autora: ");
                 string surname = Console.ReadLine();
-                string authorData = name + " " + surname;
-                Console.WriteLine($"\nCzy autor, po którym chcesz wyszukać książkę ma następujące dane: {authorData}?");
+                string fullName = name + " " + surname;
+                Console.WriteLine($"\nCzy autor, po którym chcesz wyszukać książkę ma następujące dane: {fullName}?");
                 Console.WriteLine("\nJeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    //Teb blok jako osobną metodę do klasy library?
-                    List<Book> allBooks = Library.GetAllBooks();
-                    bool isAvailable = false;
-                    foreach (var book in allBooks)
-                    {
-                        if (book.GetAuthor().GetNameAndSurname().Contains(authorData))
-                        {
-                            Console.WriteLine(book);
-                            isAvailable = true;
-                        }
-                    }
-                    if (isAvailable == false)
-                    {
-                        Log.PrintErrorMessage("Niestety nie ma książki napisanej przez takiego autora.");
-                    }
-                    break;
+                    Library.FindBookByAuthor(fullName);
                 }
                 else if (userOption.Equals("n"))
                 {
