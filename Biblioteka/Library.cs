@@ -254,37 +254,6 @@ namespace Biblioteka
             }
             return null;
         }
-        public void FindBookByCategory(string category)
-        {
-            List<Book> oneCategoryBooksList = new List<Book>();
-            foreach (Book book in BookRepository.GetBooks())
-            {
-                if (book.getCategory().Contains(category))
-                {
-                    oneCategoryBooksList.Add(book);
-                }
-            }
-            foreach (Book book in oneCategoryBooksList)
-            {
-                Console.WriteLine(book);
-            }
-        }
-        public void FindBookByAuthor(string fullName)
-        {
-            bool isAvailable = false;
-            foreach (var book in BookRepository.GetBooks())
-            {
-                if (book.GetAuthor().GetNameAndSurname().Contains(fullName))
-                {
-                    Console.WriteLine(book);
-                    isAvailable = true;
-                }
-            }
-            if (isAvailable == false)
-            {
-                Log.PrintErrorMessage("Niestety nie ma książki napisanej przez takiego autora.");
-            }
-        }
         public Borrowing FindBorrowingByReaderAndBook(Book book, Reader reader) 
         { 
             foreach(Borrowing borrowing in BorrowingList)

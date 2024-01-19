@@ -27,7 +27,16 @@ namespace Biblioteka.Menu.Books
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    Library.FindBookByAuthor(fullName);
+                    List<Book> oneAuthorBooks = Library.GetBookRepository().FindBookByAuthor(fullName);
+                    foreach (Book book in oneAuthorBooks)
+                    {
+                        Console.WriteLine(book);
+                    }
+                    if(oneAuthorBooks.Count == 0) 
+                    {
+                        Log.PrintErrorMessage("Niestety nie ma książek należących do tego autora");
+                    }
+                    break;
                 }
                 else if (userOption.Equals("n"))
                 {
