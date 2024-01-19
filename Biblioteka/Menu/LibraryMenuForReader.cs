@@ -55,7 +55,7 @@ namespace Biblioteka.Menu
                 else if (option == 3)
                 {
                     Log.PrintInformationMessage("Lista książek:");
-                    Library.ListTheBooks();
+                    Library.GetBookRepository().ListTheBooks();
                 }
                 else if (option == 4)
                 {

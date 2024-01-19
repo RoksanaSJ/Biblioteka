@@ -29,7 +29,7 @@ namespace Biblioteka.Menu.Borrowings
                 if (userOption.Equals("y"))
                 {
                     //jako metoda w klasie library
-                    Book bookFound = Library.FindBookByID(bookID);
+                    Book bookFound = Library.GetBookRepository().FindBookByID(bookID);
                     Reader readerFound = Library.FindReaderByID(userID);
                     Borrowing borrowingFound = Library.FindBorrowingByReaderAndBook(bookFound, readerFound);
                     if (bookFound != null && readerFound != null && borrowingFound != null)

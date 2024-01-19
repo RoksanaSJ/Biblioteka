@@ -42,7 +42,7 @@ namespace Biblioteka.Menu.Books
                         bookCategories.Add(categories.ToLower());
                     }
                     Book book = new Book(name, surname, title, bookCategories);
-                    Library.AddBook(book);
+                    Library.GetBookRepository().AddBook(book);
                     Log.PrintSuccessMessage(($"Gratulację! Udało ci się dodać książkę: Tytuł: {title}, Autor: {name} {surname}, Kategoria: {category}"));
                     break;
                 }

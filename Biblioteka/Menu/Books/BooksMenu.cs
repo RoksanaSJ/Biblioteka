@@ -43,7 +43,7 @@ namespace Biblioteka.Menu.Books
                 else if (option == 4)
                 {
                     Log.PrintInformationMessage("Lista książek:");
-                    Library.ListTheBooks();
+                    Library.GetBookRepository().ListTheBooks();
                 }
                 else if (option == 5)
                 {

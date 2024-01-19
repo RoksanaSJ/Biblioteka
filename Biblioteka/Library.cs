@@ -45,10 +45,6 @@ namespace Biblioteka
             ChargeInformationList.Clear();
             UsersList.Clear();
         }
-        public List<Book> GetAllBooks()
-        {
-            return BookRepository.GetBooks();
-        }
         public BookRepository GetBookRepository()
         {
             return BookRepository;
@@ -94,10 +90,6 @@ namespace Biblioteka
         {
             this.CurrentUser = currentUser;
         }
-        public void ListTheBooks()
-        {
-            BookRepository.ListTheBooks();
-        }
         public void ListTheReaders()
         {
             foreach (var item in ReadersList)
@@ -139,10 +131,6 @@ namespace Biblioteka
             {
                 Console.WriteLine(users);
             }
-        }
-        public void AddBook(Book k)
-        {
-            BookRepository.AddBook(k);
         }
         public void AddReader(Reader c)
         {
@@ -254,11 +242,6 @@ namespace Biblioteka
             RemoveBorrowingFromBorrowingList(b, r);
             b.Available();
             Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
-        }
-        //osobna klasa dla tych FindBookByID??
-        public Book FindBookByID(int ID)
-        {
-           return BookRepository.FindBookByID(ID);
         }
         public Reader FindReaderByID(int ID)
         {
