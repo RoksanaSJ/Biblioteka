@@ -31,6 +31,7 @@ namespace Biblioteka.Menu.Charge
                 }
                 else if (option == 2)
                 {
+                    //osobna metoda w klasie library
                     Console.WriteLine("Podaj datę początkową w formacie yyyy-MM-dd:");
                     DateTime startDate = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("Podaj datę końcową w formacie yyyy-MM-dd:");

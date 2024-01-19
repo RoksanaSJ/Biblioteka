@@ -9,11 +9,11 @@ namespace Biblioteka.Model
 {
     public class Book : Record
     {
-        protected Author Author { get; }
-        protected int ID { get; }
-        protected string Title { get; }
-        protected BookState State { get; set; }
-        protected HashSet<String> Categories { get; set; }
+        private Author Author { get; }
+        private int ID { get; }
+        private string Title { get; }
+        private BookState State { get; set; }
+        private HashSet<String> Categories { get; set; }
         public Book(string name, string surname, string title, int ID, BookState state, HashSet<String> categories) : base()
         {
             this.ID = ID;

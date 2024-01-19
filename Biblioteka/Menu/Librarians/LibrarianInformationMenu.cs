@@ -19,6 +19,7 @@ namespace Biblioteka.Menu.Librarians
             User currentUser = Library.GetCurrentUser();
             List<User> userInfo = Library.GetUsers();
             Log.PrintInformationMessage("Dane użytkownika: ");
+            //otrzymanie tych danych też powinno być w klasie library?
             foreach (Librarian librarian in librarians)
             {
                 if (librarian.GetUser().Equals(currentUser))

@@ -68,7 +68,7 @@ namespace Biblioteka.Model.Utils
             string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV,
                 FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV, FILEPATH + CHARGEINFORMATIONCSV, FILEPATH + USERCSV };
             SaveToFile(READERCSV, Library.GetReaders());
-            SaveToFile(BOOKCSV, Library.GetAllBooks());
+            SaveToFile(BOOKCSV, Library.GetBookRepository().GetBooks());
             SaveToFile(BORROWINGCSV, Library.GetBorrowings());
             SaveToFile(RETURNINGCSV, Library.GetReturnings());
             SaveToFile(LIBRARIANCSV, Library.GetLibrarians());
@@ -142,7 +142,7 @@ namespace Biblioteka.Model.Utils
                 int ID = int.Parse(splitedBook[0]);
                 Book.BookState bookState = Convert(splitedBook[4]);
                 Book book = new Book(name, surname, title, ID, bookState, categories);
-                Library.AddBook(book);
+                Library.GetBookRepository().AddBook(book);
             }
         }
         private void ImportLibrarians()
@@ -197,7 +197,7 @@ namespace Biblioteka.Model.Utils
                 string[] splitedBookBorrowing = line.Split(',');
                 int readerID = int.Parse(splitedBookBorrowing[2]);
                 int bookID = int.Parse(splitedBookBorrowing[3]);
-                Book bookFound = Library.FindBookByID(bookID);
+                Book bookFound = Library.GetBookRepository().FindBookByID(bookID);
                 Reader readerFound = Library.FindReaderByID(readerID);
                 //TODO
                 DateTime dateTimeFound = DateTime.ParseExact(splitedBookBorrowing[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
@@ -214,7 +214,7 @@ namespace Biblioteka.Model.Utils
                 string[] splitedBookReturning = line.Split(',');
                 int readerID = int.Parse(splitedBookReturning[1]);
                 int bookID = int.Parse(splitedBookReturning[2]);
-                Book bookFound = Library.FindBookByID(bookID);
+                Book bookFound = Library.GetBookRepository().FindBookByID(bookID);
                 Reader readerFound = Library.FindReaderByID(readerID);
                 DateTime dateTimeFound = DateTime.ParseExact(splitedBookReturning[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 Returning returningFound = new Returning(dateTimeFound, bookFound, readerFound);
@@ -274,7 +274,7 @@ namespace Biblioteka.Model.Utils
         }
         private void ImportID()
         {
-            List<Book> bookList = Library.GetAllBooks();
+            List<Book> bookList = Library.GetBookRepository().GetBooks();
             List<Reader> readerList = Library.GetReaders();
             List<Librarian> librarianList = Library.GetLibrarians();
             int maxID = 0;

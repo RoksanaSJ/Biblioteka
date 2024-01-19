@@ -24,6 +24,8 @@ namespace Biblioteka.Menu.Entry
                 string surname = Console.ReadLine();
                 Console.WriteLine("Podaj datę urodzenia w formacie yyyy-MM-dd");
                 DateTime dateOfBirth = DateTime.Parse(Console.ReadLine());
+                //tutaj piwinny być tylko odczytywane te dane a większość z tego co jest niżej powinno być  innej metodzie i te metody co są niżej
+                //być może powinny być w osobnej klasie
                 DateTime today = DateTime.Today;
                 TimeSpan timeSpan = new TimeSpan();
                 timeSpan = today - dateOfBirth;

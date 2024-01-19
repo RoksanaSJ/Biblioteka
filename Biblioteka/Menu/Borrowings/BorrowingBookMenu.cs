@@ -33,7 +33,6 @@ namespace Biblioteka.Menu.Borrowings
                 Console.WriteLine("6.Wróć");
                 Console.WriteLine("Podaj opcję: ");
                 int option = ReadOption();
-                Console.WriteLine("");
                 if (option == 1)
                 {
                     _borrowABookMenu.PrintMenu();
@@ -48,13 +47,11 @@ namespace Biblioteka.Menu.Borrowings
                 {
                     Log.PrintInformationMessage("Lista wypożyczeń: ");
                     Library.ListTheBorrowings();
-                    Console.WriteLine("");
                 }
                 else if (option == 5)
                 {
                     Log.PrintInformationMessage("Lista zwrotów: ");
                     Library.ListTheReturnings();
-                    Console.WriteLine("");
                 }
                 else if (option == 6)
                 {

@@ -26,9 +26,8 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("3.Wyszukaj książkę");
                 Console.WriteLine("4.Wypisz wszystkie książki");
                 Console.WriteLine("5.Wróć");
-                Console.WriteLine("Wpisz opcje: ");
+                Console.WriteLine("\nWpisz opcje: ");
                 int option = ReadOption();
-                Console.WriteLine("");
                 if (option == 1)
                 {
                     _addBookMenu.PrintMenu();
@@ -43,10 +42,8 @@ namespace Biblioteka.Menu.Books
                 }
                 else if (option == 4)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
                     Log.PrintInformationMessage("Lista książek:");
-                    Library.ListTheBooks();
-                    Console.WriteLine("");
+                    Library.GetBookRepository().ListTheBooks();
                 }
                 else if (option == 5)
                 {

@@ -7,14 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.ConsoleMessage;
 using Biblioteka.Model;
+using Biblioteka.Repository;
 
 namespace Biblioteka
 {
+    //klasę library dzielimy na mniejsze klasy?
     internal class Library
     {
         const int MAXBOOKS = 5;
         protected User CurrentUser { get; set; }
-        protected List<Book> BooksList { get; }
+        protected BookRepository BookRepository { get; set; }
         protected List<Reader> ReadersList { get; }
         protected List<Librarian> EmployeesList { get; }
         protected List<Borrowing> BorrowingList { get; }
@@ -24,7 +26,7 @@ namespace Biblioteka
         protected ConsoleLog Log;
         public Library ()
         {
-            BooksList = new List<Book> ();
+            BookRepository = new BookRepository ();
             ReadersList = new List<Reader> ();
             EmployeesList = new List<Librarian> ();
             BorrowingList = new List<Borrowing> ();
@@ -35,7 +37,7 @@ namespace Biblioteka
         }
         public void ClearAllData()
         {
-            BooksList.Clear();
+            BookRepository.GetBooks().Clear();
             ReadersList.Clear();
             EmployeesList.Clear();
             BorrowingList.Clear();
@@ -43,9 +45,9 @@ namespace Biblioteka
             ChargeInformationList.Clear();
             UsersList.Clear();
         }
-        public List<Book> GetAllBooks()
+        public BookRepository GetBookRepository()
         {
-            return BooksList;
+            return BookRepository;
         }
         public List<Reader> GetReaders()
         {
@@ -88,13 +90,6 @@ namespace Biblioteka
         {
             this.CurrentUser = currentUser;
         }
-        public void ListTheBooks()
-        {
-            foreach (var item in BooksList)
-            {
-                Console.WriteLine(item);
-            }
-        }
         public void ListTheReaders()
         {
             foreach (var item in ReadersList)
@@ -136,10 +131,6 @@ namespace Biblioteka
             {
                 Console.WriteLine(users);
             }
-        }
-        public void AddBook(Book k)
-        {
-            BooksList.Add(k);
         }
         public void AddReader(Reader c)
         {
@@ -193,7 +184,6 @@ namespace Biblioteka
         }
         public void BorrowBook(Book k, Reader c)
         {
-            //Czytelnik może wypożyczyć max 5 książek
             List<Book> readerBooks = new List<Book>();
 
             if (k.GetState() == Book.BookState.Available)
@@ -204,7 +194,6 @@ namespace Biblioteka
                     DateTime plannedReturningDate = borrowingDate.AddDays(31); 
                     Borrowing borrow = new Borrowing(borrowingDate, plannedReturningDate, k, c);
                     BorrowingList.Add(borrow);
-                    // książka zarezerwowana
                     k.Booked();
                     Log.PrintInformationMessage("Zmieniono status książki na BOOKED");
                     readerBooks.Add(k);
@@ -218,6 +207,32 @@ namespace Biblioteka
                 Log.PrintErrorMessage("Niestety ta książka jest niedostępna do wypożyczenia");
             }
         }
+        public void BorrowABookByBookAndReaderID(int bookID, int readerID)
+        {
+            List<int> notFound = new List<int>();
+            foreach (var book in BookRepository.GetBooks())
+            {
+                if (book.GetID() == bookID)
+                {
+                    foreach (var reader in ReadersList)
+                    {
+                        if (reader.GetID() == readerID)
+                        {
+                            BorrowBook(book, reader);
+                            Log.PrintSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
+                        }
+                    }
+                }
+                else
+                {
+                    notFound.Add(bookID);
+                }
+            }
+            if (notFound.Count == BookRepository.GetBooks().Count)
+            {
+                Log.PrintErrorMessage("Niestety książka o takim ID nie istnieje");
+            }
+        }
         public void ReturnBook(Book b, Reader r)
         {
             DateTime date = new DateTime();
@@ -225,20 +240,8 @@ namespace Biblioteka
             Returning ret = new Returning(date, b, r);
             ReturningList.Add(ret);
             RemoveBorrowingFromBorrowingList(b, r);
-            //Książka dostępna
             b.Available();
             Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
-        }
-        public Book FindBookByID(int ID)
-        {
-            foreach(Book book in BooksList)
-            {
-                if(book.GetID() == ID)
-                {
-                    return book;
-                }
-            }
-            return null;
         }
         public Reader FindReaderByID(int ID)
         {
@@ -254,7 +257,7 @@ namespace Biblioteka
         public void FindBookByCategory(string category)
         {
             List<Book> oneCategoryBooksList = new List<Book>();
-            foreach (Book book in BooksList)
+            foreach (Book book in BookRepository.GetBooks())
             {
                 if (book.getCategory().Contains(category))
                 {
@@ -264,6 +267,22 @@ namespace Biblioteka
             foreach (Book book in oneCategoryBooksList)
             {
                 Console.WriteLine(book);
+            }
+        }
+        public void FindBookByAuthor(string fullName)
+        {
+            bool isAvailable = false;
+            foreach (var book in BookRepository.GetBooks())
+            {
+                if (book.GetAuthor().GetNameAndSurname().Contains(fullName))
+                {
+                    Console.WriteLine(book);
+                    isAvailable = true;
+                }
+            }
+            if (isAvailable == false)
+            {
+                Log.PrintErrorMessage("Niestety nie ma książki napisanej przez takiego autora.");
             }
         }
         public Borrowing FindBorrowingByReaderAndBook(Book book, Reader reader) 
@@ -294,45 +313,6 @@ namespace Biblioteka
                 Log.PrintErrorMessage("Niestety ten użytkownik, nie dokonał takiego wypożyczenia");
             }
             return counter;
-        }
-        public void CountAvailableBooks(string title)
-        {
-            Log.PrintInformationMessage("Dostępne książki do wypożyczenia:");
-            int available = 0;
-            bool isAvailable = false;
-            foreach (Book book in BooksList)
-            {
-                if (book.GetTitle().Contains(title) && book.GetState() == Book.BookState.Available)
-                {
-                    Console.WriteLine(book);
-                    available++;
-                    isAvailable = true;
-                }
-            }
-            if(isAvailable == false)
-            {
-                Log.PrintErrorMessage("Niestety nie ma książek o takim tytule na stanie");
-            }
-            Console.WriteLine($"Dostępnych książek o tym tytule jest: {available}");
-            Console.WriteLine(" ");
-        }
-        public void CountBookedBooks(string title)
-        {
-            int booked = 0;
-            bool isBooked = false;
-            foreach (Book book in BooksList)
-            {
-                if (book.GetTitle().Contains(title) && book.GetState() == Book.BookState.Booked)
-                {
-                    booked++;
-                    isBooked = true;
-                }
-            }
-            if (isBooked == false)
-            {
-                Log.PrintErrorMessage("Nie ma wypożyczonych książek o takim tytule");
-            }
-            Log.PrintInformationMessage($"Wypożyczonych ksiażek o tym tytule jest: {booked}");
         }
         public void ChargeInformationForSpecificReader(int readerID)
         {

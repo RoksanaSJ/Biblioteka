@@ -43,7 +43,6 @@ namespace Biblioteka.Menu
                 Console.WriteLine("7.Zakończ");
                 Console.WriteLine("Wpisz opcje: ");
                 int option = ReadOption();
-                Console.WriteLine("");
                 if(option == 1)
                 {
                     _librarianInformationMenu.PrintMenu();
@@ -59,7 +58,6 @@ namespace Biblioteka.Menu
                 else if (option == 4)
                 {
                     _borrowingBookMenu.PrintMenu();
-                    Console.WriteLine("");
                 }
                 else if (option == 5)
                 {

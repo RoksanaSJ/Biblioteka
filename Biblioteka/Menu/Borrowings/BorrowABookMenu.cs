@@ -20,41 +20,15 @@ namespace Biblioteka.Menu.Borrowings
             while (true)
             {
                 Console.WriteLine("Podaj swój identyfikator:");
-                int userID = ReadOption();
+                int readerID = ReadOption();
                 Console.WriteLine("Podaj ID książki");
-                int ID = ReadOption();
-                Console.WriteLine($"Czy parametry, które chcesz podać są następujące: twoje ID {userID}, ID książki {ID}?");
-                Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
+                int bookID = ReadOption();
+                Console.WriteLine($"\nCzy parametry, które chcesz podać są następujące: twoje ID {readerID}, ID książki {bookID}?");
+                Console.WriteLine("\nJeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b':");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    List<Book> allBooks = Library.GetAllBooks();
-                    List<Reader> readers = Library.GetReaders();
-                    List<int> notFound = new List<int>();
-                    foreach (var book in allBooks)
-                    {
-                        if (book.GetID() == ID)
-                        {
-                            foreach (var reader in readers)
-                            {
-                                if (reader.GetID() == userID)
-                                {
-                                    Library.BorrowBook(book, reader);
-                                    Log.PrintSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
-                                } 
-                            }
-                        }
-                        else
-                        {
-                            notFound.Add(ID);
-                        }
-                    }
-                    if (notFound.Count == allBooks.Count)
-                    {
-                        Log.PrintErrorMessage("Niestety książka o takim ID nie istnieje");
-                    }
-                    break;
+                    Library.BorrowABookByBookAndReaderID(bookID, readerID);
                 }
                 else if (userOption.Equals("n"))
                 {

@@ -19,13 +19,9 @@ namespace Biblioteka.Menu.Books
             {
                 Console.WriteLine("Podaj kategorie: ");
                 string category = Console.ReadLine();
-                Console.WriteLine("");
-                Console.WriteLine($"Czy kategoria, po którym chcesz wyszukać książkę ma następujące dane: {category}?");
-                Console.WriteLine("");
-                Console.WriteLine("Jeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
-                Console.WriteLine("");
+                Console.WriteLine($"\nCzy kategoria, po którym chcesz wyszukać książkę ma następujące dane: {category}?");
+                Console.WriteLine("\nJeżeli tak wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić wpisz 'b'");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
                     Library.FindBookByCategory(category);
