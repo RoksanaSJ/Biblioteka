@@ -30,6 +30,30 @@ namespace Biblioteka.Repository
             }
             return null;
         }
+        public List<Book> FindBookByCategory(string category)
+        {
+            List<Book> oneCategoryBooksList = new List<Book>();
+            foreach (Book book in BooksList)
+            {
+                if (book.getCategory().Contains(category))
+                {
+                    oneCategoryBooksList.Add(book);
+                }
+            }
+            return oneCategoryBooksList;
+        }
+        public List<Book> FindBookByAuthor(string fullName)
+        {
+            List<Book> oneAuthorBooks = new List<Book>();
+            foreach (var book in BooksList)
+            {
+                if (book.GetAuthor().GetNameAndSurname().Contains(fullName))
+                {
+                    oneAuthorBooks.Add(book);
+                }
+            }
+            return oneAuthorBooks;
+        }
         public void ListTheBooks()
         {
             foreach (var item in BooksList)

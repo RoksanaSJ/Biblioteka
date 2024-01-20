@@ -33,7 +33,7 @@ namespace Biblioteka.Menu.Books
                     }
                     else
                     {
-                        Log.PrintSuccessMessage($"Gratulację! Udało ci się wyszukać książkę o ID {ID}");
+                        Log.PrintSuccessMessage($"Gratulację! Udało ci się wyszukać książkę o ID {bookID}");
                         Console.WriteLine(foundBook);
                         Console.WriteLine("");
                     }

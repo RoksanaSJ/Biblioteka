@@ -24,7 +24,15 @@ namespace Biblioteka.Menu.Books
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    Library.FindBookByCategory(category);
+                    List<Book> oneCategoryBooksList = Library.GetBookRepository().FindBookByCategory(category);
+                    foreach (Book book in oneCategoryBooksList)
+                    {
+                        Console.WriteLine(book);
+                    }
+                    if(oneCategoryBooksList.Count == 0)
+                    {
+                        Log.PrintErrorMessage("Niestety nie ma książek w takiej kategorii");
+                    }
                     break;
                 }
                 else if (userOption.Equals("n"))
