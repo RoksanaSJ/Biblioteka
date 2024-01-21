@@ -31,7 +31,7 @@ namespace Biblioteka.Menu.Borrowings
                     //jako metoda w klasie library
                     Book bookFound = Library.GetBookRepository().FindBookByID(bookID);
                     Reader readerFound = Library.GetReaderRepository().FindReaderByID(userID);
-                    Borrowing borrowingFound = Library.FindBorrowingByReaderAndBook(bookFound, readerFound);
+                    Borrowing borrowingFound = Library.GetBorrowingRepository().FindBorrowingByReaderAndBook(bookFound, readerFound);
                     if (bookFound != null && readerFound != null && borrowingFound != null)
                     {
                         decimal charge = CountCharge(borrowingFound);

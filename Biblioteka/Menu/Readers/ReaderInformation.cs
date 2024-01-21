@@ -30,7 +30,7 @@ namespace Biblioteka.Menu.Readers
                     List<Reader> readerInfo = new List<Reader>();
                     readerInfo = Library.GetReaderRepository().GetReaders();
                     List<Borrowing> borrowings = new List<Borrowing>();
-                    borrowings = Library.GetBorrowings();
+                    borrowings = Library.GetBorrowingRepository().GetBorrowing();
                     List<Returning> readerReturnings = new List<Returning>();
                     readerReturnings = Library.GetReturnings();
                     Log.PrintInformationMessage("Dane użytkownika: ");
@@ -83,7 +83,7 @@ namespace Biblioteka.Menu.Readers
                 User currentUser = Library.GetCurrentUser();
                 List<User> userInfo = Library.GetUsers();
                 List<Borrowing> borrowings = new List<Borrowing>();
-                borrowings = Library.GetBorrowings();
+                borrowings = Library.GetBorrowingRepository().GetBorrowing();
                 List<Returning> readerReturnings = new List<Returning>();
                 readerReturnings = Library.GetReturnings();
                 Log.PrintInformationMessage("Dane użytkownika: ");
