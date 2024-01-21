@@ -229,17 +229,6 @@ namespace Biblioteka
             b.Available();
             Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
         }
-        //public Reader FindReaderByID(int ID)
-        //{
-        //    foreach (Reader reader in ReadersList)
-        //    {
-        //        if (reader.GetID() == ID)
-        //        {
-        //            return reader;
-        //        }
-        //    }
-        //    return null;
-        //}
         public Borrowing FindBorrowingByReaderAndBook(Book book, Reader reader) 
         { 
             foreach(Borrowing borrowing in BorrowingList)
