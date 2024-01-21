@@ -17,7 +17,7 @@ namespace Biblioteka
         const int MAXBOOKS = 5;
         protected User CurrentUser { get; set; }
         protected BookRepository BookRepository { get; set; }
-        protected List<Reader> ReadersList { get; }
+        protected ReaderRepository ReaderRepository { get; set; }
         protected List<Librarian> EmployeesList { get; }
         protected List<Borrowing> BorrowingList { get; }
         protected List<Returning> ReturningList { get; }
@@ -27,7 +27,7 @@ namespace Biblioteka
         public Library ()
         {
             BookRepository = new BookRepository ();
-            ReadersList = new List<Reader> ();
+            ReaderRepository = new ReaderRepository();
             EmployeesList = new List<Librarian> ();
             BorrowingList = new List<Borrowing> ();
             ReturningList = new List<Returning> ();
@@ -38,7 +38,7 @@ namespace Biblioteka
         public void ClearAllData()
         {
             BookRepository.GetBooks().Clear();
-            ReadersList.Clear();
+            ReaderRepository.GetReaders().Clear();
             EmployeesList.Clear();
             BorrowingList.Clear();
             ReturningList.Clear();
@@ -49,9 +49,9 @@ namespace Biblioteka
         {
             return BookRepository;
         }
-        public List<Reader> GetReaders()
+        public ReaderRepository GetReaderRepository()
         {
-            return ReadersList;
+            return ReaderRepository;
         }
         public List<Librarian> GetLibrarians()
         {
@@ -90,13 +90,6 @@ namespace Biblioteka
         {
             this.CurrentUser = currentUser;
         }
-        public void ListTheReaders()
-        {
-            foreach (var item in ReadersList)
-            {
-                Console.WriteLine(item);
-            }
-        }
         public void ListTheLibrarians()
         {
             foreach (var item in EmployeesList)
@@ -132,10 +125,6 @@ namespace Biblioteka
                 Console.WriteLine(users);
             }
         }
-        public void AddReader(Reader c)
-        {
-            ReadersList.Add(c);
-        }
         public void AddEmployee(Librarian p)
         {
             EmployeesList.Add(p);
@@ -155,10 +144,6 @@ namespace Biblioteka
         public void AddUser(User user)
         {
             UsersList.Add(user);
-        }
-        public void RemoveReader(Reader c)
-        {
-            ReadersList.Remove(c);
         }
         public List<Borrowing> RemoveBorrowingFromBorrowingList(Book b, Reader r)
         {
@@ -210,11 +195,12 @@ namespace Biblioteka
         public void BorrowABookByBookAndReaderID(int bookID, int readerID)
         {
             List<int> notFound = new List<int>();
+            List<Reader> readers = ReaderRepository.GetReaders();
             foreach (var book in BookRepository.GetBooks())
             {
                 if (book.GetID() == bookID)
                 {
-                    foreach (var reader in ReadersList)
+                    foreach (var reader in readers)
                     {
                         if (reader.GetID() == readerID)
                         {
@@ -242,17 +228,6 @@ namespace Biblioteka
             RemoveBorrowingFromBorrowingList(b, r);
             b.Available();
             Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
-        }
-        public Reader FindReaderByID(int ID)
-        {
-            foreach (Reader reader in ReadersList)
-            {
-                if (reader.GetID() == ID)
-                {
-                    return reader;
-                }
-            }
-            return null;
         }
         public Borrowing FindBorrowingByReaderAndBook(Book book, Reader reader) 
         { 

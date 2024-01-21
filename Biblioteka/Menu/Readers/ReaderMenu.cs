@@ -9,11 +9,11 @@ namespace Biblioteka.Menu.Readers
 {
     internal class ReaderMenu : Menu
     {
-        private DeleteRerader _removeReaderInit;
+        private DeleteReader _removeReaderInit;
         private ReaderInformation _readerInformationInit;
         public ReaderMenu(Library library) : base(library)
         {
-            _removeReaderInit = new DeleteRerader(library);
+            _removeReaderInit = new DeleteReader(library);
             _readerInformationInit = new ReaderInformation(library);
         }
         public override void PrintMenu()
@@ -33,7 +33,7 @@ namespace Biblioteka.Menu.Readers
                 else if (option == 2)
                 {
                     Log.PrintInformationMessage("Lista czytelników:");
-                    Library.ListTheReaders();
+                    Library.GetReaderRepository().ListTheReaders();
                 }
                 else if (option == 3)
                 {

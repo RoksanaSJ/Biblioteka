@@ -28,7 +28,7 @@ namespace Biblioteka.Menu.Readers
                 {
                     //osobna metoda w klasie library, a nawet więcej niż 1 metoda
                     List<Reader> readerInfo = new List<Reader>();
-                    readerInfo = Library.GetReaders();
+                    readerInfo = Library.GetReaderRepository().GetReaders();
                     List<Borrowing> borrowings = new List<Borrowing>();
                     borrowings = Library.GetBorrowings();
                     List<Returning> readerReturnings = new List<Returning>();
@@ -79,7 +79,7 @@ namespace Biblioteka.Menu.Readers
         {
             while (true)
             {
-                List<Reader> readers = Library.GetReaders();
+                List<Reader> readers = Library.GetReaderRepository().GetReaders();
                 User currentUser = Library.GetCurrentUser();
                 List<User> userInfo = Library.GetUsers();
                 List<Borrowing> borrowings = new List<Borrowing>();
