@@ -54,13 +54,13 @@ namespace Biblioteka.Repository
             }
             return false;
         }
-        public bool RemoveBorrowingFromBorrowingList(Book b, Reader r)
+        public bool RemoveBorrowingFromBorrowingList(Book book, Reader reader)
         {
             List<Borrowing> temporaryList = new List<Borrowing>();
             bool isItEqual = false;
             foreach (Borrowing borrowing in BorrowingList)
             {
-                if (borrowing.GetBook().Equals(b) && borrowing.GetReader().Equals(r))
+                if (borrowing.GetBook().Equals(book) && borrowing.GetReader().Equals(reader))
                 {
                     temporaryList.Add(borrowing);
                     isItEqual = true;
@@ -84,17 +84,17 @@ namespace Biblioteka.Repository
             }
             return counter;
         }
-        public void BorrowBook(Book k, Reader c)
+        public void BorrowBook(Book book, Reader reader)
         {
                 DateTime borrowingDate = DateTime.Now;
                 DateTime plannedReturningDate = borrowingDate.AddDays(RETURNING_TIME);
-                Borrowing borrow = new Borrowing(borrowingDate, plannedReturningDate, k, c);
+                Borrowing borrow = new Borrowing(borrowingDate, plannedReturningDate, book, reader);
                 AddBorrowing(borrow);
-                k.Booked();
+                book.Booked();
         }
-        public bool IsLimitExceeded(Reader c)
+        public bool IsLimitExceeded(Reader reader)
         {
-            return CountReaderBorrowings(c.GetID()) > MAXBOOKS;
+            return CountReaderBorrowings(reader.GetID()) > MAXBOOKS;
         }
     }
 }
