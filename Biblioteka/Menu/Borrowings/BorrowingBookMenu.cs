@@ -46,7 +46,7 @@ namespace Biblioteka.Menu.Borrowings
                 } else if (option == 4)
                 {
                     Log.PrintInformationMessage("Lista wypożyczeń: ");
-                    Library.ListTheBorrowings();
+                    Library.GetBorrowingRepository().ListTheBorrowings();
                 }
                 else if (option == 5)
                 {

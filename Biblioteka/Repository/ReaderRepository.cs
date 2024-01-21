@@ -40,9 +40,5 @@ namespace Biblioteka.Repository
         {
             ReadersList.Add(c);
         }
-        public void RemoveReader(Reader c)
-        {
-            ReadersList.Remove(c);
-        }
     }
 }

@@ -26,7 +26,15 @@ namespace Biblioteka.Menu.Borrowings
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    Library.SubmitBorrowing(bookID, readerID);
+                    bool result = Library.GetBorrowingRepository().SubmitBorrowing(bookID, readerID);
+                    if(result == true)
+                    {
+                        Log.PrintSuccessMessage("Gratulację, właśnie przedłużyłeś wypożyczenie książki o kolejny miesiąc!");
+                    }
+                    else
+                    {
+                        Log.PrintErrorMessage("Dane, które podałeś są niepoprawne");
+                    }
                     break;
                 }
                 else if (userOption.Equals("n"))
