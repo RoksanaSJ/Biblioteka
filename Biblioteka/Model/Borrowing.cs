@@ -55,7 +55,7 @@ namespace Biblioteka.Model
         }
         public override string ToString()
         {
-            return "Wypożyczenie: data wypożyczenia: " + BorrowingDate + " Planowana data oddania" + PlannedReturningDate +$" \n" + Reader + ", \n" + Book +"\n";
+            return "Wypożyczenie: data wypożyczenia: " + BorrowingDate + " Planowana data oddania " + PlannedReturningDate +$" \n" + Reader + ", \n" + Book +"\n";
         }
         public override string ToCSV()
         {

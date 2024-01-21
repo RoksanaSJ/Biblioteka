@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Menu.Readers
 {
-    internal class DeleteRerader : Menu
+    internal class DeleteReader : Menu
     {
-        public DeleteRerader(Library library): base(library)
+        public DeleteReader(Library library): base(library)
         {
 
         }
@@ -29,7 +29,7 @@ namespace Biblioteka.Menu.Readers
                 if (userOption.Equals("y"))
                 {
                     //osobna metoda w klasie library
-                   List<Reader> list = Library.GetReaders();
+                   List<Reader> list = Library.GetReaderRepository().GetReaders();
                    bool isItEquals = false;
                    List<Reader> toRemove = new List<Reader>();
                     foreach (var reader in list)

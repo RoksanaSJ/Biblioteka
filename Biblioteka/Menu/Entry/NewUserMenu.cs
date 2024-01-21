@@ -52,7 +52,7 @@ namespace Biblioteka.Menu.Entry
                             User newUser = new User(email, password, UserRole.Reader);
                             Reader reader = new Reader(name, surname, age, newUser);
                             Library.AddUser(newUser);
-                            Library.AddReader(reader);
+                            Library.GetReaderRepository().AddReader(reader);
                             Log.PrintSuccessMessage("\nGratulację! utworzyłeś profil nowego użytkownika!");
                         }
                         else
