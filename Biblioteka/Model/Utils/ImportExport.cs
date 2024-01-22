@@ -70,7 +70,7 @@ namespace Biblioteka.Model.Utils
             SaveToFile(READERCSV, Library.GetReaderRepository().GetReaders());
             SaveToFile(BOOKCSV, Library.GetBookRepository().GetBooks());
             SaveToFile(BORROWINGCSV, Library.GetBorrowingRepository().GetBorrowing());
-            SaveToFile(RETURNINGCSV, Library.GetReturnings());
+            SaveToFile(RETURNINGCSV, Library.GetReturningRepository().GetReturnings());
             SaveToFile(LIBRARIANCSV, Library.GetLibrarianRepository().GetLibrarians());
             SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformation());
             SaveToFile(USERCSV, Library.GetUsers());
@@ -217,7 +217,7 @@ namespace Biblioteka.Model.Utils
                 Reader readerFound = Library.GetReaderRepository().FindReaderByID(readerID);
                 DateTime dateTimeFound = DateTime.ParseExact(splitedBookReturning[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 Returning returningFound = new Returning(dateTimeFound, bookFound, readerFound);
-                Library.AddReturning(returningFound);
+                Library.GetReturningRepository().AddReturning(returningFound);
             }
         }
         private void ImportChargeInformation()

@@ -32,7 +32,7 @@ namespace Biblioteka.Menu.Readers
                     List<Borrowing> borrowings = new List<Borrowing>();
                     borrowings = Library.GetBorrowingRepository().GetBorrowing();
                     List<Returning> readerReturnings = new List<Returning>();
-                    readerReturnings = Library.GetReturnings();
+                    readerReturnings = Library.GetReturningRepository().GetReturnings();
                     Log.PrintInformationMessage("Dane użytkownika: ");
                     foreach (Reader reader in readerInfo)
                     {
@@ -85,7 +85,7 @@ namespace Biblioteka.Menu.Readers
                 List<Borrowing> borrowings = new List<Borrowing>();
                 borrowings = Library.GetBorrowingRepository().GetBorrowing();
                 List<Returning> readerReturnings = new List<Returning>();
-                readerReturnings = Library.GetReturnings();
+                readerReturnings = Library.GetReturningRepository().GetReturnings();
                 Log.PrintInformationMessage("Dane użytkownika: ");
                 foreach(Reader reader in readers)
                 {

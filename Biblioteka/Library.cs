@@ -19,9 +19,8 @@ namespace Biblioteka
         protected BookRepository BookRepository { get; set; }
         protected ReaderRepository ReaderRepository { get; set; }
         protected LibrarianRepository LibrarianRepository { get; set; }
-        protected List<Librarian> LibrarianList { get; }
         protected BorrowingRepository BorrowingRepository { get; set; }
-        protected List<Returning> ReturningList { get; }
+        protected ReturningRepository ReturningRepository { get; set; }
         protected List<ChargeInformation> ChargeInformationList { get; }
         protected List<User> UsersList { get; }
         protected ConsoleLog Log;
@@ -30,9 +29,8 @@ namespace Biblioteka
             BookRepository = new BookRepository ();
             ReaderRepository = new ReaderRepository();
             LibrarianRepository = new LibrarianRepository ();
-            LibrarianList = new List<Librarian> ();
             BorrowingRepository = new BorrowingRepository();
-            ReturningList = new List<Returning> ();
+            ReturningRepository = new ReturningRepository ();
             ChargeInformationList = new List<ChargeInformation>();
             UsersList = new List<User> ();
             this.Log = new ConsoleLog();
@@ -41,9 +39,9 @@ namespace Biblioteka
         {
             BookRepository.GetBooks().Clear();
             ReaderRepository.GetReaders().Clear();
-            LibrarianList.Clear();
+            LibrarianRepository.GetLibrarians().Clear();
             BorrowingRepository.GetBorrowing().Clear();
-            ReturningList.Clear();
+            ReturningRepository.GetReturnings().Clear();
             ChargeInformationList.Clear();
             UsersList.Clear();
         }
@@ -63,9 +61,9 @@ namespace Biblioteka
         {
             return BorrowingRepository;
         }
-        public List<Returning> GetReturnings()
+        public ReturningRepository GetReturningRepository()
         {
-            return ReturningList;
+            return ReturningRepository;
         }
         public List<ChargeInformation> GetChargeInformation()
         {
@@ -92,13 +90,6 @@ namespace Biblioteka
         {
             this.CurrentUser = currentUser;
         }
-        public void ListTheReturnings()
-        {
-            foreach (var item in ReturningList)
-            {
-                Console.WriteLine(item);
-            }
-        }
         public void ListChargeIformation()
         {
             foreach (ChargeInformation chargeInformation in ChargeInformationList)
@@ -113,17 +104,9 @@ namespace Biblioteka
                 Console.WriteLine(users);
             }
         }
-        public void AddLibrarian(Librarian p)
-        {
-            LibrarianList.Add(p);
-        }
         public void AddChargeInformation(ChargeInformation chargeInformation)
         {
             ChargeInformationList.Add(chargeInformation);
-        }
-        public void AddReturning(Returning returning)
-        {
-            ReturningList.Add(returning);
         }
         public void AddUser(User user)
         {
@@ -170,23 +153,23 @@ namespace Biblioteka
                 Log.PrintErrorMessage("Niestety książka o takim ID nie istnieje");
             }
         }
-        public void ReturnBook(Book b, Reader r)
-        {
-            DateTime date = new DateTime();
-            date = DateTime.Now;
-            Returning ret = new Returning(date, b, r);
-            ReturningList.Add(ret);
-            bool isItEqual = BorrowingRepository.RemoveBorrowingFromBorrowingList(b, r);
-            if (isItEqual == false)
-            {
-                Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
-            }
-            else
-            {
-                b.Available();
-                Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
-            }
-        }
+        //public void ReturnBook(Book b, Reader r)
+        //{
+        //    DateTime date = new DateTime();
+        //    date = DateTime.Now;
+        //    Returning ret = new Returning(date, b, r);
+        //    ReturningList.Add(ret);
+        //    bool isItEqual = BorrowingRepository.RemoveBorrowingFromBorrowingList(b, r);
+        //    if (isItEqual == false)
+        //    {
+        //        Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
+        //    }
+        //    else
+        //    {
+        //        b.Available();
+        //        Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
+        //    }
+        //}
         public void ChargeInformationForSpecificReader(int readerID)
         {
             bool found = false;
