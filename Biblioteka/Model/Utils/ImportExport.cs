@@ -73,7 +73,7 @@ namespace Biblioteka.Model.Utils
             SaveToFile(RETURNINGCSV, Library.GetReturningRepository().GetReturnings());
             SaveToFile(LIBRARIANCSV, Library.GetLibrarianRepository().GetLibrarians());
             SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformationRepository().GetChargeInformation());
-            SaveToFile(USERCSV, Library.GetUsers());
+            SaveToFile(USERCSV, Library.GetUserRepository().GetUsers());
 
             using (ZipArchive zip = ZipFile.Open(FILEPATH + zipFile, ZipArchiveMode.Update))
             {
@@ -148,7 +148,7 @@ namespace Biblioteka.Model.Utils
         private void ImportLibrarians()
         {
             List<String> csvContentList = ReadCsv("librarian.csv");
-            List<User> users = Library.GetUsers();
+            List<User> users = Library.GetUserRepository().GetUsers();
             foreach (String line in csvContentList)
             {
                 string[] splitedLibrarian = line.Split(',');
@@ -170,7 +170,7 @@ namespace Biblioteka.Model.Utils
         private void ImportReaders()
         {
             List<String> csvContentList = ReadCsv("reader.csv");
-            List<User> users = Library.GetUsers();
+            List<User> users = Library.GetUserRepository().GetUsers();
             foreach (String line in csvContentList)
             {
                 string[] splitedReader = line.Split(',');
@@ -244,7 +244,7 @@ namespace Biblioteka.Model.Utils
         public void ImportUsers()
         {
             List<String> csvContentList = ReadCsv("user.csv");
-            List<User> usersTemp = Library.GetUsers();
+            List<User> usersTemp = Library.GetUserRepository().GetUsers();
             foreach (String line in csvContentList)
             {
                 string[] splitedUsers = line.Split(',');
@@ -253,7 +253,7 @@ namespace Biblioteka.Model.Utils
                 UserRole userRole = ConvertToRole(splitedUsers[2]);
                 bool requiredPasswordChange = bool.Parse(splitedUsers[3]);
                 User user = new User(email, password, userRole,requiredPasswordChange);
-                Library.AddUser(user);
+                Library.GetUserRepository().AddUser(user);
             }
         }
         private UserRole ConvertToRole(string role)

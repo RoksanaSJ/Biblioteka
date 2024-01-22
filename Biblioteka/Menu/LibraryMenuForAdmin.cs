@@ -34,7 +34,7 @@ namespace Biblioteka.Menu.Books
         {
             while (true)
             {
-                User currentUser = Library.GetCurrentUser();
+                User currentUser = Library.GetUserRepository().GetCurrentUser();
                 Log.PrintCurrentUserMessage("Zalogowano jako: " + currentUser.GetEmail());
                 Console.WriteLine("1.Menu książek");
                 Console.WriteLine("2.Menu czytelników");
@@ -65,7 +65,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else if (option == 5)
                 {
-                    Library.ListUsers();
+                    Library.GetUserRepository().ListUsers();
                 }
                 else if (option == 6)
                 {

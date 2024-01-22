@@ -11,7 +11,6 @@ using Biblioteka.Repository;
 
 namespace Biblioteka
 {
-    //klasę library dzielimy na mniejsze klasy?
     internal class Library
     {
         const int MAXBOOKS = 5;
@@ -21,8 +20,8 @@ namespace Biblioteka
         protected LibrarianRepository LibrarianRepository { get; set; }
         protected BorrowingRepository BorrowingRepository { get; set; }
         protected ReturningRepository ReturningRepository { get; set; }
-        protected List<ChargeInformation> ChargeInformationList { get; }
-        protected List<User> UsersList { get; }
+        protected ChargeInformationRepository ChargeInformationRepository { get; set; }
+        protected UserRepository UserRepository { get; set; }
         protected ConsoleLog Log;
         public Library ()
         {
@@ -31,8 +30,8 @@ namespace Biblioteka
             LibrarianRepository = new LibrarianRepository ();
             BorrowingRepository = new BorrowingRepository();
             ReturningRepository = new ReturningRepository ();
-            ChargeInformationList = new List<ChargeInformation>();
-            UsersList = new List<User> ();
+            ChargeInformationRepository = new ChargeInformationRepository ();
+            UserRepository = new UserRepository ();
             this.Log = new ConsoleLog();
         }
         public void ClearAllData()
@@ -42,8 +41,8 @@ namespace Biblioteka
             LibrarianRepository.GetLibrarians().Clear();
             BorrowingRepository.GetBorrowing().Clear();
             ReturningRepository.GetReturnings().Clear();
-            ChargeInformationList.Clear();
-            UsersList.Clear();
+            ChargeInformationRepository.GetChargeInformation().Clear();
+            UserRepository.GetUsers().Clear();
         }
         public BookRepository GetBookRepository()
         {
@@ -65,53 +64,27 @@ namespace Biblioteka
         {
             return ReturningRepository;
         }
-        public List<ChargeInformation> GetChargeInformation()
+        public ChargeInformationRepository GetChargeInformationRepository()
         {
-            return ChargeInformationList;
+            return ChargeInformationRepository;
         }
-        public List<User> GetUsers()
+        public UserRepository GetUserRepository() 
         {
-            return UsersList;
+            return UserRepository; 
         }
-        public User GetCurrentUser()
-        {
-            return CurrentUser;
-        }
-        public List<string> GetUsersEmails()
-        {
-            List<string> usersEmails = new List<string>();
-            foreach(User user in UsersList)
-            {
-                usersEmails.Add(user.GetEmail());
-            }
-            return usersEmails;
-        }
-        public void SetCurrentUser(User currentUser)
-        {
-            this.CurrentUser = currentUser;
-        }
-        public void ListChargeIformation()
-        {
-            foreach (ChargeInformation chargeInformation in ChargeInformationList)
-            {
-                Console.WriteLine(chargeInformation);
-            }
-        }
-        public void ListUsers()
-        {
-            foreach (User users in UsersList)
-            {
-                Console.WriteLine(users);
-            }
-        }
-        public void AddChargeInformation(ChargeInformation chargeInformation)
-        {
-            ChargeInformationList.Add(chargeInformation);
-        }
-        public void AddUser(User user)
-        {
-            UsersList.Add(user);
-        }
+        //public List<string> GetUsersEmails()
+        //{
+        //    List<string> usersEmails = new List<string>();
+        //    foreach(User user in UsersList)
+        //    {
+        //        usersEmails.Add(user.GetEmail());
+        //    }
+        //    return usersEmails;
+        //}
+        //public void SetCurrentUser(User currentUser)
+        //{
+        //    this.CurrentUser = currentUser;
+        //}
         public void BorrowABookByBookAndReaderID(int bookID, int readerID)
         {
             List<int> notFound = new List<int>();
@@ -170,40 +143,40 @@ namespace Biblioteka
         //        Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
         //    }
         //}
-        public void ChargeInformationForSpecificReader(int readerID)
-        {
-            bool found = false;
-            foreach (ChargeInformation chargeInformation in ChargeInformationList)
-            {
-                if (chargeInformation.GetReader().GetID() == readerID)
-                {
-                    Console.WriteLine(chargeInformation);
-                    found = true;
-                }
-                else
-                {
-                    found = false;
-                    Log.PrintErrorMessage("Dany czytelnik nie został obciążony żadną opłatą");
-                }
-            }
-        }
-        public void PrintHistoryFromPeriod(DateTime startDate, DateTime finishDate)
-        {
-            if (finishDate >= startDate)
-            {
-                foreach (ChargeInformation chargeInformation in ChargeInformationList)
-                {
-                    if (chargeInformation.GetDateOfCharge() >= startDate && chargeInformation.GetDateOfCharge() <= finishDate)
-                    {
-                        Log.PrintInformationMessage(chargeInformation.ToString());
-                        Console.WriteLine("");
-                    }
-                }
-            } 
-            else
-            {
-                Log.PrintErrorMessage("Data końcowa powinna być późniejsza niż początkowa");
-            }
-        }
+        //public void ChargeInformationForSpecificReader(int readerID)
+        //{
+        //    bool found = false;
+        //    foreach (ChargeInformation chargeInformation in ChargeInformationList)
+        //    {
+        //        if (chargeInformation.GetReader().GetID() == readerID)
+        //        {
+        //            Console.WriteLine(chargeInformation);
+        //            found = true;
+        //        }
+        //        else
+        //        {
+        //            found = false;
+        //            Log.PrintErrorMessage("Dany czytelnik nie został obciążony żadną opłatą");
+        //        }
+        //    }
+        //}
+        //public void PrintHistoryFromPeriod(DateTime startDate, DateTime finishDate)
+        //{
+        //    if (finishDate >= startDate)
+        //    {
+        //        foreach (ChargeInformation chargeInformation in ChargeInformationList)
+        //        {
+        //            if (chargeInformation.GetDateOfCharge() >= startDate && chargeInformation.GetDateOfCharge() <= finishDate)
+        //            {
+        //                Log.PrintInformationMessage(chargeInformation.ToString());
+        //                Console.WriteLine("");
+        //            }
+        //        }
+        //    } 
+        //    else
+        //    {
+        //        Log.PrintErrorMessage("Data końcowa powinna być późniejsza niż początkowa");
+        //    }
+        //}
     }
 }
