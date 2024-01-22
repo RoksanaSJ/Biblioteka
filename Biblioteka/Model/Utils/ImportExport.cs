@@ -72,7 +72,7 @@ namespace Biblioteka.Model.Utils
             SaveToFile(BORROWINGCSV, Library.GetBorrowingRepository().GetBorrowing());
             SaveToFile(RETURNINGCSV, Library.GetReturningRepository().GetReturnings());
             SaveToFile(LIBRARIANCSV, Library.GetLibrarianRepository().GetLibrarians());
-            SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformation());
+            SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformationRepository().GetChargeInformation());
             SaveToFile(USERCSV, Library.GetUsers());
 
             using (ZipArchive zip = ZipFile.Open(FILEPATH + zipFile, ZipArchiveMode.Update))
@@ -236,7 +236,7 @@ namespace Biblioteka.Model.Utils
                     if (reader.GetID().Equals(readerID))
                     {
                         ChargeInformation chargeInformation = new ChargeInformation(charge, reader, dateTimeFound);
-                        Library.AddChargeInformation(chargeInformation);
+                        Library.GetChargeInformationRepository().AddChargeInformation(chargeInformation);
                     }
                 }
             }
