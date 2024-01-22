@@ -25,7 +25,7 @@ namespace Biblioteka.Menu.Librarians
                 if (userOption.Equals("y"))
                 {
                     //osobna metoda w klasie library
-                    List<Librarian> librarians = Library.GetLibrarians();
+                    List<Librarian> librarians = Library.GetLibrarianRepository().GetLibrarians();
                     bool isItEqual = false;
                     foreach (Librarian librarian in librarians)
                     {

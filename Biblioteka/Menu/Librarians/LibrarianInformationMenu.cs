@@ -15,7 +15,7 @@ namespace Biblioteka.Menu.Librarians
         }
         public override void PrintMenu()
         {
-            List<Librarian> librarians = Library.GetLibrarians();
+            List<Librarian> librarians = Library.GetLibrarianRepository().GetLibrarians();
             User currentUser = Library.GetCurrentUser();
             List<User> userInfo = Library.GetUsers();
             Log.PrintInformationMessage("Dane użytkownika: ");

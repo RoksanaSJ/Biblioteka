@@ -71,7 +71,7 @@ namespace Biblioteka.Model.Utils
             SaveToFile(BOOKCSV, Library.GetBookRepository().GetBooks());
             SaveToFile(BORROWINGCSV, Library.GetBorrowingRepository().GetBorrowing());
             SaveToFile(RETURNINGCSV, Library.GetReturnings());
-            SaveToFile(LIBRARIANCSV, Library.GetLibrarians());
+            SaveToFile(LIBRARIANCSV, Library.GetLibrarianRepository().GetLibrarians());
             SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformation());
             SaveToFile(USERCSV, Library.GetUsers());
 
@@ -162,7 +162,7 @@ namespace Biblioteka.Model.Utils
                     if (user.GetEmail().Equals(email))
                     {
                         Librarian librarian = new Librarian(name, surname, age, ID, user);
-                        Library.AddEmployee(librarian);
+                        Library.GetLibrarianRepository().AddLibrarian(librarian);
                     }
                 }
             }
@@ -275,7 +275,7 @@ namespace Biblioteka.Model.Utils
         {
             List<Book> bookList = Library.GetBookRepository().GetBooks();
             List<Reader> readerList = Library.GetReaderRepository().GetReaders();
-            List<Librarian> librarianList = Library.GetLibrarians();
+            List<Librarian> librarianList = Library.GetLibrarianRepository().GetLibrarians();
             int maxID = 0;
             foreach (Book book in bookList)
             {

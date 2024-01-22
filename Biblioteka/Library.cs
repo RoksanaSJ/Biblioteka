@@ -18,7 +18,8 @@ namespace Biblioteka
         protected User CurrentUser { get; set; }
         protected BookRepository BookRepository { get; set; }
         protected ReaderRepository ReaderRepository { get; set; }
-        protected List<Librarian> EmployeesList { get; }
+        protected LibrarianRepository LibrarianRepository { get; set; }
+        protected List<Librarian> LibrarianList { get; }
         protected BorrowingRepository BorrowingRepository { get; set; }
         protected List<Returning> ReturningList { get; }
         protected List<ChargeInformation> ChargeInformationList { get; }
@@ -28,7 +29,8 @@ namespace Biblioteka
         {
             BookRepository = new BookRepository ();
             ReaderRepository = new ReaderRepository();
-            EmployeesList = new List<Librarian> ();
+            LibrarianRepository = new LibrarianRepository ();
+            LibrarianList = new List<Librarian> ();
             BorrowingRepository = new BorrowingRepository();
             ReturningList = new List<Returning> ();
             ChargeInformationList = new List<ChargeInformation>();
@@ -39,7 +41,7 @@ namespace Biblioteka
         {
             BookRepository.GetBooks().Clear();
             ReaderRepository.GetReaders().Clear();
-            EmployeesList.Clear();
+            LibrarianList.Clear();
             BorrowingRepository.GetBorrowing().Clear();
             ReturningList.Clear();
             ChargeInformationList.Clear();
@@ -53,9 +55,9 @@ namespace Biblioteka
         {
             return ReaderRepository;
         }
-        public List<Librarian> GetLibrarians()
+        public LibrarianRepository GetLibrarianRepository()
         {
-            return EmployeesList;
+            return LibrarianRepository;
         }
         public BorrowingRepository GetBorrowingRepository()
         {
@@ -90,13 +92,6 @@ namespace Biblioteka
         {
             this.CurrentUser = currentUser;
         }
-        public void ListTheLibrarians()
-        {
-            foreach (var item in EmployeesList)
-            {
-                Console.WriteLine(item);
-            }
-        }
         public void ListTheReturnings()
         {
             foreach (var item in ReturningList)
@@ -118,9 +113,9 @@ namespace Biblioteka
                 Console.WriteLine(users);
             }
         }
-        public void AddEmployee(Librarian p)
+        public void AddLibrarian(Librarian p)
         {
-            EmployeesList.Add(p);
+            LibrarianList.Add(p);
         }
         public void AddChargeInformation(ChargeInformation chargeInformation)
         {
@@ -186,8 +181,11 @@ namespace Biblioteka
             {
                 Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
             }
-            b.Available();
-            Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
+            else
+            {
+                b.Available();
+                Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
+            }
         }
         public void ChargeInformationForSpecificReader(int readerID)
         {
@@ -196,10 +194,7 @@ namespace Biblioteka
             {
                 if (chargeInformation.GetReader().GetID() == readerID)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine(chargeInformation);
-                    Console.ResetColor();
-                    Console.WriteLine("");
                     found = true;
                 }
                 else

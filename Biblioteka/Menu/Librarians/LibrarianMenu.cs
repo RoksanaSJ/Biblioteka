@@ -43,7 +43,7 @@ namespace Biblioteka.Menu.Librarians
                 else if (option == 4)
                 {
                     Log.PrintInformationMessage($"Lista pracowników: ");
-                    Library.ListTheLibrarians();
+                    Library.GetLibrarianRepository().ListTheLibrarians();
                 }
                 else if (option == 5)
                 {

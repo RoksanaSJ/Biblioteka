@@ -27,7 +27,7 @@ namespace Biblioteka.Menu.Librarians
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    List<Librarian> librarians = Library.GetLibrarians();
+                    List<Librarian> librarians = Library.GetLibrarianRepository().GetLibrarians();
                     bool isItEqual = false;
                     foreach (Librarian librarian in librarians)
                     {
