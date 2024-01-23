@@ -72,19 +72,6 @@ namespace Biblioteka
         {
             return UserRepository; 
         }
-        //public List<string> GetUsersEmails()
-        //{
-        //    List<string> usersEmails = new List<string>();
-        //    foreach(User user in UsersList)
-        //    {
-        //        usersEmails.Add(user.GetEmail());
-        //    }
-        //    return usersEmails;
-        //}
-        //public void SetCurrentUser(User currentUser)
-        //{
-        //    this.CurrentUser = currentUser;
-        //}
         public void BorrowABookByBookAndReaderID(int bookID, int readerID)
         {
             List<int> notFound = new List<int>();
@@ -126,57 +113,5 @@ namespace Biblioteka
                 Log.PrintErrorMessage("Niestety książka o takim ID nie istnieje");
             }
         }
-        //public void ReturnBook(Book b, Reader r)
-        //{
-        //    DateTime date = new DateTime();
-        //    date = DateTime.Now;
-        //    Returning ret = new Returning(date, b, r);
-        //    ReturningList.Add(ret);
-        //    bool isItEqual = BorrowingRepository.RemoveBorrowingFromBorrowingList(b, r);
-        //    if (isItEqual == false)
-        //    {
-        //        Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
-        //    }
-        //    else
-        //    {
-        //        b.Available();
-        //        Log.PrintInformationMessage("Zmieniono status książki na AVAILABLE");
-        //    }
-        //}
-        //public void ChargeInformationForSpecificReader(int readerID)
-        //{
-        //    bool found = false;
-        //    foreach (ChargeInformation chargeInformation in ChargeInformationList)
-        //    {
-        //        if (chargeInformation.GetReader().GetID() == readerID)
-        //        {
-        //            Console.WriteLine(chargeInformation);
-        //            found = true;
-        //        }
-        //        else
-        //        {
-        //            found = false;
-        //            Log.PrintErrorMessage("Dany czytelnik nie został obciążony żadną opłatą");
-        //        }
-        //    }
-        //}
-        //public void PrintHistoryFromPeriod(DateTime startDate, DateTime finishDate)
-        //{
-        //    if (finishDate >= startDate)
-        //    {
-        //        foreach (ChargeInformation chargeInformation in ChargeInformationList)
-        //        {
-        //            if (chargeInformation.GetDateOfCharge() >= startDate && chargeInformation.GetDateOfCharge() <= finishDate)
-        //            {
-        //                Log.PrintInformationMessage(chargeInformation.ToString());
-        //                Console.WriteLine("");
-        //            }
-        //        }
-        //    } 
-        //    else
-        //    {
-        //        Log.PrintErrorMessage("Data końcowa powinna być późniejsza niż początkowa");
-        //    }
-        //}
     }
 }
