@@ -33,13 +33,8 @@ namespace Biblioteka.Menu.Librarians
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    //z tego też osobna metoda w klasie library?
                     string temporaryPassword = PasswordGenerator.GenerateSimplePassword();
-                    User user = new User(email,temporaryPassword,UserRole.Librarian);
-                    user.SetIfPasswordIsNeededToBeChanged();
-                    Librarian librarian = new Librarian(name, surname, age,user);
-                    Library.GetUserRepository().Add(user);
-                    Library.GetLibrarianRepository().Add(librarian);
+                    Library.CreateLibrarianAndUser(name,surname,age,email,temporaryPassword);
                     Log.PrintSuccessMessage($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
                     Log.PrintInformationMessage("\nTymczasowe hasło dla użytkownika, to: " + temporaryPassword);
                     break;

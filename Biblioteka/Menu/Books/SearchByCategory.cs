@@ -24,7 +24,7 @@ namespace Biblioteka.Menu.Books
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    List<Book> oneCategoryBooksList = Library.GetBookRepository().FindBookByCategory(category);
+                    List<Book> oneCategoryBooksList = Library.GetBookRepository().FindBooksByCategory(category);
                     foreach (Book book in oneCategoryBooksList)
                     {
                         Console.WriteLine(book);

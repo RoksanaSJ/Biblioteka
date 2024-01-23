@@ -24,19 +24,6 @@ namespace Biblioteka.Menu.Entry
                 string surname = Console.ReadLine();
                 Console.WriteLine("Podaj datę urodzenia w formacie yyyy-MM-dd");
                 DateTime dateOfBirth = DateTime.Parse(Console.ReadLine());
-                //tutaj piwinny być tylko odczytywane te dane a większość z tego co jest niżej powinno być  innej metodzie i te metody co są niżej
-                //być może powinny być w osobnej klasie
-                DateTime today = DateTime.Today;
-                TimeSpan timeSpan = new TimeSpan();
-                timeSpan = today - dateOfBirth;
-                int age = today.Year - dateOfBirth.Year;
-                if (dateOfBirth.Date > today.AddYears(-age))
-                {
-                    age--;
-                } else
-                {
-                    age = today.Year - dateOfBirth.Year;
-                }
                 Console.WriteLine("Podaj adres email:");
                 string email = Console.ReadLine();
                 Console.WriteLine("Podaj hasło:");
@@ -49,10 +36,7 @@ namespace Biblioteka.Menu.Entry
                     {
                         if (ValidateComplexityPassword(password) == true)
                         {
-                            User newUser = new User(email, password, UserRole.Reader);
-                            Reader reader = new Reader(name, surname, age, newUser);
-                            Library.GetUserRepository().Add(newUser);
-                            Library.GetReaderRepository().Add(reader);
+                            Library.CreateReaderAndUser(name, surname, dateOfBirth,email,password);
                             Log.PrintSuccessMessage("\nGratulację! utworzyłeś profil nowego użytkownika!");
                         }
                         else
@@ -68,6 +52,7 @@ namespace Biblioteka.Menu.Entry
                 break;
             }
         }
+        //TODO klasa validator na te metody niżej
         public bool ValidateComplexityPassword(string password)
         {
             string specialChars = @"%!@#$%^&*()?/>.<,:;'\|}]{[_~`+=-" + "\"";

@@ -25,7 +25,7 @@ namespace Biblioteka.Repository
             }
             return null;
         }
-        public List<Book> FindBookByCategory(string category)
+        public List<Book> FindBooksByCategory(string category)
         {
             List<Book> oneCategoryBooksList = new List<Book>();
             foreach (Book book in ElementList)
@@ -37,7 +37,7 @@ namespace Biblioteka.Repository
             }
             return oneCategoryBooksList;
         }
-        public List<Book> FindBookByAuthor(string fullName)
+        public List<Book> FindBooksByAuthor(string fullName)
         {
             List<Book> oneAuthorBooks = new List<Book>();
             foreach (var book in ElementList)
@@ -68,6 +68,10 @@ namespace Biblioteka.Repository
         public List<Book> GetBookedBooks(string title)
         {
             return GetBooksByState(title, Book.BookState.Booked);
+        }
+        public void RemoveBook(Book book)
+        {
+            ElementList.Remove(book);
         }
     }
 }

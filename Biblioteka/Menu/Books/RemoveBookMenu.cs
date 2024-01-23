@@ -16,42 +16,40 @@ namespace Biblioteka.Menu.Books
         }
         public override void PrintMenu()
         {
+            while (true) 
+            { 
                 Console.WriteLine("Podaj ID książki, którą chcesz usunąć");
                 int ID = ReadOption();
-                List<Book> toRemove = new List<Book>();
-                List<Book> allBooks = Library.GetBookRepository().Get();
-                foreach (var book in allBooks)
+                Book bookFound = Library.GetBookRepository().FindBookByID(ID);
+                if (bookFound != null)
                 {
-                    if (book.GetID() == ID)
+                    Console.WriteLine($"\nCzy to jest ta ksiażka, którą chcesz usunąć? {bookFound}?");
+                    Console.WriteLine("Wpisz 'y' jeśli tak, 'n' jeśli nie 'b' jeśli chcesz wrócić");
+                    string option = Console.ReadLine();
+                    if (option.Equals("y"))
                     {
-                        Console.WriteLine($"\nCzy to jest ta ksiażka, którą chcesz usunąć? {book}?");
-                        Console.WriteLine("Wpisz 'y' jeśli tak, 'n' jeśli nie 'b' jeśli chcesz wrócić");
-                        string option = Console.ReadLine();
-                        if (option.Equals("y"))
-                        {
-                            toRemove.Add(book);
-                            Log.PrintSuccessMessage($"Gratulację, właśnie usunąleś książkę {book}");
-                            break;
-                        }
-                        else if (option.Equals("n"))
-                        {
-                            continue;
-                        }
-                        else if (option.Equals("b"))
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            Log.PrintErrorMessage("Podaj właściwą opcję!");
-                        }
+                        Library.GetBookRepository().RemoveBook(bookFound);
+                        Log.PrintSuccessMessage($"Gratulację, właśnie usunąleś książkę {bookFound}");
+                        break;
+                    }
+                    else if (option.Equals("n"))
+                    {
+                        continue;
+                    }
+                    else if (option.Equals("b"))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Log.PrintErrorMessage("Podaj właściwą opcję!");
                     }
                 }
-                //Czy ten foreach powinniśmi przenieść do osobnej metody?
-                foreach (var book in toRemove)
+                else
                 {
-                    allBooks.Remove(book);
+                    Log.PrintErrorMessage("Nie znaleziono książki o takim ID");
                 }
+            }
         }
     }
 }

@@ -71,6 +71,79 @@ namespace Biblioteka
         {
             return UserRepository; 
         }
+        public void CreateReaderAndUser(string name, string surname, DateTime dateOfBirth, string email, string password)
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - dateOfBirth.Year;
+            if (dateOfBirth.Date > today.AddYears(-age))
+            {
+                age--;
+            }
+            else
+            {
+                age = today.Year - dateOfBirth.Year;
+            }
+            User newUser = new User(email, password, UserRole.Reader);
+            Reader reader = new Reader(name, surname, age, newUser);
+            UserRepository.Add(newUser);
+            ReaderRepository.Add(reader);
+        }
+        public void CreateLibrarianAndUser(string name, string surname, int age, string email, string temporaryPassword)
+        {
+            User user = new User(email, temporaryPassword, UserRole.Librarian);
+            user.SetIfPasswordIsNeededToBeChanged();
+            Librarian librarian = new Librarian(name, surname, age, user);
+            UserRepository.Add(user);
+            LibrarianRepository.Add(librarian);
+        }
+        public void ReturnBook(int bookID, int readerID)
+        {
+            Book bookFound = GetBookRepository().FindBookByID(bookID);
+            Reader readerFound = GetReaderRepository().FindReaderByID(readerID);
+            Borrowing borrowingFound = GetBorrowingRepository().FindBorrowingByReaderIDAndBookID(bookID, readerID);
+            if (bookFound != null && readerFound != null && borrowingFound != null)
+            {
+                decimal charge = CountCharge(borrowingFound);
+                if (charge > 0)
+                {
+                    ChargeInformation chargeInfo = new ChargeInformation(charge, readerFound);
+                    GetChargeInformationRepository().Add(chargeInfo);
+                }
+                GetReturningRepository().ReturnBook(bookFound, readerFound);
+                bool isItEqual = GetBorrowingRepository().RemoveBorrowingFromBorrowingList(bookFound, readerFound);
+                if (isItEqual == false)
+                {
+                    Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
+                }
+                Log.PrintSuccessMessage($"Gratulację, właśnie oddałeś książkę");
+            }
+            else
+            {
+                Log.PrintErrorMessage("Dane niepoprawne");
+            }
+        }
+        private decimal CountCharge(Borrowing borrowing)
+        {
+            DateTime borrowingDate = new DateTime();
+            borrowingDate = (DateTime)borrowing.GetBorrowingDate();
+            DateTime returningDate = new DateTime();
+            returningDate = DateTime.Now;
+            TimeSpan timeSpan = new TimeSpan();
+            var span = returningDate.Subtract(borrowingDate);
+            int days = span.Days;
+            decimal charge = 0;
+            if (days > 31)
+            {
+                decimal overkeepingDays = ((decimal)days - 31m);
+                charge = overkeepingDays * 0.1m;
+                Log.PrintErrorMessage($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr. \n Musisz zapłacić {charge} zł");
+            }
+            else
+            {
+                charge = 0;
+            }
+            return charge;
+        }
         public void BorrowABookByBookAndReaderID(int bookID, int readerID)
         {
             List<int> notFound = new List<int>();

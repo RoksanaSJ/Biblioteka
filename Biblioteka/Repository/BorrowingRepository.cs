@@ -26,6 +26,17 @@ namespace Biblioteka.Repository
             }
             return null;
         }
+        public Borrowing FindBorrowingByReaderIDAndBookID(int bookID, int readerID)
+        {
+            foreach (Borrowing borrowing in ElementList)
+            {
+                if (borrowing.GetReader().GetID() == readerID && borrowing.GetBook().GetID() == bookID)
+                {
+                    return borrowing;
+                }
+            }
+            return null;
+        }
         public bool SubmitBorrowing(int bookID, int readerID)
         {
             foreach (Borrowing borrowing in ElementList)

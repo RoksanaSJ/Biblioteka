@@ -27,7 +27,7 @@ namespace Biblioteka.Menu.Books
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    List<Book> oneAuthorBooks = Library.GetBookRepository().FindBookByAuthor(fullName);
+                    List<Book> oneAuthorBooks = Library.GetBookRepository().FindBooksByAuthor(fullName);
                     foreach (Book book in oneAuthorBooks)
                     {
                         Console.WriteLine(book);
