@@ -41,22 +41,28 @@ namespace Biblioteka.Repository
             }
             return false;
         }
-        //TODO
         public void PrintHistoryFromPeriod(DateTime startDate, DateTime finishDate)
         {
-            if (finishDate >= startDate)
-            {
+            if(CheckIfStartDateIsEarlierThanFinishDate(startDate,finishDate) == true) 
+            { 
                 foreach (ChargeInformation chargeInformation in ChargeInformationList)
                 {
                     if (chargeInformation.GetDateOfCharge() >= startDate && chargeInformation.GetDateOfCharge() <= finishDate)
                     {
-                        Log.PrintInformationMessage(chargeInformation.ToString());
+                        Console.WriteLine(chargeInformation.ToString());
                     }
                 }
             }
+        }
+        public bool CheckIfStartDateIsEarlierThanFinishDate(DateTime startDate, DateTime finishDate)
+        {
+            if (finishDate >= startDate)
+            {
+                return true;
+            }
             else
             {
-                Log.PrintErrorMessage("Data końcowa powinna być późniejsza niż początkowa");
+                return false;
             }
         }
     }
