@@ -67,13 +67,13 @@ namespace Biblioteka.Model.Utils
         {
             string[] files = { FILEPATH + READERCSV, FILEPATH + BOOKCSV, FILEPATH + BORROWINGCSV,
                 FILEPATH + RETURNINGCSV, FILEPATH + LIBRARIANCSV, FILEPATH + CHARGEINFORMATIONCSV, FILEPATH + USERCSV };
-            SaveToFile(READERCSV, Library.GetReaderRepository().GetReaders());
-            SaveToFile(BOOKCSV, Library.GetBookRepository().GetBooks());
-            SaveToFile(BORROWINGCSV, Library.GetBorrowingRepository().GetBorrowing());
-            SaveToFile(RETURNINGCSV, Library.GetReturningRepository().GetReturnings());
-            SaveToFile(LIBRARIANCSV, Library.GetLibrarianRepository().GetLibrarians());
-            SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformationRepository().GetChargeInformation());
-            SaveToFile(USERCSV, Library.GetUserRepository().GetUsers());
+            SaveToFile(READERCSV, Library.GetReaderRepository().Get());
+            SaveToFile(BOOKCSV, Library.GetBookRepository().Get());
+            SaveToFile(BORROWINGCSV, Library.GetBorrowingRepository().Get());
+            SaveToFile(RETURNINGCSV, Library.GetReturningRepository().Get());
+            SaveToFile(LIBRARIANCSV, Library.GetLibrarianRepository().Get());
+            SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformationRepository().Get());
+            SaveToFile(USERCSV, Library.GetUserRepository().Get());
 
             using (ZipArchive zip = ZipFile.Open(FILEPATH + zipFile, ZipArchiveMode.Update))
             {
@@ -142,13 +142,13 @@ namespace Biblioteka.Model.Utils
                 int ID = int.Parse(splitedBook[0]);
                 Book.BookState bookState = Convert(splitedBook[4]);
                 Book book = new Book(name, surname, title, ID, bookState, categories);
-                Library.GetBookRepository().AddBook(book);
+                Library.GetBookRepository().Add(book);
             }
         }
         private void ImportLibrarians()
         {
             List<String> csvContentList = ReadCsv("librarian.csv");
-            List<User> users = Library.GetUserRepository().GetUsers();
+            List<User> users = Library.GetUserRepository().Get();
             foreach (String line in csvContentList)
             {
                 string[] splitedLibrarian = line.Split(',');
@@ -162,7 +162,7 @@ namespace Biblioteka.Model.Utils
                     if (user.GetEmail().Equals(email))
                     {
                         Librarian librarian = new Librarian(name, surname, age, ID, user);
-                        Library.GetLibrarianRepository().AddLibrarian(librarian);
+                        Library.GetLibrarianRepository().Add(librarian);
                     }
                 }
             }
@@ -170,7 +170,7 @@ namespace Biblioteka.Model.Utils
         private void ImportReaders()
         {
             List<String> csvContentList = ReadCsv("reader.csv");
-            List<User> users = Library.GetUserRepository().GetUsers();
+            List<User> users = Library.GetUserRepository().Get();
             foreach (String line in csvContentList)
             {
                 string[] splitedReader = line.Split(',');
@@ -184,7 +184,7 @@ namespace Biblioteka.Model.Utils
                     if(user.GetEmail().Equals(email))
                     {
                         Reader reader = new Reader(ID, name, surname, age,user);
-                        Library.GetReaderRepository().AddReader(reader);
+                        Library.GetReaderRepository().Add(reader);
                     }
                 }
             }
@@ -202,7 +202,7 @@ namespace Biblioteka.Model.Utils
                 DateTime dateTimeFound = DateTime.ParseExact(splitedBookBorrowing[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 DateTime plannedReturningDateFound = DateTime.ParseExact(splitedBookBorrowing[1], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 Borrowing borrowingFound = new Borrowing(dateTimeFound, plannedReturningDateFound, bookFound, readerFound);
-                Library.GetBorrowingRepository().AddBorrowing(borrowingFound);
+                Library.GetBorrowingRepository().Add(borrowingFound);
             }
         }
         private void ImportReturnings()
@@ -217,13 +217,13 @@ namespace Biblioteka.Model.Utils
                 Reader readerFound = Library.GetReaderRepository().FindReaderByID(readerID);
                 DateTime dateTimeFound = DateTime.ParseExact(splitedBookReturning[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 Returning returningFound = new Returning(dateTimeFound, bookFound, readerFound);
-                Library.GetReturningRepository().AddReturning(returningFound);
+                Library.GetReturningRepository().Add(returningFound);
             }
         }
         private void ImportChargeInformation()
         {
             List<String> csvContentList = ReadCsv("chargeinformation.csv");
-            List<Reader> readersTemp = Library.GetReaderRepository().GetReaders();
+            List<Reader> readersTemp = Library.GetReaderRepository().Get();
             foreach (String line in csvContentList)
             {
                 string[] splitedChargeInformation = line.Split(',');
@@ -236,7 +236,7 @@ namespace Biblioteka.Model.Utils
                     if (reader.GetID().Equals(readerID))
                     {
                         ChargeInformation chargeInformation = new ChargeInformation(charge, reader, dateTimeFound);
-                        Library.GetChargeInformationRepository().AddChargeInformation(chargeInformation);
+                        Library.GetChargeInformationRepository().Add(chargeInformation);
                     }
                 }
             }
@@ -244,7 +244,7 @@ namespace Biblioteka.Model.Utils
         public void ImportUsers()
         {
             List<String> csvContentList = ReadCsv("user.csv");
-            List<User> usersTemp = Library.GetUserRepository().GetUsers();
+            List<User> usersTemp = Library.GetUserRepository().Get();
             foreach (String line in csvContentList)
             {
                 string[] splitedUsers = line.Split(',');
@@ -253,7 +253,7 @@ namespace Biblioteka.Model.Utils
                 UserRole userRole = ConvertToRole(splitedUsers[2]);
                 bool requiredPasswordChange = bool.Parse(splitedUsers[3]);
                 User user = new User(email, password, userRole,requiredPasswordChange);
-                Library.GetUserRepository().AddUser(user);
+                Library.GetUserRepository().Add(user);
             }
         }
         private UserRole ConvertToRole(string role)
@@ -273,9 +273,9 @@ namespace Biblioteka.Model.Utils
         }
         private void ImportID()
         {
-            List<Book> bookList = Library.GetBookRepository().GetBooks();
-            List<Reader> readerList = Library.GetReaderRepository().GetReaders();
-            List<Librarian> librarianList = Library.GetLibrarianRepository().GetLibrarians();
+            List<Book> bookList = Library.GetBookRepository().Get();
+            List<Reader> readerList = Library.GetReaderRepository().Get();
+            List<Librarian> librarianList = Library.GetLibrarianRepository().Get();
             int maxID = 0;
             foreach (Book book in bookList)
             {

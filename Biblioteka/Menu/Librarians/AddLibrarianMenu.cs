@@ -38,8 +38,8 @@ namespace Biblioteka.Menu.Librarians
                     User user = new User(email,temporaryPassword,UserRole.Librarian);
                     user.SetIfPasswordIsNeededToBeChanged();
                     Librarian librarian = new Librarian(name, surname, age,user);
-                    Library.GetUserRepository().AddUser(user);
-                    Library.GetLibrarianRepository().AddLibrarian(librarian);
+                    Library.GetUserRepository().Add(user);
+                    Library.GetLibrarianRepository().Add(librarian);
                     Log.PrintSuccessMessage($"Gratulację! Udało ci się dodać pracownika: {name} {surname}, wiek: {age}");
                     Log.PrintInformationMessage("\nTymczasowe hasło dla użytkownika, to: " + temporaryPassword);
                     break;

@@ -19,7 +19,7 @@ namespace Biblioteka.Menu.Books
                 Console.WriteLine("Podaj ID książki, którą chcesz usunąć");
                 int ID = ReadOption();
                 List<Book> toRemove = new List<Book>();
-                List<Book> allBooks = Library.GetBookRepository().GetBooks();
+                List<Book> allBooks = Library.GetBookRepository().Get();
                 foreach (var book in allBooks)
                 {
                     if (book.GetID() == ID)

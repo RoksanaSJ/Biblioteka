@@ -51,8 +51,8 @@ namespace Biblioteka.Menu.Entry
                         {
                             User newUser = new User(email, password, UserRole.Reader);
                             Reader reader = new Reader(name, surname, age, newUser);
-                            Library.GetUserRepository().AddUser(newUser);
-                            Library.GetReaderRepository().AddReader(reader);
+                            Library.GetUserRepository().Add(newUser);
+                            Library.GetReaderRepository().Add(reader);
                             Log.PrintSuccessMessage("\nGratulację! utworzyłeś profil nowego użytkownika!");
                         }
                         else

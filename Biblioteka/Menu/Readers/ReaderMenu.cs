@@ -33,7 +33,7 @@ namespace Biblioteka.Menu.Readers
                 else if (option == 2)
                 {
                     Log.PrintInformationMessage("Lista czytelników:");
-                    Library.GetReaderRepository().ListTheReaders();
+                    Library.GetReaderRepository().PrintList();
                 }
                 else if (option == 3)
                 {

@@ -7,17 +7,12 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Repository
 {
-    internal class UserRepository
+    internal class UserRepository : Repository<User>
     {
         protected User CurrentUser { get; set; }
-        protected List<User> UsersList { get; }
         public UserRepository() 
         { 
-            UsersList = new List<User>();
-        }
-        public List<User> GetUsers()
-        {
-            return UsersList;
+           
         }
         public User GetCurrentUser()
         {
@@ -26,7 +21,7 @@ namespace Biblioteka.Repository
         public List<string> GetUsersEmails()
         {
             List<string> usersEmails = new List<string>();
-            foreach (User user in UsersList)
+            foreach (User user in ElementList)
             {
                 usersEmails.Add(user.GetEmail());
             }
@@ -35,17 +30,6 @@ namespace Biblioteka.Repository
         public void SetCurrentUser(User currentUser)
         {
             this.CurrentUser = currentUser;
-        }
-        public void ListUsers()
-        {
-            foreach (User users in UsersList)
-            {
-                Console.WriteLine(users);
-            }
-        }
-        public void AddUser(User user)
-        {
-            UsersList.Add(user);
         }
     }
 }

@@ -46,12 +46,12 @@ namespace Biblioteka.Menu.Borrowings
                 } else if (option == 4)
                 {
                     Log.PrintInformationMessage("Lista wypożyczeń: ");
-                    Library.GetBorrowingRepository().ListTheBorrowings();
+                    Library.GetBorrowingRepository().PrintList();
                 }
                 else if (option == 5)
                 {
                     Log.PrintInformationMessage("Lista zwrotów: ");
-                    Library.GetReturningRepository().ListTheReturnings();
+                    Library.GetReturningRepository().PrintList();
                 }
                 else if (option == 6)
                 {

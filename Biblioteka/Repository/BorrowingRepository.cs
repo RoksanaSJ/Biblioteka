@@ -7,22 +7,17 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Repository
 {
-    internal class BorrowingRepository
+    internal class BorrowingRepository : Repository<Borrowing>
     {
         const int MAXBOOKS = 5;
         const int RETURNING_TIME = 31;
-        protected List<Borrowing> BorrowingList { get; }
         public BorrowingRepository()
         {
-            BorrowingList = new List<Borrowing>();
-        }
-        public List<Borrowing> GetBorrowing()
-        {
-            return BorrowingList;
+
         }
         public Borrowing FindBorrowingByReaderAndBook(Book book, Reader reader)
         {
-            foreach (Borrowing borrowing in BorrowingList)
+            foreach (Borrowing borrowing in ElementList)
             {
                 if (borrowing.GetReader().Equals(reader) && borrowing.GetBook().Equals(book))
                 {
@@ -31,20 +26,9 @@ namespace Biblioteka.Repository
             }
             return null;
         }
-        public void ListTheBorrowings()
-        {
-            foreach (var item in BorrowingList)
-            {
-                Console.WriteLine(item);
-            }
-        }
-        public void AddBorrowing(Borrowing borrowing)
-        {
-            BorrowingList.Add(borrowing);
-        }
         public bool SubmitBorrowing(int bookID, int readerID)
         {
-            foreach (Borrowing borrowing in BorrowingList)
+            foreach (Borrowing borrowing in ElementList)
             {
                 if (borrowing.GetReader().GetID() == readerID && borrowing.GetBook().GetID() == bookID)
                 {
@@ -58,7 +42,7 @@ namespace Biblioteka.Repository
         {
             List<Borrowing> temporaryList = new List<Borrowing>();
             bool isItEqual = false;
-            foreach (Borrowing borrowing in BorrowingList)
+            foreach (Borrowing borrowing in ElementList)
             {
                 if (borrowing.GetBook().Equals(book) && borrowing.GetReader().Equals(reader))
                 {
@@ -68,14 +52,14 @@ namespace Biblioteka.Repository
             }
             foreach (Borrowing tempBorrowing in temporaryList)
             {
-                BorrowingList.Remove(tempBorrowing);
+                ElementList.Remove(tempBorrowing);
             }
             return isItEqual;
         }
         public int CountReaderBorrowings(int readerID)
         {
             int counter = 0;
-            foreach (Borrowing borrowing in BorrowingList)
+            foreach (Borrowing borrowing in ElementList)
             {
                 if (borrowing.GetReader().GetID() == readerID)
                 {
@@ -89,7 +73,7 @@ namespace Biblioteka.Repository
                 DateTime borrowingDate = DateTime.Now;
                 DateTime plannedReturningDate = borrowingDate.AddDays(RETURNING_TIME);
                 Borrowing borrow = new Borrowing(borrowingDate, plannedReturningDate, book, reader);
-                AddBorrowing(borrow);
+                Add(borrow);
                 book.Booked();
         }
         public bool IsLimitExceeded(Reader reader)

@@ -35,13 +35,13 @@ namespace Biblioteka
         }
         public void ClearAllData()
         {
-            BookRepository.GetBooks().Clear();
-            ReaderRepository.GetReaders().Clear();
-            LibrarianRepository.GetLibrarians().Clear();
-            BorrowingRepository.GetBorrowing().Clear();
-            ReturningRepository.GetReturnings().Clear();
-            ChargeInformationRepository.GetChargeInformation().Clear();
-            UserRepository.GetUsers().Clear();
+            BookRepository.Get().Clear();
+            ReaderRepository.Get().Clear();
+            LibrarianRepository.Get().Clear();
+            BorrowingRepository.Get().Clear();
+            ReturningRepository.Get().Clear();
+            ChargeInformationRepository.Get().Clear();
+            UserRepository.Get().Clear();
         }
         public BookRepository GetBookRepository()
         {
@@ -74,8 +74,8 @@ namespace Biblioteka
         public void BorrowABookByBookAndReaderID(int bookID, int readerID)
         {
             List<int> notFound = new List<int>();
-            List<Reader> readers = ReaderRepository.GetReaders();
-            foreach (var book in BookRepository.GetBooks())
+            List<Reader> readers = ReaderRepository.Get();
+            foreach (var book in BookRepository.Get())
             {
                 if (book.GetID() == bookID)
                 {
@@ -107,7 +107,7 @@ namespace Biblioteka
                     notFound.Add(bookID);
                 }
             }
-            if (notFound.Count == BookRepository.GetBooks().Count)
+            if (notFound.Count == BookRepository.Get().Count)
             {
                 Log.PrintErrorMessage("Niestety książka o takim ID nie istnieje");
             }

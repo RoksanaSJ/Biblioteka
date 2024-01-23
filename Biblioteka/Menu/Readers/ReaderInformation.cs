@@ -28,11 +28,11 @@ namespace Biblioteka.Menu.Readers
                 {
                     //osobna metoda w klasie library, a nawet więcej niż 1 metoda
                     List<Reader> readerInfo = new List<Reader>();
-                    readerInfo = Library.GetReaderRepository().GetReaders();
+                    readerInfo = Library.GetReaderRepository().Get();
                     List<Borrowing> borrowings = new List<Borrowing>();
-                    borrowings = Library.GetBorrowingRepository().GetBorrowing();
+                    borrowings = Library.GetBorrowingRepository().Get();
                     List<Returning> readerReturnings = new List<Returning>();
-                    readerReturnings = Library.GetReturningRepository().GetReturnings();
+                    readerReturnings = Library.GetReturningRepository().Get();
                     Log.PrintInformationMessage("Dane użytkownika: ");
                     foreach (Reader reader in readerInfo)
                     {
@@ -79,13 +79,13 @@ namespace Biblioteka.Menu.Readers
         {
             while (true)
             {
-                List<Reader> readers = Library.GetReaderRepository().GetReaders();
+                List<Reader> readers = Library.GetReaderRepository().Get();
                 User currentUser = Library.GetUserRepository().GetCurrentUser();
-                List<User> userInfo = Library.GetUserRepository().GetUsers();
+                List<User> userInfo = Library.GetUserRepository().Get();
                 List<Borrowing> borrowings = new List<Borrowing>();
-                borrowings = Library.GetBorrowingRepository().GetBorrowing();
+                borrowings = Library.GetBorrowingRepository().Get();
                 List<Returning> readerReturnings = new List<Returning>();
-                readerReturnings = Library.GetReturningRepository().GetReturnings();
+                readerReturnings = Library.GetReturningRepository().Get();
                 Log.PrintInformationMessage("Dane użytkownika: ");
                 foreach(Reader reader in readers)
                 {

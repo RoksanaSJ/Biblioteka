@@ -38,7 +38,7 @@ namespace Biblioteka.Menu.Borrowings
                         if(charge > 0)
                         {
                             ChargeInformation chargeInfo = new ChargeInformation(charge, readerFound);
-                            Library.GetChargeInformationRepository().AddChargeInformation(chargeInfo);
+                            Library.GetChargeInformationRepository().Add(chargeInfo);
                         }
                         Library.GetReturningRepository().ReturnBook(bookFound, readerFound);
                         //Wcześniej to co jest niżej było w metodzie ReturnBook

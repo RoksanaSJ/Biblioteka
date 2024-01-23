@@ -29,7 +29,7 @@ namespace Biblioteka.Menu.Readers
                 if (userOption.Equals("y"))
                 {
                     //osobna metoda w klasie library
-                   List<Reader> list = Library.GetReaderRepository().GetReaders();
+                   List<Reader> list = Library.GetReaderRepository().Get();
                    bool isItEquals = false;
                    List<Reader> toRemove = new List<Reader>();
                     foreach (var reader in list)

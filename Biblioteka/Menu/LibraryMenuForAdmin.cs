@@ -65,7 +65,7 @@ namespace Biblioteka.Menu.Books
                 }
                 else if (option == 5)
                 {
-                    Library.GetUserRepository().ListUsers();
+                    Library.GetUserRepository().PrintList();
                 }
                 else if (option == 6)
                 {

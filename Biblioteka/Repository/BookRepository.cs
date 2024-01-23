@@ -8,20 +8,15 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Repository
 {
-    internal class BookRepository
+    internal class BookRepository : Repository<Book>
     {
-        protected List<Book> BooksList { get; }
         public BookRepository()
         {
-            BooksList = new List<Book>();
-        }
-        public List<Book> GetBooks()
-        {
-            return BooksList;
+
         }
         public Book FindBookByID(int ID)
         {
-            foreach (Book book in BooksList)
+            foreach (Book book in ElementList)
             {
                 if (book.GetID() == ID)
                 {
@@ -33,7 +28,7 @@ namespace Biblioteka.Repository
         public List<Book> FindBookByCategory(string category)
         {
             List<Book> oneCategoryBooksList = new List<Book>();
-            foreach (Book book in BooksList)
+            foreach (Book book in ElementList)
             {
                 if (book.getCategory().Contains(category))
                 {
@@ -45,7 +40,7 @@ namespace Biblioteka.Repository
         public List<Book> FindBookByAuthor(string fullName)
         {
             List<Book> oneAuthorBooks = new List<Book>();
-            foreach (var book in BooksList)
+            foreach (var book in ElementList)
             {
                 if (book.GetAuthor().GetNameAndSurname().Contains(fullName))
                 {
@@ -54,21 +49,10 @@ namespace Biblioteka.Repository
             }
             return oneAuthorBooks;
         }
-        public void ListTheBooks()
-        {
-            foreach (var item in BooksList)
-            {
-                Console.WriteLine(item);
-            }
-        }
-        public void AddBook(Book k)
-        {
-            BooksList.Add(k);
-        }
         public List<Book> GetBooksByState(string title,Book.BookState state)
         {
             List<Book> books = new List<Book>();
-            foreach (Book book in BooksList)
+            foreach (Book book in ElementList)
             {
                 if (book.GetTitle().Contains(title) && book.GetState() == state)
                 {

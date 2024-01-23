@@ -7,20 +7,15 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Repository
 {
-    internal class ReaderRepository
+    internal class ReaderRepository : Repository<Reader>
     {
-        protected List<Reader> ReadersList { get; }
         public ReaderRepository() 
         {
-            ReadersList = new List<Reader>();
-        }
-        public List<Reader> GetReaders()
-        {
-            return ReadersList;
+
         }
         public Reader FindReaderByID(int ID)
         {
-            foreach (Reader reader in ReadersList)
+            foreach (Reader reader in ElementList)
             {
                 if (reader.GetID() == ID)
                 {
@@ -28,17 +23,6 @@ namespace Biblioteka.Repository
                 }
             }
             return null;
-        }
-        public void ListTheReaders()
-        {
-            foreach (var item in ReadersList)
-            {
-                Console.WriteLine(item);
-            }
-        }
-        public void AddReader(Reader c)
-        {
-            ReadersList.Add(c);
         }
     }
 }

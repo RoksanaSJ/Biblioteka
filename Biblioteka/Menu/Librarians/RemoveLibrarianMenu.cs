@@ -25,7 +25,7 @@ namespace Biblioteka.Menu.Librarians
                 if (userOption.Equals("y"))
                 {
                     // to też do osobnejmetody w klasie library?
-                    List<Librarian> librarians = Library.GetLibrarianRepository().GetLibrarians();
+                    List<Librarian> librarians = Library.GetLibrarianRepository().Get();
                     List<Librarian> toRemove = new List<Librarian> ();
                     bool isItEqual = false;
                     foreach (Librarian librarian in librarians)
