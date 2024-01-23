@@ -14,7 +14,6 @@ namespace Biblioteka
     internal class Library
     {
         const int MAXBOOKS = 5;
-        protected User CurrentUser { get; set; }
         protected BookRepository BookRepository { get; set; }
         protected ReaderRepository ReaderRepository { get; set; }
         protected LibrarianRepository LibrarianRepository { get; set; }

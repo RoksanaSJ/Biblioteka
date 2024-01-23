@@ -56,14 +56,7 @@ namespace Biblioteka.Repository
         }
         public bool CheckIfStartDateIsEarlierThanFinishDate(DateTime startDate, DateTime finishDate)
         {
-            if (finishDate >= startDate)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return finishDate >= startDate;
         }
     }
 }
