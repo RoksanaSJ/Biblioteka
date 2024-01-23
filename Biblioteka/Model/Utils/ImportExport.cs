@@ -70,10 +70,10 @@ namespace Biblioteka.Model.Utils
             SaveToFile(READERCSV, Library.GetReaderRepository().GetReaders());
             SaveToFile(BOOKCSV, Library.GetBookRepository().GetBooks());
             SaveToFile(BORROWINGCSV, Library.GetBorrowingRepository().GetBorrowing());
-            SaveToFile(RETURNINGCSV, Library.GetReturnings());
+            SaveToFile(RETURNINGCSV, Library.GetReturningRepository().GetReturnings());
             SaveToFile(LIBRARIANCSV, Library.GetLibrarianRepository().GetLibrarians());
-            SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformation());
-            SaveToFile(USERCSV, Library.GetUsers());
+            SaveToFile(CHARGEINFORMATIONCSV, Library.GetChargeInformationRepository().GetChargeInformation());
+            SaveToFile(USERCSV, Library.GetUserRepository().GetUsers());
 
             using (ZipArchive zip = ZipFile.Open(FILEPATH + zipFile, ZipArchiveMode.Update))
             {
@@ -148,7 +148,7 @@ namespace Biblioteka.Model.Utils
         private void ImportLibrarians()
         {
             List<String> csvContentList = ReadCsv("librarian.csv");
-            List<User> users = Library.GetUsers();
+            List<User> users = Library.GetUserRepository().GetUsers();
             foreach (String line in csvContentList)
             {
                 string[] splitedLibrarian = line.Split(',');
@@ -170,7 +170,7 @@ namespace Biblioteka.Model.Utils
         private void ImportReaders()
         {
             List<String> csvContentList = ReadCsv("reader.csv");
-            List<User> users = Library.GetUsers();
+            List<User> users = Library.GetUserRepository().GetUsers();
             foreach (String line in csvContentList)
             {
                 string[] splitedReader = line.Split(',');
@@ -217,7 +217,7 @@ namespace Biblioteka.Model.Utils
                 Reader readerFound = Library.GetReaderRepository().FindReaderByID(readerID);
                 DateTime dateTimeFound = DateTime.ParseExact(splitedBookReturning[0], "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                 Returning returningFound = new Returning(dateTimeFound, bookFound, readerFound);
-                Library.AddReturning(returningFound);
+                Library.GetReturningRepository().AddReturning(returningFound);
             }
         }
         private void ImportChargeInformation()
@@ -236,7 +236,7 @@ namespace Biblioteka.Model.Utils
                     if (reader.GetID().Equals(readerID))
                     {
                         ChargeInformation chargeInformation = new ChargeInformation(charge, reader, dateTimeFound);
-                        Library.AddChargeInformation(chargeInformation);
+                        Library.GetChargeInformationRepository().AddChargeInformation(chargeInformation);
                     }
                 }
             }
@@ -244,7 +244,7 @@ namespace Biblioteka.Model.Utils
         public void ImportUsers()
         {
             List<String> csvContentList = ReadCsv("user.csv");
-            List<User> usersTemp = Library.GetUsers();
+            List<User> usersTemp = Library.GetUserRepository().GetUsers();
             foreach (String line in csvContentList)
             {
                 string[] splitedUsers = line.Split(',');
@@ -253,7 +253,7 @@ namespace Biblioteka.Model.Utils
                 UserRole userRole = ConvertToRole(splitedUsers[2]);
                 bool requiredPasswordChange = bool.Parse(splitedUsers[3]);
                 User user = new User(email, password, userRole,requiredPasswordChange);
-                Library.AddUser(user);
+                Library.GetUserRepository().AddUser(user);
             }
         }
         private UserRole ConvertToRole(string role)

@@ -32,7 +32,7 @@ namespace Biblioteka.Menu.Readers
                     List<Borrowing> borrowings = new List<Borrowing>();
                     borrowings = Library.GetBorrowingRepository().GetBorrowing();
                     List<Returning> readerReturnings = new List<Returning>();
-                    readerReturnings = Library.GetReturnings();
+                    readerReturnings = Library.GetReturningRepository().GetReturnings();
                     Log.PrintInformationMessage("Dane użytkownika: ");
                     foreach (Reader reader in readerInfo)
                     {
@@ -80,12 +80,12 @@ namespace Biblioteka.Menu.Readers
             while (true)
             {
                 List<Reader> readers = Library.GetReaderRepository().GetReaders();
-                User currentUser = Library.GetCurrentUser();
-                List<User> userInfo = Library.GetUsers();
+                User currentUser = Library.GetUserRepository().GetCurrentUser();
+                List<User> userInfo = Library.GetUserRepository().GetUsers();
                 List<Borrowing> borrowings = new List<Borrowing>();
                 borrowings = Library.GetBorrowingRepository().GetBorrowing();
                 List<Returning> readerReturnings = new List<Returning>();
-                readerReturnings = Library.GetReturnings();
+                readerReturnings = Library.GetReturningRepository().GetReturnings();
                 Log.PrintInformationMessage("Dane użytkownika: ");
                 foreach(Reader reader in readers)
                 {

@@ -51,7 +51,7 @@ namespace Biblioteka.Menu.Borrowings
                 else if (option == 5)
                 {
                     Log.PrintInformationMessage("Lista zwrotów: ");
-                    Library.ListTheReturnings();
+                    Library.GetReturningRepository().ListTheReturnings();
                 }
                 else if (option == 6)
                 {

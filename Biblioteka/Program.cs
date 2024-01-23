@@ -80,9 +80,9 @@ namespace Biblioteka
             //library.AddEmployee(employee2);
             //library.AddEmployee(employee3);
             //library.AddEmployee(employee4);
-            library.AddUser(user1);
-            library.AddUser(user2);
-            library.AddUser(user3);
+            library.GetUserRepository().AddUser(user1);
+            library.GetUserRepository().AddUser(user2);
+            library.GetUserRepository().AddUser(user3);
             //LibraryMenu libraryMenu = new LibraryMenu(library);
             //libraryMenu.PrintMenu();
             entryMenu.PrintMenu();

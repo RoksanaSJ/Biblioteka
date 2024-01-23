@@ -27,7 +27,11 @@ namespace Biblioteka.Menu.Charge
                     Console.WriteLine("Podaj ID czytelnika:");
                     int ID = ReadOption();
                     Console.WriteLine("");
-                    Library.ChargeInformationForSpecificReader(ID);
+                    bool found = Library.GetChargeInformationRepository().ChargeInformationForSpecificReader(ID);
+                    if(found == false)
+                    {
+                        Log.PrintErrorMessage("Dany czytelnik nie został obciążony żadną opłatą");
+                    }
                 }
                 else if (option == 2)
                 {
@@ -36,7 +40,11 @@ namespace Biblioteka.Menu.Charge
                     DateTime startDate = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("Podaj datę końcową w formacie yyyy-MM-dd:");
                     DateTime finishDate = DateTime.Parse(Console.ReadLine() + " 23:59:59");
-                    Library.PrintHistoryFromPeriod(startDate,finishDate);
+                    Library.GetChargeInformationRepository().PrintHistoryFromPeriod(startDate,finishDate);
+                    if(Library.GetChargeInformationRepository().CheckIfStartDateIsEarlierThanFinishDate(startDate,finishDate) == false)
+                    {
+                        Log.PrintErrorMessage("Data końcowa powinna być późniejsza niż początkowa");
+                    }
                 }
                 else if (option == 5)
                 {

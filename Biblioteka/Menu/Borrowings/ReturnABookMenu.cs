@@ -38,15 +38,21 @@ namespace Biblioteka.Menu.Borrowings
                         if(charge > 0)
                         {
                             ChargeInformation chargeInfo = new ChargeInformation(charge, readerFound);
-                            Library.AddChargeInformation(chargeInfo);
+                            Library.GetChargeInformationRepository().AddChargeInformation(chargeInfo);
                         }
-                        Library.ReturnBook(bookFound, readerFound);
+                        Library.GetReturningRepository().ReturnBook(bookFound, readerFound);
+                        //Wcześniej to co jest niżej było w metodzie ReturnBook
+                        bool isItEqual = Library.GetBorrowingRepository().RemoveBorrowingFromBorrowingList(bookFound, readerFound);
+                        if (isItEqual == false)
+                        {
+                            Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
+                        }
                         Log.PrintSuccessMessage($"Gratulację, właśnie oddałeś książkę");
                         break;
                     }
                     else
                     {
-                        Console.WriteLine("Dane niepoprawne");
+                        Log.PrintErrorMessage("Dane niepoprawne");
                     }
                     break;
                 }

@@ -16,8 +16,8 @@ namespace Biblioteka.Menu.Librarians
         public override void PrintMenu()
         {
             List<Librarian> librarians = Library.GetLibrarianRepository().GetLibrarians();
-            User currentUser = Library.GetCurrentUser();
-            List<User> userInfo = Library.GetUsers();
+            User currentUser = Library.GetUserRepository().GetCurrentUser();
+            List<User> userInfo = Library.GetUserRepository().GetUsers();
             Log.PrintInformationMessage("Dane użytkownika: ");
             //otrzymanie tych danych też powinno być w klasie library?
             foreach (Librarian librarian in librarians)
