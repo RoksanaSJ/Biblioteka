@@ -8,6 +8,7 @@ using static Biblioteka.Model.Reader;
 
 namespace Biblioteka.Menu.Readers
 {
+    //Czy tą klasę usuwamy?
     internal class AddReaderMenu : Menu
     {
         public AddReaderMenu(Library library) : base(library)

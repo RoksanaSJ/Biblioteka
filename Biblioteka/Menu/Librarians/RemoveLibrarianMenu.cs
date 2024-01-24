@@ -24,26 +24,15 @@ namespace Biblioteka.Menu.Librarians
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    // to też do osobnejmetody w klasie library?
-                    List<Librarian> librarians = Library.GetLibrarianRepository().Get();
-                    List<Librarian> toRemove = new List<Librarian> ();
-                    bool isItEqual = false;
-                    foreach (Librarian librarian in librarians)
+                    Librarian librarian = Library.GetLibrarianRepository().FindLibrarianByID(ID);
+                    if (librarian != null)
                     {
-                        if (librarian.GetID() == ID)
-                        {
-                            toRemove.Add(librarian);
-                            isItEqual = true;
-                        }
+                        Library.GetLibrarianRepository().RemoveLibrarian(librarian);
+                        Log.PrintSuccessMessage($"Gratulacje, właśnie usunąłeś pracownika {librarian.ToString()}");
                     }
-                    if (isItEqual == false)
+                    else
                     {
                         Log.PrintErrorMessage("Nie ma w bazie pracownika o takim ID");
-                    }
-                    foreach (Librarian employee in toRemove)
-                    {
-                            librarians.Remove(employee);
-                            Log.PrintSuccessMessage($"Gratulacje, właśnie usunąłeś pracownika {employee.ToString()}");                     
                     }
                     break;
                 }

@@ -1,4 +1,5 @@
 ﻿using Biblioteka.Model;
+using Biblioteka.Model.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,10 @@ namespace Biblioteka.Menu.Entry
 {
     internal class NewUserMenu : Menu
     {
+        private Validator _validator;
         public NewUserMenu(Library library) : base(library)
         {
-
+            _validator = new Validator();
         }
         public override void PrintMenu()
         {
@@ -30,11 +32,11 @@ namespace Biblioteka.Menu.Entry
                 string password = Console.ReadLine();
                 Console.WriteLine("Powtórz hasło:");
                 string repeatedPassword = Console.ReadLine();
-                if (IsEmailCompatible(email) == true) 
+                if (_validator.IsEmailCompatible(email) == true) 
                 { 
                     if (password.Equals(repeatedPassword))
                     {
-                        if (ValidateComplexityPassword(password) == true)
+                        if (_validator.ValidateComplexityPassword(password) == true)
                         {
                             Library.CreateReaderAndUser(name, surname, dateOfBirth,email,password);
                             Log.PrintSuccessMessage("\nGratulację! utworzyłeś profil nowego użytkownika!");
@@ -50,74 +52,6 @@ namespace Biblioteka.Menu.Entry
                     }
                 }
                 break;
-            }
-        }
-        //TODO klasa validator na te metody niżej
-        public bool ValidateComplexityPassword(string password)
-        {
-            string specialChars = @"%!@#$%^&*()?/>.<,:;'\|}]{[_~`+=-" + "\"";
-            char[] specialChar = specialChars.ToCharArray();
-            string digits = "123456789";
-            char[] digitsChar = digits.ToCharArray();
-            bool isContainSpecialChar = false;
-            bool isContainDigits = false;
-            foreach(char ch in specialChar)
-            {
-                if(password.Contains(ch))
-                {
-                    isContainSpecialChar = true;
-                }
-            }
-            foreach(char ch in digitsChar)
-            {
-                if(password.Contains(ch))
-                {
-                    isContainDigits = true;
-                }
-            }
-            if (password.Length>=8 && password.Any(char.IsUpper) && password.Any(char.IsLower) && !password.Contains(" ") && isContainSpecialChar == true && isContainDigits == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public bool ValidateUniqnessEmail(string email)
-        {
-            if (!Library.GetUserRepository().GetUsersEmails().Contains(email))
-            {
-                return true;
-            }
-            else
-            {
-            Log.PrintErrorMessage("Ten adres email jest już przypisany do konta");
-            return false;
-            }
-        }
-        public bool IsContainAt(string email)
-        {
-            if (email.Contains('@'))
-            {
-                return true;
-            }
-            else
-            {
-            Log.PrintErrorMessage("Podaj właściwy adres email");
-            return false;
-            }
-        }
-        public bool IsEmailCompatible(string email)
-        {
-            if(ValidateUniqnessEmail(email) == true && IsContainAt(email) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-
             }
         }
     }

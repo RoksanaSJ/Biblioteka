@@ -24,18 +24,12 @@ namespace Biblioteka.Menu.Librarians
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    //osobna metoda w klasie library
-                    List<Librarian> librarians = Library.GetLibrarianRepository().Get();
-                    bool isItEqual = false;
-                    foreach (Librarian librarian in librarians)
+                    Librarian librarian = Library.GetLibrarianRepository().FindLibrarianByID(ID);
+                    if(librarian != null)
                     {
-                        if ((librarian.GetID() == ID))
-                        {
-                            Log.PrintInformationMessage($"{librarian}");
-                            isItEqual = true;
-                        }
+                        Log.PrintInformationMessage(librarian.ToString());
                     }
-                    if (isItEqual == false)
+                    else
                     {
                         Log.PrintErrorMessage("Nie ma pracownika o takim ID");
                     }

@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.ConsoleMessage;
+using Biblioteka.Menu.Books;
 using Biblioteka.Model;
 using Biblioteka.Repository;
 
@@ -71,6 +72,72 @@ namespace Biblioteka
         {
             return UserRepository; 
         }
+        public User CheckingUserExistance(string email, string password)
+        {
+            List<User> tempUsersList = UserRepository.Get();
+            foreach (User user in tempUsersList)
+            {
+                if (user.GetEmail().Equals(email) && user.GetPassword().Equals(password))
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+        //Próbowałam porobić metody do LoginMenu
+
+        //public bool CheckingIfChangingPasswordIsNecessary(User user)
+        //{
+        //    return (user.GetInfoAboutPassword() == true);
+        //}
+        //public void ChooseRoleDependMenu(User user)
+        //{
+        //    bool isAdmin = false;
+        //    bool isLibrarian = false;
+        //    bool isReader = false;
+        //    if (user.GetUserRole() == UserRole.Administrator)
+        //    {
+        //        isAdmin = true;
+        //    }
+        //    else if (user.GetUserRole() == UserRole.Librarian)
+        //    {
+        //        isLibrarian = true;
+        //        if (user.GetInfoAboutPassword() == true)
+        //        {
+        //            Log.PrintInformationMessage("Musisz zmienic hasło");
+        //            Console.WriteLine("Podaj nowe hasło:");
+        //            string newPassword = Console.ReadLine();
+        //            Console.WriteLine("Powtórz nowe hasło:");
+        //            string repeatedNewPassword = Console.ReadLine();
+        //            if (repeatedNewPassword == newPassword)
+        //            {
+        //                user.SetPassword(repeatedNewPassword);
+        //                user.SetIfPasswordIsNotNeededToBeChanged();
+        //                Log.PrintSuccessMessage("Garatulację, właśnie zmieniłeś hasło!");
+        //            }
+        //            else
+        //            {
+        //                Log.PrintErrorMessage("Hasła muszą być takie same!");
+        //            }
+        //        }
+        //    }
+        //    else if (user.GetUserRole() == UserRole.Reader)
+        //    {
+        //        isReader = true;
+        //    }
+        //}
+        //public void ChangingLibrarianPassword()
+        //{
+        //    Console.WriteLine("Podaj nowe hasło:");
+        //    string newPassword = Console.ReadLine();
+        //    Console.WriteLine("Powtórz nowe hasło:");
+        //    string repeatedNewPassword = Console.ReadLine();
+        //    if (repeatedNewPassword == newPassword)
+        //    {
+        //        user.SetPassword(repeatedNewPassword);
+        //        user.SetIfPasswordIsNotNeededToBeChanged();
+        //    }
+        //}
         public void CreateReaderAndUser(string name, string surname, DateTime dateOfBirth, string email, string password)
         {
             DateTime today = DateTime.Today;

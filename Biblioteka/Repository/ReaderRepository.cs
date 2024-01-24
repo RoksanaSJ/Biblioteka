@@ -24,5 +24,9 @@ namespace Biblioteka.Repository
             }
             return null;
         }
+        public void RemoveReader(Reader reader)
+        {
+            ElementList.Remove(reader);
+        }
     }
 }

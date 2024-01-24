@@ -13,5 +13,31 @@ namespace Biblioteka.Repository
         {
            
         }
+        public Librarian FindLibrarianByID(int ID)
+        {
+            foreach(Librarian librarian in ElementList)
+            {
+                if(librarian.GetID() == ID)
+                {
+                    return librarian;
+                }
+            }
+            return null;
+        }
+        public Librarian FindLibrarianByFullname(string name, string surname)
+        {
+            foreach (Librarian librarian in ElementList)
+            {
+                if (librarian.GetName().Equals(name) && librarian.GetSurname().Equals(surname))
+                {
+                    return librarian;
+                }
+            }
+            return null;
+        }
+        public void RemoveLibrarian(Librarian librarian)
+        {
+            ElementList.Remove(librarian);
+        }
     }
 }

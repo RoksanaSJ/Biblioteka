@@ -17,37 +17,22 @@ namespace Biblioteka.Menu.Readers
         {
             while (true)
             {
-                Console.WriteLine("Podaj imię: ");
-                string name = Console.ReadLine();
-                Console.WriteLine("Podaj nazwisko: ");
-                string surname = Console.ReadLine();
-                Console.WriteLine("Podaj wiek: ");
-                int age = int.Parse(Console.ReadLine());
-                Console.WriteLine($"Czy twoje dane są następujące: imię: {name}, nazwisko: {surname}, wiek: {age}?");
+                Console.WriteLine("Podaj ID czytelnika: ");
+                int ID = int.Parse(Console.ReadLine());
+                Console.WriteLine($"Czy ID, po którym chcesz usunąć czytelnika jest następujęce: {ID}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić 'b':");
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    //osobna metoda w klasie library
-                   List<Reader> list = Library.GetReaderRepository().Get();
-                   bool isItEquals = false;
-                   List<Reader> toRemove = new List<Reader>();
-                    foreach (var reader in list)
+                    Reader reader = Library.GetReaderRepository().FindReaderByID(ID);
+                    if(reader != null )
                     {
-                        if (reader.GetName().Equals(name) && reader.GetSurname().Equals(surname) && reader.GetAge().Equals(age))
-                        {
-                            toRemove.Add(reader);
-                            isItEquals = true;
-                        }
+                        Library.GetReaderRepository().RemoveReader(reader);
+                        Log.PrintSuccessMessage($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
                     }
-                    if (isItEquals == false)
+                    else
                     {
                         Log.PrintErrorMessage("Nie ma w bazie czytelnika z takimi parametrami");
-                    }
-                    foreach(var reader in toRemove)
-                    {
-                        list.Remove(reader);
-                        Log.PrintSuccessMessage($"Gratulacje, właśnie usunąłeś czytelnika {reader.ToString()}");
                     }
                     break;
                 }

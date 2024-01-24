@@ -26,7 +26,7 @@ namespace Biblioteka.Menu.Readers
                 Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    //osobna metoda w klasie library, a nawet więcej niż 1 metoda
+                    //Nie wiem co z tym wszystkim, czy powydzielać medoty osobne na uzyskanie danych użytkownika, wypożyczeń i historię wypożyczeń?
                     List<Reader> readerInfo = new List<Reader>();
                     readerInfo = Library.GetReaderRepository().Get();
                     List<Borrowing> borrowings = new List<Borrowing>();

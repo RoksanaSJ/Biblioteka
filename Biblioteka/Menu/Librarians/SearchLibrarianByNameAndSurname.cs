@@ -27,17 +27,12 @@ namespace Biblioteka.Menu.Librarians
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    List<Librarian> librarians = Library.GetLibrarianRepository().Get();
-                    bool isItEqual = false;
-                    foreach (Librarian librarian in librarians)
+                    Librarian librarian = Library.GetLibrarianRepository().FindLibrarianByFullname(name, surname);
+                    if(librarian != null)
                     {
-                        if (librarian.GetName().Equals(name) && librarian.GetSurname().Equals(surname))
-                        {
-                            Log.PrintInformationMessage($"{librarian}");
-                            isItEqual = true;
-                        }
+                        Log.PrintInformationMessage(librarian.ToString());
                     }
-                    if (isItEqual == false)
+                    else
                     {
                         Log.PrintErrorMessage("Nie ma pracownika o takim imieniu i nazwisku");
                     }
