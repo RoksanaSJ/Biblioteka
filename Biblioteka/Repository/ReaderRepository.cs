@@ -24,6 +24,17 @@ namespace Biblioteka.Repository
             }
             return null;
         }
+        public Reader FindReaderByCurrentUser(User currentUser)
+        {
+            foreach (Reader reader in ElementList)
+            {
+                if (reader.GetUser().Equals(currentUser))
+                {
+                    return reader;
+                }
+            }
+            return null;
+        }
         public void RemoveReader(Reader reader)
         {
             ElementList.Remove(reader);

@@ -51,6 +51,7 @@ namespace Biblioteka.Model
         public void SetPassword(string password)
         {
             Password = password;
+            SetIfPasswordIsNotNeededToBeChanged();
         }
         public void SetIfPasswordIsNeededToBeChanged()
         {

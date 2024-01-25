@@ -27,121 +27,46 @@ namespace Biblioteka.Menu.Login
             string userEmail = Console.ReadLine();
             Console.WriteLine("Podaj swoje hasło:");
             string userPassword = Console.ReadLine();
-            //Mam z tym duży problem aby wydzielić to do osobnych metod
             User user = Library.CheckingUserExistance(userEmail, userPassword);
-            if(user != null)
+            if (user != null)
             {
-                bool isAdmin = false;
+                if (user.GetInfoAboutPassword() == true)
+                {
+                    Log.PrintInformationMessage("Musisz zmienic hasło");
+                    Console.WriteLine("Podaj nowe hasło:");
+                    string newPassword = Console.ReadLine();
+                    Console.WriteLine("Powtórz nowe hasło:");
+                    string repeatedNewPassword = Console.ReadLine();
+                    if (repeatedNewPassword == newPassword)
+                    {
+                        user.SetPassword(repeatedNewPassword);
+                        Log.PrintSuccessMessage("Garatulację, właśnie zmieniłeś hasło!");
+                    }
+                    else
+                    {
+                        Log.PrintErrorMessage("Hasła muszą być takie same!");
+                    }
+                }
+
                 bool isLibrarian = false;
-                bool isReader = false;
                 Library.GetUserRepository().SetCurrentUser(user);
                 if (user.GetUserRole() == UserRole.Administrator)
                 {
-                   isAdmin = true;
+                    _libraryMenuForAdmin.PrintMenu();
                 }
                 else if (user.GetUserRole() == UserRole.Librarian)
                 {
-                   isLibrarian = true;
-                if(user.GetInfoAboutPassword() == true)
-                    {
-                        Log.PrintInformationMessage("Musisz zmienic hasło");
-                        Console.WriteLine("Podaj nowe hasło:");
-                        string newPassword = Console.ReadLine();
-                        Console.WriteLine("Powtórz nowe hasło:");
-                        string repeatedNewPassword = Console.ReadLine();
-                        if(repeatedNewPassword == newPassword) 
-                        {
-                            user.SetPassword(repeatedNewPassword);
-                            user.SetIfPasswordIsNotNeededToBeChanged();
-                            Log.PrintSuccessMessage("Garatulację, właśnie zmieniłeś hasło!");
-                        }
-                        else
-                        {
-                            Log.PrintErrorMessage("Hasła muszą być takie same!");
-                        }
-                    }
+                    _libraryMenuForLibrarian.PrintMenu();
                 }
                 else if (user.GetUserRole() == UserRole.Reader)
                 {
-                    isReader = true;
-                }
-                if (isAdmin == true)
-                {
-                    _libraryMenuForAdmin.PrintMenu();
-                }
-                else if (isLibrarian == true)
-                { 
-                    _libraryMenuForLibrarian.PrintMenu();
-                }
-                else if (isReader == true)
-                {
                     _libraryMenuForReader.PrintMenu();
                 }
+                else
+                {
+                    Log.PrintErrorMessage("Niestety twoje dane są niepoprawne");
+                }
             }
-            else
-            {
-                Log.PrintErrorMessage("Niestety twoje dane są niepoprawne");
-            }
-            //to co poniżej - osobna metoda w klasie library, lub więcej niż 1 metoda
-            //    List<User> tempUsersList = Library.GetUserRepository().Get();
-            //    bool isEqual = false;
-            //    bool isAdmin = false;
-            //    bool isLibrarian = false;
-            //    bool isReader = false;
-            //    foreach (User user in tempUsersList)
-            //    {
-            //        if (user.GetEmail().Equals(userEmail) && user.GetPassword().Equals(userPassword))
-            //        {
-            //            Library.GetUserRepository().SetCurrentUser(user);
-            //            if (user.GetUserRole() == UserRole.Administrator)
-            //            {
-            //                isAdmin = true;
-            //            }
-            //            else if (user.GetUserRole() == UserRole.Librarian)
-            //            {
-            //                isLibrarian = true;
-            //                if(user.GetInfoAboutPassword() == true)
-            //                {
-            //                    Log.PrintInformationMessage("Musisz zmienic hasło");
-            //                    Console.WriteLine("Podaj nowe hasło:");
-            //                    string newPassword = Console.ReadLine();
-            //                    Console.WriteLine("Powtórz nowe hasło:");
-            //                    string repeatedNewPassword = Console.ReadLine();
-            //                    if(repeatedNewPassword == newPassword) 
-            //                    {
-            //                        user.SetPassword(repeatedNewPassword);
-            //                        user.SetIfPasswordIsNotNeededToBeChanged();
-            //                        Log.PrintSuccessMessage("Garatulację, właśnie zmieniłeś hasło!");
-            //                    }
-            //                    else
-            //                    {
-            //                        Log.PrintErrorMessage("Hasła muszą być takie same!");
-            //                    }
-            //                }
-            //            }
-            //            else if (user.GetUserRole() == UserRole.Reader)
-            //            {
-            //                isReader = true;
-            //            }
-            //            isEqual = true;
-            //        }
-            //    }
-            //    if (isEqual == false)
-            //    {
-            //        Log.PrintErrorMessage("Niestety twoje dane są niepoprawne");
-            //    }
-            //    if (isAdmin == true)
-            //    {
-            //        _libraryMenuForAdmin.PrintMenu();
-            //    }
-            //    else if (isLibrarian == true)
-            //    { 
-            //        _libraryMenuForLibrarian.PrintMenu();
-            //    }
-            //    else if (isReader == true)
-            //    {
-            //        _libraryMenuForReader.PrintMenu();
-            //    }
         }
     }
 }

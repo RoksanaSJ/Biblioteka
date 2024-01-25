@@ -48,7 +48,7 @@ namespace Biblioteka.Model.Utils
                 return false;
             }
         }
-        public bool ValidateUniqnessEmail(string email)
+        private bool ValidateUniqnessEmail(string email)
         {
             if (!_library.GetUserRepository().GetUsersEmails().Contains(email))
             {
@@ -60,7 +60,7 @@ namespace Biblioteka.Model.Utils
                 return false;
             }
         }
-        public bool IsContainAt(string email)
+        private bool IsContainAt(string email)
         {
             if (email.Contains('@'))
             {
@@ -74,15 +74,7 @@ namespace Biblioteka.Model.Utils
         }
         public bool IsEmailCompatible(string email)
         {
-            if (ValidateUniqnessEmail(email) == true && IsContainAt(email) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-
-            }
+            return (ValidateUniqnessEmail(email) == true && IsContainAt(email) == true);
         }
     }
 }

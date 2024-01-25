@@ -27,6 +27,17 @@ namespace Biblioteka.Repository
             }
             return usersEmails;
         }
+        public User FindUserByCurrentUser(User currentUser)
+        {
+            foreach (User user in ElementList)
+            {
+                if (user.Equals(currentUser))
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
         public void SetCurrentUser(User currentUser)
         {
             this.CurrentUser = currentUser;

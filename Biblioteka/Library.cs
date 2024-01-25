@@ -126,18 +126,6 @@ namespace Biblioteka
         //        isReader = true;
         //    }
         //}
-        //public void ChangingLibrarianPassword()
-        //{
-        //    Console.WriteLine("Podaj nowe hasło:");
-        //    string newPassword = Console.ReadLine();
-        //    Console.WriteLine("Powtórz nowe hasło:");
-        //    string repeatedNewPassword = Console.ReadLine();
-        //    if (repeatedNewPassword == newPassword)
-        //    {
-        //        user.SetPassword(repeatedNewPassword);
-        //        user.SetIfPasswordIsNotNeededToBeChanged();
-        //    }
-        //}
         public void CreateReaderAndUser(string name, string surname, DateTime dateOfBirth, string email, string password)
         {
             DateTime today = DateTime.Today;

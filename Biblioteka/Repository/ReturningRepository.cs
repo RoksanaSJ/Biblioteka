@@ -21,5 +21,27 @@ namespace Biblioteka.Repository
             ElementList.Add(ret);
             book.Available();
         }
+        public Returning FindReturningsByReaderID(int readerID)
+        {
+            foreach(Returning returning in ElementList)
+            {
+                if(returning.GetReader().GetID() == readerID)
+                {
+                    return returning;
+                }
+            }
+            return null;
+        }
+        public Returning FindReturningsByCurrentUser(User currentUser)
+        {
+            foreach (Returning returning in ElementList)
+            {
+                if (returning.GetReader().GetUser().Equals(currentUser))
+                {
+                    return returning;
+                }
+            }
+            return null;
+        }
     }
 }
