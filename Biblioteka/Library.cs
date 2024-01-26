@@ -71,6 +71,7 @@ namespace Biblioteka
         {
             return UserRepository; 
         }
+        //TODO - rzuca wyjątek
         public User Login(string email, string password)
         {
             List<User> tempUsersList = UserRepository.Get();
@@ -109,6 +110,7 @@ namespace Biblioteka
             UserRepository.Add(user);
             LibrarianRepository.Add(librarian);
         }
+        //TODO - aby zwracała wyjątek
         public ChargeInformation ReturnBook(int bookID, int readerID)
         {
             Book bookFound = GetBookRepository().FindBookByID(bookID);
@@ -128,6 +130,7 @@ namespace Biblioteka
             }
             else
             {
+                //rzucić wyjątek i złapań tam gdzie się wywołuje
                 return null;
             }
         }
