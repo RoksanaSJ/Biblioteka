@@ -27,7 +27,7 @@ namespace Biblioteka.Menu.Login
             string userEmail = Console.ReadLine();
             Console.WriteLine("Podaj swoje hasło:");
             string userPassword = Console.ReadLine();
-            User user = Library.CheckingUserExistance(userEmail, userPassword);
+            User user = Library.Login(userEmail, userPassword);
             if (user != null)
             {
                 if (user.GetInfoAboutPassword() == true)
@@ -47,9 +47,6 @@ namespace Biblioteka.Menu.Login
                         Log.PrintErrorMessage("Hasła muszą być takie same!");
                     }
                 }
-
-                bool isLibrarian = false;
-                Library.GetUserRepository().SetCurrentUser(user);
                 if (user.GetUserRole() == UserRole.Administrator)
                 {
                     _libraryMenuForAdmin.PrintMenu();
@@ -62,10 +59,10 @@ namespace Biblioteka.Menu.Login
                 {
                     _libraryMenuForReader.PrintMenu();
                 }
-                else
-                {
-                    Log.PrintErrorMessage("Niestety twoje dane są niepoprawne");
-                }
+            }
+            else
+            {
+                Log.PrintErrorMessage("Niestety twoje dane są niepoprawne");
             }
         }
     }
