@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.PortableExecutable;
@@ -71,19 +72,17 @@ namespace Biblioteka
         {
             return UserRepository; 
         }
-        //TODO - rzuca wyjątek
         public User Login(string email, string password)
         {
-            List<User> tempUsersList = UserRepository.Get();
-            foreach (User user in tempUsersList)
+            User user = GetUserRepository().FindUserByEmailAndPassword(email, password);
+            if (user != null)
             {
-                if (user.GetEmail().Equals(email) && user.GetPassword().Equals(password))
-                {
-                    UserRepository.SetCurrentUser(user);
-                    return user;
-                }
+                return user;
             }
-            return null;
+            else
+            {
+              throw new FailureOperationException("Podane dane są niepoprawne!");
+            }
         }
         public void CreateReaderAndUser(string name, string surname, DateTime dateOfBirth, string email, string password)
         {
@@ -110,7 +109,6 @@ namespace Biblioteka
             UserRepository.Add(user);
             LibrarianRepository.Add(librarian);
         }
-        //TODO - aby zwracała wyjątek
         public ChargeInformation ReturnBook(int bookID, int readerID)
         {
             Book bookFound = GetBookRepository().FindBookByID(bookID);
@@ -130,8 +128,7 @@ namespace Biblioteka
             }
             else
             {
-                //rzucić wyjątek i złapań tam gdzie się wywołuje
-                return null;
+                throw new FailureOperationException("Podane dane są niepoprawne!");
             }
         }
         private decimal CountCharge(Borrowing borrowing)

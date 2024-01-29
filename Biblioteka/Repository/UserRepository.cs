@@ -38,6 +38,18 @@ namespace Biblioteka.Repository
             }
             return null;
         }
+        public User FindUserByEmailAndPassword(string email, string password)
+        {
+            foreach (User user in ElementList)
+            {
+                if (user.GetEmail().Equals(email) && user.GetPassword().Equals(password))
+                {
+                    SetCurrentUser(user);
+                    return user;
+                }
+            }
+            return null;
+        }
         public void SetCurrentUser(User currentUser)
         {
             this.CurrentUser = currentUser;
