@@ -27,7 +27,7 @@ namespace Biblioteka.Menu.Borrowings
                 if (userOption.Equals("y"))
                 {
                     bool result = Library.GetBorrowingRepository().SubmitBorrowing(bookID, readerID);
-                    if(result == true)
+                    if(result)
                     {
                         Log.PrintSuccessMessage("Gratulację, właśnie przedłużyłeś wypożyczenie książki o kolejny miesiąc!");
                     }

@@ -30,7 +30,7 @@ namespace Biblioteka.Menu.ImportOrExportData
                 }
                 _importExport.Export(zipFile);
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 Console.WriteLine("Exception: " + e.Message);
             }

@@ -32,7 +32,7 @@ namespace Biblioteka.Menu.Entry
                 string password = Console.ReadLine();
                 Console.WriteLine("Powtórz hasło:");
                 string repeatedPassword = Console.ReadLine();
-                if (_validator.IsEmailCompatible(email) == true) 
+                if (_validator.IsEmailCompatible(email)) 
                 { 
                     if (password.Equals(repeatedPassword))
                     {

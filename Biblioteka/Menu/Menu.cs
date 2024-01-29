@@ -25,7 +25,7 @@ namespace Biblioteka.Menu
                 int option = int.Parse(Console.ReadLine());
                 return option;
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 int overflow = OVERFLOW_VALUE;
                 return overflow;

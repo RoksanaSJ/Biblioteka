@@ -74,7 +74,7 @@ namespace Biblioteka.Model.Utils
         }
         public bool IsEmailCompatible(string email)
         {
-            return (ValidateUniqnessEmail(email) == true && IsContainAt(email) == true);
+            return (ValidateUniqnessEmail(email) && IsContainAt(email));
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Biblioteka.Menu.Login
             User user = Library.Login(userEmail, userPassword);
             if (user != null)
             {
-                if (user.GetInfoAboutPassword() == true)
+                if (user.GetInfoAboutPassword())
                 {
                     Log.PrintInformationMessage("Musisz zmienic hasło");
                     Console.WriteLine("Podaj nowe hasło:");
