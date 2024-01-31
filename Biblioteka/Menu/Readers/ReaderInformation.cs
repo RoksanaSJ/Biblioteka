@@ -1,4 +1,5 @@
 ﻿using Biblioteka.Model;
+using Biblioteka.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,46 +20,21 @@ namespace Biblioteka.Menu.Readers
             while (true)
             {
                 Console.WriteLine("Podaj ID wyszukiwanego czytelnika: ");
-                int readID = ReadOption();
-                Console.WriteLine($"Czy ID po którym chcesz wyszukać to: {readID}?");
+                int readerID = ReadOption();
+                Console.WriteLine($"Czy ID po którym chcesz wyszukać to: {readerID}?");
                 Console.WriteLine("Jeżeli tak, wpisz 'y', jeżeli nie wpisz 'n', jeżeli chcesz wrócić 'b':");
                 string userOption = Console.ReadLine();
-                Console.WriteLine("");
                 if (userOption.Equals("y"))
                 {
-                    //osobna metoda w klasie library, a nawet więcej niż 1 metoda
-                    List<Reader> readerInfo = new List<Reader>();
-                    readerInfo = Library.GetReaderRepository().Get();
-                    List<Borrowing> borrowings = new List<Borrowing>();
-                    borrowings = Library.GetBorrowingRepository().Get();
-                    List<Returning> readerReturnings = new List<Returning>();
-                    readerReturnings = Library.GetReturningRepository().Get();
-                    Log.PrintInformationMessage("Dane użytkownika: ");
-                    foreach (Reader reader in readerInfo)
-                    {
-                        if (reader.GetID() == readID)
-                        {
-                            Console.WriteLine(reader);
-                        }
-                    }
-                    Console.WriteLine("");
-                    Log.PrintInformationMessage("Wypożyczenia użytkowanika: ");
-                    foreach (Borrowing borrowing in borrowings)
-                    {
-                        if (borrowing.GetReader().GetID() == readID)
-                        {
-                            Console.WriteLine(borrowing);
-                        }
-                    }
-                    Console.WriteLine("");
-                    Log.PrintInformationMessage("Historia wypożyczeń użytkowanika: ");
-                    foreach (Returning returning in readerReturnings)
-                    {
-                        if (returning.GetReader().GetID() == readID)
-                        {
-                            Console.WriteLine(returning);
-                        }
-                    }
+                    Log.PrintInformationMessage("\nDane użytkownika: ");
+                    Reader reader = Library.GetReaderRepository().FindReaderByID(readerID);
+                    Console.WriteLine(reader);
+                    Log.PrintInformationMessage("\nWypożyczenia użytkowanika: ");
+                    Borrowing borrowings = Library.GetBorrowingRepository().FindBorrowingsByReaderID(readerID);
+                    Console.WriteLine(borrowings);
+                    Log.PrintInformationMessage("\nHistoria wypożyczeń użytkowanika: ");
+                    Returning returnings = Library.GetReturningRepository().FindReturningsByReaderID(readerID);
+                    Console.WriteLine(returnings);
                     break;
                 }
                 else if (userOption.Equals("n"))
@@ -79,47 +55,19 @@ namespace Biblioteka.Menu.Readers
         {
             while (true)
             {
-                List<Reader> readers = Library.GetReaderRepository().Get();
                 User currentUser = Library.GetUserRepository().GetCurrentUser();
-                List<User> userInfo = Library.GetUserRepository().Get();
-                List<Borrowing> borrowings = new List<Borrowing>();
-                borrowings = Library.GetBorrowingRepository().Get();
-                List<Returning> readerReturnings = new List<Returning>();
-                readerReturnings = Library.GetReturningRepository().Get();
                 Log.PrintInformationMessage("Dane użytkownika: ");
-                foreach(Reader reader in readers)
-                {
-                    if (reader.GetUser().Equals(currentUser))
-                    {
-                        Console.WriteLine(reader);
-                    }
-                }
+                Reader reader = Library.GetReaderRepository().FindReaderByCurrentUser(currentUser);
+                Console.WriteLine(reader);
                 Console.WriteLine("");
-                foreach (User user in userInfo)
-                {
-                    if (user.Equals(currentUser))
-                    {
-                        Console.WriteLine(user);
-                    }
-                }
-                Console.WriteLine("");
-                Log.PrintInformationMessage("Wypożyczenia użytkowanika: ");
-                foreach (Borrowing borrowing in borrowings)
-                {
-                    if (borrowing.GetReader().GetUser().Equals(currentUser))
-                    {
-                        Console.WriteLine(borrowing);
-                    }
-                }
-                Console.WriteLine("");
-                Log.PrintInformationMessage("Historia wypożyczeń użytkowanika: ");
-                foreach (Returning returning in readerReturnings)
-                {
-                    if (returning.GetReader().GetUser().Equals(currentUser))
-                    {
-                        Console.WriteLine(returning);
-                    }
-                }
+                User user = Library.GetUserRepository().FindUserByCurrentUser(currentUser);
+                Console.WriteLine(user);
+                Log.PrintInformationMessage("\nWypożyczenia użytkowanika: ");
+                Borrowing userBorrowings = Library.GetBorrowingRepository().FindBorrowingsByCurrentUser(currentUser);
+                Console.WriteLine(userBorrowings);
+                Log.PrintInformationMessage("\nHistoria wypożyczeń użytkowanika: ");
+                Returning userReturnings = Library.GetReturningRepository().FindReturningsByCurrentUser(currentUser);
+                Console.WriteLine(userReturnings);
                 break;
             }
         }

@@ -5,6 +5,7 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Biblioteka.Exception;
 using Biblioteka.Model;
 
 namespace Biblioteka.Menu.Borrowings
@@ -28,7 +29,15 @@ namespace Biblioteka.Menu.Borrowings
                 string userOption = Console.ReadLine();
                 if (userOption.Equals("y"))
                 {
-                    Library.BorrowABookByBookAndReaderID(bookID, readerID);
+                    try
+                    {
+                        Library.BorrowABookByBookAndReaderID(bookID, readerID);
+                        Log.PrintSuccessMessage($"Gratulację, właśnie wypożyczyłeś książkę");
+                    }
+                    catch (FailureOperationException ex)
+                    {
+                        Log.PrintErrorMessage(ex.Message);
+                    }
                 }
                 else if (userOption.Equals("n"))
                 {

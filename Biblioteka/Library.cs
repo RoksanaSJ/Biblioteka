@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.PortableExecutable;
@@ -6,6 +7,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Biblioteka.ConsoleMessage;
+using Biblioteka.Exception;
+using Biblioteka.Menu.Books;
 using Biblioteka.Model;
 using Biblioteka.Repository;
 
@@ -21,7 +24,6 @@ namespace Biblioteka
         protected ReturningRepository ReturningRepository { get; set; }
         protected ChargeInformationRepository ChargeInformationRepository { get; set; }
         protected UserRepository UserRepository { get; set; }
-        protected ConsoleLog Log;
         public Library ()
         {
             BookRepository = new BookRepository ();
@@ -31,7 +33,6 @@ namespace Biblioteka
             ReturningRepository = new ReturningRepository ();
             ChargeInformationRepository = new ChargeInformationRepository ();
             UserRepository = new UserRepository ();
-            this.Log = new ConsoleLog();
         }
         public void ClearAllData()
         {
@@ -71,6 +72,18 @@ namespace Biblioteka
         {
             return UserRepository; 
         }
+        public User Login(string email, string password)
+        {
+            User user = GetUserRepository().FindUserByEmailAndPassword(email, password);
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+              throw new FailureOperationException("Podane dane są niepoprawne!");
+            }
+        }
         public void CreateReaderAndUser(string name, string surname, DateTime dateOfBirth, string email, string password)
         {
             DateTime today = DateTime.Today;
@@ -96,7 +109,7 @@ namespace Biblioteka
             UserRepository.Add(user);
             LibrarianRepository.Add(librarian);
         }
-        public void ReturnBook(int bookID, int readerID)
+        public ChargeInformation ReturnBook(int bookID, int readerID)
         {
             Book bookFound = GetBookRepository().FindBookByID(bookID);
             Reader readerFound = GetReaderRepository().FindReaderByID(readerID);
@@ -104,22 +117,18 @@ namespace Biblioteka
             if (bookFound != null && readerFound != null && borrowingFound != null)
             {
                 decimal charge = CountCharge(borrowingFound);
+                ChargeInformation chargeInfo = new ChargeInformation(charge, readerFound);
                 if (charge > 0)
                 {
-                    ChargeInformation chargeInfo = new ChargeInformation(charge, readerFound);
                     GetChargeInformationRepository().Add(chargeInfo);
                 }
                 GetReturningRepository().ReturnBook(bookFound, readerFound);
-                bool isItEqual = GetBorrowingRepository().RemoveBorrowingFromBorrowingList(bookFound, readerFound);
-                if (isItEqual == false)
-                {
-                    Log.PrintErrorMessage("Nie ma takiego wypożyczenia");
-                }
-                Log.PrintSuccessMessage($"Gratulację, właśnie oddałeś książkę");
+                GetBorrowingRepository().RemoveBorrowingFromBorrowingList(bookFound, readerFound);
+                return chargeInfo;
             }
             else
             {
-                Log.PrintErrorMessage("Dane niepoprawne");
+                throw new FailureOperationException("Podane dane są niepoprawne!");
             }
         }
         private decimal CountCharge(Borrowing borrowing)
@@ -136,7 +145,6 @@ namespace Biblioteka
             {
                 decimal overkeepingDays = ((decimal)days - 31m);
                 charge = overkeepingDays * 0.1m;
-                Log.PrintErrorMessage($"Niestety porzetrzymałeś wypożyczoną książkę o {overkeepingDays} dni -  za każdy dzień zostanie naliczona opłata 10gr. \n Musisz zapłacić {charge} zł");
             }
             else
             {
@@ -146,43 +154,29 @@ namespace Biblioteka
         }
         public void BorrowABookByBookAndReaderID(int bookID, int readerID)
         {
-            List<int> notFound = new List<int>();
-            List<Reader> readers = ReaderRepository.Get();
-            foreach (var book in BookRepository.Get())
+            Book bookFound = BookRepository.FindBookByID(bookID);
+            Reader readerFound = ReaderRepository.FindReaderByID(readerID);
+            if (bookFound != null && readerFound != null)
             {
-                if (book.GetID() == bookID)
+                if (bookFound.GetState() == Book.BookState.Available)
                 {
-                    foreach (var reader in readers)
+                    if (BorrowingRepository.IsLimitExceeded(readerFound) == false)
                     {
-                        if (reader.GetID() == readerID)
-                        {
-                            if (book.GetState() == Book.BookState.Available)
-                            {
-                                if (BorrowingRepository.IsLimitExceeded(reader) == false)
-                                {
-                                    BorrowingRepository.BorrowBook(book, reader);
-                                    Log.PrintSuccessMessage($"Gratulację {reader}, właśnie wypożyczyłeś książkę {book}");
-                                }
-                                else
-                                {
-                                    Log.PrintErrorMessage($"Nie możesz wypożyczyć więcej niż {MAXBOOKS} książek");
-                                }
-                            }
-                            else
-                            {
-                                Log.PrintErrorMessage("Niestety ta książka jest niedostępna do wypożyczenia");
-                            }
-                        }
+                        BorrowingRepository.BorrowBook(bookFound, readerFound);
+                    }
+                    else
+                    {
+                        throw new FailureOperationException($"Nie możesz wypożyczyć więcej niż {MAXBOOKS} książek");
                     }
                 }
                 else
                 {
-                    notFound.Add(bookID);
+                    throw new FailureOperationException("Niestety ta książka jest niedostępna do wypożyczenia");
                 }
             }
-            if (notFound.Count == BookRepository.Get().Count)
+            else
             {
-                Log.PrintErrorMessage("Niestety książka o takim ID nie istnieje");
+                throw new FailureOperationException("Niestety podane dane są niepoprawne");
             }
         }
     }

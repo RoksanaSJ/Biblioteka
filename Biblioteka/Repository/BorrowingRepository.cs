@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +32,28 @@ namespace Biblioteka.Repository
             foreach (Borrowing borrowing in ElementList)
             {
                 if (borrowing.GetReader().GetID() == readerID && borrowing.GetBook().GetID() == bookID)
+                {
+                    return borrowing;
+                }
+            }
+            return null;
+        }
+        public Borrowing FindBorrowingsByReaderID(int readerID)
+        {
+            foreach (Borrowing borrowing in ElementList)
+            {
+                if (borrowing.GetReader().GetID() == readerID)
+                {
+                    return borrowing;
+                }
+            }
+            return null;
+        }
+        public Borrowing FindBorrowingsByCurrentUser(User currentUser)
+        {
+            foreach (Borrowing borrowing in ElementList)
+            {
+                if (borrowing.GetReader().GetUser().Equals(currentUser))
                 {
                     return borrowing;
                 }

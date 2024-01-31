@@ -321,7 +321,7 @@ namespace Biblioteka.Model.Utils
                 //close the file
                 sr.Close();
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 Console.WriteLine("Exception: " + e.Message);
             }

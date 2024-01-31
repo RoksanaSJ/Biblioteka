@@ -27,7 +27,7 @@ namespace Biblioteka.Repository
         }
         public void PrintHistoryFromPeriod(DateTime startDate, DateTime finishDate)
         {
-            if(CheckIfStartDateIsEarlierThanFinishDate(startDate,finishDate) == true) 
+            if(CheckIfStartDateIsEarlierThanFinishDate(startDate,finishDate)) 
             { 
                 foreach (ChargeInformation chargeInformation in ElementList)
                 {
